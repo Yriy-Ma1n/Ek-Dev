@@ -1,1 +1,9 @@
-<p>card works!</p>
+<div class="main-container-card">
+    <div class="container-card" *ngFor="let item of tovar">
+        <div class="img-card">
+            <img [src]="item.img" alt="">
+        </div>
+        <h1 class="name-card">{{item.name}}</h1>
+        <p class="description-card">{{item.description}}</p>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 .container{
     height: 100px;
     background-color: var(--accent-color-blue);
+    display: flex;
 }
