@@ -1,0 +1,20 @@
+.main-container-card{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+.container-card{
+    width: 320px;
+}
+.img-card{
+    width: 100%;
+    height: 60%;
+}
+.img-card img{
+    border-radius: 12px;
+}
+.name-card{
+    color:var(--accent-color-blue)
+}
+.description-card{
+    color:var(--color-text)
+}
