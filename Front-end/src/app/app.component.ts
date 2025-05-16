@@ -2,10 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderBarComponent } from './Header/header-bar/header-bar.component';
+import { NewsComponent } from './News/news/news.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderBarComponent],
+  imports: [RouterOutlet, HeaderBarComponent, NewsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
