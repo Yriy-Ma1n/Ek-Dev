@@ -1,0 +1,12 @@
+.container-cards{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.name-section{
+    display: grid;
+    grid-template-columns: 280px 500px;
+}
+.name-section h1{
+    grid-column-start: 2;
+}
