@@ -9,3 +9,8 @@ body,html{
     --color-text: #cccccd;
     --accent-color-black: #202124;
 }
+
+@font-face {
+  font-family: "Proxima Soft";
+  src: url("assets/ProximaSoftCond-Regular.woff") format("woff");
+}
