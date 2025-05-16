@@ -3,6 +3,6 @@
     align-items: center;
     justify-content: center;
     gap: 35px;
-    height: 100px;
+    height: 95px;
     background-color: var(--accent-color-blue);
 }
