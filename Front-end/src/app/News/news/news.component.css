@@ -1,0 +1,15 @@
+.container-cards{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.name-section{
+    display: grid;
+    grid-template-columns: 280px 500px;
+}
+.name-section h1{
+    grid-column-start: 2;
+    opacity: 0.6;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+}
