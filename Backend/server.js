@@ -1,10 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
+require('dotenv').config()
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-const uri = "mongodb+srv://ShopDataBase:qXBMPLL12@cluster0.4hf95wl.mongodb.net/";
+const PORT = process.env.PORT;
+
+const uri = process.env.MONGO_URL
+
 const client = new MongoClient(uri)
 
 app.use(cors());
@@ -60,4 +63,9 @@ app.get('/PopularModel', async(req, res)=>{
         res.json(model)
     }
 })
+app.get('/review', async(req, res)=>{
 
+    const review = await dbSave.collection('review').find().toArray()
+
+    res.send(review)
+})
