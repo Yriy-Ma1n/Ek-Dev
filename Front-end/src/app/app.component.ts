@@ -11,9 +11,6 @@ import { NewsComponent } from './News/news/news.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-<<<<<<< HEAD
-  
-=======
   http = inject(HttpClient)
 
   connectToReview(){
@@ -24,5 +21,4 @@ export class AppComponent {
  
  
  
->>>>>>> dev
 }
