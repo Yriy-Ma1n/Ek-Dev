@@ -6,7 +6,7 @@ import { NewsComponent } from './News/news/news.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderBarComponent, NewsComponent],
+  imports: [HeaderBarComponent, NewsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
