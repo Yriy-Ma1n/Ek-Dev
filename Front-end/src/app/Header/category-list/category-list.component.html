@@ -1,4 +1,10 @@
-<div class="container-category">
-    
-
+<div class="wrapper">
+    <div class="container-category">
+        <app-card-category *ngFor="let item of nameCategory" 
+        [width]="item.width" 
+        [height]="item.height"
+        [img]="item.img"
+        >
+        </app-card-category>
+    </div>
 </div>
