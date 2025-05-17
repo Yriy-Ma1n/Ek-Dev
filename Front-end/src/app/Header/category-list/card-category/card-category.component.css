@@ -1,0 +1,44 @@
+:host{
+    width: fit-content;
+    overflow: hidden;
+    border-radius: 12px;
+}
+.container-card-category{
+    position: relative;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.container-card-category img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top:0;
+    z-index: -1;
+    border-radius: 12px;
+   
+}
+.container-card-category:hover{
+    transform: scale(1.02);
+}
+.container-card-category::before{
+    content: '';
+    width: 100%;
+    opacity: 0;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top:0;
+    background-color: rgba(0, 0, 0, 0.267);
+    transition: 0.5s;
+    border-radius: 12px;
+    
+}
+.container-card-category:hover::before{
+    opacity: 1;
+  
+}
+.container-card-category h1{
+    
+    z-index: 9999;
+}

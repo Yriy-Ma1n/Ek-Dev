@@ -4,10 +4,11 @@ import { SearchComponent } from '../search/search.component';
 import { ThemeBtnComponent } from '../theme-btn/theme-btn.component';
 import { LanguageBtnComponent } from '../language-btn/language-btn.component';
 import { SinginAdminComponent } from '../singin-admin/singin-admin.component';
+import { CategoryListComponent } from '../category-list/category-list.component';
 
 @Component({
   selector: 'app-header-bar',
-  imports: [LogoComponent, SearchComponent, ThemeBtnComponent, LanguageBtnComponent, SinginAdminComponent],
+  imports: [LogoComponent, SearchComponent, ThemeBtnComponent, LanguageBtnComponent, SinginAdminComponent, CategoryListComponent],
   templateUrl: './header-bar.component.html',
   styleUrl: './header-bar.component.css'
 })

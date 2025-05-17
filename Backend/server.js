@@ -69,3 +69,8 @@ app.get('/review', async(req, res)=>{
 
     res.send(review)
 })
+app.get('/CategoryList', async (req, res) => {
+    const CategoryList = await dbSave.collection('Category-list').find().toArray()
+
+    res.send(CategoryList)
+})
