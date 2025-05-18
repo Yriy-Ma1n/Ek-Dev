@@ -1,15 +1,53 @@
 .container-tovar{
     display: flex;
     font: normal 100% Roboto, Arial, Helvetica, sans-serif;
+    border-top: 0.5px solid #dfdfdfd3;
+    padding-top: 20px;
 }
 .image-button-tovar{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+.compare-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.checkbox{
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    position: relative;
+}
+.checkbox:checked{
+    background-color:var(--accent-color-orange)
+}
+.checkbox:checked + .checkbox-text{
+    color:var(--accent-color-blue);
+    text-decoration: underline;
+   
+}
+.checkbox-text{
+    margin-top: 3px;
+}
+.checkbox:checked::after{
+    content: "✔";
+    position: absolute;
+    left:2px;
+    bottom:0px;
+    color: white;
+}
 .container-statisctics-price{
     display: flex;
     margin-left: 30px;
+    gap:10px
 }
 .name-statistic-tovar{
     width: 520px;
@@ -26,6 +64,8 @@
 .name-characteristics-tovar p{
     margin: 0;
     opacity: 0.5;
+    margin-left: 6px;
+    font-size: 14px;
 }
 .additional-info{
     display: flex;
@@ -96,6 +136,15 @@
 .current{
     border: 2px solid var(--accent-color-blue);
 }
+.separate-line{
+    width: 1px;
+    height: 100%;
+    background-color: #dfdfdfd3;
+}
 .price{
-    color:var(--accent-color-orange)
+    color:var(--accent-color-orange);
+    font-size: 21px;
+}
+.price span{
+    font-size: 12px;
 }
