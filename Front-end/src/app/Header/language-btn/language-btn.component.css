@@ -1,0 +1,13 @@
+.btn{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+}
+.btn a{
+    text-decoration: none;
+    color: #fff;
+    font-family: "Proxima Soft";
+    font-weight: 700;
+    font-size: 21px;
+}
