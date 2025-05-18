@@ -3,13 +3,13 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-language-btn',
-  imports: [NgStyle],
+  imports: [],
   templateUrl: './language-btn.component.html',
   styleUrl: './language-btn.component.css'
 })
 export class LanguageBtnComponent {
-  transformArrow = true;
-  transformValue = "";
+  transformArrow = false;
+  transformValue = "rotate(180deg)";
  onClick(){
   if(this.transformArrow){
     this.transformValue = "rotate(180deg)";
