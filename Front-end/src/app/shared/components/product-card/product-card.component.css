@@ -1,3 +1,8 @@
 .container-tovar{
     display: flex;
+    font: normal 100% Roboto, Arial, Helvetica, sans-serif;
+}
+.container-statisctics-price{
+    display: flex;
+    margin-left: 30px;
 }
