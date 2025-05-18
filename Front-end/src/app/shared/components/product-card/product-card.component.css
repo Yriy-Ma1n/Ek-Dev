@@ -3,6 +3,14 @@
     font: normal 100% Roboto, Arial, Helvetica, sans-serif;
     border-top: 0.5px solid #dfdfdfd3;
     padding-top: 20px;
+   
+}
+.container-tovar:hover{
+    background-color: #dfdfdf59;
+}
+.container-tovar:hover .additional-info-item{
+    background-color: rgba(206, 206, 206, 0.422);
+
 }
 .image-button-tovar{
     display: flex;
@@ -36,6 +44,7 @@
 }
 .checkbox-text{
     margin-top: 3px;
+    opacity: 0.6;
 }
 .checkbox:checked::after{
     content: "✔";
@@ -55,6 +64,7 @@
 .name-characteristics-tovar{
     display: flex;
     margin-bottom: 10px;
+    
 }
 .name-tovar{
     color:var(--accent-color-blue);
@@ -79,7 +89,8 @@
     background-color: var(--scrollbar-color);
     font-size: 12px;
     color:#111;
-    background-color: #dfdfdfd3;
+    background-color: rgba(206, 206, 206, 0.377);
+    opacity: 0.7;
     cursor: pointer;
     margin-bottom: 10px;
 }
@@ -112,6 +123,7 @@
 }
 .characteristics{
     margin-left: 5px;
+    color:rgba(0, 0, 0, 0.877)
 }
 .second{
     margin-left: 10px;
@@ -123,11 +135,13 @@
 }
 .memory{
     padding: 10px 10px;
-    background-color: #dfdfdfd3;
+    background-color: #dfdfdf65;
     border-radius: 6px;
     border: 1.5px solid #00000033;
     cursor: pointer;
     font-size: 13px;
+    color:rgba(0, 0, 0, 0.575)
+    
 }
 .memory:hover:not(.current){
     border-color: var(--accent-color-orange);
