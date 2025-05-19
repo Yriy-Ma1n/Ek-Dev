@@ -1,0 +1,33 @@
+<div class="list-category">
+    <div class="list-category-container" (mouseover)="hoverToElemet($event)" (mouseleave)="leaveOfElement()">
+        <span class="Gadgets category">Гаджети</span>
+        <span class="Computers category">Комп'ютери</span>
+        <span class="photo category">Фото</span>
+        <span class="TV category">TV</span>
+        <span class="Audio category">Аудіо</span>
+        <span class="Home-technik category">Побутова техніка</span>
+        <span class="Climat category">Клімат</span>
+        <span class="Home category">Дім</span>
+        <span class="Child-tovar category">Дитячі товари</span>
+        <span class="Car category">Авто</span>
+        <span class="Tool category">Інструмент</span>
+        <span class="Tourism category">Туризм</span>
+        <span class="Sport category">Спорт</span> 
+        <span class="Fashion category">Мода та аксесуари</span>
+    </div>
+<div class="additionally-info" [ngClass]="{'none pin':hovered}" (mouseover)="itemIn()" (mouseleave)="itemout()">
+    <div *ngFor="let item of listCategoryItem" class="container-item">
+        <div class="item">
+            <img src="{{item.img}}" alt="" class="item-img">
+            <p>{{item.name}}</p>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
