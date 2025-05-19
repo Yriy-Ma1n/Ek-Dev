@@ -5,16 +5,15 @@
 }
 
 .container-category {
-    margin-top: 70px;
+
     display: grid;
     grid-template-columns: repeat(8, max-content);
     grid-template-rows: repeat(6, max-contetn);
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
 }
 .container-category app-card-category {
     height: fit-content;
-    border: 1px dashed red;
 }
 .container-category app-card-category:nth-child(1) {
     grid-area: 1 / 4 / 4 / 9;
