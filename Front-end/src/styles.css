@@ -8,6 +8,7 @@ body,html{
     --scrollbar-color: #a8a8a8;
     --color-text: #cccccd;
     --accent-color-black: #202124;
+    --opacity-color-gray:#dfdfdfd3
 }
 
 @font-face {
