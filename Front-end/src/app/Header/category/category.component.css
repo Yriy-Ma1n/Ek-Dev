@@ -26,6 +26,10 @@
     border-bottom: 4px solid var(--accent-color-orange);
 }
 .additionally-info{
+    display: flex;
+    gap:50px;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top:61px;
     left:0;
@@ -34,6 +38,7 @@
     background-color: white;
     z-index: 9999;
     transition: 0.3s;
+    
 }
 .none{
     height: 0px;
@@ -41,6 +46,13 @@
 }
 .pin{
     pointer-events: none;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .item img{
     width: 24px;
