@@ -26,8 +26,6 @@
     border-bottom: 4px solid var(--accent-color-orange);
 }
 .additionally-info{
-    display: none;
-    pointer-events: none;
     position: absolute;
     top:61px;
     left:0;
@@ -35,4 +33,11 @@
     width: 100%;
     background-color: white;
     z-index: 9999;
+    transition: 0.3s;
+}
+.none{
+    height: 0px;
+}
+.pin{
+    pointer-events: none;
 }
