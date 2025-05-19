@@ -5,5 +5,10 @@
     gap: 35px;
     height: 95px;
     background-color: var(--accent-color-blue);
-    
+}
+
+.header-container{
+    height: 62px;
+    display: flex;
+    justify-content: center;
 }
