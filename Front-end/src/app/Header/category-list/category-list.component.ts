@@ -21,4 +21,4 @@ export class CategoryListComponent {
     }
    
 }
-//<{_id: string, img: string, name: string, description: string}[]>
+

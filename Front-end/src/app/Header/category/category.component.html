@@ -15,8 +15,17 @@
         <span class="Sport category">Спорт</span> 
         <span class="Fashion category">Мода та аксесуари</span>
     </div>
-<div class="additionally-info" [ngClass]="{'none pin':hovered}"></div>
+<div class="additionally-info" [ngClass]="{'none pin':hovered}">
+    <div *ngFor="let item of listCategoryItem">
+        <div class="item">
+            <img src="{{item.img}}" alt="">
+            <h1>{{item.name}}</h1>
+        </div>
+    </div>
 </div>
+</div>
+
+
 
 
 

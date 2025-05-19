@@ -37,7 +37,12 @@
 }
 .none{
     height: 0px;
+    overflow: hidden;
 }
 .pin{
     pointer-events: none;
+}
+.item img{
+    width: 24px;
+    height: 32px;
 }

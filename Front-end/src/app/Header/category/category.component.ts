@@ -1,25 +1,29 @@
-import { NgClass} from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-category',
-  imports: [NgClass],
+  imports: [NgClass, NgFor],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
 export class CategoryComponent {
-  hovered:boolean = true
+  hovered: boolean = true
 
-  listCategoryItem:{img:string, name:string}[] = []
+  listCategoryItem: { img: string, name: string }[] = []
 
-  hoverToElemet(event:Event){
+  hoverToElemet(event: Event) {
     const element = event.target as HTMLElement
-    if(element.classList.contains("list-category-container")) return
+    if (element.classList.contains("list-category-container")) return
     this.hovered = false
-    element.classList.contains("Gadgets")
+
+    if (element.classList.contains("Gadgets")) {
+      this.listCategoryItem = []
+      this.listCategoryItem.push({ img: './header-list/Gadgets/smart-watch.svg', name: "Гаджети" })
+    }
   }
-  leaveOfElement(){
+  leaveOfElement() {
     this.hovered = true
-    
+
   }
 }
