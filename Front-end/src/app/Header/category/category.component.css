@@ -37,7 +37,7 @@
     width: 100%;
     background-color: white;
     z-index: 9999;
-    transition: 0.3s;
+    transition: 0.5s;
     
 }
 .none{
@@ -53,8 +53,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 .item img{
     width: 24px;
     height: 32px;
+}
+.container-item{
+    transition: 0.5s;
 }
