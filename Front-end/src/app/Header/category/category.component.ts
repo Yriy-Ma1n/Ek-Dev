@@ -1,5 +1,6 @@
 import { NgClass, NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ListCategoryService } from '../../core/services/list-category.service';
 
 @Component({
   selector: 'app-category',
@@ -8,7 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './category.component.css'
 })
 export class CategoryComponent {
-  hovered: boolean = true
+  hovered: boolean = true;
+
+  categoryesData = inject(ListCategoryService).dataCategoryes
 
   listCategoryItem: { img: string, name: string }[] = []
 
@@ -18,12 +21,24 @@ export class CategoryComponent {
     this.hovered = false
 
     if (element.classList.contains("Gadgets")) {
-      this.listCategoryItem = []
+      this.listCategoryItem = this.categoryesData[0].Gadgets
     }
     if(element.classList.contains("Computers")){
-      this.listCategoryItem = []
-      
+      this.listCategoryItem = this.categoryesData[0].Computers
     }
+    if(element.classList.contains("photo")){
+      this.listCategoryItem = this.categoryesData[0].Photo
+    }
+     if(element.classList.contains("TV")){
+      this.listCategoryItem = this.categoryesData[0].Tv
+    }
+    if(element.classList.contains("Audio")){
+      this.listCategoryItem = this.categoryesData[0].Audio
+    }
+    if(element.classList.contains("Home-technik")){
+      this.listCategoryItem = this.categoryesData[0].HomeTechnik
+    }
+
   }
   leaveOfElement() {
     this.hovered = true
