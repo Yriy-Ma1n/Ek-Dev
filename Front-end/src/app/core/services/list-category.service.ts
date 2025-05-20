@@ -84,16 +84,87 @@ export class ListCategoryService {
         { img: './header-list/Climat/PumpsWaterSupply.svg', name: "Насоси та водопостачання" },
         { img: './header-list/Climat/Camins.svg', name: "Каміни" },
       ],
-      Home: [],
-      ChildTovar: [],
-      Cars: [],
-      Tools: [],
-      Tourism: [],
-      Sport: [],
-      FashionBeauti: []
+      Home: [
+        { img: './header-list/Home/Plumbing.svg', name: "Сантехніка" },
+        { img: './header-list/Home/Repair.svg', name: "Ремонт" },
+        { img: './header-list/Home/Dishes.svg', name: "Посуд" },
+        { img: './header-list/Home/FurnitureIhome.svg', name: "Меблі" },
+        { img: './header-list/Home/WithoutEnergy.svg', name: "Автономне живлення" },
+        { img: './header-list/Home/AlarmsCamerasIhome.svg', name: "Сигналізації та відеокамери" },
+        { img: './header-list/Home/HealthIhome.svg', name: "Медицина" },
+        { img: './header-list/Home/CosmeticAccessoriesIhome.svg', name: "Косметичне приладдя" },
+        { img: './header-list/Home/PetsIhome.svg', name: "Зоотовари" },
+      ],
+      ChildTovar: [
+        { img: './header-list/Child-tovar/PushchairsIkids&toys.svg', name: "Візочки" },
+        { img: './header-list/Child-tovar/CribsIKIDS.svg', name: "Ліжечка" },
+        { img: './header-list/Child-tovar/HighChairsIkids.svg', name: "Стільчики для годування" },
+        { img: './header-list/Child-tovar/DiapersIkids.svg', name: "Підгузки" },
+        { img: './header-list/Child-tovar/kidcarseatsIkids.svg', name: "Автокрісла" },
+        { img: './header-list/Child-tovar/SchoolIkids.svg', name: "Школа" },
+        { img: './header-list/Child-tovar/Child-Bysicle.svg', name: "Велосипеди" },
+        { img: './header-list/Child-tovar/Toys&Entertainmentlkids.svg', name: "Іграшки й розваги" },
+        { img: './header-list/Child-tovar/RCToysIkids.svg', name: "РК моделі" },
+      ],
+
+      Cars: [
+        { img: './header-list/cars/TyresICars.svg', name: "Шини" },
+        { img: './header-list/cars/RimsICars.svg', name: "Диски" },
+        { img: './header-list/cars/kidCarSeatsICars.svg', name: "Дитячі крісла" },
+        { img: './header-list/cars/DashcamsIcars.svg', name: "Реєстратори" },
+        { img: './header-list/cars/SoundAndElectronicsICars.svg', name: "Звук та електроніка" },
+        { img: './header-list/cars/BatteriesIcars.svg', name: "Акумулятори" },
+        { img: './header-list/cars/EngineOilsIcars.svg', name: "Моторні мастила" },
+        { img: './header-list/cars/PressureWashesICars.svg', name: "Автомийки" },
+        { img: './header-list/cars/MotoICars.svg', name: "Мото" },
+      ],
+      Tools: [
+        { img: './header-list/Tools/Tools.svg', name: "Інструмент" },
+        { img: './header-list/Tools/ToolKits.svg', name: "Набори інструментів" },
+        { img: './header-list/Tools/HandTools.svg', name: "Ручний інструмент" },
+        { img: './header-list/Tools/Construction.svg', name: "Садова техніка" },
+        { img: './header-list/Tools/GardenTools.svg', name: "Садовий інструмент" },
+        { img: './header-list/Tools/MeasuringInstruments.svg', name: "Вимірювальні прилади" },
+        { img: './header-list/Tools/GardenEquipment.svg', name: "Автономне живлення" },
+        { img: './header-list/Tools/welders.svg', name: "Зварювальні апарати" },
+      ],
+      Tourism: [
+        { img: './header-list/Tourism/BackpacksITourism.svg', name: "Рюкзаки" },
+        { img: './header-list/Tourism/SuitcasesITourism.svg', name: "Валізи" },
+        { img: './header-list/Tourism/TentsITourism.svg', name: "Намети" },
+        { img: './header-list/Tourism/SleepingBagsITourism.svg', name: "Спальники" },
+        { img: './header-list/Tourism/FlashlightsITourism.svg', name: "Ліхтарики" },
+        { img: './header-list/Tourism/ThermosesITourism.svg', name: "Термоси" },
+        { img: './header-list/Tourism/BurnersITourism.svg', name: "Пальники" },
+        { img: './header-list/Tourism/BBQs&BrazierITourism.svg', name: "Мангали" },
+        { img: './header-list/Tourism/FishingITourism.svg', name: "Риболовля" },
+      ],
+      Sport: [
+        { img: './header-list/Sport/Bysicle.svg', name: "Велосипеди" },
+        { img: './header-list/Sport/ActiveRest.svg', name: "Активний відпочинок" },
+        { img: './header-list/Sport/gameTypeStoprt.svg', name: "Ігрові види спорту" },
+        { img: './header-list/Sport/WaterTypeSport.svg', name: "Водні види спорту" },
+        { img: './header-list/Sport/WinterTypeSport.svg', name: "Зимові види спорту" },
+        { img: './header-list/Sport/Action-camera.svg', name: "Action камери" },
+        { img: './header-list/Sport/ExerciseMachines.svg', name: "Тренажери" },
+        { img: './header-list/Sport/FitnesAndAerobics.svg', name: "Фітнес та аеробіка" },
+        { img: './header-list/Sport/SportFood.svg', name: "Спортивне харчування" },
+
+
+      ],
+      FashionBeauti: [
+        { img: './header-list/Fashion/Watch.svg', name: "Годинник" },
+        { img: './header-list/Fashion/smart-watch.svg', name: "Смартгодинники і браслети" },
+        { img: './header-list/Fashion/Juvelir-Fashion.svg', name: "Ювелірні прикраси" },
+        { img: './header-list/Fashion/Bags.svg', name: "Сумочки та галантерея" },
+        { img: './header-list/Fashion/Beautifuls.svg', name: "Краса та догляд" },
+        { img: './header-list/Fashion/hygiene.svg', name: "Гігієна" },
+        { img: './header-list/Fashion/Cosmetics.svg', name: "Косметика і парфюм" },
+        { img: './header-list/Fashion/umbrella.svg', name: "Парасольки" }
+      ]
     }
   ]
-  get dataCategoryes(){
+  get dataCategoryes() {
     return [...this.dataCategory]
   }
 }
