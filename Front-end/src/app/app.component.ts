@@ -1,9 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { HeaderBarComponent } from './Header/header-bar/header-bar.component';
-import { NewsComponent } from './News/news/news.component';
-import { ProductCardComponent } from './shared/components/product-card/product-card.component';
 import { HomeComponent } from './home/home.component';
 
 @Component({

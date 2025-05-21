@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { LogoComponent } from '../logo/logo.component';
-import { SearchComponent } from '../search/search.component';
-import { SinginAdminComponent } from '../singin-admin/singin-admin.component';
-import { CategoryListComponent } from '../category-list/category-list.component';
-import { CategoryComponent } from '../category/category.component';
-import { BasketComponent } from '../../basket/basket.component';
+import { LogoComponent } from '../../../Header/logo/logo.component';
+import { SearchComponent } from '../../../Header/search/search.component';
+import { SinginAdminComponent } from '../../../Header/singin-admin/singin-admin.component';
+import { CategoryComponent } from '../../../Header/category/category.component';
+import { BasketComponent } from '../../../basket/basket.component';
+
 
 @Component({
   selector: 'app-header-bar',
-  imports: [LogoComponent, SearchComponent, SinginAdminComponent, CategoryListComponent, CategoryComponent, BasketComponent],
+  imports: [LogoComponent, SearchComponent, SinginAdminComponent, CategoryComponent, BasketComponent],
   templateUrl: './header-bar.component.html',
   styleUrl: './header-bar.component.css'
 })

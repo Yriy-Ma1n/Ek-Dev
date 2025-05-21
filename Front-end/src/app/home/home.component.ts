@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NewsComponent } from '../News/news/news.component';
-import { HeaderBarComponent } from '../Header/header-bar/header-bar.component';
 import { CategoryListComponent } from '../Header/category-list/category-list.component';
+import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.component';
 
 @Component({
   selector: 'app-home',
