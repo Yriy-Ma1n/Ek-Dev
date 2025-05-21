@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loading-screen',
@@ -7,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './loading-screen.component.css'
 })
 export class LoadingScreenComponent {
+  rout = inject(Router);
 
+  constructor(){
+    setTimeout(()=>{
+      this.rout.navigate(["Home"]);
+    }, 4500);
+  }
 }
