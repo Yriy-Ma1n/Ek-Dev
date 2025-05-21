@@ -4,10 +4,11 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderBarComponent } from './Header/header-bar/header-bar.component';
 import { NewsComponent } from './News/news/news.component';
 import { ProductCardComponent } from './shared/components/product-card/product-card.component';
+import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderBarComponent, NewsComponent],
+  imports: [HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
