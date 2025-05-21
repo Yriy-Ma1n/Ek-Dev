@@ -1,5 +1,6 @@
 import { NgClass, NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ListCategoryService } from '../../core/services/list-category.service';
 
 @Component({
   selector: 'app-category',
@@ -8,7 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './category.component.css'
 })
 export class CategoryComponent {
-  hovered: boolean = true
+  hovered: boolean = true;
+
+  categoryesData = inject(ListCategoryService).dataCategoryes
 
   listCategoryItem: { img: string, name: string }[] = []
 
@@ -16,40 +19,29 @@ export class CategoryComponent {
     const element = event.target as HTMLElement
     if (element.classList.contains("list-category-container")) return
     this.hovered = false
+    element.classList.contains("Gadgets") ? this.listCategoryItem = this.categoryesData[0].Gadgets : false
+    element.classList.contains("Computers") ? this.listCategoryItem = this.categoryesData[0].Computers : false
+    element.classList.contains("photo") ? this.listCategoryItem = this.categoryesData[0].Photo : false
+    element.classList.contains("TV") ? this.listCategoryItem = this.categoryesData[0].Tv : false
+    element.classList.contains("Audio") ? this.listCategoryItem = this.categoryesData[0].Audio : false
+    element.classList.contains("Home-technik") ? this.listCategoryItem = this.categoryesData[0].HomeTechnik : false
+    element.classList.contains("Climat") ?  this.listCategoryItem = this.categoryesData[0].Climat : false
+    element.classList.contains("Home") ?  this.listCategoryItem = this.categoryesData[0].Home : false
+    element.classList.contains("Child-tovar") ? this.listCategoryItem = this.categoryesData[0].ChildTovar : false
+    element.classList.contains("Car") ?  this.listCategoryItem = this.categoryesData[0].Cars : false
+    element.classList.contains("Tool") ? this.listCategoryItem = this.categoryesData[0].Tools : false
+    element.classList.contains("Tourism") ?  this.listCategoryItem = this.categoryesData[0].Tourism : false
+    element.classList.contains("Sport") ? this.listCategoryItem = this.categoryesData[0].Sport : false
+    element.classList.contains("Fashion") ?  this.listCategoryItem = this.categoryesData[0].FashionBeauti : false
+  }
+leaveOfElement() {
+  this.hovered = true
 
-    if (element.classList.contains("Gadgets")) {
-      this.listCategoryItem = []
-      this.listCategoryItem.push({ img: './header-list/Gadgets/iphone-svg.svg', name: "Смартфони" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/iphone-box.svg', name: "Чохли" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/head-set.svg', name: "Навушники" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/smart-watch.svg', name: "Смартгодинники і браслети" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/power-bank.svg', name: "Повербанки" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/chargeGudget.svg', name: "Зарядки для гаджетів" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/speakers.svg', name: "Портативні колонки" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/Action-camera.svg', name: "Action камери" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/Quadcoper.svg', name: "Квадробери" })
-    }
-    if(element.classList.contains("Computers")){
-      this.listCategoryItem = []
-      this.listCategoryItem.push({ img: './header-list/Gadgets/iphone-svg.svg', name: "asd" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/iphone-box.svg', name: "sad" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/head-set.svg', name: "sad" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/smart-watch.svg', name: "sad і браслети" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/power-bank.svg', name: "sad" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/chargeGudget.svg', name: "ads для гаджетів" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/speakers.svg', name: "dsa колонки" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/Action-camera.svg', name: "dsa камери" })
-      this.listCategoryItem.push({ img: './header-list/Gadgets/Quadcoper.svg', name: "ad" })
-    }
-  }
-  leaveOfElement() {
-    this.hovered = true
-
-  }
-  itemIn(){
-    this.hovered = false
-  }
-  itemout(){
-    this.hovered = true
-  }
+}
+itemIn(){
+  this.hovered = false
+}
+itemout(){
+  this.hovered = true
+}
 }
