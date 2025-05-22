@@ -15,6 +15,5 @@ export const routes: Routes = [
   {
     path:'busket',
     component:BusketPageComponent,
-    title:'busket'
   }
 ];
