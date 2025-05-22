@@ -9,14 +9,14 @@
     <div class="name-cost-delete">
         <div class="name-cost">
             <h1>name tovar</h1>
-            <h2>$20.00</h2>
+            <h2>{{price}}$</h2>
         </div>
         <div class="count-tovar">
-            <button class="button-minus">-</button>
-            <span>1</span>
-            <button class="button-plus">+</button>
+            <button class="button-minus" (click)="minusButton()">-</button>
+            <span>{{count}}</span>
+            <button class="button-plus" (click)="plusButton()">+</button>
         </div>
-    </div>
+    </div> 
     <div class="delete-button">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="30px" style="stroke:none;"
             fill="currentColor">
