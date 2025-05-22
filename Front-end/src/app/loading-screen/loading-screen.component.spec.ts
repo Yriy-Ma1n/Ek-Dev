@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ThemeBtnComponent } from './theme-btn.component';
+import { LoadingScreenComponent } from './loading-screen.component';
 
-describe('ThemeBtnComponent', () => {
-  let component: ThemeBtnComponent;
-  let fixture: ComponentFixture<ThemeBtnComponent>;
+describe('LoadingScreenComponent', () => {
+  let component: LoadingScreenComponent;
+  let fixture: ComponentFixture<LoadingScreenComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ThemeBtnComponent]
+      imports: [LoadingScreenComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ThemeBtnComponent);
+    fixture = TestBed.createComponent(LoadingScreenComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
