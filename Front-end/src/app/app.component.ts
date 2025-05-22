@@ -7,7 +7,7 @@ import { ProductCardComponent } from './shared/components/product-card/product-c
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderBarComponent, NewsComponent],
+  imports: [HeaderBarComponent, NewsComponent, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -6,10 +6,21 @@ import { LanguageBtnComponent } from '../language-btn/language-btn.component';
 import { SinginAdminComponent } from '../singin-admin/singin-admin.component';
 import { CategoryListComponent } from '../category-list/category-list.component';
 import { CategoryComponent } from '../category/category.component';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header-bar',
-  imports: [LogoComponent, SearchComponent, ThemeBtnComponent, LanguageBtnComponent, SinginAdminComponent, CategoryListComponent, CategoryComponent],
+  imports: [
+    LogoComponent, 
+    SearchComponent, 
+    ThemeBtnComponent, 
+    LanguageBtnComponent, 
+    SinginAdminComponent, 
+    CategoryListComponent, 
+    CategoryComponent,
+    RouterLink,
+    RouterLinkActive
+  ],
   templateUrl: './header-bar.component.html',
   styleUrl: './header-bar.component.css'
 })
