@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './basket.component.css'
 })
 export class BasketComponent {
-
+  openCardPage(){
+    console.log('open card page')
+  }
 }
