@@ -10,6 +10,6 @@ import { Router } from '@angular/router';
 export class BasketComponent {
   router = inject(Router)
   openCardPage(){
-    this.router.navigate(['card'])
+    this.router.navigate(['busket'])
   }
 }
