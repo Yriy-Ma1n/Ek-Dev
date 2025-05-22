@@ -1,3 +1,7 @@
 svg{
     cursor: pointer;
+    transition: 500ms;
+}
+svg:hover{
+    fill: var(--accent-color-orange);
 }
