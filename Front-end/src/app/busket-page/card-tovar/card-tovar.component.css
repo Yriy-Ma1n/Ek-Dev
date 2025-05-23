@@ -3,6 +3,7 @@
     border: 2px solid var(--opacity-color-gray);
     box-sizing: border-box;
     padding: 10px;
+    justify-content: space-between;
 }
 .img-count{
     display: flex;
