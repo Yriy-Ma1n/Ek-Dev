@@ -1,0 +1,40 @@
+.text-not-found {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 195px);
+    margin-top: 50px;
+}
+.text-not-found img{
+    height: 60%;
+}
+.text-not-found h2 {
+    margin: 0;
+    font-size: 40px;
+}
+
+.text-not-found p {
+    width: 350px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.text-not-found button {
+    background-color: var(--accent-color-orange);
+    background-image: linear-gradient(#fea94a, #ff6808);
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 27px;
+    height: 36px;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 1000ms;
+}
+
+.text-not-found button:hover {
+    background-image: linear-gradient(#ff961d, #ff6708);
+}

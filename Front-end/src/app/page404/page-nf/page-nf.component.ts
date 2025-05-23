@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-page-nf',
@@ -7,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './page-nf.component.css'
 })
 export class PageNfComponent {
-
+  router = inject(Router)
+  back(){
+    this.router.navigate(["/"])
+  }
 }
