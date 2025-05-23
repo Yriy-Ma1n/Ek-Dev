@@ -5,7 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class CardService {
 
-  private arrProduct = [{ name: 'name-tovar1', price: 20, quantity: 1 }, { name: 'name-tovar2', price: 11, quantity: 1 }, { name: 'name-tovar3', price: 50, quantity: 1 }, { name: 'name-tovar3', price: 10, quantity: 1 }]
+  private arrProduct = [
+    { name: 'name-tovar1', price: 20, quantity: 1 }, 
+    { name: 'name-tovar2', price: 11, quantity: 1 }, 
+    { name: 'name-tovar3', price: 50, quantity: 1 }, 
+    { name: 'name-tovar4', price: 10, quantity: 1 }
+  ]
 
   get GetProduct() {
     return [...this.arrProduct]

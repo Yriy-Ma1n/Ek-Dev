@@ -13,24 +13,27 @@ export class CardTovarComponent {
   productChange = inject(CardService)
 
   count: number = 1;
-  @Input() price: number = 20;
-  @Input() name: string = 'name-tovar'
+  @Input() price: number = 0;
+  @Input() name: string = ''
 
-  constPrice: number = this.price;
+  constPrice: number = 0
 
-  plusButton(element:HTMLElement) {
-    console.log(this.price)
+  plusButton(element: HTMLElement) {
     this.count += 1
-    this.price += this.constPrice
+    this.price = this.price + this.constPrice
     this.productChange.changeQuantityPlus = String(element.textContent)
   }
-  minusButton(element:HTMLElement) {
-    
+  minusButton(element: HTMLElement) {
+
     if (this.count <= 1) return
     this.count -= 1
     this.price -= this.constPrice
-    this.productChange.changeQuantityMinus =  String(element.textContent)
+    this.productChange.changeQuantityMinus = String(element.textContent)
 
   }
+  ngOnInit() {
+    this.constPrice = this.price;
+  }
+
 
 }
