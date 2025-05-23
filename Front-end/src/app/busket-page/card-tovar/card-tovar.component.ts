@@ -35,5 +35,5 @@ export class CardTovarComponent {
     this.constPrice = this.price;
   }
 
-
+ 
 }
