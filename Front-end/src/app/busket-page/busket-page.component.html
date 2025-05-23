@@ -1,8 +1,15 @@
 <h1>Корзина</h1>
 
-<div class="container-tovar">
-    
-    <app-card-tovar></app-card-tovar>
-    <app-card-tovar></app-card-tovar>
 
+
+<div class="container-tovar">
+
+    <app-card-tovar *ngFor="let item of arrProduct" [price]="item.price" [name]="item.name"></app-card-tovar>
+    
+</div>
+
+
+<div class="buy-button-container">
+    <strong>${{sum}}</strong>
+    <button>Оформить покупку</button>
 </div>

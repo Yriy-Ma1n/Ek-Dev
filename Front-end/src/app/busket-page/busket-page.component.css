@@ -1,6 +1,49 @@
-
-.container-tovar{
-    display: flex;
-    gap:30px
+:host {
+    height: calc(100vh - 120px);
+    display: block;
+    position: relative;
 }
 
+
+
+.container-tovar {
+    padding: 0px 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap:30px
+}
+
+
+.buy-button-container {
+    position: fixed;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    right: 100px;
+    bottom: 50px;
+    background-color: #f1af62;
+    padding: 15px;
+    border-radius: 10px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+.buy-button-container button {
+    background-image: linear-gradient(to top, #febb5f, #fec66e, #fed07d, #feda8d, #ffe49d);
+    border-radius: 4px;
+    color: #333;
+    display: block;
+    font-size: 11px;
+    margin: 3px 0;
+    padding: 10px 13px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    
+}
+
+.buy-button-container strong {
+    height: fit-content;
+}

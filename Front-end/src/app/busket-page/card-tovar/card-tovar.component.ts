@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+
 
 @Component({
   selector: 'app-card-tovar',
@@ -7,17 +8,25 @@ import { Component } from '@angular/core';
   styleUrl: './card-tovar.component.css'
 })
 export class CardTovarComponent {
-count:number = 1;
-price:number = 20;
-constPrice:number = 20;
+  
+count: number = 1;
+@Input() price: number = 20;
+@Input() name:string = 'name-tovar'
 
- plusButton(){
-  this.count += 1
-  this.price += this.constPrice
- }
- minusButton(){
-  if(this.count <= 0) return
-  this.count -= 1
-  this.price -= this.constPrice
- }
+  constPrice: number = 20;
+
+  constructor(){
+    
+  }
+
+  plusButton() {
+    this.count += 1
+    this.price += this.constPrice
+  }
+  minusButton() {
+    if (this.count <= 0) return
+    this.count -= 1
+    this.price -= this.constPrice
+  }
+  
 }
