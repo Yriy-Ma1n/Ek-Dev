@@ -7,6 +7,7 @@
     margin-top: 50px;
 }
 .text-not-found img{
+    user-select: none;
     height: 60%;
 }
 .text-not-found h2 {
