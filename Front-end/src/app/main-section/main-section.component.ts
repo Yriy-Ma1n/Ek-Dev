@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { CategoryComponent } from '../Header/category/category.component';
-import { CategoryListComponent } from '../Header/category-list/category-list.component';
 import { NewsComponent } from "./news/news.component";
+import { CategoryListComponent } from '../Header/category-list/category-list.component';
+import { HeaderBarComponent } from "../shared/components/header-bar/header-bar.component";
 
 @Component({
   selector: 'app-main-section',
-  imports: [CategoryComponent, CategoryListComponent, NewsComponent],
+  imports: [NewsComponent, CategoryListComponent, HeaderBarComponent],
   templateUrl: './main-section.component.html',
   styleUrl: './main-section.component.css'
 })

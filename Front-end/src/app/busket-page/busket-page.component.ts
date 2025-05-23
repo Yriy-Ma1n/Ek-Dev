@@ -1,11 +1,19 @@
 import { Component, inject } from '@angular/core';
 import { CardTovarComponent } from './card-tovar/card-tovar.component';
+<<<<<<< HEAD
 import { NgClass, NgFor } from '@angular/common';
 import { CardService } from '../core/services/card.service';
 
 @Component({
   selector: 'app-busket-page',
   imports: [CardTovarComponent, NgFor, NgClass],
+=======
+import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.component';
+
+@Component({
+  selector: 'app-busket-page',
+  imports: [CardTovarComponent, HeaderBarComponent],
+>>>>>>> d4ffbc1bdb69390b14f2f106ad1d6a92ca866913
   templateUrl: './busket-page.component.html',
   styleUrl: './busket-page.component.css'
 })
