@@ -1,23 +1,30 @@
 import { Component, inject } from '@angular/core';
 import { CardTovarComponent } from './card-tovar/card-tovar.component';
-import { NgFor } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
+import { CardService } from '../core/services/card.service';
 
 @Component({
   selector: 'app-busket-page',
-  imports: [CardTovarComponent, NgFor],
+  imports: [CardTovarComponent, NgFor, NgClass],
   templateUrl: './busket-page.component.html',
   styleUrl: './busket-page.component.css'
 })
 export class BusketPageComponent {
-  
-  arrProduct = [{name:'name-tovar1', price:20}, {name:'name-tovar2', price:11}, {name:'name-tovar3', price:50}]
-
+  cardService = inject(CardService)
+  product = this.cardService.GetProduct
+  price:number = 0;
   sum:number = 0;
+  show:boolean = false
 
-  constructor(){
-    this.sum = this.arrProduct.reduce((akk, item)=>{
-      return akk += item.price
-    },0)
+  clearCard(){
+    this.cardService.clearCard()
+    this.product = []
+  }
+  buyCard(){
+    if(this.product.length === 0) return
+    this.clearCard()
+    this.show = true
+    setTimeout(()=>this.show = false,3000)
   }
 
 }

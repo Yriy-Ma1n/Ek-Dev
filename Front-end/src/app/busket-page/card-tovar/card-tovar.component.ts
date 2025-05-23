@@ -1,4 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { CardService } from '../../core/services/card.service';
 
 
 @Component({
@@ -8,25 +9,28 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
   styleUrl: './card-tovar.component.css'
 })
 export class CardTovarComponent {
-  
-count: number = 1;
-@Input() price: number = 20;
-@Input() name:string = 'name-tovar'
 
-  constPrice: number = 20;
+  productChange = inject(CardService)
 
-  constructor(){
-    
-  }
+  count: number = 1;
+  @Input() price: number = 20;
+  @Input() name: string = 'name-tovar'
 
-  plusButton() {
+  constPrice: number = this.price;
+
+  plusButton(element:HTMLElement) {
+    console.log(this.price)
     this.count += 1
     this.price += this.constPrice
+    this.productChange.changeQuantityPlus = String(element.textContent)
   }
-  minusButton() {
-    if (this.count <= 0) return
+  minusButton(element:HTMLElement) {
+    
+    if (this.count <= 1) return
     this.count -= 1
     this.price -= this.constPrice
+    this.productChange.changeQuantityMinus =  String(element.textContent)
+
   }
-  
+
 }
