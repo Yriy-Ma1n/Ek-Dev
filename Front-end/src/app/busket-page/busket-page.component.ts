@@ -8,5 +8,5 @@ import { CardTovarComponent } from './card-tovar/card-tovar.component';
   styleUrl: './busket-page.component.css'
 })
 export class BusketPageComponent {
- 
+  
 }
