@@ -1,7 +1,26 @@
-svg{
+svg {
     cursor: pointer;
     transition: 500ms;
 }
-svg:hover{
+
+svg:hover {
     fill: var(--accent-color-orange);
+}
+
+.busket {
+    position: relative;
+}
+
+.busket strong {
+    position: absolute;
+    right: -7px;
+    background-color: var(--accent-color-orange);
+    border-radius: 50%;
+    font-size: 12px;
+    color:white;
+    padding: 1px 5px;
+    top: -6px;
+    border: 2px solid var(--accent-color-blue);
+    
+
 }
