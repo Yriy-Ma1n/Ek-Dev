@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.component';
+import { AndminPasswordComponent } from './andmin-password/andmin-password.component';
 
 @Component({
   selector: 'app-admin-page',
-  imports: [HeaderBarComponent],
+  imports: [HeaderBarComponent, AndminPasswordComponent],
   templateUrl: './admin-page.component.html',
   styleUrl: './admin-page.component.css'
 })
