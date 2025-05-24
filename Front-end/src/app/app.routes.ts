@@ -10,7 +10,8 @@ export const routes: Routes = [
     component: LoadingScreenComponent
   },
   {
-    component:MainSectionComponent
+    path:'Home',
+    component:MainSectionComponent,
   },
   {
     path:'busket',
