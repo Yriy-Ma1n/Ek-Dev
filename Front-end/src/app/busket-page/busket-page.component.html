@@ -1,9 +1,20 @@
 <app-header-bar></app-header-bar>
 <h1>Корзина</h1>
 
-<div class="container-tovar">
-    
-    <app-card-tovar></app-card-tovar>
-    <app-card-tovar></app-card-tovar>
+<p class="message" [ngClass]="{'show':show}">
+    Покупка успішно оформленна!
+</p>
 
+<div class="container-tovar">
+    <app-card-tovar *ngFor="let item of product" [price]="item.price" [name]="item.name"></app-card-tovar>
+</div>
+
+<div class="clear-button-container">
+    <button (click)="clearCard()">Очистить Корзину</button>
+</div>
+
+
+<div class="buy-button-container">
+    <strong>${{cardService.GetTotalPrice()}}</strong>
+    <button (click)="buyCard()">Оформить покупку</button>
 </div>
