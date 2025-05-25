@@ -10,8 +10,11 @@ import { CardService } from '../core/services/card.service';
 })
 export class BasketComponent {
   router = inject(Router);
-  countProduct = inject(CardService).GetProduct.length
+  countProduct = inject(CardService)
   openCardPage(){
     this.router.navigate(['busket'])
+  }
+  constructor(){
+    
   }
 }

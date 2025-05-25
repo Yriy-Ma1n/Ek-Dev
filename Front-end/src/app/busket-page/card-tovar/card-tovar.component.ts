@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { CardService } from '../../core/services/card.service';
 
 
@@ -12,15 +12,24 @@ export class CardTovarComponent {
 
   productChange = inject(CardService)
 
-  count: number = 1;
+  @Input() count: number = 1;
   @Input() price: number = 0;
-  @Input() name: string = ''
+  @Input() name: string = '';
+  @Input() src:string = '';
 
+  constructor(){
+    
+  }
+  ngOnChanges(changes:SimpleChanges){
+    if(changes['count'].currentValue > 1){
+      this.price *= changes['count'].currentValue
+    }
+  }
   constPrice: number = 0
 
   plusButton(element: HTMLElement) {
     this.count += 1
-    this.price = this.price + this.constPrice
+    this.price = this.price = this.constPrice * this.count
     this.productChange.changeQuantityPlus = String(element.textContent)
   }
   minusButton(element: HTMLElement) {

@@ -6,10 +6,10 @@ import { Injectable } from '@angular/core';
 export class CardService {
 
   private arrProduct = [
-    { name: 'name-tovar1', price: 20, quantity: 1 }, 
-    { name: 'name-tovar2', price: 11, quantity: 1 }, 
-    { name: 'name-tovar3', price: 50, quantity: 1 }, 
-    { name: 'name-tovar4', price: 10, quantity: 1 }
+    { _id: "fgdfgsadsa", name: 'name-tovar1', price: 20, quantity: 1, src: '' },
+    { _id: "dfgdfgergerxd", name: 'name-tovar2', price: 11, quantity: 1, src: '' },
+    { _id: "dsvfghgtgsae", name: 'name-tovar3', price: 50, quantity: 1, src: '' },
+    { _id: "32dffggtdsasd", name: 'name-tovar4', price: 10, quantity: 1, src: '' }
   ]
 
   get GetProduct() {
@@ -32,6 +32,10 @@ export class CardService {
     })
   }
 
+  set addProduct(item: { _id: string, name: string, price: number, quantity: number, src: string }) {
+    this.arrProduct.push(item)
+  }
+
   GetTotalPrice() {
     let total: number = 0
     for (let item of this.arrProduct) {
@@ -44,4 +48,6 @@ export class CardService {
     this.arrProduct = []
 
   }
+
+
 }

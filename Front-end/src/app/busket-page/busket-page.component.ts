@@ -10,25 +10,36 @@ import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.c
   templateUrl: './busket-page.component.html',
   styleUrl: './busket-page.component.css'
 })
+
 export class BusketPageComponent {
   cardService = inject(CardService)
-  product = this.cardService.GetProduct
-  price:number = 0;
-  sum:number = 0;
-  show:boolean = false
+  product = this.cardService.GetProduct.reduce((acc: any[], obj) => {
+    const existing = acc.find(item => item._id === obj._id);
 
-  clearCard(){
+    if (existing) {
+      existing.quantity += obj.quantity;
+    } else {
+      acc.push({ ...obj });
+    }
+
+    return acc;
+  }, [] as any[]);
+
+
+  price: number = 0;
+  sum: number = 0;
+  show: boolean = false
+
+
+  clearCard() {
     this.cardService.clearCard()
     this.product = []
   }
-  buyCard(){
-    if(this.product.length === 0) return
+  buyCard() {
+    if (this.product.length === 0) return
     this.clearCard()
     this.show = true
-    setTimeout(()=>this.show = false,3000)
+    setTimeout(() => this.show = false, 3000)
   }
 
-  constructor(){
-    
-  }
 }

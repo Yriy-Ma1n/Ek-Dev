@@ -11,7 +11,7 @@
             <img src="./back-arrow.svg" alt="">
         </div>
         <div class="name-ram">
-            <h1>Планшет Xiaomi Redmi Pad Pro</h1>
+            <h1 #nameTovar>Планшет Xiaomi Redmi Pad Pro</h1>
             <p>256ГБ / ОЗП 8 ГБ</p>
         </div>
         <div class="additional-actions">
@@ -24,7 +24,7 @@
         </div>
         <div class="main-information">
             <div class="photo-tovar">
-                <img src="https://s.ek.ua/jpg/2666265.jpg">
+                <img src="https://s.ek.ua/jpg/2666265.jpg" #photoTovar>
             </div>
             <div class="additional-photo">
                 <img src="https://mzimg.com/120/h1/homb2fiveh1.jpg" alt="">
@@ -35,8 +35,8 @@
                 <img src="https://mzimg.com/120/81/hqnxpuhip81.jpg" alt="">
             </div>
             <div class="price">
-                <div>28 980 грн</div>
-                <button (click)="buyButton(buyButtonEl)" #buyButtonEl>В корзину</button>
+                <div #priceTovar>28 980 грн</div>
+                <button (click)="buyButton(buyButtonEl, nameTovar, photoTovar, priceTovar)" #buyButtonEl>В корзину</button>
             </div>
         </div>
         <div class="secondary-info">

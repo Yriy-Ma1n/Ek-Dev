@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BadWordPipe } from '../../pipes/bad-word.pipe';
 import { NgFor, NgClass } from '@angular/common';
+import { CardService } from '../../../core/services/card.service';
 
 @Component({
   selector: 'app-product-card-inner',
@@ -22,7 +23,8 @@ import { NgFor, NgClass } from '@angular/common';
 })
 export class ProductCardInnerComponent {
   router = inject(Router)
-
+  CardProduct = inject(CardService)
+  
   commentInput = new FormControl("", [
     Validators.required
   ])
@@ -32,6 +34,7 @@ export class ProductCardInnerComponent {
   show:boolean = false
   showAdd:boolean = false
 
+  id:string = crypto.randomUUID()
   backToMainPage() {
     this.router.navigate(["/Home"])
   }
@@ -46,12 +49,14 @@ export class ProductCardInnerComponent {
     this.comments.push({comment:this.commentInput.value!})
     this.commentInput.reset()
   }
-  buyButton(element:HTMLButtonElement){
+  buyButton(element:HTMLButtonElement, name:HTMLElement, photo:HTMLImageElement, price:HTMLElement){
     this.showAdd = true
     element.textContent = 'Добавленно в корзину'
     setTimeout(()=>{
       this.showAdd = false
       element.textContent = 'В корзину'
     },1500)
+    const  changedPrice = price.textContent?.replaceAll('грн', '').replaceAll(' ', '')!
+    this.CardProduct.addProduct = {_id:this.id, name:name.textContent!, price:+changedPrice, quantity:1, src:photo.src}
   }
 }
