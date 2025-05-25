@@ -44,6 +44,8 @@ export class ProductCardInnerComponent {
     }
     this.comments.push({comment:this.commentInput.value!})
     this.commentInput.reset()
-
+  }
+  buyButton(){
+    
   }
 }
