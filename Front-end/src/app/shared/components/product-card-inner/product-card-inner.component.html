@@ -1,5 +1,8 @@
 <app-header-bar></app-header-bar>
 <div class="main-container-card">
+    <p class="modal-message" [ngClass]="{'show':show}">
+        Напишите что-то что бы оставить коментарий!
+    </p>
     <div class="container-card">
         <div class="arrow-back" (click)="backToMainPage()">
             <img src="./back-arrow.svg" alt="">
