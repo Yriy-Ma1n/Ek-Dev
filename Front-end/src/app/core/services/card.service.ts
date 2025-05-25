@@ -34,6 +34,24 @@ export class CardService {
 
   set addProduct(item: { _id: string, name: string, price: number, quantity: number, src: string }) {
     this.arrProduct.push(item)
+    this.arrProduct = this.arrProduct.reduce((acc: any[], obj) => {
+    const existing = acc.find(item => item._id === obj._id);
+      
+      
+    if (existing) {
+      existing.quantity += obj.quantity
+      console.log('check and plus')
+    } else {
+    
+      acc.push({ ...obj });
+      console.log("psh")
+    }
+
+    return acc;
+  }, [] as any[]);
+
+
+  console.log(this.arrProduct)
     
   }
 

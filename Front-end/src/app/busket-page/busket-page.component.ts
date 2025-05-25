@@ -44,7 +44,8 @@ export class BusketPageComponent {
   
   constructor(){
    setInterval(()=>{
-    console.log(this.product)
+    console.log(this.cardService.GetTotalPrice())
+    console.log(this.cardService.GetProduct)
    },3000)
   }
 

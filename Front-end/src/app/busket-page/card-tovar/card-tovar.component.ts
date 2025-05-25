@@ -40,7 +40,7 @@ export class CardTovarComponent {
     
     this.count -= 1
     
-
+    console.log(this.constPrice)
     this.price -= this.constPrice
    
     this.productChange.changeQuantityMinus = String(element.textContent)
