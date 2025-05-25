@@ -15,6 +15,9 @@ export class CardService {
   get GetProduct() {
     return  [...this.arrProduct]
   }
+  get CountProduct(){
+    return this.arrProduct.reduce((akk,item)=>akk+=item.quantity,0)
+  }
   set changeQuantityPlus(name: string) {
     this.arrProduct.find(element => {
       if (element.name === name) {
@@ -51,7 +54,7 @@ export class CardService {
   }, [] as any[]);
 
 
-  console.log(this.arrProduct)
+
     
   }
 
