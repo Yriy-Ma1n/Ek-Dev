@@ -5,8 +5,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class BadWordPipe implements PipeTransform {
 
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
+  transform(value: string): string {
+    const badWordReg = /(кокос|банан|плохой)/gi
+    
+    return value.replace(badWordReg,(word)=>'*'.repeat(word.length))
+    
+    
   }
 
 }

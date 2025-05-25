@@ -242,10 +242,10 @@
 .comment{
     display: flex;
     flex-direction: column;
-    gap:50px;
+    gap:33px;
     margin-top: 40px;
 }
-.comment div{
+.comment-message{
     background-color: gray;
     padding: 5px;
     border-radius: 5px;

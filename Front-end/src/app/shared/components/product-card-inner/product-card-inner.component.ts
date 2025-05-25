@@ -4,10 +4,18 @@ import { ProductCardCharacteristicsComponent } from '../product-card-characteris
 import { HeaderBarComponent } from "../header-bar/header-bar.component";
 import { Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { BadWordPipe } from '../../pipes/bad-word.pipe';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-product-card-inner',
-  imports: [ProductCardCharacteristicsComponent, HeaderBarComponent, ReactiveFormsModule],
+  imports: [
+    ProductCardCharacteristicsComponent,
+     HeaderBarComponent, 
+     ReactiveFormsModule, 
+     BadWordPipe,
+     NgFor
+    ],
   templateUrl: './product-card-inner.component.html',
   styleUrl: './product-card-inner.component.css'
 })
@@ -18,12 +26,14 @@ export class ProductCardInnerComponent {
     Validators.required
   ])
 
+  comments:{comment:string}[] = []
+
   backToMainPage() {
     this.router.navigate(["/Home"])
   }
-  addComment(){
-    if(this.commentInput.valid){
-      console.log('send')
-    }
+  addComment() {
+    if (!this.commentInput.valid) return
+    this.comments.push({comment:this.commentInput.value!})
+
   }
 }
