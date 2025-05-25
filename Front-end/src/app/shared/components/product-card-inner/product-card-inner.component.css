@@ -204,7 +204,12 @@
 .info:first-child:hover {
     color: var(--accent-color-orange)
 }
-
+.hr{
+    width: 100%;
+    height: 1px;
+    background-color: gray;
+    margin-top: 20px;
+}
 .comment-block {
     width: 1050px;
     margin-top: 20px;
@@ -220,6 +225,7 @@
     outline: none;
     resize: none;
     white-space: pre-wrap;
+    height: 50px;
 }
 
 .comment-block button {
@@ -232,4 +238,15 @@
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     margin-left: 30px;
 
+}
+.comment{
+    display: flex;
+    flex-direction: column;
+    gap:50px;
+    margin-top: 40px;
+}
+.comment div{
+    background-color: gray;
+    padding: 5px;
+    border-radius: 5px;
 }

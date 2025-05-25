@@ -77,17 +77,17 @@
             </div>
             <app-product-card-characteristics></app-product-card-characteristics>
         </div>
+         <div class="hr"></div>
     </div>
+   
     <div class="comment-block">
         <div class="input-comment">
-            <textarea id="comment" placeholder="Введите комментарий" class="comment-area "></textarea>
-            <button>Добавить коментарий</button>
+            <textarea id="comment" placeholder="Введите комментарий" class="comment-area" [formControl]="commentInput"></textarea>
+            <button (click)="addComment()">Добавить коментарий</button>
         </div>
 
         <div class="comment">
-            <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae minus aspernatur assumenda ab
-                voluptatibus eos maiores asperiores nihil fugiat perferendis ipsum sit deleniti ea dolor corporis
-                commodi quaerat, nulla veritatis.</div>
+        
         </div>
     </div>
 </div>
