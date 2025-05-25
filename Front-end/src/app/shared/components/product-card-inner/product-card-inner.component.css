@@ -8,12 +8,16 @@
     top:40px;
     right: -400px;
     padding: 30px;
-    background-color: rgb(238, 124, 124);
     border-radius: 15px;
     transition: 0.5s;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .modal-message.show{
+    background-color: rgb(238, 124, 124);
+    right: 40px;
+}
+.modal-message.showAdd{
+    background-color: rgb(147, 228, 80);
     right: 40px;
 }
 .container-card {

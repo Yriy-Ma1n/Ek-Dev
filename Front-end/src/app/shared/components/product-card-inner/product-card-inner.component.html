@@ -1,7 +1,10 @@
 <app-header-bar></app-header-bar>
 <div class="main-container-card">
     <p class="modal-message" [ngClass]="{'show':show}">
-        Напишите что-то что бы оставить коментарий!
+        Напишіть що небудь щоб додати коментар
+    </p>
+    <p class="modal-message" [ngClass]="{'showAdd':showAdd}">
+        Товар було додано до корзини!
     </p>
     <div class="container-card">
         <div class="arrow-back" (click)="backToMainPage()">
@@ -33,7 +36,7 @@
             </div>
             <div class="price">
                 <div>28 980 грн</div>
-                <button (click)="buyButton()">В корзину</button>
+                <button (click)="buyButton(buyButtonEl)" #buyButtonEl>В корзину</button>
             </div>
         </div>
         <div class="secondary-info">

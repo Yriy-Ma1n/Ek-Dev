@@ -30,6 +30,7 @@ export class ProductCardInnerComponent {
   comments:{comment:string}[] = []
 
   show:boolean = false
+  showAdd:boolean = false
 
   backToMainPage() {
     this.router.navigate(["/Home"])
@@ -45,7 +46,12 @@ export class ProductCardInnerComponent {
     this.comments.push({comment:this.commentInput.value!})
     this.commentInput.reset()
   }
-  buyButton(){
-    
+  buyButton(element:HTMLButtonElement){
+    this.showAdd = true
+    element.textContent = 'Добавленно в корзину'
+    setTimeout(()=>{
+      this.showAdd = false
+      element.textContent = 'В корзину'
+    },1500)
   }
 }
