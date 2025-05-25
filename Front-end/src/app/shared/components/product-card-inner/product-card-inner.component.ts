@@ -35,6 +35,8 @@ export class ProductCardInnerComponent {
   showAdd:boolean = false
 
   id:string = crypto.randomUUID()
+  countItem:number = 0
+
   backToMainPage() {
     this.router.navigate(["/Home"])
   }
@@ -51,12 +53,15 @@ export class ProductCardInnerComponent {
   }
   buyButton(element:HTMLButtonElement, name:HTMLElement, photo:HTMLImageElement, price:HTMLElement){
     this.showAdd = true
+    this.countItem = 1
     element.textContent = 'Добавленно в корзину'
     setTimeout(()=>{
       this.showAdd = false
       element.textContent = 'В корзину'
     },1500)
     const  changedPrice = price.textContent?.replaceAll('грн', '').replaceAll(' ', '')!
-    this.CardProduct.addProduct = {_id:this.id, name:name.textContent!, price:+changedPrice, quantity:1, src:photo.src}
+    
+    this.CardProduct.addProduct = {_id:this.id, name:name.textContent!, price:+changedPrice, quantity:this.countItem, src:photo.src}
+    
   }
 }

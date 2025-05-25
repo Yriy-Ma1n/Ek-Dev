@@ -13,7 +13,7 @@ export class CardService {
   ]
 
   get GetProduct() {
-    return [...this.arrProduct]
+    return  [...this.arrProduct]
   }
   set changeQuantityPlus(name: string) {
     this.arrProduct.find(element => {
@@ -34,11 +34,13 @@ export class CardService {
 
   set addProduct(item: { _id: string, name: string, price: number, quantity: number, src: string }) {
     this.arrProduct.push(item)
+    
   }
 
   GetTotalPrice() {
     let total: number = 0
     for (let item of this.arrProduct) {
+
       total += item.price * item.quantity
     }
     return total

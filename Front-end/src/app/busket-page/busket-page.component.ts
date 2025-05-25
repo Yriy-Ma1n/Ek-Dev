@@ -41,5 +41,11 @@ export class BusketPageComponent {
     this.show = true
     setTimeout(() => this.show = false, 3000)
   }
+  
+  constructor(){
+   setInterval(()=>{
+    console.log(this.product)
+   },3000)
+  }
 
 }
