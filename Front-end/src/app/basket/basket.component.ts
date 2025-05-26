@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CardService } from '../core/services/card.service';
-
+import { objProduct } from '../core/services/card.service';
 @Component({
   selector: 'app-basket',
   imports: [],
@@ -10,10 +10,21 @@ import { CardService } from '../core/services/card.service';
 })
 export class BasketComponent {
   router = inject(Router);
-  countProduct = inject(CardService)
+  countProduct = JSON.parse(localStorage.getItem("allCardTovar")!).length
 
   openCardPage(){
     this.router.navigate(['busket'])
   }
- 
+  showCountTovar(){
+    const a = JSON.parse(localStorage.getItem("allCardTovar")!)
+
+    if(a){
+     this.countProduct = a.reduce((akk:number, item:objProduct)=>{
+        return akk + item.quantity
+      },0)
+    }
+  }
+  constructor(){
+    this.showCountTovar()
+  }
 }

@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 
+export type objProduct = {_id:string, name:string, price:number, quantity:number, src:string}
+
 @Injectable({
   providedIn: 'root'
 })
 export class CardService {
 
-  private arrProduct:{_id:string, name:string, price:number, quantity:number, src:string}[] = []
+  private arrProduct:objProduct[] = []
 
   get GetProduct() {
     return  [...this.arrProduct]
@@ -30,7 +32,7 @@ export class CardService {
     })
   }
 
-  set addProduct(item: { _id: string, name: string, price: number, quantity: number, src: string }) {
+  set addProduct(item: objProduct) {
     this.arrProduct.push(item)
     this.arrProduct = this.arrProduct.reduce((acc: any[], obj) => {
     const existing = acc.find(item => item._id === obj._id);

@@ -13,17 +13,7 @@ import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.c
 
 export class BusketPageComponent {
   cardService = inject(CardService)
-  product = this.cardService.GetProduct.reduce((acc: any[], obj) => {
-    const existing = acc.find(item => item._id === obj._id);
-
-    if (existing) {
-      existing.quantity += obj.quantity;
-    } else {
-      acc.push({ ...obj });
-    }
-
-    return acc;
-  }, [] as any[]);
+  product = JSON.parse(localStorage.getItem("allCardTovar")!)
 
 
   price: number = 0;
