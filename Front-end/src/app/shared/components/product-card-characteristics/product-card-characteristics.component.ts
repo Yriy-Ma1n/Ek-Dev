@@ -9,11 +9,19 @@ import { characteristic } from '../../types/characteristics-type';
   styleUrl: './product-card-characteristics.component.css'
 })
 export class ProductCardCharacteristicsComponent {
- @Input() characteristic:characteristic[] = []
+  @Input() characteristic: characteristic[] = []
+  characteristic_name: string[] = []
 
- constructor(){
-  setTimeout(() => {
-      console.log(this.characteristic)
-  }, 1000);
- }
+  constructor(){
+    setTimeout(()=>{
+      this.characteristic_name = Object.keys(this.characteristic[0].characteristics)
+    },100)
+  }
+
+  getCharacteristics(i:number){
+    const arr = this.characteristic_name.map(item=>{
+      return this.characteristic[0].characteristics[item]
+    })
+    return arr[i]
+  }
 }
