@@ -41,12 +41,5 @@ export class BusketPageComponent {
     this.show = true
     setTimeout(() => this.show = false, 3000)
   }
-  
-  constructor(){
-   setInterval(()=>{
-    console.log(this.cardService.GetTotalPrice())
-    console.log(this.cardService.GetProduct)
-   },3000)
-  }
 
 }

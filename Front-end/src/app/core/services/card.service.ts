@@ -5,12 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CardService {
 
-  private arrProduct = [
-    { _id: "fgdfgsadsa", name: 'name-tovar1', price: 20, quantity: 1, src: '' },
-    { _id: "dfgdfgergerxd", name: 'name-tovar2', price: 11, quantity: 1, src: '' },
-    { _id: "dsvfghgtgsae", name: 'name-tovar3', price: 50, quantity: 1, src: '' },
-    { _id: "32dffggtdsasd", name: 'name-tovar4', price: 10, quantity: 1, src: '' }
-  ]
+  private arrProduct:{_id:string, name:string, price:number, quantity:number, src:string}[] = []
 
   get GetProduct() {
     return  [...this.arrProduct]
@@ -47,12 +42,12 @@ export class CardService {
     } else {
     
       acc.push({ ...obj });
-      console.log("psh")
+      
     }
 
     return acc;
   }, [] as any[]);
-
+    localStorage.setItem("allCardTovar", JSON.stringify(this.arrProduct))
 
 
     

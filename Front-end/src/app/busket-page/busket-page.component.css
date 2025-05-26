@@ -8,7 +8,7 @@
 .message{
     position: absolute;
     right: 0;
-    top:-40px;
+    top:20px;
     padding: 20px;
     background-color: lightgreen;
     width: 270px;
