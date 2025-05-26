@@ -1,3 +1,4 @@
+import type { LaptopItem } from "../Front-end/src/app/shared/types/LapTopItem-type.ts"
 const express = require('express');
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
@@ -75,7 +76,7 @@ app.get('/CategoryList', async (req, res) => {
     res.send(CategoryList)
 })
 app.get('/Laptop', async (req, res) => {
-    const LapTopData = await dbSave.collection('LapTop').find().toArray()
+    const LapTopData = await dbSave.collection('LapTop').find().toArray() as LaptopItem[]
 
     res.send(LapTopData)
 })
