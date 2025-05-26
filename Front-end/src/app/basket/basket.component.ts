@@ -10,7 +10,7 @@ import { objProduct } from '../core/services/card.service';
 })
 export class BasketComponent {
   router = inject(Router);
-  countProduct = JSON.parse(localStorage.getItem("allCardTovar")!).length
+  countProduct = JSON.parse(localStorage.getItem("allCardTovar")!)?.length || 0
 
   openCardPage(){
     this.router.navigate(['busket'])

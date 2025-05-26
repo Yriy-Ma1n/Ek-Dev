@@ -7,61 +7,72 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BadWordPipe } from '../../pipes/bad-word.pipe';
 import { NgFor, NgClass } from '@angular/common';
 import { CardService } from '../../../core/services/card.service';
-
+import { HttpClient } from '@angular/common/http';
+import { objProduct } from '../../../core/services/card.service';
 @Component({
   selector: 'app-product-card-inner',
   imports: [
     ProductCardCharacteristicsComponent,
-     HeaderBarComponent, 
-     ReactiveFormsModule, 
-     BadWordPipe,
-     NgFor,
-     NgClass
-    ],
+    HeaderBarComponent,
+    ReactiveFormsModule,
+    BadWordPipe,
+    NgFor,
+    NgClass
+  ],
   templateUrl: './product-card-inner.component.html',
   styleUrl: './product-card-inner.component.css'
 })
 export class ProductCardInnerComponent {
   router = inject(Router)
   CardProduct = inject(CardService)
-  
+
+  http = inject(HttpClient)
+  data:{MemoryRam:string, categoryDescription:string, characteristics:{}, colors:string, cost:string, mainPhoto:string, name:string, secondaryPhoto:string, _id:string}[] = []
+
+  constructor() {
+    this.http.get('http://localhost:5500/Laptop').subscribe(data => {
+      this.data = data
+    })
+   
+  }
+
   commentInput = new FormControl("", [
     Validators.required
   ])
 
-  comments:{comment:string}[] = []
+  comments: { comment: string }[] = []
 
-  show:boolean = false
-  showAdd:boolean = false
+  show: boolean = false
+  showAdd: boolean = false
 
-  id:string = crypto.randomUUID()
-  countItem:number = 0
+  id: string = crypto.randomUUID()
+  countItem: number = 0
 
   backToMainPage() {
     this.router.navigate(["/Home"])
   }
   addComment() {
-    if (!this.commentInput.valid){
+    if (!this.commentInput.valid) {
       this.show = true
-      setTimeout(()=>{
+      setTimeout(() => {
         this.show = false
-      },2500)
-      return 
+      }, 2500)
+      return
     }
-    this.comments.push({comment:this.commentInput.value!})
+    this.comments.push({ comment: this.commentInput.value! })
     this.commentInput.reset()
   }
-  buyButton(element:HTMLButtonElement, name:HTMLElement, photo:HTMLImageElement, price:HTMLElement){
+  buyButton(element: HTMLButtonElement, name: HTMLElement, photo: HTMLImageElement, price: HTMLElement) {
     this.showAdd = true
     this.countItem = 1
     element.textContent = 'Добавленно в корзину'
-    setTimeout(()=>{
+    setTimeout(() => {
       this.showAdd = false
       element.textContent = 'В корзину'
-    },1500)
-    const  changedPrice = price.textContent?.replaceAll('грн', '').replaceAll(' ', '')!
-    
-    this.CardProduct.addProduct = {_id:this.id, name:name.textContent!, price:+changedPrice, quantity:this.countItem, src:photo.src}
-    
+    }, 1500)
+    const changedPrice = price.textContent?.replaceAll('грн', '').replaceAll(' ', '')!
+
+    this.CardProduct.addProduct = { _id: this.id, name: name.textContent!, price: +changedPrice, quantity: this.countItem, src: photo.src }
+
   }
 }
