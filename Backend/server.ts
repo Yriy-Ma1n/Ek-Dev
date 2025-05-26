@@ -1,4 +1,4 @@
-import type { LaptopItem } from "../Front-end/src/app/shared/types/LapTopItem-type.ts"
+import type { LaptopItem } from "./Types/LapTopItem-type";
 const express = require('express');
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
