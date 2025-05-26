@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { ProductCardComponent } from '../product-card/product-card.component';
 import { ProductCardCharacteristicsComponent } from '../product-card-characteristics/product-card-characteristics.component';
 import { HeaderBarComponent } from "../header-bar/header-bar.component";
 import { Router } from '@angular/router';
@@ -8,7 +7,8 @@ import { BadWordPipe } from '../../pipes/bad-word.pipe';
 import { NgFor, NgClass } from '@angular/common';
 import { CardService } from '../../../core/services/card.service';
 import { HttpClient } from '@angular/common/http';
-import { objProduct } from '../../../core/services/card.service';
+import { LaptopItem } from '../../types/LapTopItem-type';
+import { characteristic } from '../../types/characteristics-type';
 @Component({
   selector: 'app-product-card-inner',
   imports: [
@@ -27,13 +27,15 @@ export class ProductCardInnerComponent {
   CardProduct = inject(CardService)
 
   http = inject(HttpClient)
-  data:{MemoryRam:string, categoryDescription:string, characteristics:{}, colors:string, cost:string, mainPhoto:string, name:string, secondaryPhoto:string, _id:string}[] = []
-
+  data:characteristic[] = []
+ 
   constructor() {
-    this.http.get('http://localhost:5500/Laptop').subscribe(data => {
+    this.http.get<LaptopItem[]>('http://localhost:5500/Laptop').subscribe(data => {
       this.data = data
+      this.parseStrToArr()
+      console.log(data)
     })
-   
+
   }
 
   commentInput = new FormControl("", [
@@ -75,4 +77,12 @@ export class ProductCardInnerComponent {
     this.CardProduct.addProduct = { _id: this.id, name: name.textContent!, price: +changedPrice, quantity: this.countItem, src: photo.src }
 
   }
+
+  parseStrToArr() {
+    this.data[0].MemoryRam = JSON.parse(String(this.data[0].MemoryRam))
+    this.data[0].categoryDescription = JSON.parse(this.data[0].categoryDescription)
+    this.data[0].secondaryPhoto = JSON.parse(this.data[0].secondaryPhoto)
+    this.data[0].colors = JSON.parse(this.data[0].colors)
+  }
+
 }

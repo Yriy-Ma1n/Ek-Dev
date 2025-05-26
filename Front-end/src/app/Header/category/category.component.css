@@ -38,6 +38,7 @@
     background-color: white;
     z-index: 9999;
     transition: 0.5s;
+    box-shadow: 1px 7px 10px -1px rgba(0,0,0,0.37);
     
 }
 .none{

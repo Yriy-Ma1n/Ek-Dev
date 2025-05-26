@@ -6,14 +6,14 @@
     <p class="modal-message" [ngClass]="{'showAdd':showAdd}">
         Товар було додано до корзини!
     </p>
-    
+
     <div class="container-card">
         <div class="arrow-back" (click)="backToMainPage()">
             <img src="./back-arrow.svg" alt="">
         </div>
         <div class="name-ram">
-            <h1 #nameTovar>Планшет Xiaomi Redmi Pad Pro</h1>
-            <p>256ГБ / ОЗП 8 ГБ</p>
+            <h1 #nameTovar>{{data[0]?.name}}</h1>
+            <p>256ГБ / ОЗП 12 ГБ</p>
         </div>
         <div class="additional-actions">
             <button>ДЕ КУПИТИ</button>
@@ -25,64 +25,36 @@
         </div>
         <div class="main-information">
             <div class="photo-tovar">
-                <img src="https://s.ek.ua/jpg/2666265.jpg" #photoTovar>
+                <img src="{{data[0]?.mainPhoto}}" #photoTovar>
             </div>
             <div class="additional-photo">
-                <img src="https://mzimg.com/120/h1/homb2fiveh1.jpg" alt="">
-                <img src="https://mzimg.com/120/t1/homazggy7t1.jpg" alt="">
-                <img src="https://mzimg.com/120/21/hqnxpv1uw21.jpg" alt="">
-                <img src="https://mzimg.com/120/t1/homazggy7t1.jpg" alt="">
-                <img src="https://mzimg.com/120/f1/hqnxpugjyf1.jpg" alt="">
-                <img src="https://mzimg.com/120/81/hqnxpuhip81.jpg" alt="">
+                <img *ngFor="let item of data[0]?.secondaryPhoto" src="{{item}}">
             </div>
             <div class="price">
-                <div #priceTovar>28 980 грн</div>
+                <div #priceTovar>{{data[0]?.cost}} грн</div>
                 <button (click)="buyButton(buyButtonEl, nameTovar, photoTovar, priceTovar)" #buyButtonEl>В корзину</button>
             </div>
         </div>
         <div class="secondary-info">
             <div class="name-ram">
-                <h1>Планшет Xiaomi Redmi Pad Pro</h1>
-                <p>256ГБ / ОЗП 8 ГБ</p>
+                <h1>{{data[0]?.name}}</h1>
+                <p>256ГБ / ОЗП 12 ГБ</p>
             </div>
             <div class="color-ram">
                 <div class="color-choose">
-                    <div class="green"></div>
-                    <div class="gray"></div>
-                    <div class="lightblue"></div>
-                    <div class="darkblue"></div>
-
+                    <div *ngFor="let color of data[0]?.colors"  class="{{color}}"></div>
                 </div>
                 <div class="memory-ram">
-                    <div class="ram-256-12 selected-f">256 / ОЗП 12 ГБ</div>
-                    <div class="ram-512-12">512 / ОЗП 12 ГБ</div>
-                    <div class="ram-512-16">512 / ОЗП 16 ГБ</div>
-                    <div class="ram-1TБ-24">1ТБ / ОЗП 24 ГБ</div>
+                    <div *ngFor="let config of data[0]?.MemoryRam">
+                        {{config}}
+                    </div> 
                 </div>
             </div>
             <div class="info-container">
-                <div class="info">2024 рік</div>
-                <div class="info">13-e покоління</div>
-                <div class="info">флагман</div>
-                <div class="info">120ГЦ</div>
-                <div class="info">NFC</div>
-                <div class="info">без microSD</div>
-                <div class="info">захист від вологи</div>
-                <div class="info">fast charge</div>
-                <div class="info">потужна зарядка</div>
-                <div class="info">бездротова зарядка</div>
-                <div class="info">стерео</div>
-                <div class="info">Dolby Atmos</div>
-                <div class="info">Android 15</div>
-                <div class="info">USB C 3 fast</div>
-                <div class="info">немає 3.5мм</div>
-                <div class="info">Wi-Fi 7</div>
-                <div class="info">безрамковий</div>
-                <div class="info">Dolby Vision</div>
-                <div class="info">LTPO</div>
-                <div class="info">UFS 4.0</div>
+                <div class="info" *ngFor="let info of data[0]?.categoryDescription">{{info}}</div>
+               
             </div>
-            <app-product-card-characteristics></app-product-card-characteristics>
+            <app-product-card-characteristics [characteristic]="data"></app-product-card-characteristics>
         </div>
          <div class="hr"></div>
     </div>

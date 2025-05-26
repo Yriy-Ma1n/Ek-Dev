@@ -1,7 +1,7 @@
 export interface LaptopItem {
   MemoryRam: string;
   categoryDescription: string;
-  characteristics: {};
+  characteristics: { [key: string]: string };
   colors: string;
   cost: string;
   mainPhoto: string;
