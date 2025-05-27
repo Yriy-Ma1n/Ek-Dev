@@ -12,27 +12,30 @@ export class CardService {
   get GetProduct() {
     return [...this.arrProduct]
   }
+
+
   get CountProduct() {
     return this.arrProduct.reduce((akk, item) => akk += item.quantity, 0)
   }
+
   set changeQuantityPlus(name: string) {
     this.arrProduct.find(element => {
-      if (element.name === name) {
+      if (element.name !== name) return
 
-        element.quantity += 1
-        localStorage.setItem("allCardTovar", JSON.stringify(this.arrProduct))
-      }
+      element.quantity += 1
+      this.changeData()
+
     })
   }
 
   set changeQuantityMinus(name: string) {
     this.arrProduct.find(element => {
-      if (element.name === name) {
-        if (element.quantity < 1) return
-        element.quantity -= 1
-        localStorage.setItem("allCardTovar", JSON.stringify(this.arrProduct))
+      if (element.name !== name) return
+      if (element.quantity < 1) return
 
-      }
+      element.quantity -= 1
+      this.changeData()
+
     })
   }
 
@@ -43,20 +46,12 @@ export class CardService {
     this.arrProduct = this.arrProduct.reduce((acc: any[], obj) => {
       const existing = acc.find(item => item._id === obj._id);
 
+      existing ? existing.quantity += obj.quantity : acc.push({ ...obj })
 
-      if (existing) {
-        existing.quantity += obj.quantity
-        console.log('check and plus')
-      } else {
-
-        acc.push({ ...obj });
-
-      }
-      console.log(acc)
       return acc;
     }, [] as any[]);
 
-    localStorage.setItem("allCardTovar", JSON.stringify(this.arrProduct))
+    this.changeData()
 
   }
 
@@ -64,13 +59,10 @@ export class CardService {
     let total: number = 0
     const savedProduct = JSON.parse(localStorage.getItem("allCardTovar")!)
 
+    if (!savedProduct) return
 
-    if (savedProduct) {
-      for (let item of savedProduct) {
-
-        total += item.price * item.quantity
-      }
-
+    for (let item of savedProduct) {
+      total += item.price * item.quantity
     }
 
     return total
@@ -78,8 +70,10 @@ export class CardService {
 
   clearCard() {
     this.arrProduct = []
-    localStorage.setItem("allCardTovar", JSON.stringify(this.arrProduct))
+    this.changeData()
   }
 
-
+  changeData(){
+    localStorage.setItem("allCardTovar", JSON.stringify(this.arrProduct))
+  }
 }
