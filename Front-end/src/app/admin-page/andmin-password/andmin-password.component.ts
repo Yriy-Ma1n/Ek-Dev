@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule} from '@angular/forms';
+import { PasswordValidator } from './Passwors.validators.directive';
 
 @Component({
   selector: 'app-andmin-password',
@@ -8,11 +9,13 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './andmin-password.component.css'
 })
 export class AndminPasswordComponent {
-  inputItem = new FormControl();
   adminPassword: string = "admin";
   inputValue: string = "";
   inputValueBul: boolean = true;
   @Output() inputEmiter = new EventEmitter <boolean>();
+  inputItem = new FormControl('',[
+    PasswordValidator(this.adminPassword),
+  ]);
 
   getValueInput(inputItem: HTMLInputElement){
     this.inputValue = inputItem.value;
