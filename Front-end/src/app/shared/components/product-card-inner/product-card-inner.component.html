@@ -1,6 +1,6 @@
 <app-header-bar></app-header-bar>
 <div class="main-container-card">
-    <p class="modal-message" [ngClass]="{'show':show}">
+    <p class="modal-message" [ngClass]="{'show':showComment}">
         Напишіть що небудь щоб додати коментар
     </p>
     <p class="modal-message" [ngClass]="{'showAdd':showAdd}">
@@ -32,7 +32,8 @@
             </div>
             <div class="price">
                 <div #priceTovar>{{data[0]?.cost}} грн</div>
-                <button (click)="buyButton(buyButtonEl, nameTovar, photoTovar, priceTovar)" #buyButtonEl>В корзину</button>
+                <button (click)="buyButton(buyButtonEl, nameTovar, photoTovar, priceTovar)" #buyButtonEl>В
+                    корзину</button>
             </div>
         </div>
         <div class="secondary-info">
@@ -42,33 +43,34 @@
             </div>
             <div class="color-ram">
                 <div class="color-choose">
-                    <div *ngFor="let color of data[0]?.colors"  class="{{color}}"></div>
+                    <div *ngFor="let color of data[0]?.colors" class="{{color}}"></div>
                 </div>
                 <div class="memory-ram">
                     <div *ngFor="let config of data[0]?.MemoryRam">
                         {{config}}
-                    </div> 
+                    </div>
                 </div>
             </div>
             <div class="info-container">
                 <div class="info" *ngFor="let info of data[0]?.categoryDescription">{{info}}</div>
-               
+
             </div>
             <app-product-card-characteristics [characteristic]="data"></app-product-card-characteristics>
         </div>
-         <div class="hr"></div>
+        <div class="hr"></div>
     </div>
-   
+
     <div class="comment-block">
         <div class="input-comment">
-            <textarea id="comment" placeholder="Введите комментарий" class="comment-area" [formControl]="commentInput"></textarea>
+            <textarea id="comment" placeholder="Введите комментарий" class="comment-area"
+                [formControl]="commentInput"></textarea>
             <button (click)="addComment()">Добавить коментарий</button>
         </div>
 
         <div class="comment">
-           <div class="comment-message" *ngFor="let item of comments">
-            {{item.comment | badWord}}
-           </div>
+            <div class="comment-message" *ngFor="let item of comments">
+                {{item.comment | badWord}}
+            </div>
         </div>
     </div>
 </div>

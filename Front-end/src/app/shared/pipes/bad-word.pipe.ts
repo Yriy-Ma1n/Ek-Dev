@@ -8,7 +8,9 @@ export class BadWordPipe implements PipeTransform {
   transform(value: string): string {
     const badWordReg = /(кокос|банан|плохой)/gi
     
-    return value.replace(badWordReg,(word)=>'*'.repeat(word.length))
+    const valueWord = value.replace(badWordReg,(word)=>'*'.repeat(word.length))
+
+    return valueWord.replaceAll('@', "*")
     
     
   }

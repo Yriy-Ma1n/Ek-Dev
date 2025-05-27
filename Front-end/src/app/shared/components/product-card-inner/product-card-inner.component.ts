@@ -27,65 +27,68 @@ export class ProductCardInnerComponent {
   CardProduct = inject(CardService)
 
   http = inject(HttpClient)
-  data: characteristic[] = []
+  data: characteristic[] = [] //Тут будут все характеристики и описание к товару
 
   constructor() {
-    this.http.get<LaptopItem[]>('http://localhost:5500/Laptop').subscribe(data => {
-      this.data = data
+     this.http.get<LaptopItem[]>('http://localhost:5500/Laptop').subscribe(data => {
+      this.data = data 
       this.parseStrToArr()
       this.id = this.data[0]?._id
+      this.comments = JSON.parse(localStorage.getItem(`comment:${this.id}`) || '[]') //Достаем из localStorage комент по id и записываем в comments для рендера
     })
-
+   
 
   }
 
-  commentInput = new FormControl("", [
-    Validators.required
-  ])
 
-  comments: { comment: string }[] = []
+  commentInput = new FormControl("", [Validators.required])
 
-  show: boolean = false
+  showComment: boolean = false
   showAdd: boolean = false
 
   id: string = this.data[0]?._id
+
+  comments: { comment: string }[] = []
 
   backToMainPage() {
     this.router.navigate(["/Home"])
   }
   addComment() {
     if (!this.commentInput.valid) {
-      this.show = true
-      setTimeout(() => {
-        this.show = false
-      }, 2500)
+      this.showComment = true
+      setTimeout(() => this.showComment = false, 2500)
       return
     }
     this.comments.push({ comment: this.commentInput.value! })
     this.commentInput.reset()
+    localStorage.setItem(`comment:${this.id}`, JSON.stringify(this.comments))
   }
-  buyButton(element: HTMLButtonElement, name: HTMLElement, photo: HTMLImageElement, price: HTMLElement) {
-    this.showAdd = true
 
-    element.textContent = 'Добавленно в корзину'
-    element.disabled = true
-    setTimeout(() => {
-      this.showAdd = false
-      element.textContent = 'В корзину'
-      element.disabled = false
-    }, 1500)
+  buyButton(element: HTMLButtonElement, name: HTMLElement, photo: HTMLImageElement, price: HTMLElement) {
+    this.updateUI(true, 'Добавленно в корзину', true, element)
+
+    setTimeout(() => this.updateUI(false, 'В корзину', false, element), 1500)
+
+
     const changedPrice = price.textContent?.replaceAll('грн', '').replaceAll(' ', '')!
 
     this.CardProduct.addProduct = { _id: this.id, name: name.textContent!, price: +changedPrice, quantity: 1, src: photo.src }
 
-
   }
 
   parseStrToArr() {
-    this.data[0].MemoryRam = JSON.parse(String(this.data[0].MemoryRam))
-    this.data[0].categoryDescription = JSON.parse(this.data[0].categoryDescription)
-    this.data[0].secondaryPhoto = JSON.parse(this.data[0].secondaryPhoto)
-    this.data[0].colors = JSON.parse(this.data[0].colors)
+    const data = this.data[0]
+    data.MemoryRam = JSON.parse(String(data.MemoryRam))
+    data.categoryDescription = JSON.parse(data.categoryDescription)
+    data.secondaryPhoto = JSON.parse(data.secondaryPhoto)
+    data.colors = JSON.parse(data.colors)
+
+  }
+
+  updateUI(show:boolean, text:string, disabled:boolean, element:HTMLButtonElement){
+    this.showAdd = show
+    element.textContent = text
+    element.disabled = disabled
   }
 
 }

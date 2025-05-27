@@ -78,7 +78,7 @@ export class CardService {
 
   clearCard() {
     this.arrProduct = []
-
+    localStorage.setItem("allCardTovar", JSON.stringify(this.arrProduct))
   }
 
 

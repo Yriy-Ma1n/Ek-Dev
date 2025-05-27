@@ -3,23 +3,27 @@
     flex-direction: column;
     align-items: center;
 }
-.modal-message{
+
+.modal-message {
     position: fixed;
-    top:40px;
+    top: 40px;
     right: -400px;
     padding: 30px;
     border-radius: 15px;
     transition: 0.5s;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-.modal-message.show{
+
+.modal-message.show {
     background-color: rgb(238, 124, 124);
     right: 40px;
 }
-.modal-message.showAdd{
+
+.modal-message.showAdd {
     background-color: rgb(147, 228, 80);
     right: 40px;
 }
+
 .container-card {
     width: 1050px;
     position: relative;
@@ -220,12 +224,14 @@
 .info:first-child:hover {
     color: var(--accent-color-orange)
 }
-.hr{
+
+.hr {
     width: 100%;
     height: 1px;
     background-color: gray;
     margin-top: 20px;
 }
+
 .comment-block {
     width: 1050px;
     margin-top: 20px;
@@ -241,28 +247,33 @@
     outline: none;
     resize: none;
     white-space: pre-wrap;
-    height: 50px;
+    height: 20px;
+    border-radius: 5px;
+    padding: 5px;
+
 }
 
 .comment-block button {
     background-color: var(--accent-color-orange);
     border: none;
-    padding: 5px;
     border-radius: 5px;
     color: white;
     cursor: pointer;
     font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-    margin-left: 30px;
-
+    margin-left: 10px;
+    padding: 8px 15px;
 }
-.comment{
+
+.comment {
     display: flex;
     flex-direction: column;
-    gap:33px;
+    gap: 25px;
     margin-top: 40px;
 }
-.comment-message{
-    background-color: gray;
-    padding: 5px;
+
+.comment-message {
+    background-color: var(--opacity-color-gray);
+    border: 1px solid #0000001f;
+    padding: 10px;
     border-radius: 5px;
 }
