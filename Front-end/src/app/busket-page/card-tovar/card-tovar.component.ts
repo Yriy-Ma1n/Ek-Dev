@@ -28,11 +28,13 @@ export class CardTovarComponent {
   constPrice: number = 0
 
   plusButton(element: HTMLElement) {
+    console.log('was plus')
     this.count += 1
     
     this.price = this.constPrice * this.count
     
     this.productChange.changeQuantityPlus = String(element.textContent)
+    
   }
   minusButton(element: HTMLElement) {
 

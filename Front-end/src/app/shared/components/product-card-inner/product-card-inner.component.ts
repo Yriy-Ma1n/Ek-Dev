@@ -27,14 +27,15 @@ export class ProductCardInnerComponent {
   CardProduct = inject(CardService)
 
   http = inject(HttpClient)
-  data:characteristic[] = []
- 
+  data: characteristic[] = []
+
   constructor() {
     this.http.get<LaptopItem[]>('http://localhost:5500/Laptop').subscribe(data => {
       this.data = data
       this.parseStrToArr()
-      console.log(data)
+      this.id = this.data[0]?._id
     })
+
 
   }
 
@@ -47,8 +48,7 @@ export class ProductCardInnerComponent {
   show: boolean = false
   showAdd: boolean = false
 
-  id: string = crypto.randomUUID()
-  countItem: number = 0
+  id: string = this.data[0]?._id
 
   backToMainPage() {
     this.router.navigate(["/Home"])
@@ -66,15 +66,18 @@ export class ProductCardInnerComponent {
   }
   buyButton(element: HTMLButtonElement, name: HTMLElement, photo: HTMLImageElement, price: HTMLElement) {
     this.showAdd = true
-    this.countItem = 1
+
     element.textContent = 'Добавленно в корзину'
+    element.disabled = true
     setTimeout(() => {
       this.showAdd = false
       element.textContent = 'В корзину'
+      element.disabled = false
     }, 1500)
     const changedPrice = price.textContent?.replaceAll('грн', '').replaceAll(' ', '')!
 
-    this.CardProduct.addProduct = { _id: this.id, name: name.textContent!, price: +changedPrice, quantity: this.countItem, src: photo.src }
+    this.CardProduct.addProduct = { _id: this.id, name: name.textContent!, price: +changedPrice, quantity: 1, src: photo.src }
+
 
   }
 

@@ -10,19 +10,22 @@ import { objProduct } from '../core/services/card.service';
 })
 export class BasketComponent {
   router = inject(Router);
-  countProduct = JSON.parse(localStorage.getItem("allCardTovar")!)?.length || 0
+ 
 
   openCardPage(){
     this.router.navigate(['busket'])
   }
   showCountTovar(){
-    const a = JSON.parse(localStorage.getItem("allCardTovar")!)
+    const item = JSON.parse(localStorage.getItem("allCardTovar")!)
+  
 
-    if(a){
-     this.countProduct = a.reduce((akk:number, item:objProduct)=>{
+    if(item){
+     return item.reduce((akk:number, item:objProduct)=>{
         return akk + item.quantity
       },0)
     }
+      return 0
+    
   }
   constructor(){
     this.showCountTovar()
