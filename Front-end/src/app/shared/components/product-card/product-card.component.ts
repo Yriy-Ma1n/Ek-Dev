@@ -1,5 +1,6 @@
 import { NgStyle } from '@angular/common';
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-product-card',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
-
+ 
 }
