@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tovar-list',
@@ -7,5 +9,14 @@ import { Component } from '@angular/core';
   styleUrl: './tovar-list.component.css'
 })
 export class TovarListComponent {
+  http = inject(HttpClient)
+  activeRoute = inject(ActivatedRoute)
+  name:string = ''
 
+  constructor(){
+    this.activeRoute.queryParams.subscribe(params=>{
+      this.name = params["q"]
+    })
+  
+  }
 }
