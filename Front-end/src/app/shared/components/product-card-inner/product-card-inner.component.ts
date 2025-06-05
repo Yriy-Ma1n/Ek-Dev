@@ -69,7 +69,6 @@ export class ProductCardInnerComponent {
 
     setTimeout(() => this.updateUI(false, 'В корзину', false, element), 1500)
 
-
     const changedPrice = price.textContent?.replaceAll('грн', '').replaceAll(' ', '')!
 
     this.CardProduct.addProduct = { _id: this.id, name: name.textContent!, price: +changedPrice, quantity: 1, src: photo.src }

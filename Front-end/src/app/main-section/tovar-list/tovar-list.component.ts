@@ -17,6 +17,6 @@ export class TovarListComponent {
     this.activeRoute.queryParams.subscribe(params=>{
       this.name = params["q"]
     })
-  
+    this.http.get('http://localhost:5500/search').subscribe(data=>console.log(data))
   }
 }

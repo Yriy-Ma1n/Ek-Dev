@@ -80,3 +80,10 @@ app.get('/Laptop', async (req, res) => {
 
     res.send(LapTopData)
 })
+app.get('/search', async (req, res) => {
+    const searchType = req.query.q //123
+    const allFindedData = await dbSave.collection('PopularModel').find({
+        name: { $regex: searchType, $options: 'i' }
+    }).toArray()
+    res.send(allFindedData)
+})
