@@ -160,9 +160,9 @@ app.get('/search', function (req, res) { return __awaiter(void 0, void 0, void 0
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                searchType = req.query.q //123
-                ;
-                return [4 /*yield*/, dbSave.collection('PopularModel').find({
+                searchType = req.query.q || '';
+                console.log(searchType);
+                return [4 /*yield*/, dbSave.collection('AllTovar').find({
                         name: { $regex: searchType, $options: 'i' }
                     }).toArray()];
             case 1:
