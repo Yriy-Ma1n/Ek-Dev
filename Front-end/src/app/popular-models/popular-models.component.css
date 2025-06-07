@@ -1,0 +1,27 @@
+.popular-model-contanier {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.popular-model-section {
+    display: grid;
+    grid-template-columns: 280px 500px;
+}
+
+.popular-model-section h1 {
+    grid-column-start: 2;
+    opacity: 0.6;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 40px;
+}
+.model-data-section {
+    display: flex;
+    justify-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: row;
+}
+.products {
+    width: 100%;
+}
+
