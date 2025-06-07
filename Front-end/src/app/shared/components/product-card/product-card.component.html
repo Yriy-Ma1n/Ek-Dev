@@ -1,99 +1,67 @@
-<div class="container-tovar">
-    <div class="image-button-tovar">
-        <div class="image-tovar">
-            <img src="https://s.ek.ua/jpg/2793973.jpg" alt="">
-        </div>
-        <div class="compare-button">
-            <input type="checkbox" id="compare-checkbox" class="checkbox">
-            <label for="compare-checkbox" class="checkbox-text">Порівняти</label>
-        </div>
-    </div>
-    <div class="container-statisctics-price">
-        <div class="name-statistic-tovar">
-            <div class="name-characteristics-tovar">
-                <h1 class="name-tovar">Xiaomi Redmi Pad Pro</h1>
-                <p>256ГБ/12ГБ</p>
+<div *ngIf="this.data.length > 0">
+    <div class="container-tovar" *ngFor="let item of data" (click)="openPageTovar(names)">
+        <div class="image-button-tovar">
+            <div class="image-tovar">
+                <img src={{item.mainPhoto}} alt="">
             </div>
-            <div class="additional-info">
-                <span class="additional-info-item">2024 рік</span>
-                <span class="additional-info-item">120 Гц</span>
-                <span class="additional-info-item">USB C</span>
-                <span class="additional-info-item">Wi-Fi 6</span>
-                <span class="additional-info-item">стереозвук</span>
-                <span class="additional-info-item">Dolby Vision</span>
-                <span class="additional-info-item">ємний акумулятор</span>
-            </div>
-            <div class="characteristics-tovar">
-                <div>
-                    <span class="name-characteristics">Екран:</span>
-                    <span class="characteristics">6.82 ", AMOLED (LTPO), 3168x1440, 510 ppi, 120 Гц</span>
-                </div>
-                <div>
-                    <span class="name-characteristics">Камера::</span>
-                    <span class="characteristics">3 модулі, 50 МП, + 50 МП, та 50 МП</span>
-                </div>
-                <div>
-                    <span class="name-characteristics">Відео:</span>
-                    <span class="characteristics">fullHD 60 к/с, 4K, стабілізація, уповільнена зйомка</span>
-                </div>
-                <div>
-                    <span class="name-characteristics">Пам'ять:</span>
-                    <span class="characteristics">256 ГБ, UFS 4.0</span>
-                </div>
-                <div>
-                    <span class="name-characteristics">Процесор:</span>
-                    <span class="characteristics">Snapdragon 8 Elite</span>
-   
-                    <span class="name-characteristics second">ОЗП:</span>
-                    <span class="characteristics">12 ГБ, LPDDR5X</span>
-                </div>
-                <div>
-                    <span class="name-characteristics">Акумулятор:</span>
-                    <span class="characteristics">6000 мАгод</span>
-                </div>
-               
-                <div>
-                    <span class="name-characteristics">Корпус:</span>
-                    <span class="characteristics">скло, 213 г, товщина 8.5 мм</span>
-                </div>
-            </div>
-            <div class="product-tabs">
-                <div class="product-tabs-item">
-                    <a>Відгуки</a><span class="count">2</span>
-                </div>
-                <div class="product-tabs-item">
-                    <a>Відео</a><span class="count">6</span>
-                </div>
-                <div class="product-tabs-item">
-                    <a>Фото</a><span class="count">19</span>
-                </div>
-                <div class="product-tabs-item">
-                    <a>Обговорення</a><span class="count">10</span>
-                </div>
-                 <div class="product-tabs-item">
-                    <a>Огляди</a><span class="count">6</span>
-                </div>
-                 <div class="product-tabs-item">
-                     <a>Ціни</a> <span class="count">70</span>
-                </div>
-                <div class="product-tabs-item">
-                    <a>Чохли</a>
-                </div>
-                 <div class="product-tabs-item">
-                    <a>Захисне скло</a>
-                </div> 
-            </div>
-            <div class="variable-characteristic">
-                <div class="memory current">256 ГБ / 12 ГБ</div>
-                <div class="memory">512 ГБ / 12 ГБ</div>
-                <div class="memory">512 ГБ / 16 ГБ</div>
-                <div class="memory">1ТБ / 24 ГБ</div>
+            <div class="compare-button">
+                <input type="checkbox" id="compare-checkbox" class="checkbox">
+                <label for="compare-checkbox" class="checkbox-text">Порівняти</label>
             </div>
         </div>
-        <div class="separate-line"></div>
-        <div class="price">
-            <span>від</span> 25 899 <span>до</span> 45 840 <span>грн</span>
+        <div class="container-statisctics-price">
+            <div class="name-statistic-tovar">
+                <div class="name-characteristics-tovar">
+                    <h1 class="name-tovar" #names>{{item.name}}</h1>
+                   
+                </div>
+                <div class="additional-info">
+                    <span class="additional-info-item" *ngFor="let info of item.categoryDescription">{{info}}</span>
+                   
+                </div>
+                <div class="characteristics-tovar">
+                    <div *ngFor="let type of item.characteristics | keyvalue">
+                        <span class="name-characteristics">{{type.key}}</span>
+                        <span class="characteristics">{{type.value}}</span>
+                    </div>
+                </div>
+                <div class="product-tabs">
+                    <div class="product-tabs-item">
+                        <a>Відгуки</a><span class="count">{{randomCounts[0]}}</span>
+                    </div>
+                    <div class="product-tabs-item">
+                        <a>Відео</a><span class="count">{{randomCounts[1]}}</span>
+                    </div>
+                    <div class="product-tabs-item">
+                        <a>Фото</a><span class="count">{{randomCounts[2]}}</span>
+                    </div>
+                    <div class="product-tabs-item">
+                        <a>Обговорення</a><span class="count">{{randomCounts[3]}}</span>
+                    </div>
+                    <div class="product-tabs-item">
+                        <a>Огляди</a><span class="count">{{randomCounts[4]}}</span>
+                    </div>
+                    <div class="product-tabs-item">
+                        <a>Ціни</a> <span class="count">{{randomCounts[5]}}</span>
+                    </div>
+                    <div class="product-tabs-item">
+                        <a>Чохли</a>
+                    </div>
+                    <div class="product-tabs-item">
+                        <a>Захисне скло</a>
+                    </div>
+                </div>
+                <div class="variable-characteristic" *ngIf="checkisEmptyArr(item.MemoryRam)">
+                    <div class="memory current">256 ГБ / 12 ГБ</div>
+                    <div class="memory">512 ГБ / 12 ГБ</div>
+                    <div class="memory">512 ГБ / 16 ГБ</div>
+                    <div class="memory">1ТБ / 24 ГБ</div>
+                </div>
+            </div>
+            <div class="separate-line"></div>
+            <div class="price">
+                <h3>{{item.cost}} Грн</h3>
+            </div>
         </div>
     </div>
 </div>
-

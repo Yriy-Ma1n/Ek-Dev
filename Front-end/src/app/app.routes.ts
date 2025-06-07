@@ -27,7 +27,8 @@ export const routes: Routes = [
   },
   {
     path:'tovarList',
-    component:ProductCardInnerComponent
+    component:TovarListComponent,
+    title:'catagol tovars'
   },
   {
     path: '**',

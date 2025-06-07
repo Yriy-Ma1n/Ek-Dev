@@ -1,8 +1,12 @@
+
 .container-tovar{
     display: flex;
     font: normal 100% Roboto, Arial, Helvetica, sans-serif;
     border-top: 0.5px solid #dfdfdfd3;
     padding-top: 20px;
+    margin-top: 40px;
+    cursor: pointer;
+
    
 }
 .container-tovar:hover{

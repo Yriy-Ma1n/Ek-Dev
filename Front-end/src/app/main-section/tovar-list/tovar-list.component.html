@@ -1,1 +1,4 @@
-<p>tovar-list works!</p>
+<app-header-bar></app-header-bar>
+<div class="container-tovar-list" >
+    <app-product-card *ngIf="data.length > 0" [data]="data"></app-product-card>
+</div>

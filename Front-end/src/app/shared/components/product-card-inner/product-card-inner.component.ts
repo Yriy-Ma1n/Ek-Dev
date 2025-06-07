@@ -36,16 +36,18 @@ export class ProductCardInnerComponent {
 
 
   constructor(private cdr:ChangeDetectorRef) {
-    console.log('1')
+    setTimeout(()=>console.log(this.data[0]),1000)
     this.activeRoute.queryParams.subscribe(params => {
-      this.http.get<any[]>(`http://localhost:5500/search?q=${params["q"]}`).subscribe(data => {
+      console.log(params)
+      this.http.get<any[]>(`http://localhost:5500/search?q=${params["title"]}`).subscribe(data => {
+        console.log(data)
         this.data = []
 
         this.ram = false
 
         if (!data[0]) return
 
-        console.log(data)
+       
         !data[0].MemoryRam ? this.ram = false : false
         this.data = [...data]
         this.cdr.detectChanges()
@@ -67,7 +69,7 @@ export class ProductCardInnerComponent {
   comments: { comment: string }[] = []
 
   backToMainPage() {
-    this.router.navigate(["/Home"])
+    history.back()
   }
   addComment() {
     if (!this.commentInput.valid) {
@@ -100,6 +102,13 @@ export class ProductCardInnerComponent {
 
   sendArr(){
     return [this.data[0].characteristics]
+  }
+
+  checkisEmptyArr(arr:string[]):boolean|void{
+    
+    if(String(arr) === "[]"){
+      return true
+    }
   }
 
 }

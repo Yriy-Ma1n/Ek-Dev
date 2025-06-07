@@ -14,7 +14,7 @@
             </div>
             <div class="name-ram">
                 <h1 #nameTovar>{{data[0]?.name}}</h1>
-                <p>256ГБ / ОЗП 12 ГБ</p>
+                <p *ngIf="data[0].MemoryRam">256ГБ / ОЗП 12 ГБ</p>
             </div>
             <div class="additional-actions">
                 <button>ДЕ КУПИТИ</button>
@@ -40,13 +40,13 @@
             <div class="secondary-info">
                 <div class="name-ram">
                     <h1>{{data[0]?.name}}</h1>
-                    <p>256ГБ / ОЗП 12 ГБ</p>
+                   <p *ngIf="data[0].MemoryRam">256ГБ / ОЗП 12 ГБ</p>
                 </div>
-                <div class="color-ram">
+                <div class="color-ram" [ngClass]="{'none':!data[0].MemoryRam && checkisEmptyArr(data[0].colors)}">
                     <div class="color-choose">
                         <div *ngFor="let color of data[0]?.colors" class="{{color}}"></div>
                     </div>
-                    <div class="memory-ram" [ngClass]="{'none':data[0].MemoryRam}">
+                    <div class="memory-ram" *ngIf="data[0].MemoryRam">
                         <div *ngFor="let config of data[0]?.MemoryRam">
                             {{config}}
                         </div>
