@@ -98,7 +98,7 @@ export class ProductCardInnerComponent {
     element.disabled = disabled
   }
 
-  someMet(){
+  sendArr(){
     return [this.data[0].characteristics]
   }
 
