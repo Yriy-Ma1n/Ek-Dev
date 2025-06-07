@@ -7,7 +7,7 @@ import { BusketPageComponent } from "./busket-page/busket-page.component";
 
 @Component({
   selector: 'app-root',
-  imports: [ HeaderBarComponent, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

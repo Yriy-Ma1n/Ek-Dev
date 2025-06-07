@@ -5,6 +5,7 @@ import { LoadingScreenComponent } from './loading-screen/loading-screen.componen
 import { PageNfComponent } from './page404/page-nf/page-nf.component';
 import { ProductCardInnerComponent } from './shared/components/product-card-inner/product-card-inner.component';
 import { TovarListComponent } from './main-section/tovar-list/tovar-list.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 export const routes: Routes = [
   {
@@ -26,7 +27,11 @@ export const routes: Routes = [
     title:'tovar'
   },
   {
-    path:'tovarList',
+    path: 'admin',
+    component:AdminPageComponent,
+  },
+  {
+     path:'tovarList',
     component:TovarListComponent,
     title:'catagol tovars'
   },
