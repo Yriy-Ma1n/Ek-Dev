@@ -18,7 +18,7 @@ export class ProductCardComponent {
 
   constructor() {
     this.randomCounts = this.randomCounts.map((item) => item = Math.floor(Math.random() * 70))
-
+    
   }
   openPageTovar(item: HTMLElement) {
     this.router.navigate(['tovar'], { queryParams: { "title": item.textContent } })

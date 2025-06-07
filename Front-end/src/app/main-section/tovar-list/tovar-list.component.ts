@@ -21,7 +21,10 @@ export class TovarListComponent {
   constructor() {
     this.activeRoute.queryParams.subscribe(params => {
       this.name = params["q"]
-      this.http.get<characteristic[]>(`http://localhost:5500/search?q=${this.name}`).subscribe(data => setTimeout(() => this.data = data))
+      this.http.get<characteristic[]>(`http://localhost:5500/search?q=${this.name}`).subscribe(data => setTimeout(() => {
+        
+        this.data = data
+      }))
     })
 
   }
