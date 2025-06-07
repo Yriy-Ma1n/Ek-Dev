@@ -27,7 +27,7 @@ export const routes: Routes = [
   },
   {
     path:'tovarList',
-    component:TovarListComponent
+    component:ProductCardInnerComponent
   },
   {
     path: '**',

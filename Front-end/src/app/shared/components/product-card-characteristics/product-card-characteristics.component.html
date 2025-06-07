@@ -1,4 +1,4 @@
-<div *ngFor="let item of characteristic_name; let i = index">
-    <span class="name-characteristics">{{item}}:</span>
-    <span class="characteristics">{{getCharacteristics(i)}}</span>
+<div *ngFor="let item of characteristic[0] | keyvalue">
+    <span class="name-characteristics">{{item.key}}:</span>
+    <span class="characteristics">{{item.value}}</span>
 </div>

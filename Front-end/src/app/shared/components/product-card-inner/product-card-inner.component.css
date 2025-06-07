@@ -277,3 +277,15 @@
     padding: 10px;
     border-radius: 5px;
 }
+.cantFound img{
+    width: 600px;
+    height: 600px;
+
+}
+.cantFound{
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

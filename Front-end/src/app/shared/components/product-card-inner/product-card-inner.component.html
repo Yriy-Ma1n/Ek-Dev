@@ -1,76 +1,84 @@
 <app-header-bar></app-header-bar>
-<div class="main-container-card">
-    <p class="modal-message" [ngClass]="{'show':showComment}">
-        Напишіть що небудь щоб додати коментар
-    </p>
-    <p class="modal-message" [ngClass]="{'showAdd':showAdd}">
-        Товар було додано до корзини!
-    </p>
+<div *ngIf="data.length > 0; else ngElse">
+    <div class="main-container-card">
+        <p class="modal-message" [ngClass]="{'show':showComment}">
+            Напишіть що небудь щоб додати коментар
+        </p>
+        <p class="modal-message" [ngClass]="{'showAdd':showAdd}">
+            Товар було додано до корзини!
+        </p>
 
-    <div class="container-card">
-        <div class="arrow-back" (click)="backToMainPage()">
-            <img src="./back-arrow.svg" alt="">
-        </div>
-        <div class="name-ram">
-            <h1 #nameTovar>{{data[0]?.name}}</h1>
-            <p>256ГБ / ОЗП 12 ГБ</p>
-        </div>
-        <div class="additional-actions">
-            <button>ДЕ КУПИТИ</button>
-            <button class="selected">ОПИС</button>
-            <button>ХАРАКТЕРИСТИКИ</button>
-            <button>ВІДГУКИ</button>
-            <button>ПОСТАВИТИ ЗАПИТАННЯ</button>
-            <button>АКСЕСУАРИ</button>
-        </div>
-        <div class="main-information">
-            <div class="photo-tovar">
-                <img src="{{data[0]?.mainPhoto}}" #photoTovar>
+        <div class="container-card">
+            <div class="arrow-back" (click)="backToMainPage()">
+                <img src="./back-arrow.svg" alt="">
             </div>
-            <div class="additional-photo">
-                <img *ngFor="let item of data[0]?.secondaryPhoto" src="{{item}}">
-            </div>
-            <div class="price">
-                <div #priceTovar>{{data[0]?.cost}} грн</div>
-                <button (click)="buyButton(buyButtonEl, nameTovar, photoTovar, priceTovar)" #buyButtonEl>В
-                    корзину</button>
-            </div>
-        </div>
-        <div class="secondary-info">
             <div class="name-ram">
-                <h1>{{data[0]?.name}}</h1>
+                <h1 #nameTovar>{{data[0]?.name}}</h1>
                 <p>256ГБ / ОЗП 12 ГБ</p>
             </div>
-            <div class="color-ram">
-                <div class="color-choose">
-                    <div *ngFor="let color of data[0]?.colors" class="{{color}}"></div>
+            <div class="additional-actions">
+                <button>ДЕ КУПИТИ</button>
+                <button class="selected">ОПИС</button>
+                <button>ХАРАКТЕРИСТИКИ</button>
+                <button>ВІДГУКИ</button>
+                <button>ПОСТАВИТИ ЗАПИТАННЯ</button>
+                <button>АКСЕСУАРИ</button>
+            </div>
+            <div class="main-information">
+                <div class="photo-tovar">
+                    <img src="{{data[0]?.mainPhoto}}" #photoTovar>
                 </div>
-                <div class="memory-ram">
-                    <div *ngFor="let config of data[0]?.MemoryRam">
-                        {{config}}
+                <div class="additional-photo">
+                    <img *ngFor="let item of data[0]?.secondaryPhoto" src="{{item}}">
+                </div>
+                <div class="price">
+                    <div #priceTovar>{{data[0]?.cost}} грн</div>
+                    <button (click)="buyButton(buyButtonEl, nameTovar, photoTovar, priceTovar)" #buyButtonEl>В
+                        корзину</button>
+                </div>
+            </div>
+            <div class="secondary-info">
+                <div class="name-ram">
+                    <h1>{{data[0]?.name}}</h1>
+                    <p>256ГБ / ОЗП 12 ГБ</p>
+                </div>
+                <div class="color-ram">
+                    <div class="color-choose">
+                        <div *ngFor="let color of data[0]?.colors" class="{{color}}"></div>
+                    </div>
+                    <div class="memory-ram">
+                        <div *ngFor="let config of data[0]?.MemoryRam">
+                            {{config}}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="info-container">
-                <div class="info" *ngFor="let info of data[0]?.categoryDescription">{{info}}</div>
+                <div class="info-container">
+                    <div class="info" *ngFor="let info of data[0]?.categoryDescription">{{info}}</div>
 
+                </div>
+                <app-product-card-characteristics [characteristic]="someMet()"></app-product-card-characteristics>
             </div>
-            <app-product-card-characteristics [characteristic]="data"></app-product-card-characteristics>
-        </div>
-        <div class="hr"></div>
-    </div>
-
-    <div class="comment-block">
-        <div class="input-comment">
-            <textarea id="comment" placeholder="Введите комментарий" class="comment-area"
-                [formControl]="commentInput"></textarea>
-            <button (click)="addComment()">Добавить коментарий</button>
+            <div class="hr"></div>
         </div>
 
-        <div class="comment">
-            <div class="comment-message" *ngFor="let item of comments">
-                {{item.comment | badWord}}
+        <div class="comment-block">
+            <div class="input-comment">
+                <textarea id="comment" placeholder="Введите комментарий" class="comment-area"
+                    [formControl]="commentInput"></textarea>
+                <button (click)="addComment()">Добавить коментарий</button>
+            </div>
+
+            <div class="comment">
+                <div class="comment-message" *ngFor="let item of comments">
+                    {{item.comment | badWord}}
+                </div>
             </div>
         </div>
     </div>
 </div>
+<ng-template #ngElse>
+    <div class="cantFound">
+        <img src="./nothingFound.jpg" alt="" width="250" height="250">
+        <h1>Ми нічого не знайшли</h1>
+    </div>
+</ng-template>
