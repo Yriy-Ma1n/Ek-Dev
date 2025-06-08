@@ -34,7 +34,7 @@ E-Katalog Mini is a simple internet shop, style was used like in ek.ua, with bas
      <h2>404 page:</h2>
         <li>Nicely styled, with a "Go to Home" button</li>
 
-<h1>If you want start the project you have to:</h1>h1>
+<h1>If you want start the project you have to:</h1>
  <li>git clone <ur></li>
  <li>cd Front-end</li>
  <li>npm install</li>
