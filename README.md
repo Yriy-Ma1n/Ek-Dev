@@ -21,7 +21,7 @@ E-Katalog Mini is a simple internet shop, style was used like in ek.ua, with bas
         <li>Image, description, buy button (updates the counter)</li>
         <li>Comment form with forbidden words filter (replaced by *)</li>
         <li>Comments saved in localStorage</li>
-    <h2>Product page:</h2>
+    <h2>Admin page:</h2>
         <li>Password access: "admin"</li>
         <li>Product addition form validation</li>
         <li>Image URL validity check</li>
