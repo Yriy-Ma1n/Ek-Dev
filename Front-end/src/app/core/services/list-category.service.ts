@@ -169,23 +169,23 @@ export class ListCategoryService {
   private arrDo = [
     {
       name: 'TV',
-      do: this.NavigateToPage('Телевизор')
+      do: ()=>{console.log('Телевизор'); this.NavigateToPage('Телевизор')}
     },
     {
       name: 'TabletAccessories',
-       do: this.NavigateToPage('Планшет')
+       do: ()=>{console.log('Планшет'); this.NavigateToPage('Планшет')}
     },
     {
       name: 'Telephone',
-       do: this.NavigateToPage('Телефон')
+       do: ()=>{console.log('Телефон'); this.NavigateToPage('Телефон')}
     },
     {
       name: 'Tablet',
-       do: this.NavigateToPage('Планшет')
+       do: ()=>{console.log('Планшет'); this.NavigateToPage('Планшет')}
     },
     {
       name: 'Fridge',
-       do: this.NavigateToPage('Холодильник')
+       do: ()=>{console.log('Холодильник'); this.NavigateToPage('Холодильник')}
     }
   ]
   private changeData = [
@@ -240,6 +240,7 @@ export class ListCategoryService {
   }
 
   NavigateToPage(page: string) {
+    console.log('navigate')
     this.router.navigate(['/tovarList'], { queryParams: { q: page } })
   }
 

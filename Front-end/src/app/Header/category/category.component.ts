@@ -19,7 +19,6 @@ export class CategoryComponent {
   listCategoryItem: { img: string, name: string }[] = []
 
   hoverToElemet(event: Event) {
-    console.log('213')
     const element = event.target as HTMLElement
     if (element.classList.contains("list-category-container")) return
     this.hovered = false
@@ -43,7 +42,7 @@ export class CategoryComponent {
     })
   }
   clickCategory(event: Event) {
-
+    
     const element = (event.target as HTMLElement).parentElement?.textContent
 
     if (element === 'Смартфони') {

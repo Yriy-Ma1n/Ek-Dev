@@ -28,7 +28,7 @@ export class CategoryListComponent {
   switchToCategory(event: Event) {
     const element = (event.target as HTMLDivElement).parentNode as HTMLElement
     this.arrDo.forEach(item=>{
-      element.classList.contains(item.name) ? item.do : false
+      element.classList.contains(item.name) ? item.do() : false
     })
    
   }
