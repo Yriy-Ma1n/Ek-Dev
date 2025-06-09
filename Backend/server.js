@@ -171,4 +171,16 @@ app.get('/search', function (req, res) { return __awaiter(void 0, void 0, void 0
                 return [2 /*return*/];
         }
     });
-}); });
+}); }),
+    app.get('/adminpass', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+        var getAdminPass;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, dbSave.collection('AdminPass').find().toArray()];
+                case 1:
+                    getAdminPass = _a.sent();
+                    res.send(getAdminPass);
+                    return [2 /*return*/];
+            }
+        });
+    }); });

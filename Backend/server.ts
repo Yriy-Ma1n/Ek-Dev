@@ -87,4 +87,10 @@ app.get('/search', async (req, res) => {
         name: { $regex: searchType, $options: 'i' }
     }).toArray()
     res.send(allFindedData)
+}), 
+app.get('/adminpass', async (req, res)=>{
+    const getAdminPass = await dbSave.collection('AdminPass').find().toArray()
+
+    res.send(getAdminPass)
+
 })
