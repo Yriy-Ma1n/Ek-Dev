@@ -36,11 +36,10 @@ export class ProductCardInnerComponent {
 
 
   constructor(private cdr:ChangeDetectorRef) {
-    setTimeout(()=>console.log(this.data[0]),1000)
+    
     this.activeRoute.queryParams.subscribe(params => {
-      console.log(params)
+      
       this.http.get<any[]>(`http://localhost:5500/search?q=${params["title"]}`).subscribe(data => {
-        console.log(data)
         this.data = []
 
         this.ram = false

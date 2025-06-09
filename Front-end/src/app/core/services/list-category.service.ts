@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListCategoryService {
+  router = inject(Router)
 
   private dataCategory = [
     {
@@ -16,7 +18,7 @@ export class ListCategoryService {
         { img: './header-list/Gadgets/chargeGudget.svg', name: "Зарядки для гаджетів" },
         { img: './header-list/Gadgets/speakers.svg', name: "Портативні колонки" },
         { img: './header-list/Gadgets/Action-camera.svg', name: "Action камери" },
-        { img: './header-list/Gadgets/Quadcoper.svg', name: "Квадробери" }
+        { img: './header-list/Gadgets/Quadcoper.svg', name: "Квадрокоптери" }
       ],
       Computers: [
         { img: './header-list/Computers/laptop.svg', name: "Ноутбуки" },
@@ -29,7 +31,7 @@ export class ListCategoryService {
         { img: './header-list/Computers/Wi-Fi.svg', name: "Wi-Fi" },
         { img: './header-list/Computers/Mouse-Keyboard.svg', name: "Клавіатури та мишки" },
       ],
-      Photo: [
+      photo: [
         { img: './header-list/Photo/Cameras.svg', name: "Фотоапарати" },
         { img: './header-list/Photo/Objectivs.svg', name: "Обє'ктиви" },
         { img: './header-list/Photo/Flashes.svg', name: "Фотоспалахи" },
@@ -40,7 +42,7 @@ export class ListCategoryService {
         { img: './header-list/Photo/Charge.svg', name: "Акумулятори" },
         { img: './header-list/Photo/Studio-light.svg', name: "Студійне світло" },
       ],
-      Tv: [
+      TV: [
         { img: './header-list/TV/Tv.svg', name: "Телевізори" },
         { img: './header-list/TV/Monitors.svg', name: "Монітори" },
         { img: './header-list/TV/Fastening.svg', name: "Кріплення й тумби" },
@@ -107,7 +109,7 @@ export class ListCategoryService {
         { img: './header-list/Child-tovar/RCToysIkids.svg', name: "РК моделі" },
       ],
 
-      Cars: [
+      Car: [
         { img: './header-list/cars/TyresICars.svg', name: "Шини" },
         { img: './header-list/cars/RimsICars.svg', name: "Диски" },
         { img: './header-list/cars/kidCarSeatsICars.svg', name: "Дитячі крісла" },
@@ -118,7 +120,7 @@ export class ListCategoryService {
         { img: './header-list/cars/PressureWashesICars.svg', name: "Автомийки" },
         { img: './header-list/cars/MotoICars.svg', name: "Мото" },
       ],
-      Tools: [
+      Tool: [
         { img: './header-list/Tools/Tools.svg', name: "Інструмент" },
         { img: './header-list/Tools/ToolKits.svg', name: "Набори інструментів" },
         { img: './header-list/Tools/HandTools.svg', name: "Ручний інструмент" },
@@ -152,7 +154,7 @@ export class ListCategoryService {
 
 
       ],
-      FashionBeauti: [
+      Fashion: [
         { img: './header-list/Fashion/Watch.svg', name: "Годинник" },
         { img: './header-list/Fashion/smart-watch.svg', name: "Смартгодинники і браслети" },
         { img: './header-list/Fashion/Juvelir-Fashion.svg', name: "Ювелірні прикраси" },
@@ -164,7 +166,81 @@ export class ListCategoryService {
       ]
     }
   ]
+  private arrDo = [
+    {
+      name: 'TV',
+      do: this.NavigateToPage('Телевизор')
+    },
+    {
+      name: 'TabletAccessories',
+       do: this.NavigateToPage('Планшет')
+    },
+    {
+      name: 'Telephone',
+       do: this.NavigateToPage('Телефон')
+    },
+    {
+      name: 'Tablet',
+       do: this.NavigateToPage('Планшет')
+    },
+    {
+      name: 'Fridge',
+       do: this.NavigateToPage('Холодильник')
+    }
+  ]
+  private changeData = [
+    {
+      name:"Gadgets",
+    },
+    {
+      name:"Computers"
+    },
+    {
+      name:"photo"
+    },
+    {
+      name:"TV"
+    },
+    {
+      name:"HomeTechnik"
+    },
+    {
+      name:"Climat"
+    },
+    {
+      name:"Home"
+    },
+    {
+      name:"ChildTovar"
+    },
+    {
+      name:"Car"
+    },
+    {
+      name:"Tool"
+    },
+    {
+      name:"Tourism"
+    },
+    {
+      name:"Sport"
+    },
+    {
+      name:"Fashion"
+    }
+  ]
   get dataCategoryes() {
     return [...this.dataCategory]
   }
+  get getArrDo(){
+    return [...this.arrDo]
+  }
+  get getChangeData(){
+    return [...this.changeData]
+  }
+
+  NavigateToPage(page: string) {
+    this.router.navigate(['/tovarList'], { queryParams: { q: page } })
+  }
+
 }

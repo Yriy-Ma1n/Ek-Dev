@@ -63,3 +63,6 @@
 .container-item{
     transition: 0.5s;
 }
+.container-item:hover .item p{
+    color:var(--accent-color-orange)
+}
