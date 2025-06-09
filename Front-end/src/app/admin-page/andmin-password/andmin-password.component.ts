@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, ReactiveFormsModule} from '@angular/forms';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { PasswordValidator } from './Passwors.validators.directive';
 import { NgClass, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-andmin-password',
@@ -11,18 +12,29 @@ import { RouterLink } from '@angular/router';
   styleUrl: './andmin-password.component.css'
 })
 export class AndminPasswordComponent {
-  adminPassword: string = "admin";
+  adminPassword: string = "";
   inputValue: string = "";
   inputValueBul: boolean = true;
-  @Output() inputEmiter = new EventEmitter <boolean>();
-  inputItem = new FormControl('',[
+  http = inject(HttpClient)
+
+  @Output() inputEmiter = new EventEmitter<boolean>();
+
+  inputItem = new FormControl('', [
     PasswordValidator(this.adminPassword),
   ]);
+
   ngIfPass = false;
 
+  constructor() {
+    this.http.get<{ login: string, password: string }[]>('http://localhost:5500/adminpass').subscribe(response => {
+      this.adminPassword = response[0].password
+    })
+  
+  }
 
-  getValueInput(inputItem: HTMLInputElement){
-    if(this.inputItem.invalid){
+
+  getValueInput(inputItem: HTMLInputElement) {
+    if (this.inputItem.invalid) {
       this.ngIfPass = true;
     }
     this.inputValue = inputItem.value;
@@ -30,10 +42,10 @@ export class AndminPasswordComponent {
     this.inputEmiter.emit(this.inputValueBul);
   };
 
-  checkValueInput(){
-    if(this.inputValue === this.adminPassword){
+  checkValueInput() {
+    if (this.inputValue === this.adminPassword) {
       this.inputValueBul = false;
-    }else{
+    } else {
       this.inputValueBul = true;
     }
   };

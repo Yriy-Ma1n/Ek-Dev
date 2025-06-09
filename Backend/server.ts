@@ -80,3 +80,17 @@ app.get('/Laptop', async (req, res) => {
 
     res.send(LapTopData)
 })
+app.get('/search', async (req, res) => {
+    const searchType = req.query.q || ''
+    console.log(searchType)
+    const allFindedData = await dbSave.collection('AllTovar').find({
+        name: { $regex: searchType, $options: 'i' }
+    }).toArray()
+    res.send(allFindedData)
+}), 
+app.get('/adminpass', async (req, res)=>{
+    const getAdminPass = await dbSave.collection('AdminPass').find().toArray()
+
+    res.send(getAdminPass)
+
+})

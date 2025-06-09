@@ -5,17 +5,17 @@
         <span class="photo category">Фото</span>
         <span class="TV category">TV</span>
         <span class="Audio category">Аудіо</span>
-        <span class="Home-technik category">Побутова техніка</span>
+        <span class="HomeTechnik category">Побутова техніка</span>
         <span class="Climat category">Клімат</span>
         <span class="Home category">Дім</span>
-        <span class="Child-tovar category">Дитячі товари</span>
+        <span class="ChildTovar category">Дитячі товари</span>
         <span class="Car category">Авто</span>
         <span class="Tool category">Інструмент</span>
         <span class="Tourism category">Туризм</span>
         <span class="Sport category">Спорт</span> 
         <span class="Fashion category">Мода та аксесуари</span>
     </div>
-<div class="additionally-info" [ngClass]="{'none pin':hovered}" (mouseover)="itemIn()" (mouseleave)="itemout()">
+<div class="additionally-info" [ngClass]="{'none pin':hovered}" (mouseover)="itemIn()" (mouseleave)="itemout()" (click)="clickCategory($event)">
     <div *ngFor="let item of listCategoryItem" class="container-item">
         <div class="item">
             <img src="{{item.img}}" alt="" class="item-img">

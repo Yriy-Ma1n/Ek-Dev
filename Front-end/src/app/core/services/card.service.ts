@@ -53,7 +53,7 @@ export class CardService {
 
     this.changeData()
 
-  }
+  } 
 
   GetTotalPrice() {
     let total: number = 0

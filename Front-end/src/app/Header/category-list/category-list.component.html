@@ -4,6 +4,8 @@
         [width]="item.width" 
         [height]="item.height"
         [img]="item.img"
+        class={{item.name}}
+        (click)="switchToCategory($event)"
         >
         </app-card-category>
     </div>

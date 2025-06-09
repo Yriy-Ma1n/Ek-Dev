@@ -1,0 +1,17 @@
+<div class="product-grid">
+<div class="model-contanier" *ngFor="let product of products">
+   
+    <div class="img-contanier">
+        <img [src]="product.img" alt="">
+    </div>
+    <span class="name">{{product.name}}</span>
+    <p class="price"> від {{ product.cost}} грн.</p>
+
+</div>
+</div>
+<br>
+<div class="pagination-controls">
+  <button (click)="prevPage()" [disabled]="currentPage === 1">Назад</button>
+  <span>Сторінка {{ currentPage }}</span>
+  <button (click)="nextPage()" [disabled]="nextPageLength === 0">Далі</button>
+</div>
