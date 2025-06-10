@@ -36,10 +36,16 @@ E-Katalog Mini is a simple internet shop, style was used like in ek.ua, with bas
 
 <h1>If you want start the project you have to:</h1>
  <li>git clone <ur></li>
- <li>cd Front-end</li>
- <li>npm install</li>
  <li>cd Backend</li>
+ <li>create file ".env"</li>
+ <li>in this ".env" you have to put: </li>
+     <h4>MONGO_URL=</h4>-here you have to put your link to connect your Database
+     <h4>PORT="5501"</h4>-exactly 5501!!
  <li>npm install</li>
  <li>npm run start</li>
+  <li>cd Front-end</li>
+ <li>npm install</li>
+ <li>npm run start</li>
+ 
 
     
