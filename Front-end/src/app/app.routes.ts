@@ -10,11 +10,13 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 export const routes: Routes = [
   {
     path: '',
-    component: LoadingScreenComponent
+    component: LoadingScreenComponent,
+    title: 'loading Screen'
   },
   {
     path: 'Home',
     component: MainSectionComponent,
+    title: 'home'
   },
   {
     path: 'busket',
@@ -29,6 +31,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     component:AdminPageComponent,
+    title: 'admin'
   },
   {
      path:'tovarList',
