@@ -1,15 +1,20 @@
 <div class="product-grid">
-<div class="model-contanier" *ngFor="let product of products">
-   
+  <div class="model-contanier" *ngFor="let product of products">
+
     <div class="img-contanier">
-        <img [src]="product.img" alt="">
+      <img [src]="product.img" alt="">
     </div>
     <span class="name">{{product.name}}</span>
     <p class="price"> від {{ product.cost}} грн.</p>
 
-</div>
+  </div>
+  <div class="filters">
+    <input type="text" placeholder="what do you what to find" [ngClass]="{'none':show}" (input)="filteredItem($event)">
+    <img src="./filter-svgrepo-com.svg" (click)="showInp()">
+  </div>
 </div>
 <br>
+
 <div class="pagination-controls">
   <button (click)="prevPage()" [disabled]="currentPage === 1">Назад</button>
   <span>Сторінка {{ currentPage }}</span>
