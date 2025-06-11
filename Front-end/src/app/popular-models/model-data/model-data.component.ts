@@ -26,16 +26,19 @@ export class ModelDataComponent {
     
   }
 
+
   getPageContent() {
     this.router.get<apiProduct[]>(
       `http://localhost:5500/PopularModel?limit=${this.pageSize}&page=${this.currentPage - 1}`
     ).subscribe((data) => {
       this.products = data;
+      this.originalArr = data
     });
     this.router.get<apiProduct[]>(
       `http://localhost:5500/PopularModel?limit=${this.pageSize}&page=${this.currentPage}`
     ).subscribe((data) => {
       this.nextPageLength = data.length;
+      
     });
   }
 
@@ -55,8 +58,13 @@ export class ModelDataComponent {
   }
   filteredItem(event:Event){
     const input = (event.currentTarget as HTMLInputElement).value
-    this.products.filter(item=>item.name.includes(input))
-    console.log(this.originalArr)
+    if(!input){
+      this.products = this.originalArr
+      return
+    }
+
+    this.products = this.products.filter(item=>item.name.toLocaleLowerCase().includes(input.toLowerCase()))
+    
   }
 
     
