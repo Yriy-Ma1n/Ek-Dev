@@ -1,10 +1,10 @@
 <div class="product-grid">
-  <div class="model-contanier" *ngFor="let product of products">
+  <div class="model-contanier" *ngFor="let product of products" (click)="openTovarPage(nameTovar)">
 
     <div class="img-contanier">
       <img [src]="product.img" alt="">
     </div>
-    <span class="name">{{product.name}}</span>
+    <span class="name" #nameTovar>{{product.name}}</span>
     <p class="price"> від {{ product.cost}} грн.</p>
 
   </div>

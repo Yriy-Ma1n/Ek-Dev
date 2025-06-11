@@ -2,6 +2,7 @@ import { NgClass, NgFor, NgStyle } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import type { apiProduct } from '../../shared/types/apiGetProduct';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-model-data',
@@ -18,7 +19,9 @@ export class ModelDataComponent {
   nextPageLength = 0;
   show: boolean = true
   padding: number = 0
-  router = inject(HttpClient)
+  http = inject(HttpClient)
+  router = inject(Router)
+  
 
 
   ngOnInit() {
@@ -28,13 +31,13 @@ export class ModelDataComponent {
 
 
   getPageContent() {
-    this.router.get<apiProduct[]>(
+    this.http.get<apiProduct[]>(
       `http://localhost:5500/PopularModel?limit=${this.pageSize}&page=${this.currentPage - 1}`
     ).subscribe((data) => {
       this.products = data;
       this.originalArr = data
     });
-    this.router.get<apiProduct[]>(
+    this.http.get<apiProduct[]>(
       `http://localhost:5500/PopularModel?limit=${this.pageSize}&page=${this.currentPage}`
     ).subscribe((data) => {
       this.nextPageLength = data.length;
@@ -65,6 +68,9 @@ export class ModelDataComponent {
 
     this.products = this.products.filter(item=>item.name.toLocaleLowerCase().includes(input.toLowerCase()))
     
+  }
+  openTovarPage(item:HTMLSpanElement){
+     this.router.navigate(['/tovar'], { queryParams: { title: item.textContent } })
   }
 
     
