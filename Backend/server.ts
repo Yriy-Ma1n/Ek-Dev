@@ -1,4 +1,3 @@
-import type { LaptopItem } from "./Types/LapTopItem-type";
 const express = require('express');
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
@@ -12,6 +11,9 @@ const uri = process.env.MONGO_URL
 const client = new MongoClient(uri)
 
 app.use(cors());
+app.use(express.json())
+app.use(express.urlencoded())
+
 
 let dbSave;
 async function connect() {
@@ -75,22 +77,38 @@ app.get('/CategoryList', async (req, res) => {
 
     res.send(CategoryList)
 })
-app.get('/Laptop', async (req, res) => {
-    const LapTopData = await dbSave.collection('LapTop').find().toArray() as LaptopItem[]
-
-    res.send(LapTopData)
-})
 app.get('/search', async (req, res) => {
     const searchType = (req.query.q || '').trim().replace(/\u00A0/g, ' ').trim()
-    
+
     const allFindedData = await dbSave.collection('AllTovar').find({
         name: { $regex: searchType, $options: 'i' }
     }).toArray()
     res.send(allFindedData)
-}), 
-app.get('/adminpass', async (req, res)=>{
-    const getAdminPass = await dbSave.collection('AdminPass').find().toArray()
+}),
+    app.get('/adminpass', async (req, res) => {
+        const getAdminPass = await dbSave.collection('AdminPass').find().toArray()
 
-    res.send(getAdminPass)
+        res.send(getAdminPass)
+
+    })
+app.post('/addProduct', async (req, res) => {
+    if (!req.body) {
+        res.send(200)
+        return
+    }
+    const body = req.body
+    if (typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string') {
+        console.log('everything nice')
+        const collection = await dbSave.collection('LapTop')
+        const result = await collection.insertOne(req.body)
+        res.send(result)
+    }else{
+         res.status(400).json({
+            error: 'Bad Request',
+            message: 'All field must to be string'
+        });
+        
+    }
+
 
 })
