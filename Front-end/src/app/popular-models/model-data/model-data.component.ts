@@ -70,6 +70,7 @@ export class ModelDataComponent {
     
   }
   openTovarPage(item:HTMLSpanElement){
+    console.log(item.textContent)
      this.router.navigate(['/tovar'], { queryParams: { title: item.textContent } })
   }
 

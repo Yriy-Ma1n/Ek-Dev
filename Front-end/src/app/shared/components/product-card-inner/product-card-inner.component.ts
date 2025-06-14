@@ -30,15 +30,13 @@ export class ProductCardInnerComponent {
 
   http = inject(HttpClient)
   data: characteristic[] = [] //Тут будут все характеристики и описание к товару
-
+  name: string = ''
 
   ram: boolean = false;
 
 
-  constructor(private cdr:ChangeDetectorRef) {
-    
+  constructor(private cdr: ChangeDetectorRef) {
     this.activeRoute.queryParams.subscribe(params => {
-      
       this.http.get<any[]>(`http://localhost:5500/search?q=${params["title"]}`).subscribe(data => {
         this.data = []
 
@@ -46,10 +44,9 @@ export class ProductCardInnerComponent {
 
         if (!data[0]) return
 
-       
         !data[0].MemoryRam ? this.ram = false : false
         this.data = [...data]
-        this.cdr.detectChanges()
+        // this.cdr.detectChanges()
 
         this.id = this.data[0]?._id
         this.comments = JSON.parse(localStorage.getItem(`comment:${this.id}`) || '[]') //Достаем из localStorage комент по id и записываем в comments для рендера
@@ -99,13 +96,13 @@ export class ProductCardInnerComponent {
     element.disabled = disabled
   }
 
-  sendArr(){
+  sendArr() {
     return [this.data[0].characteristics]
   }
 
-  checkisEmptyArr(arr:string[]):boolean|void{
-    
-    if(String(arr) === "[]"){
+  checkisEmptyArr(arr: string[]): boolean | void {
+
+    if (String(arr) === "[]") {
       return true
     }
   }
