@@ -97,7 +97,7 @@ app.post('/addProduct', async (req, res) => {
         return
     }
     const body = req.body
-    if (typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof(body.description) === 'string') {
+    if (typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof(body.description) === 'object') {
         console.log('everything nice')
         const collectionPopular = await dbSave.collection('PopularModel')
         const collectionAllTovar = await dbSave.collection('AllTovar')
