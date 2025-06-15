@@ -97,15 +97,15 @@ app.post('/addProduct', async (req, res) => {
         return
     }
     const body = req.body
-    if (typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string') {
+    if (typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof(body.description) === 'string') {
         console.log('everything nice')
-        const collection = await dbSave.collection('LapTop')
+        const collection = await dbSave.collection('PopularModel')
         const result = await collection.insertOne(req.body)
         res.send(result)
     }else{
          res.status(400).json({
             error: 'Bad Request',
-            message: 'All field must to be string'
+            message: 'should to be 4 field, img,name,cost,description and all field string'
         });
         
     }

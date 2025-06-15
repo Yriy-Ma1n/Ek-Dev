@@ -182,7 +182,7 @@ app.post('/addProduct', function (req, res) { return __awaiter(_this, void 0, vo
                     return [2 /*return*/];
                 }
                 body = req.body;
-                if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string')) return [3 /*break*/, 3];
+                if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'string')) return [3 /*break*/, 3];
                 console.log('everything nice');
                 return [4 /*yield*/, dbSave.collection('LapTop')];
             case 1:
@@ -195,7 +195,7 @@ app.post('/addProduct', function (req, res) { return __awaiter(_this, void 0, vo
             case 3:
                 res.status(400).json({
                     error: 'Bad Request',
-                    message: 'All field must to be string'
+                    message: 'should to be 4 field, img,name,cost,description and all field string'
                 });
                 _a.label = 4;
             case 4: return [2 /*return*/];
