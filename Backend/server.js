@@ -173,7 +173,7 @@ app.get('/search', function (req, res) { return __awaiter(_this, void 0, void 0,
         });
     }); });
 app.post('/addProduct', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-    var body, collection, result;
+    var body, collectionPopular, collectionAllTovar, result;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -182,23 +182,29 @@ app.post('/addProduct', function (req, res) { return __awaiter(_this, void 0, vo
                     return [2 /*return*/];
                 }
                 body = req.body;
-                if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'string')) return [3 /*break*/, 3];
+                if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'string')) return [3 /*break*/, 5];
                 console.log('everything nice');
                 return [4 /*yield*/, dbSave.collection('PopularModel')];
             case 1:
-                collection = _a.sent();
-                return [4 /*yield*/, collection.insertOne(req.body)];
+                collectionPopular = _a.sent();
+                return [4 /*yield*/, dbSave.collection('AllTovar')];
             case 2:
-                result = _a.sent();
-                res.send(result);
-                return [3 /*break*/, 4];
+                collectionAllTovar = _a.sent();
+                return [4 /*yield*/, collectionPopular.insertOne(req.body)];
             case 3:
+                result = _a.sent();
+                return [4 /*yield*/, collectionAllTovar.insertOne(req.body)];
+            case 4:
+                _a.sent();
+                res.send(result);
+                return [3 /*break*/, 6];
+            case 5:
                 res.status(400).json({
                     error: 'Bad Request',
                     message: 'should to be 4 field, img,name,cost,description and all field string'
                 });
-                _a.label = 4;
-            case 4: return [2 /*return*/];
+                _a.label = 6;
+            case 6: return [2 /*return*/];
         }
     });
 }); });

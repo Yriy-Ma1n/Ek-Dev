@@ -26,7 +26,7 @@
             </div>
             <div class="main-information">
                 <div class="photo-tovar">
-                    <img src="{{data[0]?.mainPhoto}}" #photoTovar>
+                    <img [src]="data[0]?.mainPhoto || data[0]?.img" #photoTovar>
                 </div>
                 <div class="additional-photo">
                     <img *ngFor="let item of data[0]?.secondaryPhoto" src="{{item}}">

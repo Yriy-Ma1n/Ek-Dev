@@ -14,7 +14,7 @@ export class ProductCardCharacteristicsComponent {
 
   constructor() {
     setTimeout(() => {
-      if (!this.characteristic[0].characteristic) return
+      if (!this.characteristic[0]) return
 
       this.characteristic_name = Object.keys(this.characteristic[0].characteristics)
     }, 100)

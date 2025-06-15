@@ -29,13 +29,13 @@ export class ProductCardInnerComponent {
   CardProduct = inject(CardService)
 
   http = inject(HttpClient)
-  data: characteristic[] = [] //Тут будут все характеристики и описание к товару
+  data: any[] = [] //Тут будут все характеристики и описание к товару
   name: string = ''
 
   ram: boolean = false;
 
 
-  constructor(private cdr: ChangeDetectorRef) {
+  constructor() {
     this.activeRoute.queryParams.subscribe(params => {
       this.http.get<any[]>(`http://localhost:5500/search?q=${params["title"]}`).subscribe(data => {
         this.data = []
@@ -46,7 +46,9 @@ export class ProductCardInnerComponent {
 
         !data[0].MemoryRam ? this.ram = false : false
         this.data = [...data]
-        // this.cdr.detectChanges()
+      
+        console.log('here')
+        console.log(data)
 
         this.id = this.data[0]?._id
         this.comments = JSON.parse(localStorage.getItem(`comment:${this.id}`) || '[]') //Достаем из localStorage комент по id и записываем в comments для рендера
