@@ -8,7 +8,7 @@ import type { characteristic } from '../../shared/types/characteristics-type';
 import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-tovar-list',
-  imports: [ProductCardComponent, HeaderBarComponent, NgIf, RouterOutlet],
+  imports: [ProductCardComponent, HeaderBarComponent, NgIf,],
   templateUrl: './tovar-list.component.html',
   styleUrl: './tovar-list.component.css'
 })
@@ -22,7 +22,7 @@ export class TovarListComponent {
     this.activeRoute.queryParams.subscribe(params => {
       this.name = params["q"]
       this.http.get<characteristic[]>(`http://localhost:5500/search?q=${this.name}`).subscribe(data => setTimeout(() => {
-        
+        console.log(data)//[]
         this.data = data
       }))
     })

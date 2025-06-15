@@ -2,7 +2,7 @@
   <div class="model-contanier" *ngFor="let product of products" (click)="openTovarPage(nameTovar)">
 
     <div class="img-contanier">
-      <img [src]="product.img" alt="">
+      <img [src]="product.img" alt="" class="image-tovar">
     </div>
     <span class="name" #nameTovar>{{product.name}}</span>
     <p class="price"> від {{ product.cost}} грн.</p>
