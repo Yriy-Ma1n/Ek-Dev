@@ -10,16 +10,15 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 })
 export class CreateTovarComponent {
   http = inject(HttpClient);
-  newCart = {}
 
   sendData(name:HTMLInputElement, description:HTMLTextAreaElement, url:HTMLInputElement, cost:HTMLInputElement) {
-    this.newCart = {
-      "img": url.value,
-      "name": name.value,
-      "cost": cost.value,
-      "description":[description.value]
+    const newCart = {
+      img: url.value,
+      name: name.value,
+      cost: cost.value,
+      description:[description.value]
     }
 
-    return this.http.post("localhost:5501/addProduct", this.newCart);
+    this.http.post("http://localhost:5500/addProduct", newCart).subscribe(data=>console.log(data));
   }
 }

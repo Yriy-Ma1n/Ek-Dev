@@ -39,4 +39,5 @@ button{
     border: 0;
     border-radius: 6px;
     padding: 10px 25px;
+    cursor: pointer;
 }
