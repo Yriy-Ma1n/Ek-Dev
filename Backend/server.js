@@ -184,7 +184,7 @@ app.post('/addProduct', function (req, res) { return __awaiter(_this, void 0, vo
                 body = req.body;
                 if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'string')) return [3 /*break*/, 3];
                 console.log('everything nice');
-                return [4 /*yield*/, dbSave.collection('LapTop')];
+                return [4 /*yield*/, dbSave.collection('PopularModel')];
             case 1:
                 collection = _a.sent();
                 return [4 /*yield*/, collection.insertOne(req.body)];

@@ -8,6 +8,10 @@
     margin: auto;
     background: #FFFFFF;
 }
+.img-container img{
+  width: 100%;
+  height: 100%;
+}
 .name {
     font-size: 16.5px;
     color:var(--accent-color-blue);
