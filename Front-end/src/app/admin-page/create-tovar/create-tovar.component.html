@@ -3,20 +3,20 @@
     <form>
         <div>
             <p>Назва Товару</p>
-            <input class="name-tovar" type="text">
+            <input #nameTovar class="name-tovar" type="text">
         </div>
         <div>
             <p>Опис Товару</p>
-            <textarea class="description-tovar" name="" id=""></textarea>
+            <textarea #descriptionTovar class="description-tovar" name="" id=""></textarea>
         </div>
         <div>
             <p>URL Товару</p>
-            <input class="url-tovar" type="text">
+            <input #urlTovar class="url-tovar" type="text">
         </div>
         <div>
             <p>Ціна Товару</p>
-            <input class="price-tovar" type="text">
+            <input #priceTovar class="price-tovar" type="text">
         </div>
     </form>
-    <button>Додати</button>
+    <button (click)="sendData(nameTovar, descriptionTovar, urlTovar, priceTovar)">Додати</button>
 </div>
