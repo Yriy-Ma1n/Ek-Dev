@@ -66,31 +66,43 @@ app.get('/PopularModel', async (req, res) => {
         res.json(model)
     }
 })
+
 app.get('/review', async (req, res) => {
 
     const review = await dbSave.collection('review').find().toArray()
 
     res.send(review)
 })
+
 app.get('/CategoryList', async (req, res) => {
     const CategoryList = await dbSave.collection('Category-list').find().toArray()
 
     res.send(CategoryList)
 })
+
 app.get('/search', async (req, res) => {
     const searchType = (req.query.q || '').trim().replace(/\u00A0/g, ' ').trim()
-
+    console.log(searchType)
     const allFindedData = await dbSave.collection('AllTovar').find({
         name: { $regex: searchType, $options: 'i' }
     }).toArray()
     res.send(allFindedData)
 }),
-    app.get('/adminpass', async (req, res) => {
+app.get('/searchId', async (req, res)=>{
+    const searchType = (req.query.q || '').trim().replace(/\u00A0/g, ' ').trim()
+
+     const allFindedData = await dbSave.collection('AllTovar').find({
+        _id: { $regex: searchType, $options: 'i' }
+    }).toArray()
+    res.send(allFindedData)
+})
+app.get('/adminpass', async (req, res) => {
         const getAdminPass = await dbSave.collection('AdminPass').find().toArray()
 
         res.send(getAdminPass)
 
     })
+
 app.post('/addProduct', async (req, res) => {
     if (!req.body) {
         res.send(200)

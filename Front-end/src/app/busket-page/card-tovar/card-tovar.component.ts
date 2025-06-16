@@ -23,6 +23,7 @@ export class CardTovarComponent {
     if (changes['count'].currentValue < 1) return
     this.price *= changes['count'].currentValue
     this.constPrice = changes['price'].currentValue
+    console.log(changes)
     
   }
 

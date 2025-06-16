@@ -97,6 +97,7 @@
 .photo-tovar img{
     width: 146px;
     height: 200px;
+    object-fit: contain;
 }
 .price {
     display: flex;

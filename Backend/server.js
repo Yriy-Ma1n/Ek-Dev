@@ -150,6 +150,7 @@ app.get('/search', function (req, res) { return __awaiter(_this, void 0, void 0,
         switch (_a.label) {
             case 0:
                 searchType = (req.query.q || '').trim().replace(/\u00A0/g, ' ').trim();
+                console.log(searchType);
                 return [4 /*yield*/, dbSave.collection('AllTovar').find({
                         name: { $regex: searchType, $options: 'i' }
                     }).toArray()];
@@ -160,18 +161,34 @@ app.get('/search', function (req, res) { return __awaiter(_this, void 0, void 0,
         }
     });
 }); }),
-    app.get('/adminpass', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
-        var getAdminPass;
+    app.get('/searchId', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        var searchType, allFindedData;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, dbSave.collection('AdminPass').find().toArray()];
+                case 0:
+                    searchType = (req.query.q || '').trim().replace(/\u00A0/g, ' ').trim();
+                    return [4 /*yield*/, dbSave.collection('AllTovar').find({
+                            _id: { $regex: searchType, $options: 'i' }
+                        }).toArray()];
                 case 1:
-                    getAdminPass = _a.sent();
-                    res.send(getAdminPass);
+                    allFindedData = _a.sent();
+                    res.send(allFindedData);
                     return [2 /*return*/];
             }
         });
     }); });
+app.get('/adminpass', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var getAdminPass;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, dbSave.collection('AdminPass').find().toArray()];
+            case 1:
+                getAdminPass = _a.sent();
+                res.send(getAdminPass);
+                return [2 /*return*/];
+        }
+    });
+}); });
 app.post('/addProduct', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var body, collectionPopular, collectionAllTovar, result;
     return __generator(this, function (_a) {
@@ -183,7 +200,6 @@ app.post('/addProduct', function (req, res) { return __awaiter(_this, void 0, vo
                 }
                 body = req.body;
                 if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'object')) return [3 /*break*/, 5];
-                console.log('everything nice');
                 return [4 /*yield*/, dbSave.collection('PopularModel')];
             case 1:
                 collectionPopular = _a.sent();
