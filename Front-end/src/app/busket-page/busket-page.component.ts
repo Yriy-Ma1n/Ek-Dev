@@ -13,7 +13,7 @@ import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.c
 
 export class BusketPageComponent {
   cardService = inject(CardService)
-  product = JSON.parse(localStorage.getItem("allCardTovar")!)
+  product = this.cardService.GetProduct
 
 
   price: number = 0;

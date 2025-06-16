@@ -16,13 +16,14 @@ export class CardTovarComponent {
   @Input() price: number = 0;
   @Input() name: string = '';
   @Input() src: string = '';
+  
 
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['count'].currentValue < 1) return
     this.price *= changes['count'].currentValue
     this.constPrice = changes['price'].currentValue
-
+    
   }
 
   constPrice: number = 0
@@ -44,6 +45,11 @@ export class CardTovarComponent {
 
     this.productChange.changeQuantityMinus = String(element.textContent)
 
+  }
+
+  deleteItem(name:HTMLHeadingElement){
+    this.productChange.clearOnItem(name.textContent!)
+    console.log(this.productChange)
   }
 
 

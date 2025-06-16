@@ -72,6 +72,11 @@ export class CardService {
     this.arrProduct = []
     this.changeData()
   }
+  clearOnItem(nameProduct:string){
+   
+    this.arrProduct = this.arrProduct.filter(({name})=>name !== nameProduct)
+    this.changeData()
+  }
 
   changeData(){
     localStorage.setItem("allCardTovar", JSON.stringify(this.arrProduct))
