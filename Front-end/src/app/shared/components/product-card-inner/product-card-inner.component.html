@@ -55,11 +55,11 @@
                     <div class="info" *ngFor="let info of data[0]?.categoryDescription">{{info}}</div>
 
                 </div>
-                <app-product-card-characteristics [characteristic]="sendArr()" *ngIf="data[0].characteristic; else another"></app-product-card-characteristics>
-                <ng-template #another>
-                    <span class="title-description">description:</span>
+                <app-product-card-characteristics [characteristic]="sendArr()" *ngIf="data[0].characteristic"></app-product-card-characteristics>
+                <div *ngIf="data[0].description">
+                     <span class="title-description">description:</span>
                     <span class="text-description"> {{data[0].description}}</span>
-                </ng-template>
+                </div>
             </div>
             <div class="hr"></div>
         </div>
