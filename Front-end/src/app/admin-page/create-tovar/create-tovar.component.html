@@ -1,21 +1,21 @@
 <div class="container">
     <h1>Створіть Свій Товар</h1>
-    <form>
+    <form [formGroup]="form">
         <div>
             <p>Назва Товару</p>
-            <input #nameTovar class="name-tovar" type="text">
+            <input formControlName="inputName" #nameTovar class="name-tovar" type="text">
         </div>
         <div>
             <p>Опис Товару</p>
-            <textarea #descriptionTovar class="description-tovar" name="" id=""></textarea>
+            <textarea formControlName="textAreaDescription" #descriptionTovar class="description-tovar" name="" id=""></textarea>
         </div>
         <div>
             <p>URL Товару</p>
-            <input #urlTovar class="url-tovar" type="text">
+            <input formControlName="inputUrl" #urlTovar class="url-tovar" type="text">
         </div>
         <div>
             <p>Ціна Товару</p>
-            <input #priceTovar class="price-tovar" type="text">
+            <input formControlName="inputCost" #priceTovar class="price-tovar" type="text">
         </div>
     </form>
     <button (click)="sendData(nameTovar, descriptionTovar, urlTovar, priceTovar)">Додати</button>

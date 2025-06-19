@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject} from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ValidatorUrl } from './cart-validator.directive';
+
 
 @Component({
   selector: 'app-create-tovar',
@@ -9,6 +11,21 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './create-tovar.component.css'
 })
 export class CreateTovarComponent {
+  form = new FormGroup({
+    inputName: new FormControl("",[
+      Validators.pattern(/^[A-Za-zА-Яа-яЁё\s]+$/)
+    ]),
+    textAreaDescription: new FormControl("",[
+      Validators.pattern(/^[a-zA-Zа-яА-ЯёЁ0-9 ]+$/)
+    ]),
+    inputUrl: new FormControl("", [
+      ValidatorUrl()
+    ]),
+    inputCost: new FormControl("",[
+      Validators.pattern(/^[0-9]+$/)
+    ]),
+  });
+
   http = inject(HttpClient);
 
   sendData(name:HTMLInputElement, description:HTMLTextAreaElement, url:HTMLInputElement, cost:HTMLInputElement) {
