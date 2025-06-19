@@ -11,7 +11,7 @@
 </div>
 <br>
 <div class="pagination-controls">
-  <button (click)="prevPage()" [disabled]="currentPage === 1">Назад</button>
+  <button (click)="prevPage()" [disabled]="currentPage === 1"><img class="arrow" src="./arrow.png" alt="back"></button>
   <span>Сторінка {{ currentPage }}</span>
-  <button (click)="nextPage()" [disabled]="nextPageLength === 0">Далі</button>
+  <button (click)="nextPage()" [disabled]="nextPageLength === 0"><img class="arrow" src="./arrow (1).png" alt="next"></button>
 </div>

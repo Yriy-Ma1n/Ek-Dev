@@ -17,7 +17,6 @@ export class ModelDataComponent {
   nextPageLength = 0;
   router = inject(HttpClient)
 
-
   ngOnInit() {
     this.getPageContent();
   }
