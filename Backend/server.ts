@@ -14,8 +14,8 @@ const uri = process.env.MONGO_URL
 const client = new MongoClient(uri)
 
 app.use(cors());
-
-app.use(express.static("public/browser"))
+//sharing bundle
+// app.use(express.static("public/browser"))
 
 
 let dbSave;
@@ -98,17 +98,18 @@ app.get('/adminpass', async (req, res)=>{
     res.send(getAdminPass)
 
 })
+// sharing bundle
 
-const indexPath = path.resolve(__dirname, "public/browser/index.html")
+// const indexPath = path.resolve(__dirname, "public/browser/index.html")
 
-app.use((req, res) => {
-    res.sendFile(indexPath)
-});
+// app.use((req, res) => {
+//     res.sendFile(indexPath)
+// });
 
 // app.get("*", (req, res) => {
 //     res.sendFile(indexPath)
 // });
 
-app.listen(PORT, () => {
-    console.log(`Server was started on port ${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Server was started on port ${PORT}`);
+// });

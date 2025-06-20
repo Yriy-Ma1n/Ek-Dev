@@ -36,7 +36,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var path = require("path");
 var express = require('express');
 var cors = require('cors');
 var MongoClient = require('mongodb').MongoClient;
@@ -46,7 +45,8 @@ var PORT = process.env.PORT;
 var uri = process.env.MONGO_URL;
 var client = new MongoClient(uri);
 app.use(cors());
-app.use(express.static("public/browser"));
+//sharing bundle
+// app.use(express.static("public/browser"))
 var dbSave;
 function connect() {
     return __awaiter(this, void 0, void 0, function () {
@@ -183,13 +183,14 @@ app.get('/adminpass', function (req, res) { return __awaiter(void 0, void 0, voi
         }
     });
 }); });
-var indexPath = path.resolve(__dirname, "public/browser/index.html");
-app.use(function (req, res) {
-    res.sendFile(indexPath);
-});
+// sharing bundle
+// const indexPath = path.resolve(__dirname, "public/browser/index.html")
+// app.use((req, res) => {
+//     res.sendFile(indexPath)
+// });
 // app.get("*", (req, res) => {
 //     res.sendFile(indexPath)
 // });
-app.listen(PORT, function () {
-    console.log("Server was started on port ".concat(PORT));
-});
+// app.listen(PORT, () => {
+//     console.log(`Server was started on port ${PORT}`);
+// });
