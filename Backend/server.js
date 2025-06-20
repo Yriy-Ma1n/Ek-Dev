@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var path = require("path");
 var express = require('express');
 var cors = require('cors');
 var MongoClient = require('mongodb').MongoClient;
@@ -45,6 +46,7 @@ var PORT = process.env.PORT;
 var uri = process.env.MONGO_URL;
 var client = new MongoClient(uri);
 app.use(cors());
+app.use(express.static("public/browser"));
 var dbSave;
 function connect() {
     return __awaiter(this, void 0, void 0, function () {
@@ -68,9 +70,6 @@ function connect() {
     });
 }
 connect();
-app.listen(PORT, function () {
-    console.log("Server was started on port ".concat(PORT));
-});
 app.get('/products', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var page, limit, products;
     return __generator(this, function (_a) {
@@ -171,16 +170,26 @@ app.get('/search', function (req, res) { return __awaiter(void 0, void 0, void 0
                 return [2 /*return*/];
         }
     });
-}); }),
-    app.get('/adminpass', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var getAdminPass;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, dbSave.collection('AdminPass').find().toArray()];
-                case 1:
-                    getAdminPass = _a.sent();
-                    res.send(getAdminPass);
-                    return [2 /*return*/];
-            }
-        });
-    }); });
+}); });
+app.get('/adminpass', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var getAdminPass;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, dbSave.collection('AdminPass').find().toArray()];
+            case 1:
+                getAdminPass = _a.sent();
+                res.send(getAdminPass);
+                return [2 /*return*/];
+        }
+    });
+}); });
+var indexPath = path.resolve(__dirname, "public/browser/index.html");
+app.use(function (req, res) {
+    res.sendFile(indexPath);
+});
+// app.get("*", (req, res) => {
+//     res.sendFile(indexPath)
+// });
+app.listen(PORT, function () {
+    console.log("Server was started on port ".concat(PORT));
+});
