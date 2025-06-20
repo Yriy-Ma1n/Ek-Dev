@@ -12,5 +12,8 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './main-section.component.css'
 })
 export class MainSectionComponent {
- 
+  http = inject(HttpClient)
+  constructor(){
+    
+  }
 }
