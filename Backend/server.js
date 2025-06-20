@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,7 +35,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
+Object.defineProperty(exports, "__esModule", { value: true });
+var path = require("path");
 var express = require('express');
 var cors = require('cors');
 var MongoClient = require('mongodb').MongoClient;
@@ -46,6 +48,7 @@ var client = new MongoClient(uri);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(express.static("public/browser"));
 var dbSave;
 function connect() {
     return __awaiter(this, void 0, void 0, function () {
@@ -69,10 +72,7 @@ function connect() {
     });
 }
 connect();
-app.listen(PORT, function () {
-    console.log("Server was started on port ".concat(PORT));
-});
-app.get('/products', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.get('/products', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var page, limit, products;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -96,7 +96,7 @@ app.get('/products', function (req, res) { return __awaiter(_this, void 0, void 
         }
     });
 }); });
-app.get('/PopularModel', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.get('/PopularModel', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var page, limit, model;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -120,7 +120,7 @@ app.get('/PopularModel', function (req, res) { return __awaiter(_this, void 0, v
         }
     });
 }); });
-app.get('/review', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.get('/review', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var review;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -132,7 +132,7 @@ app.get('/review', function (req, res) { return __awaiter(_this, void 0, void 0,
         }
     });
 }); });
-app.get('/CategoryList', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.get('/CategoryList', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var CategoryList;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -144,7 +144,7 @@ app.get('/CategoryList', function (req, res) { return __awaiter(_this, void 0, v
         }
     });
 }); });
-app.get('/search', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.get('/search', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var searchType, allFindedData;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -161,7 +161,7 @@ app.get('/search', function (req, res) { return __awaiter(_this, void 0, void 0,
         }
     });
 }); }),
-    app.get('/searchId', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    app.get('/searchId', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
         var searchType, allFindedData;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -177,7 +177,7 @@ app.get('/search', function (req, res) { return __awaiter(_this, void 0, void 0,
             }
         });
     }); });
-app.get('/adminpass', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.get('/adminpass', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var getAdminPass;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -189,7 +189,7 @@ app.get('/adminpass', function (req, res) { return __awaiter(_this, void 0, void
         }
     });
 }); });
-app.post('/addProduct', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+app.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var body, collectionPopular, collectionAllTovar, result;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -224,3 +224,13 @@ app.post('/addProduct', function (req, res) { return __awaiter(_this, void 0, vo
         }
     });
 }); });
+var indexPath = path.resolve(__dirname, "public/browser/index.html");
+app.use(function (req, res) {
+    res.sendFile(indexPath);
+});
+// app.get("*", (req, res) => {
+//     res.sendFile(indexPath)
+// });
+app.listen(PORT, function () {
+    console.log("Server was started on port ".concat(PORT));
+});

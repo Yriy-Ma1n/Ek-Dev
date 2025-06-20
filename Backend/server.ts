@@ -1,9 +1,12 @@
+import * as path from "path";
+import type { LaptopItem } from "./Types/LapTopItem-type";
 const express = require('express');
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
 require('dotenv').config()
 
 const app = express();
+
 const PORT = process.env.PORT;
 
 const uri = process.env.MONGO_URL
@@ -13,6 +16,9 @@ const client = new MongoClient(uri)
 app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded())
+
+
+app.use(express.static("public/browser"))
 
 
 let dbSave;
@@ -27,9 +33,8 @@ async function connect() {
 }
 connect()
 
-app.listen(PORT, () => {
-    console.log(`Server was started on port ${PORT}`);
-});
+
+
 
 app.get('/products', async (req, res) => {
     const page = parseInt(req.query.page) || 0
@@ -127,3 +132,17 @@ app.post('/addProduct', async (req, res) => {
 
 
 })
+
+const indexPath = path.resolve(__dirname, "public/browser/index.html")
+
+app.use((req, res) => {
+    res.sendFile(indexPath)
+});
+
+// app.get("*", (req, res) => {
+//     res.sendFile(indexPath)
+// });
+
+app.listen(PORT, () => {
+    console.log(`Server was started on port ${PORT}`);
+});

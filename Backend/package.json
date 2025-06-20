@@ -16,7 +16,7 @@
     "mongoose": "^8.14.2"
   },
   "devDependencies": {
-    "dotenv": "^16.5.0",
-    "@types/node": "^22.15.21"
+    "@types/node": "^22.15.32",
+    "dotenv": "^16.5.0"
   }
 }
