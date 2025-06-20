@@ -14,6 +14,7 @@ const uri = process.env.MONGO_URL
 const client = new MongoClient(uri)
 
 app.use(cors());
+
 //sharing bundle
 // app.use(express.static("public/browser"))
 
