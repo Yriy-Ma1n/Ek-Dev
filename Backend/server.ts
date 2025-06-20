@@ -14,9 +14,6 @@ const uri = process.env.MONGO_URL
 const client = new MongoClient(uri)
 
 app.use(cors());
-app.use(express.json())
-app.use(express.urlencoded())
-
 
 app.use(express.static("public/browser"))
 
@@ -71,65 +68,34 @@ app.get('/PopularModel', async (req, res) => {
         res.json(model)
     }
 })
-
 app.get('/review', async (req, res) => {
 
     const review = await dbSave.collection('review').find().toArray()
 
     res.send(review)
 })
-
 app.get('/CategoryList', async (req, res) => {
     const CategoryList = await dbSave.collection('Category-list').find().toArray()
 
     res.send(CategoryList)
 })
+app.get('/Laptop', async (req, res) => {
+    const LapTopData = await dbSave.collection('LapTop').find().toArray() as LaptopItem[]
 
+    res.send(LapTopData)
+})
 app.get('/search', async (req, res) => {
-    const searchType = (req.query.q || '').trim().replace(/\u00A0/g, ' ').trim()
+    const searchType = req.query.q || ''
     console.log(searchType)
     const allFindedData = await dbSave.collection('AllTovar').find({
         name: { $regex: searchType, $options: 'i' }
     }).toArray()
     res.send(allFindedData)
-}),
-app.get('/searchId', async (req, res)=>{
-    const searchType = (req.query.q || '').trim().replace(/\u00A0/g, ' ').trim()
-
-     const allFindedData = await dbSave.collection('AllTovar').find({
-        _id: { $regex: searchType, $options: 'i' }
-    }).toArray()
-    res.send(allFindedData)
 })
-app.get('/adminpass', async (req, res) => {
-        const getAdminPass = await dbSave.collection('AdminPass').find().toArray()
+app.get('/adminpass', async (req, res)=>{
+    const getAdminPass = await dbSave.collection('AdminPass').find().toArray()
 
-        res.send(getAdminPass)
-
-    })
-
-app.post('/addProduct', async (req, res) => {
-    if (!req.body) {
-        res.send(200)
-        return
-    }
-    const body = req.body
-    if (typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof(body.description) === 'object') {
-        
-        const collectionPopular = await dbSave.collection('PopularModel')
-        const collectionAllTovar = await dbSave.collection('AllTovar')
-
-        const result = await collectionPopular.insertOne(req.body)
-        await collectionAllTovar.insertOne(req.body)
-        res.send(result)
-    }else{
-         res.status(400).json({
-            error: 'Bad Request',
-            message: 'should to be 4 field, img,name,cost,description and all field string'
-        });
-        
-    }
-
+    res.send(getAdminPass)
 
 })
 
