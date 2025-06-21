@@ -23,7 +23,6 @@ export class ModelDataComponent {
   router = inject(Router)
   
 
-
   ngOnInit() {
      this.getPageContent();
     
