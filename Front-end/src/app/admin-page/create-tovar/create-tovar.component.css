@@ -24,12 +24,10 @@ form{
 }
 form div p{
     font-family: Proxima Soft;
-    font-size: 19px;
     margin: 0;
 }
 form div input, form div textarea{
     border-radius: 6px;
-    border: 1px solid #000;
     width: 200px;
     height: 20px;
 }
@@ -40,4 +38,11 @@ button{
     border-radius: 6px;
     padding: 10px 25px;
     cursor: pointer;
+}
+.err{
+    text-align: center;
+    color: red;
+}
+.red-border{
+    border: 1.8px solid red;
 }
