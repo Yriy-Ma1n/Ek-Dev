@@ -1,66 +1,65 @@
-
-    <div class="container-tovar" *ngFor="let item of data" (click)="openPageTovar(names)">
-        <div class="image-button-tovar">
-            <div class="image-tovar">
-                <img src={{item.mainPhoto}} alt="">
-            </div>
-            <div class="compare-button">
-                <input type="checkbox" id="compare-checkbox" class="checkbox">
-                <label for="compare-checkbox" class="checkbox-text">Порівняти</label>
-            </div>
+<div class="container-tovar" *ngFor="let item of data" (click)="openPageTovar(item._id)">
+    <div class="image-button-tovar">
+        <div class="image-tovar">
+            <img src={{item.mainPhoto}} alt="">
         </div>
-        <div class="container-statisctics-price">
-            <div class="name-statistic-tovar">
-                <div class="name-characteristics-tovar">
-                    <h1 class="name-tovar" #names>{{item.name}}</h1>
-                   
-                </div>
-                <div class="additional-info">
-                    <span class="additional-info-item" *ngFor="let info of item.categoryDescription">{{info}}</span>
-                   
-                </div>
-                <div class="characteristics-tovar">
-                    <div *ngFor="let type of item.characteristics | keyvalue">
-                        <span class="name-characteristics">{{type.key}}</span>
-                        <span class="characteristics">{{type.value}}</span>
-                    </div>
-                </div>
-                <div class="product-tabs">
-                    <div class="product-tabs-item">
-                        <a>Відгуки</a><span class="count">{{randomCounts[0]}}</span>
-                    </div>
-                    <div class="product-tabs-item">
-                        <a>Відео</a><span class="count">{{randomCounts[1]}}</span>
-                    </div>
-                    <div class="product-tabs-item">
-                        <a>Фото</a><span class="count">{{randomCounts[2]}}</span>
-                    </div>
-                    <div class="product-tabs-item">
-                        <a>Обговорення</a><span class="count">{{randomCounts[3]}}</span>
-                    </div>
-                    <div class="product-tabs-item">
-                        <a>Огляди</a><span class="count">{{randomCounts[4]}}</span>
-                    </div>
-                    <div class="product-tabs-item">
-                        <a>Ціни</a> <span class="count">{{randomCounts[5]}}</span>
-                    </div>
-                    <div class="product-tabs-item">
-                        <a>Чохли</a>
-                    </div>
-                    <div class="product-tabs-item">
-                        <a>Захисне скло</a>
-                    </div>
-                </div>
-                <div class="variable-characteristic" *ngIf="checkisEmptyArr(item.MemoryRam)">
-                    <div class="memory current">256 ГБ / 12 ГБ</div>
-                    <div class="memory">512 ГБ / 12 ГБ</div>
-                    <div class="memory">512 ГБ / 16 ГБ</div>
-                    <div class="memory">1ТБ / 24 ГБ</div>
-                </div>
-            </div>
-            <div class="separate-line"></div>
-            <div class="price">
-                <h3>{{item.cost}} Грн</h3>
-            </div>
+        <div class="compare-button">
+            <input type="checkbox" id="compare-checkbox" class="checkbox">
+            <label for="compare-checkbox" class="checkbox-text">Порівняти</label>
         </div>
     </div>
+    <div class="container-statisctics-price">
+        <div class="name-statistic-tovar">
+            <div class="name-characteristics-tovar">
+                <h1 class="name-tovar" #names>{{item.name}}</h1>
+
+            </div>
+            <div class="additional-info">
+                <span class="additional-info-item" *ngFor="let info of item.categoryDescription">{{info}}</span>
+
+            </div>
+            <div class="characteristics-tovar">
+                <div *ngFor="let type of item.characteristics | keyvalue">
+                    <span class="name-characteristics">{{type.key}}</span>
+                    <span class="characteristics">{{type.value}}</span>
+                </div>
+            </div>
+            <div class="product-tabs">
+                <div class="product-tabs-item">
+                    <a>Відгуки</a><span class="count">{{randomCounts[0]}}</span>
+                </div>
+                <div class="product-tabs-item">
+                    <a>Відео</a><span class="count">{{randomCounts[1]}}</span>
+                </div>
+                <div class="product-tabs-item">
+                    <a>Фото</a><span class="count">{{randomCounts[2]}}</span>
+                </div>
+                <div class="product-tabs-item">
+                    <a>Обговорення</a><span class="count">{{randomCounts[3]}}</span>
+                </div>
+                <div class="product-tabs-item">
+                    <a>Огляди</a><span class="count">{{randomCounts[4]}}</span>
+                </div>
+                <div class="product-tabs-item">
+                    <a>Ціни</a> <span class="count">{{randomCounts[5]}}</span>
+                </div>
+                <div class="product-tabs-item">
+                    <a>Чохли</a>
+                </div>
+                <div class="product-tabs-item">
+                    <a>Захисне скло</a>
+                </div>
+            </div>
+            <div class="variable-characteristic" *ngIf="checkisEmptyArr(item.MemoryRam)">
+                <div class="memory current">256 ГБ / 12 ГБ</div>
+                <div class="memory">512 ГБ / 12 ГБ</div>
+                <div class="memory">512 ГБ / 16 ГБ</div>
+                <div class="memory">1ТБ / 24 ГБ</div>
+            </div>
+        </div>
+        <div class="separate-line"></div>
+        <div class="price">
+            <h3>{{item.cost}} Грн</h3>
+        </div>
+    </div>
+</div>

@@ -94,7 +94,11 @@
     cursor: pointer;
 
 }
-
+.photo-tovar img{
+    width: 146px;
+    height: 200px;
+    object-fit: contain;
+}
 .price {
     display: flex;
     flex-direction: column;
@@ -303,6 +307,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+.title-description{
+    font-weight: bold;
+    font-size: 20px;
+}
+.text-description{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .none {

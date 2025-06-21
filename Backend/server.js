@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,7 +34,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+var _this = this;
 var express = require('express');
 var cors = require('cors');
 var MongoClient = require('mongodb').MongoClient;
@@ -45,6 +44,8 @@ var PORT = process.env.PORT;
 var uri = process.env.MONGO_URL;
 var client = new MongoClient(uri);
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded());
 var dbSave;
 function connect() {
     return __awaiter(this, void 0, void 0, function () {
@@ -71,7 +72,7 @@ connect();
 app.listen(PORT, function () {
     console.log("Server was started on port ".concat(PORT));
 });
-app.get('/products', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.get('/products', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var page, limit, products;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -95,7 +96,7 @@ app.get('/products', function (req, res) { return __awaiter(void 0, void 0, void
         }
     });
 }); });
-app.get('/PopularModel', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.get('/PopularModel', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var page, limit, model;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -119,7 +120,7 @@ app.get('/PopularModel', function (req, res) { return __awaiter(void 0, void 0, 
         }
     });
 }); });
-app.get('/review', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.get('/review', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var review;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -131,7 +132,7 @@ app.get('/review', function (req, res) { return __awaiter(void 0, void 0, void 0
         }
     });
 }); });
-app.get('/CategoryList', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.get('/CategoryList', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var CategoryList;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -143,24 +144,12 @@ app.get('/CategoryList', function (req, res) { return __awaiter(void 0, void 0, 
         }
     });
 }); });
-app.get('/Laptop', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var LapTopData;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, dbSave.collection('LapTop').find().toArray()];
-            case 1:
-                LapTopData = _a.sent();
-                res.send(LapTopData);
-                return [2 /*return*/];
-        }
-    });
-}); });
-app.get('/search', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.get('/search', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var searchType, allFindedData;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                searchType = req.query.q || '';
+                searchType = (req.query.q || '').trim().replace(/\u00A0/g, ' ').trim();
                 console.log(searchType);
                 return [4 /*yield*/, dbSave.collection('AllTovar').find({
                         name: { $regex: searchType, $options: 'i' }
@@ -172,15 +161,66 @@ app.get('/search', function (req, res) { return __awaiter(void 0, void 0, void 0
         }
     });
 }); }),
-    app.get('/adminpass', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-        var getAdminPass;
+    app.get('/searchId', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+        var searchType, allFindedData;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, dbSave.collection('AdminPass').find().toArray()];
+                case 0:
+                    searchType = (req.query.q || '').trim().replace(/\u00A0/g, ' ').trim();
+                    return [4 /*yield*/, dbSave.collection('AllTovar').find({
+                            _id: { $regex: searchType, $options: 'i' }
+                        }).toArray()];
                 case 1:
-                    getAdminPass = _a.sent();
-                    res.send(getAdminPass);
+                    allFindedData = _a.sent();
+                    res.send(allFindedData);
                     return [2 /*return*/];
             }
         });
     }); });
+app.get('/adminpass', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var getAdminPass;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, dbSave.collection('AdminPass').find().toArray()];
+            case 1:
+                getAdminPass = _a.sent();
+                res.send(getAdminPass);
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.post('/addProduct', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+    var body, collectionPopular, collectionAllTovar, result;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                if (!req.body) {
+                    res.send(200);
+                    return [2 /*return*/];
+                }
+                body = req.body;
+                if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'object')) return [3 /*break*/, 5];
+                return [4 /*yield*/, dbSave.collection('PopularModel')];
+            case 1:
+                collectionPopular = _a.sent();
+                return [4 /*yield*/, dbSave.collection('AllTovar')];
+            case 2:
+                collectionAllTovar = _a.sent();
+                return [4 /*yield*/, collectionPopular.insertOne(req.body)];
+            case 3:
+                result = _a.sent();
+                return [4 /*yield*/, collectionAllTovar.insertOne(req.body)];
+            case 4:
+                _a.sent();
+                res.send(result);
+                return [3 /*break*/, 6];
+            case 5:
+                res.status(400).json({
+                    error: 'Bad Request',
+                    message: 'should to be 4 field, img,name,cost,description and all field string'
+                });
+                _a.label = 6;
+            case 6: return [2 /*return*/];
+        }
+    });
+}); });

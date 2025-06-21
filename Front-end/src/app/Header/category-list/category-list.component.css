@@ -6,35 +6,38 @@
 
 .container-category {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto auto;
+    gap: 40px;
 }
+
+
+.TabletAccessories {
+    /* Планшети та аксесуари */
+    grid-area: 1 / 3 / 3 / 5;
+}
+
+.Tablet {
+    /* Планшети */
+    grid-area: 2 / 3 / 3 / 5;
+}
+
+.TV {
+    /* Телевизоры */
+    grid-area: 1 / 2 / 2 / 2;
+}
+
+.Telephone {
+    /* Мобільні телефони */
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.Fridge {
+    /* Холодильники */
+    grid-area: 2 / 4 / 3 / 7;
+}
+
 
 .container-category app-card-category {
     height: fit-content;
-}
-
-.container-category app-card-category:nth-child(1) { /* div1*/
-   grid-area: 1 / 1 / 4 / 3;
-}
-
-.container-category app-card-category:nth-child(2) { /* div3 */
-    grid-area: 1 / 3 / 4 / 7;
-}
-
-.container-category app-card-category:nth-child(3) {/* div2 */
-    grid-area: 4 / 1 / 6 / 3;
-}
-
-.container-category app-card-category:nth-child(4) {/* div4 */
-    grid-area: 4 / 3 / 6 / 5;
-    margin-left: 50px;
-}
-
-.container-category app-card-category:nth-child(5) {/* div5 */
-     grid-area: 4 / 5 / 6 / 7;
-    margin-left: 50px;
-
 }

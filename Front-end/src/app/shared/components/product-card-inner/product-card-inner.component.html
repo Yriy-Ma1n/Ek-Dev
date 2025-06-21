@@ -26,15 +26,14 @@
             </div>
             <div class="main-information">
                 <div class="photo-tovar">
-                    <img src="{{data[0]?.mainPhoto}}" #photoTovar>
+                    <img [src]="data[0]?.mainPhoto || data[0]?.img" #photoTovar>
                 </div>
                 <div class="additional-photo">
                     <img *ngFor="let item of data[0]?.secondaryPhoto" src="{{item}}">
                 </div>
                 <div class="price">
                     <div #priceTovar>{{data[0]?.cost}} грн</div>
-                    <button (click)="buyButton(buyButtonEl, nameTovar, photoTovar, priceTovar)" #buyButtonEl>В
-                        корзину</button>
+                    <button (click)="buyButton(buyButtonEl, nameTovar, photoTovar, priceTovar)" #buyButtonEl>В корзину</button>
                 </div>
             </div>
             <div class="secondary-info">
@@ -56,7 +55,11 @@
                     <div class="info" *ngFor="let info of data[0]?.categoryDescription">{{info}}</div>
 
                 </div>
-                <app-product-card-characteristics [characteristic]="sendArr()"></app-product-card-characteristics>
+                <app-product-card-characteristics [characteristic]="sendArr()" *ngIf="data[0].characteristic"></app-product-card-characteristics>
+                <div *ngIf="data[0].description">
+                     <span class="title-description">description:</span>
+                    <span class="text-description"> {{data[0].description}}</span>
+                </div>
             </div>
             <div class="hr"></div>
         </div>
