@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, input} from '@angular/core';
+import { Component, EventEmitter, inject, input, output, Output} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgClass, NgIf} from '@angular/common';
 
@@ -11,6 +11,7 @@ import { NgClass, NgIf} from '@angular/common';
   styleUrl: './create-tovar.component.css'
 })
 export class CreateTovarComponent {
+  colection: object[] = [];
   inputName =  new FormControl("",[
       Validators.pattern(/^[A-Za-zА-Яа-яЁё\s]+$/),
       Validators.required
@@ -72,7 +73,14 @@ export class CreateTovarComponent {
     }
 
     if(this.form.valid){
-      this.http.post("http://localhost:5500/addProduct", newCart).subscribe(data=>console.log(data));
+      this.colection.push({
+        img: newCart.img,
+        name: newCart.name,
+        description: newCart.description,
+        cost: newCart.cost
+      });
+
+     // this.http.post("http://localhost:5500/addProduct", newCart).subscribe(data=>console.log(data));
     }
   }
 }
