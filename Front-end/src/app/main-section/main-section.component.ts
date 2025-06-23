@@ -4,16 +4,15 @@ import { CategoryListComponent } from '../Header/category-list/category-list.com
 import { HeaderBarComponent } from "../shared/components/header-bar/header-bar.component";
 import { PopularModelsComponent } from '../popular-models/popular-models.component';
 import { HttpClient } from '@angular/common/http';
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-main-section',
-  imports: [NewsComponent, CategoryListComponent, HeaderBarComponent, PopularModelsComponent ],
+  imports: [NewsComponent, CategoryListComponent, HeaderBarComponent, PopularModelsComponent, FooterComponent],
   templateUrl: './main-section.component.html',
   styleUrl: './main-section.component.css'
 })
 export class MainSectionComponent {
   http = inject(HttpClient)
-  constructor(){
-    
-  }
+ 
 }
