@@ -6,6 +6,7 @@ import { PageNfComponent } from './page404/page-nf/page-nf.component';
 import { ProductCardInnerComponent } from './shared/components/product-card-inner/product-card-inner.component';
 import { TovarListComponent } from './main-section/tovar-list/tovar-list.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import { AppCategoryListComponent } from './main-section/app-category-list/app-category-list.component';
 
 export const routes: Routes = [
   {
@@ -43,4 +44,6 @@ export const routes: Routes = [
     component: PageNfComponent,
     title: 'Page not found'
   },
+
+  
 ];
