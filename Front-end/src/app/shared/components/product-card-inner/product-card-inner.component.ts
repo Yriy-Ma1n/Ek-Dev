@@ -38,7 +38,7 @@ export class ProductCardInnerComponent {
   constructor() {
     this.activeRoute.queryParams.subscribe(params => {
       
-      this.http.get<any[]>(`http://localhost:5500/searchId?q=${params["id"]}`).subscribe(data => {
+      this.http.get<any[]>(`http://localhost:5500/search?q=${params["id"]}`).subscribe(data => {
         console.log(data)
         this.data = []
 
