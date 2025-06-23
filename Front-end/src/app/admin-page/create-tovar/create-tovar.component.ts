@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, input} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ValidatorUrl } from './cart-validator.directive';
 import { NgClass, NgIf} from '@angular/common';
 
 
