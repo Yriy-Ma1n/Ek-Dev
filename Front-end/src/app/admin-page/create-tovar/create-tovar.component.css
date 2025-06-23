@@ -1,0 +1,48 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    box-shadow: 0 0 10px 0 #000;
+    border-radius: 10px;
+    width: 11%; 
+    padding: 20px 40px;
+}
+h1{
+    margin: 0;
+    width: 100%;
+    font-size: 21px;
+    text-align: center;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+form div p{
+    font-family: Proxima Soft;
+    margin: 0;
+}
+form div input, form div textarea{
+    border-radius: 6px;
+    width: 200px;
+    height: 20px;
+}
+button{
+    background-color: var(--accent-color-orange);
+    color: #fff;
+    border: 0;
+    border-radius: 6px;
+    padding: 10px 25px;
+    cursor: pointer;
+}
+.err{
+    text-align: center;
+    color: red;
+}
+.red-border{
+    border: 1.8px solid red;
+}
