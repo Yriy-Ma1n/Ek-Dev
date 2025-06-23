@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ButtonArrowComponent } from './button-arrow.component';
+import { AppCategoryListComponent } from './app-category-list.component';
 
-describe('ButtonArrowComponent', () => {
-  let component: ButtonArrowComponent;
-  let fixture: ComponentFixture<ButtonArrowComponent>;
+describe('AppCategoryListComponent', () => {
+  let component: AppCategoryListComponent;
+  let fixture: ComponentFixture<AppCategoryListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ButtonArrowComponent]
+      imports: [AppCategoryListComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ButtonArrowComponent);
+    fixture = TestBed.createComponent(AppCategoryListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
