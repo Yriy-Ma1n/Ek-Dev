@@ -6,47 +6,37 @@
 
 .container-category {
     display: grid;
-
-    grid-template-rows: 1fr 1fr 1fr ;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-
-    gap: 0px;
-    height: 100%;
-    row-gap: 40px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto auto;
+    gap: 40px;
 }
 
-.container-category app-card-category {
-    height: fit-content;
+
+.TabletAccessories {
+    /* Планшети та аксесуари */
+    grid-area: 1 / 3 / 3 / 5;
 }
 
-/* Элемент 1: Планшети та аксесуари */
-.container-category app-card-category:nth-child(1) {
-    
-   grid-area: 1 / 3 / 4 / 7;
+.Tablet {
+    /* Планшети */
+    grid-area: 2 / 3 / 3 / 5;
 }
 
-/* Элемент 2: Планшети */
-.container-category app-card-category:nth-child(2) {
-    
-   grid-area: 4 / 3 / 6 / 5;
-   margin-left: 40px;
+.TV {
+    /* Телевизоры */
+    grid-area: 1 / 2 / 2 / 2;
 }
 
-/* Элемент 3: Телевизоры */
-.container-category app-card-category:nth-child(3) {
-   grid-area: 1 / 1 / 4 / 3;
+.Telephone {
+    /* Мобільні телефони */
+    grid-area: 2 / 2 / 3 / 3;
 }
 
-/* Элемент 4: Мобільні телефони*/
-.container-category app-card-category:nth-child(4) {
-   grid-area: 4 / 1 / 6 / 3;
+.Fridge {
+    /* Холодильники */
+    grid-area: 2 / 4 / 3 / 7;
 }
 
-/* Элемент 5: Холодильники */
-.container-category app-card-category:nth-child(5) {
-  grid-area: 4 / 5 / 6 / 7;
-  margin-left: 40px;
-}
 
 .container-category app-card-category {
     height: fit-content;
