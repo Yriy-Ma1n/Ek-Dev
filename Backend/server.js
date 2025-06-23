@@ -191,6 +191,6 @@ app.get('/adminpass', function (req, res) { return __awaiter(void 0, void 0, voi
 // app.get("*", (req, res) => {
 //     res.sendFile(indexPath)
 // });
-// app.listen(PORT, () => {
-//     console.log(`Server was started on port ${PORT}`);
-// });
+app.listen(PORT, function () {
+    console.log("Server was started on port ".concat(PORT));
+});

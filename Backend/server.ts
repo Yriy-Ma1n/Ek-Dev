@@ -111,6 +111,6 @@ app.get('/adminpass', async (req, res)=>{
 //     res.sendFile(indexPath)
 // });
 
-// app.listen(PORT, () => {
-//     console.log(`Server was started on port ${PORT}`);
-// });
+app.listen(PORT, () => {
+    console.log(`Server was started on port ${PORT}`);
+});
