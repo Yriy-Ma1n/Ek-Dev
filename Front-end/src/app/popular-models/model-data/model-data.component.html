@@ -1,5 +1,5 @@
 <div class="product-grid">
-  <div class="model-contanier" *ngFor="let product of products" (click)="openTovarPage(nameTovar)">
+  <div class="model-contanier" *ngFor="let product of products" (click)="openTovarPage(product._id)">
 
     <div class="img-contanier">
       <img [src]="product.img" alt="" class="image-tovar">
