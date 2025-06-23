@@ -1,0 +1,34 @@
+<div class="container">
+    <h1>Створіть Свій Товар</h1>
+    <form [formGroup]="form">
+        <div>
+            <p style="font-size: 19px;">Назва Товару</p>
+            <input [ngClass]="{
+                'red-border' : inputNgName
+            }" formControlName="inputName" #nameTovar class="name-tovar" type="text">
+            <p *ngIf="inputNgName" class="err">Назву вказано не коректно</p>
+        </div>
+        <div>
+            <p style="font-size: 19px;">Опис Товару</p>
+            <textarea [ngClass]="{
+                'red-border' : textAreaNgDescription
+            }" formControlName="textAreaDescription" #descriptionTovar class="description-tovar" name="" id=""></textarea>
+            <p *ngIf="textAreaNgDescription" class="err">Опис вказано не коректно</p>
+        </div>
+        <div>
+            <p style="font-size: 19px;">URL Товару</p>
+            <input [ngClass]="{
+                'red-border' : inputNgUrl
+            }" formControlName="inputUrl" #urlTovar class="url-tovar" type="text">
+            <p *ngIf="inputNgUrl" class="err">Url вказано не коректно</p>
+        </div>
+        <div>
+            <p style="font-size: 19px;">Ціна Товару</p>
+            <input [ngClass]="{
+                'red-border' : inputNgifCost,
+                }" formControlName="inputCost" #priceTovar class="price-tovar" type="text">
+            <p *ngIf="inputNgifCost" class="err">Ціна вказана не коректно</p>
+        </div>
+    </form>
+    <button (click)="sendData(nameTovar, descriptionTovar, urlTovar, priceTovar)">Додати</button>
+</div>
