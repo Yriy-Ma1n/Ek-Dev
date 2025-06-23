@@ -3,15 +3,24 @@
     <form [formGroup]="form">
         <div>
             <p style="font-size: 19px;">Назва Товару</p>
-            <input formControlName="inputName" #nameTovar class="name-tovar" type="text">
+            <input [ngClass]="{
+                'red-border' : inputNgName
+            }" formControlName="inputName" #nameTovar class="name-tovar" type="text">
+            <p *ngIf="inputNgName" class="err">Назву вказано не коректно</p>
         </div>
         <div>
             <p style="font-size: 19px;">Опис Товару</p>
-            <textarea formControlName="textAreaDescription" #descriptionTovar class="description-tovar" name="" id=""></textarea>
+            <textarea [ngClass]="{
+                'red-border' : textAreaNgDescription
+            }" formControlName="textAreaDescription" #descriptionTovar class="description-tovar" name="" id=""></textarea>
+            <p *ngIf="textAreaNgDescription" class="err">Опис вказано не коректно</p>
         </div>
         <div>
             <p style="font-size: 19px;">URL Товару</p>
-            <input formControlName="inputUrl" #urlTovar class="url-tovar" type="text">
+            <input [ngClass]="{
+                'red-border' : inputNgUrl
+            }" formControlName="inputUrl" #urlTovar class="url-tovar" type="text">
+            <p *ngIf="inputNgUrl" class="err">Url вказано не коректно</p>
         </div>
         <div>
             <p style="font-size: 19px;">Ціна Товару</p>
