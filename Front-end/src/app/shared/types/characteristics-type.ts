@@ -1,11 +1,11 @@
 export interface characteristic { 
-    MemoryRam: string, 
-    categoryDescription: string, 
+    MemoryRam: string[], 
+    categoryDescription: string[], 
     characteristics: {[key:string]:string}, 
-    colors: string, 
+    colors: string[], 
     cost: string, 
     mainPhoto: string, 
     name: string, 
-    secondaryPhoto: string,
+    secondaryPhoto: string[],
     _id: string 
 }

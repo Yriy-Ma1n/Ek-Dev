@@ -45,6 +45,8 @@ var PORT = process.env.PORT;
 var uri = process.env.MONGO_URL;
 var client = new MongoClient(uri);
 app.use(cors());
+//sharing bundle
+// app.use(express.static("public/browser"))
 var dbSave;
 function connect() {
     return __awaiter(this, void 0, void 0, function () {
@@ -68,9 +70,6 @@ function connect() {
     });
 }
 connect();
-app.listen(PORT, function () {
-    console.log("Server was started on port ".concat(PORT));
-});
 app.get('/products', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var page, limit, products;
     return __generator(this, function (_a) {
@@ -155,3 +154,43 @@ app.get('/Laptop', function (req, res) { return __awaiter(void 0, void 0, void 0
         }
     });
 }); });
+app.get('/search', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var searchType, allFindedData;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                searchType = req.query.q || '';
+                console.log(searchType);
+                return [4 /*yield*/, dbSave.collection('AllTovar').find({
+                        name: { $regex: searchType, $options: 'i' }
+                    }).toArray()];
+            case 1:
+                allFindedData = _a.sent();
+                res.send(allFindedData);
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get('/adminpass', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var getAdminPass;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, dbSave.collection('AdminPass').find().toArray()];
+            case 1:
+                getAdminPass = _a.sent();
+                res.send(getAdminPass);
+                return [2 /*return*/];
+        }
+    });
+}); });
+// sharing bundle
+// const indexPath = path.resolve(__dirname, "public/browser/index.html")
+// app.use((req, res) => {
+//     res.sendFile(indexPath)
+// });
+// app.get("*", (req, res) => {
+//     res.sendFile(indexPath)
+// });
+// app.listen(PORT, () => {
+//     console.log(`Server was started on port ${PORT}`);
+// });

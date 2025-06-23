@@ -1,4 +1,4 @@
-<div class="tovar">
+<div class="tovar" >
     <div class="img-count">
         <div class="img-tovar">
             <img src="{{src}}" alt="">
@@ -16,7 +16,7 @@
             <button class="button-plus" (click)="plusButton(nameRef)">+</button>
         </div>
     </div> 
-    <div class="delete-button">
+    <div class="delete-button" (click)="deleteItem(nameRef)">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="30px" style="stroke:none;"
             fill="currentColor">
             <path

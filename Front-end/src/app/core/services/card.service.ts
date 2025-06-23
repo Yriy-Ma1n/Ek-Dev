@@ -53,7 +53,7 @@ export class CardService {
 
     this.changeData()
 
-  }
+  } 
 
   GetTotalPrice() {
     let total: number = 0
@@ -70,6 +70,11 @@ export class CardService {
 
   clearCard() {
     this.arrProduct = []
+    this.changeData()
+  }
+  clearOnItem(nameProduct:string){
+   
+    this.arrProduct = this.arrProduct.filter(({name})=>name !== nameProduct)
     this.changeData()
   }
 

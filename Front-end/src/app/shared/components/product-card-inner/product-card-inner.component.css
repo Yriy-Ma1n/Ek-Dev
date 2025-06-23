@@ -90,8 +90,15 @@
     padding: 5px;
     border: 1px solid rgba(128, 128, 128, 0.445);
     border-radius: 5px;
-}
+    object-fit: contain;
+    cursor: pointer;
 
+}
+.photo-tovar img{
+    width: 146px;
+    height: 200px;
+    object-fit: contain;
+}
 .price {
     display: flex;
     flex-direction: column;
@@ -135,10 +142,12 @@
     width: 30px;
     height: 30px;
     cursor: pointer;
+    border: 1px solid black;
 }
 
 .color-choose div:hover {
     transform: scale(1.2);
+
 }
 
 .green {
@@ -155,6 +164,14 @@
 
 .darkblue {
     background-color: rgb(77, 77, 233);
+}
+
+.black {
+    background-color: rgb(0, 0, 0)
+}
+
+.blue {
+    background-color: rgb(90, 90, 230);
 }
 
 .memory-ram {
@@ -276,4 +293,29 @@
     border: 1px solid #0000001f;
     padding: 10px;
     border-radius: 5px;
+}
+
+.cantFound img {
+    width: 600px;
+    height: 600px;
+
+}
+
+.cantFound {
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.title-description{
+    font-weight: bold;
+    font-size: 20px;
+}
+.text-description{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.none {
+    display: none;
 }

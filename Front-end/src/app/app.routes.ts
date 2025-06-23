@@ -4,15 +4,19 @@ import { BusketPageComponent } from './busket-page/busket-page.component';
 import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 import { PageNfComponent } from './page404/page-nf/page-nf.component';
 import { ProductCardInnerComponent } from './shared/components/product-card-inner/product-card-inner.component';
+import { TovarListComponent } from './main-section/tovar-list/tovar-list.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LoadingScreenComponent
+    component: LoadingScreenComponent,
+    title: 'loading Screen'
   },
   {
     path: 'Home',
     component: MainSectionComponent,
+    title: 'home'
   },
   {
     path: 'busket',
@@ -23,6 +27,16 @@ export const routes: Routes = [
     path:'tovar',
     component:ProductCardInnerComponent,
     title:'tovar'
+  },
+  {
+    path: 'admin',
+    component:AdminPageComponent,
+    title: 'admin'
+  },
+  {
+     path:'tovarList',
+    component:TovarListComponent,
+    title:'catagol tovars'
   },
   {
     path: '**',
