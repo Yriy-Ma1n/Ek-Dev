@@ -1,5 +1,7 @@
 import * as path from "path";
 import type { LaptopItem } from "./Types/LapTopItem-type";
+import { error } from "console";
+import { ObjectId } from "mongodb";
 const express = require('express');
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
@@ -18,7 +20,7 @@ app.use(cors());
 //sharing bundle
 app.use(express.static("public/browser"))
 
-
+app.use(express.json())
 let dbSave;
 async function connect() {
     try {
@@ -121,16 +123,36 @@ app.post('/addProduct', async (req, res) => {
         });
     }
 })
-   
+
+app.delete('/DeleteProduct', async (req, res)=>{
+
+    const body = req.body
+    
+    if(!body.id){
+        res.status(400).json({
+            error:'Bad Request',
+            message:"You have to put id product"
+        })
+        return 
+    }
+    const collectionPopular = await dbSave.collection('PopularModel')
+    const collectionAllTovar = await dbSave.collection('AllTovar')
+
+    const rightId = new ObjectId(body.id)
+    collectionAllTovar.deleteOne({_id:rightId})
+    collectionPopular.deleteOne({_id:rightId})
+
+    res.send({status:"Everything okay"})
+})
 
   
 // sharing bundle
 
-const indexPath = path.resolve(__dirname, "public/browser/index.html")
+// const indexPath = path.resolve(__dirname, "public/browser/index.html")
 
-app.use((req, res) => {
-    res.sendFile(indexPath)
-});
+// app.use((req, res) => {
+//     res.sendFile(indexPath)
+// });
 
 
 
