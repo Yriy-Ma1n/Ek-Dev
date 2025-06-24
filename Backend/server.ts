@@ -16,7 +16,7 @@ const client = new MongoClient(uri)
 app.use(cors());
 
 //sharing bundle
-// app.use(express.static("public/browser"))
+app.use(express.static("public/browser"))
 
 
 let dbSave;
@@ -99,17 +99,40 @@ app.get('/adminpass', async (req, res)=>{
     res.send(getAdminPass)
 
 })
+
+app.post('/addProduct', async (req, res) => {
+ if (!req.body) {
+        res.send(200)
+        return
+    }
+    const body = req.body
+    if (typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof(body.description) === 'object') {
+
+        const collectionPopular = await dbSave.collection('PopularModel')
+        const collectionAllTovar = await dbSave.collection('AllTovar')
+
+        const result = await collectionPopular.insertOne(req.body)
+        await collectionAllTovar.insertOne(req.body)
+        res.send(result)
+    }else{
+         res.status(400).json({
+            error: 'Bad Request',
+            message: 'should to be 4 field, img,name,cost,description and all field string'
+        });
+    }
+})
+   
+
+  
 // sharing bundle
 
-// const indexPath = path.resolve(__dirname, "public/browser/index.html")
+const indexPath = path.resolve(__dirname, "public/browser/index.html")
 
-// app.use((req, res) => {
-//     res.sendFile(indexPath)
-// });
+app.use((req, res) => {
+    res.sendFile(indexPath)
+});
 
-// app.get("*", (req, res) => {
-//     res.sendFile(indexPath)
-// });
+
 
 app.listen(PORT, () => {
     console.log(`Server was started on port ${PORT}`);
