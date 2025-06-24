@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, inject, input, output, Output} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgClass, NgIf} from '@angular/common';
+import { AdminService } from '../admin.service';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { NgClass, NgIf} from '@angular/common';
   styleUrl: './create-tovar.component.css'
 })
 export class CreateTovarComponent {
-  colection: object[] = [];
+  service = inject(AdminService);
+  colection: {cost:string,description:string[],img:string,name:string}[] = [];
   inputName =  new FormControl("",[
       Validators.pattern(/^[A-Za-zА-Яа-яЁё\s]+$/),
       Validators.required
@@ -79,8 +81,14 @@ export class CreateTovarComponent {
         description: newCart.description,
         cost: newCart.cost
       });
+      this.service.setColection = this.colection;
 
      // this.http.post("http://localhost:5500/addProduct", newCart).subscribe(data=>console.log(data));
+
+      name.value = "";
+      url.value = "";
+      cost.value = "";
+      description.value = "";
     }
   }
 }
