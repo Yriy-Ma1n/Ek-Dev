@@ -1,8 +1,6 @@
 <div class="container">
-    <div *ngFor="let item of colection.getColection">
+    <div class="cart" *ngFor="let item of colection.getColection">
         <img src={{item.img}} alt="">
-        <p>{{item.name}}</p>
-        <p>{{item.cost}}</p>
-        <p>{{item.description}}</p>
+        <h2>{{item.name}}</h2>
     </div>
 </div>

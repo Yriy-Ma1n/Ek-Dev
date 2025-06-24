@@ -2,5 +2,23 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    border: 1px solid #000;
+}
+.cart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 0 7px 0 #000;
+    border-radius: 8px;
+    padding: 10px 20px;
+}
+img{
+    width: 200px;
+    height: 200px;
+}
+h2{
+    margin: 0;
+    font-size: 23px;
+    font-family: Proxima Soft;
 }
