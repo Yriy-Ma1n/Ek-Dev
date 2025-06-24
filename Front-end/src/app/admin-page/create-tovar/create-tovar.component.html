@@ -19,7 +19,7 @@
             <p style="font-size: 19px;">URL Товару</p>
             <input [ngClass]="{
                 'red-border' : inputNgUrl
-            }" #urlTovar class="url-tovar" type="text">
+            }" #urlTovar formControlName="inputImg" class="url-tovar" type="text">
             <p *ngIf="inputNgUrl" class="err">Url вказано не коректно</p>
         </div>
         <div>

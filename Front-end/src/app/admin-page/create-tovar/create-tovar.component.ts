@@ -3,6 +3,7 @@ import { Component, EventEmitter, inject, input, output, Output} from '@angular/
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgClass, NgIf} from '@angular/common';
 import { AdminService } from '../admin.service';
+import { imageUrlValidator } from './ImgValidator.directive';
 
 
 @Component({
@@ -18,6 +19,14 @@ export class CreateTovarComponent {
       Validators.pattern(/^[A-Za-zА-Яа-яЁё\s]+$/),
       Validators.required
     ]);
+  inputImg = new FormControl(
+    '',
+    {
+      validators: [Validators.required],
+      asyncValidators: [imageUrlValidator()],
+      updateOn: 'blur'
+    }
+  );
   textAreaDescription = new FormControl("",[
       Validators.pattern(/^[a-zA-Zа-яА-ЯёЁ0-9 ]+$/),
       Validators.required
@@ -29,6 +38,7 @@ export class CreateTovarComponent {
 
   form = new FormGroup({
     inputName: this.inputName,
+    inputImg: this.inputImg,
     textAreaDescription: this.textAreaDescription,
     inputCost: this.inputCost
   });
@@ -65,14 +75,13 @@ export class CreateTovarComponent {
       this.textAreaNgDescription = false;
     }
 
-    const img = new Image();
-    img.src = url.value;
-    img.onerror = ()=>{
+    if(this.inputImg.invalid){
       this.inputNgUrl = true;
-    }
-    img.onload = ()=>{
+    }else{
       this.inputNgUrl = false;
     }
+
+
 
     if(this.form.valid){
       this.colection.push({
@@ -84,11 +93,6 @@ export class CreateTovarComponent {
       this.service.setColection = this.colection;
 
      // this.http.post("http://localhost:5500/addProduct", newCart).subscribe(data=>console.log(data));
-
-      name.value = "";
-      url.value = "";
-      cost.value = "";
-      description.value = "";
     }
   }
 }
