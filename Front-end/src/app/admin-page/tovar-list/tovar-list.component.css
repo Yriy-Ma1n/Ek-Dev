@@ -1,8 +1,9 @@
 .container{
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 8px;
 }
 .cart{
     display: flex;
@@ -10,7 +11,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    box-shadow: 0 0 7px 0 #000;
+    box-shadow: 0 0 4px 0 #000;
     border-radius: 8px;
     padding: 10px 20px;
 }

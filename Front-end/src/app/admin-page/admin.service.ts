@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core'
   providedIn: 'root'
 })
 export class AdminService {
-   data:{cost:string,description:string[],img:string,name:string}[] = []
+   data:{cost:string,description:string[],img:string,name:string}[] = JSON.parse(localStorage.getItem('admin-prod')!) || []
 
     set setColection(value:{cost:string,description:string[],img:string,name:string}[]){
       this.data = value

@@ -14,7 +14,7 @@ import { imageUrlValidator } from './ImgValidator.directive';
 })
 export class CreateTovarComponent {
   service = inject(AdminService);
-  colection: {cost:string,description:string[],img:string,name:string}[] = [];
+  colection: {cost:string,description:string[],img:string,name:string}[] = JSON.parse(localStorage.getItem('admin-prod')!) || [];
   inputName =  new FormControl("",[
       Validators.pattern(/^[A-Za-zА-Яа-яЁё\s]+$/),
       Validators.required
@@ -91,6 +91,7 @@ export class CreateTovarComponent {
         cost: newCart.cost
       });
       this.service.setColection = this.colection;
+      localStorage.setItem('admin-prod', JSON.stringify(this.colection));
 
      // this.http.post("http://localhost:5500/addProduct", newCart).subscribe(data=>console.log(data));
     }
