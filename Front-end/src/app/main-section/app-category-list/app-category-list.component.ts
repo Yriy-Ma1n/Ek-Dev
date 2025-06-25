@@ -13,7 +13,16 @@ export class AppCategoryListComponent {
 
   NavigateToPage(event: Event) {
     const evntQ = event.target as HTMLElement 
-    this.router.navigate(['/tovarList'], {queryParams: {q: evntQ.textContent}})
+    const textEvent = evntQ.textContent
+    if(textEvent === 'Телефон') this.navigateFnc(textEvent)
+    if(textEvent === 'Планшет') this.navigateFnc(textEvent)
+    if(textEvent === 'Телевізор')this.navigateFnc(textEvent)
+    if(textEvent === 'Холодільник')this.navigateFnc(textEvent)
+
+  }
+  navigateFnc(path:string){
+    this.router.navigate(['/tovarList'], {queryParams: {q: path}})
+
   }
 
 }

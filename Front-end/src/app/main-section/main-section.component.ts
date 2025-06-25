@@ -9,7 +9,7 @@ import { FooterComponent } from "../footer/footer.component";
 
 @Component({
   selector: 'app-main-section',
-  imports: [NewsComponent, CategoryListComponent, HeaderBarComponent, PopularModelsComponent, FooterComponent],
+  imports: [NewsComponent, CategoryListComponent, HeaderBarComponent, PopularModelsComponent, FooterComponent, AppCategoryListComponent],
   templateUrl: './main-section.component.html',
   styleUrl: './main-section.component.css'
 })
