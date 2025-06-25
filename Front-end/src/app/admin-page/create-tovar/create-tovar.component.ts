@@ -14,7 +14,7 @@ import { imageUrlValidator } from './ImgValidator.directive';
 })
 export class CreateTovarComponent {
   service = inject(AdminService);
-  colection: {id:string,cost:string,description:string[],img:string,name:string}[] = JSON.parse(localStorage.getItem('admin-prod')!) || [];
+  colection: {_id:string,cost:string,description:string[],img:string,name:string}[] = JSON.parse(localStorage.getItem('admin-prod')!) || [];
   inputName =  new FormControl("",[
       Validators.pattern(/^[A-Za-zА-Яа-яЁё\s]+$/),
       Validators.required
@@ -85,16 +85,15 @@ export class CreateTovarComponent {
 
     if(this.form.valid){
       this.colection.push({
-        id: crypto.randomUUID(),
+        _id: crypto.randomUUID(),
         img: newCart.img,
         name: newCart.name,
         description: newCart.description,
         cost: newCart.cost
       });
       this.service.setColection = this.colection;
-      localStorage.setItem('admin-prod', JSON.stringify(this.colection));
 
-     // this.http.post("http://localhost:5500/addProduct", newCart).subscribe(data=>console.log(data));
+      this.http.post("http://localhost:5500/addProduct", newCart).subscribe(data=>console.log(data));
     }
   }
 }

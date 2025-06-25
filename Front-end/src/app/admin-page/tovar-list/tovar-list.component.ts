@@ -13,6 +13,10 @@ export class TovarListComponent {
   colection = inject(AdminService);
   http = inject(HttpClient);
   element = {} as HTMLElement;
+
+  getServiseData(){
+    return this.colection.getColection
+  }
   
   confirmationNgIf = false;
   blockingScrol(){
@@ -26,17 +30,16 @@ export class TovarListComponent {
   deleteItem(value:HTMLElement) {
     this.confirmationNgIf = true;
     this.element = value
-    this.blockingScrol()
+    this.blockingScrol();
   }
   delete(){
     const ItemId = this.element.getAttribute('id');
-    const newList = JSON.parse(localStorage.getItem('admin-prod')!).filter((el:{id:string,cost:string,description:string[],img:string,name:string})=>el.id !== ItemId);
-    localStorage.setItem('admin-prod', JSON.stringify(newList));
+    
     document.location.reload();
   }
   refusal(){
     this.confirmationNgIf = false;
-    this.blockingScrol()
+    this.blockingScrol();
   }
   agreement(){
     this.confirmationNgIf = false;
