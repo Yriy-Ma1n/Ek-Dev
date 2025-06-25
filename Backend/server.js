@@ -186,7 +186,7 @@ app.get('/adminpass', function (req, res) { return __awaiter(void 0, void 0, voi
     });
 }); });
 app.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var body, collectionPopular, collectionAllTovar, result;
+    var body, collectionPopular, collectionAllTovar, collectionAdmin, result;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -195,28 +195,34 @@ app.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, v
                     return [2 /*return*/];
                 }
                 body = req.body;
-                if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'object')) return [3 /*break*/, 5];
+                if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'object')) return [3 /*break*/, 7];
                 return [4 /*yield*/, dbSave.collection('PopularModel')];
             case 1:
                 collectionPopular = _a.sent();
                 return [4 /*yield*/, dbSave.collection('AllTovar')];
             case 2:
                 collectionAllTovar = _a.sent();
-                return [4 /*yield*/, collectionPopular.insertOne(req.body)];
+                return [4 /*yield*/, dbSave.collection('AdminAdded')];
             case 3:
+                collectionAdmin = _a.sent();
+                return [4 /*yield*/, collectionPopular.insertOne(req.body)];
+            case 4:
                 result = _a.sent();
                 return [4 /*yield*/, collectionAllTovar.insertOne(req.body)];
-            case 4:
+            case 5:
+                _a.sent();
+                return [4 /*yield*/, collectionAdmin.insertOne(req.body)];
+            case 6:
                 _a.sent();
                 res.send(result);
-                return [3 /*break*/, 6];
-            case 5:
+                return [3 /*break*/, 8];
+            case 7:
                 res.status(400).json({
                     error: 'Bad Request',
                     message: 'should to be 4 field, img,name,cost,description and all field string'
                 });
-                _a.label = 6;
-            case 6: return [2 /*return*/];
+                _a.label = 8;
+            case 8: return [2 /*return*/];
         }
     });
 }); });
