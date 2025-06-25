@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class TovarListComponent {
   colection = inject(AdminService);
   http = inject(HttpClient);
-  element = {} as HTMLElement;
+  element = '';
 
   getServiseData(){
     return this.colection.getColection
@@ -27,15 +27,22 @@ export class TovarListComponent {
     }
   }
 
-  deleteItem(value:HTMLElement) {
+  deleteItem(event:Event) {
     this.confirmationNgIf = true;
-    this.element = value
-    this.blockingScrol();
+    const item = (event.currentTarget as HTMLElement).parentElement;
+    if(item){
+      console.log(item);
+      this.element = item.getAttribute('id')!
+      console.log(this.element);
+    }
+      this.blockingScrol();
   }
-  delete(){
-    const ItemId = this.element.getAttribute('id');
-    
-    document.location.reload();
+  async delete(){
+    const ItemId = this.element
+    console.log(ItemId?.length);
+    console.log(ItemId);
+   await this.http.delete("http://localhost:5500/DeleteProduct", {body:{id:ItemId}}).subscribe(data => console.log(data));
+    this.colection.getData();
   }
   refusal(){
     this.confirmationNgIf = false;

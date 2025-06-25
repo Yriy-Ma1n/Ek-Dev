@@ -20,7 +20,7 @@ export class AdminService {
     }
 
     getData(){
-    this.http.get<{_id:string,cost:string,description:string[],img:string,name:string}[]>("http://localhost:5500/adminTovar").subscribe(data => {this.data = data});
+    this.http.get<{_id:string,cost:string,description:string[],img:string,name:string}[]>("http://localhost:5500/adminTovar").subscribe(data => {this.data = data; console.log(data);});
 
     }
 
