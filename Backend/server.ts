@@ -112,9 +112,11 @@ app.post('/addProduct', async (req, res) => {
 
         const collectionPopular = await dbSave.collection('PopularModel')
         const collectionAllTovar = await dbSave.collection('AllTovar')
+        const collectionAdmin = await dbSave.collection('AdminAdded')
 
         const result = await collectionPopular.insertOne(req.body)
         await collectionAllTovar.insertOne(req.body)
+        await collectionAdmin.insertOne(req.body)
         res.send(result)
     }else{
          res.status(400).json({
