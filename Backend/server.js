@@ -254,9 +254,15 @@ app.delete('/DeleteProduct', function (req, res) { return __awaiter(void 0, void
             case 3:
                 collectionAdmin = _a.sent();
                 rightId = new mongodb_1.ObjectId(body.id);
-                collectionAllTovar.deleteOne({ _id: rightId });
-                collectionPopular.deleteOne({ _id: rightId });
-                collectionAdmin.deleteOne({ _id: rightId });
+                return [4 /*yield*/, collectionAllTovar.deleteOne({ _id: rightId })];
+            case 4:
+                _a.sent();
+                return [4 /*yield*/, collectionPopular.deleteOne({ _id: rightId })];
+            case 5:
+                _a.sent();
+                return [4 /*yield*/, collectionAdmin.deleteOne({ _id: rightId })];
+            case 6:
+                _a.sent();
                 res.send({ status: "Everything okay" });
                 return [2 /*return*/];
         }

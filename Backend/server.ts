@@ -147,9 +147,9 @@ app.delete('/DeleteProduct', async (req, res)=>{
     const collectionAdmin = await dbSave.collection("AdminAdded")
 
     const rightId = new ObjectId(body.id)
-    collectionAllTovar.deleteOne({_id:rightId})
-    collectionPopular.deleteOne({_id:rightId})
-    collectionAdmin.deleteOne({_id:rightId})
+    await collectionAllTovar.deleteOne({_id:rightId})
+    await collectionPopular.deleteOne({_id:rightId})
+    await collectionAdmin.deleteOne({_id:rightId})
 
     res.send({status:"Everything okay"})
 })
