@@ -104,12 +104,16 @@ app.get('/adminpass', async (req, res)=>{
 
 app.post('/addProduct', async (req, res) => {
  if (!req.body) {
-        res.send(200)
+        res.status(400).json({
+            error: 'Bad Request',
+            message: 'something wrong with body'
+        })
         return
     }
     const body = req.body
-    if (typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof(body.description) === 'object') {
 
+    if (typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof(body.description) === 'object') {
+        console.log('all field')
         const collectionPopular = await dbSave.collection('PopularModel')
         const collectionAllTovar = await dbSave.collection('AllTovar')
         const collectionAdmin = await dbSave.collection('AdminAdded')
@@ -119,6 +123,7 @@ app.post('/addProduct', async (req, res) => {
         await collectionAdmin.insertOne(req.body)
         res.send(result)
     }else{
+        console.log('bad')
          res.status(400).json({
             error: 'Bad Request',
             message: 'should to be 4 field, img,name,cost,description and all field string'
@@ -146,7 +151,12 @@ app.delete('/DeleteProduct', async (req, res)=>{
 
     res.send({status:"Everything okay"})
 })
-
+app.get('/adminTovar', async (req, res)=>{
+        const collectionAdmin = await dbSave.collection('AdminAdded').find().toArray()
+       
+        res.send(collectionAdmin)
+   
+})
   
 // sharing bundle
 

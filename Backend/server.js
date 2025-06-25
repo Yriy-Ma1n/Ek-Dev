@@ -191,11 +191,15 @@ app.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, v
         switch (_a.label) {
             case 0:
                 if (!req.body) {
-                    res.send(200);
+                    res.status(400).json({
+                        error: 'Bad Request',
+                        message: 'something wrong with body'
+                    });
                     return [2 /*return*/];
                 }
                 body = req.body;
                 if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'object')) return [3 /*break*/, 7];
+                console.log('all field');
                 return [4 /*yield*/, dbSave.collection('PopularModel')];
             case 1:
                 collectionPopular = _a.sent();
@@ -217,6 +221,7 @@ app.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, v
                 res.send(result);
                 return [3 /*break*/, 8];
             case 7:
+                console.log('bad');
                 res.status(400).json({
                     error: 'Bad Request',
                     message: 'should to be 4 field, img,name,cost,description and all field string'
@@ -249,6 +254,18 @@ app.delete('/DeleteProduct', function (req, res) { return __awaiter(void 0, void
                 collectionAllTovar.deleteOne({ _id: rightId });
                 collectionPopular.deleteOne({ _id: rightId });
                 res.send({ status: "Everything okay" });
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get('/adminTovar', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var collectionAdmin;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, dbSave.collection('AdminAdded').find().toArray()];
+            case 1:
+                collectionAdmin = _a.sent();
+                res.send(collectionAdmin);
                 return [2 /*return*/];
         }
     });
