@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var path = require("path");
+var mongodb_1 = require("mongodb");
 var express = require('express');
 var cors = require('cors');
 var MongoClient = require('mongodb').MongoClient;
@@ -48,6 +48,7 @@ var client = new MongoClient(uri);
 app.use(cors());
 //sharing bundle
 app.use(express.static("public/browser"));
+app.use(express.json());
 var dbSave;
 function connect() {
     return __awaiter(this, void 0, void 0, function () {
@@ -184,11 +185,73 @@ app.get('/adminpass', function (req, res) { return __awaiter(void 0, void 0, voi
         }
     });
 }); });
+app.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var body, collectionPopular, collectionAllTovar, result;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                if (!req.body) {
+                    res.send(200);
+                    return [2 /*return*/];
+                }
+                body = req.body;
+                if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'object')) return [3 /*break*/, 5];
+                return [4 /*yield*/, dbSave.collection('PopularModel')];
+            case 1:
+                collectionPopular = _a.sent();
+                return [4 /*yield*/, dbSave.collection('AllTovar')];
+            case 2:
+                collectionAllTovar = _a.sent();
+                return [4 /*yield*/, collectionPopular.insertOne(req.body)];
+            case 3:
+                result = _a.sent();
+                return [4 /*yield*/, collectionAllTovar.insertOne(req.body)];
+            case 4:
+                _a.sent();
+                res.send(result);
+                return [3 /*break*/, 6];
+            case 5:
+                res.status(400).json({
+                    error: 'Bad Request',
+                    message: 'should to be 4 field, img,name,cost,description and all field string'
+                });
+                _a.label = 6;
+            case 6: return [2 /*return*/];
+        }
+    });
+}); });
+app.delete('/DeleteProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var body, collectionPopular, collectionAllTovar, rightId;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                body = req.body;
+                if (!body.id) {
+                    res.status(400).json({
+                        error: 'Bad Request',
+                        message: "You have to put id product"
+                    });
+                    return [2 /*return*/];
+                }
+                return [4 /*yield*/, dbSave.collection('PopularModel')];
+            case 1:
+                collectionPopular = _a.sent();
+                return [4 /*yield*/, dbSave.collection('AllTovar')];
+            case 2:
+                collectionAllTovar = _a.sent();
+                rightId = new mongodb_1.ObjectId(body.id);
+                collectionAllTovar.deleteOne({ _id: rightId });
+                collectionPopular.deleteOne({ _id: rightId });
+                res.send({ status: "Everything okay" });
+                return [2 /*return*/];
+        }
+    });
+}); });
 // sharing bundle
-var indexPath = path.resolve(__dirname, "public/browser/index.html");
-app.use(function (req, res) {
-    res.sendFile(indexPath);
-});
+// const indexPath = path.resolve(__dirname, "public/browser/index.html")
+// app.use((req, res) => {
+//     res.sendFile(indexPath)
+// });
 app.listen(PORT, function () {
     console.log("Server was started on port ".concat(PORT));
 });
