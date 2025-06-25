@@ -232,7 +232,7 @@ app.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, v
     });
 }); });
 app.delete('/DeleteProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var body, collectionPopular, collectionAllTovar, rightId;
+    var body, collectionPopular, collectionAllTovar, collectionAdmin, rightId;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -250,9 +250,13 @@ app.delete('/DeleteProduct', function (req, res) { return __awaiter(void 0, void
                 return [4 /*yield*/, dbSave.collection('AllTovar')];
             case 2:
                 collectionAllTovar = _a.sent();
+                return [4 /*yield*/, dbSave.collection("AdminAdded")];
+            case 3:
+                collectionAdmin = _a.sent();
                 rightId = new mongodb_1.ObjectId(body.id);
                 collectionAllTovar.deleteOne({ _id: rightId });
                 collectionPopular.deleteOne({ _id: rightId });
+                collectionAdmin.deleteOne({ _id: rightId });
                 res.send({ status: "Everything okay" });
                 return [2 /*return*/];
         }

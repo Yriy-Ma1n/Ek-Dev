@@ -144,10 +144,12 @@ app.delete('/DeleteProduct', async (req, res)=>{
     }
     const collectionPopular = await dbSave.collection('PopularModel')
     const collectionAllTovar = await dbSave.collection('AllTovar')
+    const collectionAdmin = await dbSave.collection("AdminAdded")
 
     const rightId = new ObjectId(body.id)
     collectionAllTovar.deleteOne({_id:rightId})
     collectionPopular.deleteOne({_id:rightId})
+    collectionAdmin.deleteOne({_id:rightId})
 
     res.send({status:"Everything okay"})
 })

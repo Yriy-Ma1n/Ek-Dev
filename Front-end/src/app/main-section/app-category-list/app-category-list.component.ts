@@ -14,10 +14,10 @@ export class AppCategoryListComponent {
   NavigateToPage(event: Event) {
     const evntQ = event.target as HTMLElement 
     const textEvent = evntQ.textContent
-    if(textEvent === 'Телефон') this.navigateFnc(textEvent)
-    if(textEvent === 'Планшет') this.navigateFnc(textEvent)
-    if(textEvent === 'Телевізор')this.navigateFnc(textEvent)
-    if(textEvent === 'Холодільник')this.navigateFnc(textEvent)
+    if(textEvent === 'Телефон' || textEvent === 'Зв\'язок і гаджети') this.navigateFnc('Телефон')
+    if(textEvent === 'Планшет') this.navigateFnc('Планшет')
+    if(textEvent === 'Телевізор' || textEvent === 'Tv відео')this.navigateFnc('Телевізор')
+    if(textEvent === 'Холодільник' || textEvent === 'Побутова техніка' )this.navigateFnc('Холодільник')
 
   }
   navigateFnc(path:string){
