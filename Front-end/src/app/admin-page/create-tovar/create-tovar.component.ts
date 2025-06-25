@@ -14,7 +14,7 @@ import { imageUrlValidator } from './ImgValidator.directive';
 })
 export class CreateTovarComponent {
   service = inject(AdminService);
-  colection: {cost:string,description:string[],img:string,name:string}[] = JSON.parse(localStorage.getItem('admin-prod')!) || [];
+  colection: {id:string,cost:string,description:string[],img:string,name:string}[] = JSON.parse(localStorage.getItem('admin-prod')!) || [];
   inputName =  new FormControl("",[
       Validators.pattern(/^[A-Za-zА-Яа-яЁё\s]+$/),
       Validators.required
@@ -85,6 +85,7 @@ export class CreateTovarComponent {
 
     if(this.form.valid){
       this.colection.push({
+        id: crypto.randomUUID(),
         img: newCart.img,
         name: newCart.name,
         description: newCart.description,
