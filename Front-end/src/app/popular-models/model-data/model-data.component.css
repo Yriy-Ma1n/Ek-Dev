@@ -9,9 +9,10 @@
   background: #FFFFFF;
 }
 
-.image-tovar{
-  width: fit-content;
+.image-tovar {
+  width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 
@@ -92,22 +93,25 @@ app-button-arrow:hover {
 
 .pagination-controls {
   margin-top: 20px;
-  text-align: center; 
+  text-align: center;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: center; 
- 
+  align-items: center;
+
 }
+
 .pagination-controls img {
   width: 50px;
   height: 50px;
- 
+
 }
+
 .pagination-controls button {
- background: none;
- border: transparent;
+  background: none;
+  border: transparent;
 }
+
 .arrow:hover {
   transform: scale(1.1);
 }
