@@ -49,47 +49,66 @@
     grid-area: 2 / 4 / 3 / 7;
 }
 
-@media (max-width:1488px){
-    .Fridge{
+@media (max-width:1488px) {
+    .Fridge {
         width: 280px;
-        
+
     }
-    .TabletAccessories{
+
+    .TabletAccessories {
         width: 640px;
     }
-   
+
 }
 
-@media (max-width:1300px){
-    .Fridge{
+@media (max-width:1300px) {
+    .Fridge {
         width: 270px;
     }
-    .Tablet{
+
+    .Tablet {
         width: 270px;
     }
-    .TabletAccessories{
+
+    .TabletAccessories {
         width: 580px;
     }
-    .Telephone{
+
+    .Telephone {
         width: 270px;
     }
-   
+
 }
-@media (max-width:1200px){
-    .Fridge{
+
+@media (max-width:1200px) {
+    .Fridge {
         width: 230px;
     }
-    .Tablet{
+
+    .Tablet {
         width: 230px;
     }
-    .TabletAccessories{
+
+    .TabletAccessories {
         width: 520px;
     }
-    .Telephone{
+
+    .Telephone {
         width: 230px;
     }
-   
+
 }
 
+@media (max-width:1112px) {
+    .container-category {
+        grid-template-columns: repeat(4, 1fr);
+     
+    }
 
+}
+@media (max-width:1034px) {
+     .container-category{
+        width: 1000px;
+     }
 
+}

@@ -98,3 +98,8 @@
         font-size: 15px;
     }
 }
+@media (max-width:1168px) {
+    .list-category-container{
+        gap: 20px;
+    }
+}
