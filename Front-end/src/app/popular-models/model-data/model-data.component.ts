@@ -23,7 +23,6 @@ export class ModelDataComponent {
   router = inject(Router)
   
 
-
   ngOnInit() {
      this.getPageContent();
     
@@ -58,6 +57,7 @@ export class ModelDataComponent {
   }
   showInp() {
     this.show = !this.show
+    
   }
   filteredItem(event:Event){
     const input = (event.currentTarget as HTMLInputElement).value
@@ -70,8 +70,7 @@ export class ModelDataComponent {
     
   }
   openTovarPage(item:HTMLSpanElement){
-    console.log(item.textContent)
-     this.router.navigate(['/tovar'], { queryParams: { title: item.textContent } })
+     this.router.navigate(['/tovar'], { queryParams: { id: item.textContent } })
   }
 
     

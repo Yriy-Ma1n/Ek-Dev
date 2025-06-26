@@ -1,8 +1,6 @@
 <div class="wrapper">
     <div class="container-category">
         <app-card-category *ngFor="let item of nameCategory" 
-        [width]="item.width" 
-        [height]="item.height"
         [img]="item.img"
         class={{item.name}}
         (click)="switchToCategory($event)"

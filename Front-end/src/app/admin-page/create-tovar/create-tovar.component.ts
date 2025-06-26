@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject, input} from '@angular/core';
+import { Component, EventEmitter, inject, input, output, Output} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgClass, NgIf} from '@angular/common';
+import { AdminService } from '../admin.service';
+import { imageUrlValidator } from './ImgValidator.directive';
 
 
 @Component({
@@ -11,10 +13,20 @@ import { NgClass, NgIf} from '@angular/common';
   styleUrl: './create-tovar.component.css'
 })
 export class CreateTovarComponent {
+  service = inject(AdminService);
+  colection: {cost:string,description:string[],img:string,name:string}[] = JSON.parse(localStorage.getItem('admin-prod')!) || [];
   inputName =  new FormControl("",[
       Validators.pattern(/^[A-Za-zА-Яа-яЁё\s]+$/),
       Validators.required
     ]);
+  inputImg = new FormControl(
+    '',
+    {
+      validators: [Validators.required],
+      asyncValidators: [imageUrlValidator()],
+      updateOn: 'blur'
+    }
+  );
   textAreaDescription = new FormControl("",[
       Validators.pattern(/^[a-zA-Zа-яА-ЯёЁ0-9 ]+$/),
       Validators.required
@@ -26,6 +38,7 @@ export class CreateTovarComponent {
 
   form = new FormGroup({
     inputName: this.inputName,
+    inputImg: this.inputImg,
     textAreaDescription: this.textAreaDescription,
     inputCost: this.inputCost
   });
@@ -62,16 +75,23 @@ export class CreateTovarComponent {
       this.textAreaNgDescription = false;
     }
 
-    const img = new Image();
-    img.src = url.value;
-    img.onerror = ()=>{
+    if(this.inputImg.invalid){
       this.inputNgUrl = true;
-    }
-    img.onload = ()=>{
+    }else{
       this.inputNgUrl = false;
     }
 
+
+
     if(this.form.valid){
+      // this.colection.push();
+      this.service.setColection = {
+        img: newCart.img,
+        name: newCart.name,
+        description: newCart.description,
+        cost: newCart.cost
+      }
+      this.service.getData()
       this.http.post("http://localhost:5500/addProduct", newCart).subscribe(data=>console.log(data));
     }
   }
