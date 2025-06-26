@@ -66,3 +66,8 @@
 .container-item:hover .item p{
     color:var(--accent-color-orange)
 }
+@media (max-width:1340px) {
+    .list-category-container{
+        font-size: 13px;
+    }
+}
