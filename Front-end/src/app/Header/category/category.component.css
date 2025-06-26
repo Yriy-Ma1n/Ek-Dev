@@ -1,73 +1,100 @@
-:host{
+:host {
     width: 100%;
 }
-.list-category{
+
+.list-category {
     display: flex;
     justify-content: center;
     width: 100%;
     height: 100%;
     position: relative;
 }
-.list-category-container{
+
+.list-category-container {
     display: flex;
-    gap:40px;
-    color:#525252;
+    gap: 40px;
+    color: #525252;
     font-family: Proxima Soft;
-    
+
 }
-.list-category-container span{
+
+.list-category-container span {
     cursor: pointer;
     height: 93%;
     display: flex;
     align-items: center;
 }
-.list-category-container span:hover{
-    color:var(--accent-color-orange);
+
+.list-category-container span:hover {
+    color: var(--accent-color-orange);
     border-bottom: 4px solid var(--accent-color-orange);
 }
-.additionally-info{
+
+.additionally-info {
     display: flex;
-    gap:50px;
+    gap: 50px;
     justify-content: center;
     align-items: center;
     position: absolute;
-    top:61px;
-    left:0;
+    top: 61px;
+    left: 0;
     height: 110px;
     width: 100%;
     background-color: white;
     z-index: 9999;
     transition: 0.5s;
-    box-shadow: 1px 7px 10px -1px rgba(0,0,0,0.37);
-    
+    box-shadow: 1px 7px 10px -1px rgba(0, 0, 0, 0.37);
+
 }
-.none{
+
+.none {
     height: 0px;
     overflow: hidden;
 }
-.pin{
+
+.pin {
     pointer-events: none;
 }
 
-.item{
+.item {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
-.item img{
+
+.item img {
     width: 24px;
     height: 32px;
 }
-.container-item{
+
+.container-item {
     transition: 0.5s;
 }
-.container-item:hover .item p{
-    color:var(--accent-color-orange)
+
+.container-item:hover .item p {
+    color: var(--accent-color-orange)
 }
+
 @media (max-width:1340px) {
-    .list-category-container{
+    .list-category-container {
         font-size: 13px;
+    }
+}
+
+@media (max-width:1360px) {
+    .additionally-info {
+        gap: 35px
+    }
+}
+
+@media (max-width:1240px) {
+    .additionally-info {
+        gap: 30px
+    }
+
+    .container-item .item p {
+        font-size: 15px;
     }
 }
