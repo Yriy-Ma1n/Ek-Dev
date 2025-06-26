@@ -6,9 +6,10 @@ import { HeaderBarComponent } from "../../shared/components/header-bar/header-ba
 import { CardTovarComponent } from "../../busket-page/card-tovar/card-tovar.component";
 import type { characteristic } from '../../shared/types/characteristics-type';
 import { NgIf } from '@angular/common';
+import { FooterComponent } from "../../footer/footer.component";
 @Component({
   selector: 'app-tovar-list',
-  imports: [ProductCardComponent, HeaderBarComponent, NgIf,],
+  imports: [ProductCardComponent, HeaderBarComponent, NgIf, FooterComponent],
   templateUrl: './tovar-list.component.html',
   styleUrl: './tovar-list.component.css'
 })
@@ -22,7 +23,7 @@ export class TovarListComponent {
     this.activeRoute.queryParams.subscribe(params => {
       this.name = params["q"]
       this.http.get<characteristic[]>(`http://localhost:5500/search?q=${this.name}`).subscribe(data => setTimeout(() => {
-        console.log(data)//[]
+       
         this.data = data
       }))
     })

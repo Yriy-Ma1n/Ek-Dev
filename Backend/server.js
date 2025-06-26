@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var mongodb_1 = require("mongodb");
 var express = require('express');
 var cors = require('cors');
 var MongoClient = require('mongodb').MongoClient;
@@ -46,7 +47,8 @@ var uri = process.env.MONGO_URL;
 var client = new MongoClient(uri);
 app.use(cors());
 //sharing bundle
-// app.use(express.static("public/browser"))
+app.use(express.static("public/browser"));
+app.use(express.json());
 var dbSave;
 function connect() {
     return __awaiter(this, void 0, void 0, function () {
@@ -183,12 +185,104 @@ app.get('/adminpass', function (req, res) { return __awaiter(void 0, void 0, voi
         }
     });
 }); });
+app.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var body, collectionPopular, collectionAllTovar, collectionAdmin, result;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                if (!req.body) {
+                    res.status(400).json({
+                        error: 'Bad Request',
+                        message: 'something wrong with body'
+                    });
+                    return [2 /*return*/];
+                }
+                body = req.body;
+                if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'object')) return [3 /*break*/, 7];
+                console.log('all field');
+                return [4 /*yield*/, dbSave.collection('PopularModel')];
+            case 1:
+                collectionPopular = _a.sent();
+                return [4 /*yield*/, dbSave.collection('AllTovar')];
+            case 2:
+                collectionAllTovar = _a.sent();
+                return [4 /*yield*/, dbSave.collection('AdminAdded')];
+            case 3:
+                collectionAdmin = _a.sent();
+                return [4 /*yield*/, collectionPopular.insertOne(req.body)];
+            case 4:
+                result = _a.sent();
+                return [4 /*yield*/, collectionAllTovar.insertOne(req.body)];
+            case 5:
+                _a.sent();
+                return [4 /*yield*/, collectionAdmin.insertOne(req.body)];
+            case 6:
+                _a.sent();
+                res.send(result);
+                return [3 /*break*/, 8];
+            case 7:
+                console.log('bad');
+                res.status(400).json({
+                    error: 'Bad Request',
+                    message: 'should to be 4 field, img,name,cost,description and all field string'
+                });
+                _a.label = 8;
+            case 8: return [2 /*return*/];
+        }
+    });
+}); });
+app.delete('/DeleteProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var body, collectionPopular, collectionAllTovar, collectionAdmin, rightId;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                body = req.body;
+                if (!body.id) {
+                    res.status(400).json({
+                        error: 'Bad Request',
+                        message: "You have to put id product"
+                    });
+                    return [2 /*return*/];
+                }
+                return [4 /*yield*/, dbSave.collection('PopularModel')];
+            case 1:
+                collectionPopular = _a.sent();
+                return [4 /*yield*/, dbSave.collection('AllTovar')];
+            case 2:
+                collectionAllTovar = _a.sent();
+                return [4 /*yield*/, dbSave.collection("AdminAdded")];
+            case 3:
+                collectionAdmin = _a.sent();
+                rightId = new mongodb_1.ObjectId(body.id);
+                return [4 /*yield*/, collectionAllTovar.deleteOne({ _id: rightId })];
+            case 4:
+                _a.sent();
+                return [4 /*yield*/, collectionPopular.deleteOne({ _id: rightId })];
+            case 5:
+                _a.sent();
+                return [4 /*yield*/, collectionAdmin.deleteOne({ _id: rightId })];
+            case 6:
+                _a.sent();
+                res.send({ status: "Everything okay" });
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get('/adminTovar', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var collectionAdmin;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, dbSave.collection('AdminAdded').find().toArray()];
+            case 1:
+                collectionAdmin = _a.sent();
+                res.send(collectionAdmin);
+                return [2 /*return*/];
+        }
+    });
+}); });
 // sharing bundle
 // const indexPath = path.resolve(__dirname, "public/browser/index.html")
 // app.use((req, res) => {
-//     res.sendFile(indexPath)
-// });
-// app.get("*", (req, res) => {
 //     res.sendFile(indexPath)
 // });
 app.listen(PORT, function () {

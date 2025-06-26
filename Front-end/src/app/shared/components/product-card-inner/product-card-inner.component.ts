@@ -9,6 +9,7 @@ import { CardService } from '../../../core/services/card.service';
 import { HttpClient } from '@angular/common/http';
 import { LaptopItem } from '../../types/LapTopItem-type';
 import type { characteristic } from '../../types/characteristics-type';
+import { FooterComponent } from "../../../footer/footer.component";
 @Component({
   selector: 'app-product-card-inner',
   imports: [
@@ -18,8 +19,9 @@ import type { characteristic } from '../../types/characteristics-type';
     BadWordPipe,
     NgFor,
     NgClass,
-    NgIf
-  ],
+    NgIf,
+    FooterComponent
+],
   templateUrl: './product-card-inner.component.html',
   styleUrl: './product-card-inner.component.css'
 })
@@ -38,7 +40,7 @@ export class ProductCardInnerComponent {
   constructor() {
     this.activeRoute.queryParams.subscribe(params => {
       
-      this.http.get<any[]>(`http://localhost:5500/searchId?q=${params["id"]}`).subscribe(data => {
+      this.http.get<any[]>(`http://localhost:5500/search?q=${params["id"]}`).subscribe(data => {
         console.log(data)
         this.data = []
 

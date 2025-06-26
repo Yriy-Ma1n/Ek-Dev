@@ -18,10 +18,9 @@ export class ProductCardComponent {
 
   constructor() {
     this.randomCounts = this.randomCounts.map((item) => item = Math.floor(Math.random() * 70))
-    
   }
-  openPageTovar(item: string) {
-    this.router.navigate(['tovar'], { queryParams: { "id": item } })
+  openPageTovar(item: HTMLSpanElement) {
+    this.router.navigate(['tovar'], { queryParams: { "id": item.textContent } })
   }
   checkisEmptyArr(arr: string[]): boolean | void {
 
