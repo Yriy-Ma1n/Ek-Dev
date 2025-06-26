@@ -3,10 +3,11 @@ import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.c
 import { AndminPasswordComponent } from './andmin-password/andmin-password.component';
 import { NgIf } from '@angular/common';
 import { CreateTovarComponent } from './create-tovar/create-tovar.component';
+import { TovarListComponent } from './tovar-list/tovar-list.component';
 
 @Component({
   selector: 'app-admin-page',
-  imports: [CreateTovarComponent, HeaderBarComponent, AndminPasswordComponent, NgIf],
+  imports: [TovarListComponent, CreateTovarComponent, HeaderBarComponent, AndminPasswordComponent, NgIf],
   templateUrl: './admin-page.component.html',
   styleUrl: './admin-page.component.css'
 })

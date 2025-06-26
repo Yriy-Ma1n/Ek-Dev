@@ -1,0 +1,78 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.cart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 0 4px 0 #000;
+    border-radius: 8px;
+    padding: 10px 20px;
+    position: relative;
+}
+img{
+    width: 200px;
+    height: 200px;
+}
+h2{
+    margin: 0;
+    font-size: 23px;
+    font-family: Proxima Soft;
+}
+svg{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    transition: 300ms;
+}
+svg:hover{
+    fill: red;
+}
+
+.confirmation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 8px;
+    width: 300px;
+    padding: 10px 25px;
+    background-color: var(--accent-color-blue);
+    position: fixed;
+    right: calc(50% - 175px);
+    top: calc(50% - 44.2px);
+}
+.confirmation h2{
+    font-size: 20px;
+    color: #fff;
+}
+.confirmation button{
+    background-color: var(--accent-color-orange);
+    color: #fff;
+    border: 0;
+    outline: 0;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: 300ms;
+}
+.confirmation button:nth-child(2):hover{
+    background-color: #f91313;
+}
+.confirmation button:nth-child(1):hover{
+    background-color: #08a4ec;
+}
+.btn-case{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}

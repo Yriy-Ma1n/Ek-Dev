@@ -1,5 +1,7 @@
 import * as path from "path";
 import type { LaptopItem } from "./Types/LapTopItem-type";
+import { error } from "console";
+import { ObjectId } from "mongodb";
 const express = require('express');
 const cors = require('cors');
 const { MongoClient } = require('mongodb');
@@ -16,9 +18,9 @@ const client = new MongoClient(uri)
 app.use(cors());
 
 //sharing bundle
-// app.use(express.static("public/browser"))
+app.use(express.static("public/browser"))
 
-
+app.use(express.json())
 let dbSave;
 async function connect() {
     try {
@@ -99,6 +101,65 @@ app.get('/adminpass', async (req, res)=>{
     res.send(getAdminPass)
 
 })
+
+app.post('/addProduct', async (req, res) => {
+ if (!req.body) {
+        res.status(400).json({
+            error: 'Bad Request',
+            message: 'something wrong with body'
+        })
+        return
+    }
+    const body = req.body
+
+    if (typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof(body.description) === 'object') {
+        console.log('all field')
+        const collectionPopular = await dbSave.collection('PopularModel')
+        const collectionAllTovar = await dbSave.collection('AllTovar')
+        const collectionAdmin = await dbSave.collection('AdminAdded')
+
+        const result = await collectionPopular.insertOne(req.body)
+        await collectionAllTovar.insertOne(req.body)
+        await collectionAdmin.insertOne(req.body)
+        res.send(result)
+    }else{
+        console.log('bad')
+         res.status(400).json({
+            error: 'Bad Request',
+            message: 'should to be 4 field, img,name,cost,description and all field string'
+        });
+    }
+})
+
+app.delete('/DeleteProduct', async (req, res)=>{
+
+    const body = req.body
+    
+    if(!body.id){
+        res.status(400).json({
+            error:'Bad Request',
+            message:"You have to put id product"
+        })
+        return 
+    }
+    const collectionPopular = await dbSave.collection('PopularModel')
+    const collectionAllTovar = await dbSave.collection('AllTovar')
+    const collectionAdmin = await dbSave.collection("AdminAdded")
+
+    const rightId = new ObjectId(body.id)
+    await collectionAllTovar.deleteOne({_id:rightId})
+    await collectionPopular.deleteOne({_id:rightId})
+    await collectionAdmin.deleteOne({_id:rightId})
+
+    res.send({status:"Everything okay"})
+})
+app.get('/adminTovar', async (req, res)=>{
+        const collectionAdmin = await dbSave.collection('AdminAdded').find().toArray()
+       
+        res.send(collectionAdmin)
+   
+})
+  
 // sharing bundle
 
 // const indexPath = path.resolve(__dirname, "public/browser/index.html")
@@ -107,10 +168,8 @@ app.get('/adminpass', async (req, res)=>{
 //     res.sendFile(indexPath)
 // });
 
-// app.get("*", (req, res) => {
-//     res.sendFile(indexPath)
-// });
 
-// app.listen(PORT, () => {
-//     console.log(`Server was started on port ${PORT}`);
-// });
+
+app.listen(PORT, () => {
+    console.log(`Server was started on port ${PORT}`);
+});

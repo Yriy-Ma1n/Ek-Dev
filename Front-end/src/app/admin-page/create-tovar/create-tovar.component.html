@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Створіть Свій Товар</h1>
+    <h1 style="font-family: Proxima Soft;">Створіть Свій Товар</h1>
     <form [formGroup]="form">
         <div>
             <p style="font-size: 19px;">Назва Товару</p>
@@ -19,7 +19,7 @@
             <p style="font-size: 19px;">URL Товару</p>
             <input [ngClass]="{
                 'red-border' : inputNgUrl
-            }" formControlName="inputUrl" #urlTovar class="url-tovar" type="text">
+            }" #urlTovar formControlName="inputImg" class="url-tovar" type="text">
             <p *ngIf="inputNgUrl" class="err">Url вказано не коректно</p>
         </div>
         <div>
