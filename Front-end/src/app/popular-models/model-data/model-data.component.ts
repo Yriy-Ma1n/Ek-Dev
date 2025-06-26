@@ -57,6 +57,7 @@ export class ModelDataComponent {
   }
   showInp() {
     this.show = !this.show
+    
   }
   filteredItem(event:Event){
     const input = (event.currentTarget as HTMLInputElement).value
