@@ -1,4 +1,4 @@
-<div class="main-container">
+<div [style.overflow]="modal ? 'hidden' : 'auto'"  class="main-container">
     <div *ngIf="modal" class="modal">
         <app-andmin-password (inputEmiter)="inputValueBul($event)"></app-andmin-password>
     </div>

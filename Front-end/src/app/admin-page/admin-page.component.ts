@@ -16,11 +16,9 @@ export class AdminPageComponent {
   modal: boolean = true;
   constructor(){
     this.modal = true;
-    blockingScrol(this.modal);
   }
   @Input()
   inputValueBul(event:boolean){
     this.modal = event;
-    blockingScrol(this.modal);
   };
 }
