@@ -319,3 +319,8 @@
 .none {
     display: none;
 }
+@media (max-width:1220px) {
+    .container-card{
+        width: 950px;
+    }
+}

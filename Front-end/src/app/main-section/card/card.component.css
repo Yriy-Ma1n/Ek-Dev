@@ -65,3 +65,13 @@
     height: 1px;
     opacity: 0.5;
 }
+@media (max-width:1372px) {
+    .main-container-card{
+        grid-template-columns: 340px 340px 340px
+    }
+}
+@media (max-width:1122px) {
+     .main-container-card{
+        grid-template-columns: 340px 340px
+    }
+}
