@@ -4,6 +4,7 @@ import { AndminPasswordComponent } from './andmin-password/andmin-password.compo
 import { NgIf } from '@angular/common';
 import { CreateTovarComponent } from './create-tovar/create-tovar.component';
 import { TovarListComponent } from './tovar-list/tovar-list.component';
+import { blockingScrol } from '../../blockingScrolFunction';
 
 @Component({
   selector: 'app-admin-page',
@@ -15,9 +16,11 @@ export class AdminPageComponent {
   modal: boolean = true;
   constructor(){
     this.modal = true;
+    blockingScrol(this.modal);
   }
   @Input()
   inputValueBul(event:boolean){
     this.modal = event;
+    blockingScrol(this.modal);
   };
 }

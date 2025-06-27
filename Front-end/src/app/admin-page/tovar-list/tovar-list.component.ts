@@ -2,6 +2,7 @@ import { Component, inject, } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { NgFor, NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { blockingScrol } from '../../../blockingScrolFunction';
 
 @Component({
   selector: 'app-tovar-list',
@@ -20,13 +21,6 @@ export class TovarListComponent {
   }
   
   confirmationNgIf = false;
-  blockingScrol(){
-    if(this.confirmationNgIf){
-      return document.body.style.overflowY = "hidden";
-    }else{
-      return document.body.style.overflowY = "auto";
-    }
-  }
 
   deleteItem(event:Event) {
     this.confirmationNgIf = true;
@@ -36,7 +30,7 @@ export class TovarListComponent {
     if(item){
       this.element = item.getAttribute('id')!
     }
-      this.blockingScrol();
+      blockingScrol(this.confirmationNgIf);
   }
   async delete(){
     const ItemId = this.element
@@ -46,11 +40,11 @@ export class TovarListComponent {
   }
   refusal(){
     this.confirmationNgIf = false;
-    this.blockingScrol();
+    blockingScrol(this.confirmationNgIf);
   }
   agreement(){
     this.confirmationNgIf = false;
     this.delete();
-    this.blockingScrol()
+    blockingScrol(this.confirmationNgIf);
   }
 }

@@ -14,8 +14,20 @@
     backdrop-filter: blur(1.5rem);
 }
 .container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
     padding: 0 20px;
 }
 app-tovar-list{
     margin: 20px;
+}
+.flex-conteiner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+app-create-tovar{
+    width: 40%;
 }
