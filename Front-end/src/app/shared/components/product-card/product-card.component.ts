@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject, Input, SimpleChanges } from '@angular/core';
 import { characteristic } from '../../types/characteristics-type';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-card',
@@ -14,13 +15,14 @@ export class ProductCardComponent {
   @Input() data: characteristic[] = []
   randomCounts: number[] = [0, 0, 0, 0, 0, 0]
   router = inject(Router)
-
+  title = inject(Title)
 
   constructor() {
     this.randomCounts = this.randomCounts.map((item) => item = Math.floor(Math.random() * 70))
   }
   openPageTovar(item: HTMLSpanElement) {
     this.router.navigate(['tovar'], { queryParams: { "id": item.textContent } })
+    this.title.setTitle(item.textContent!)
   }
   checkisEmptyArr(arr: string[]): boolean | void {
 

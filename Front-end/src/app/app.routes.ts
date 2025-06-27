@@ -27,7 +27,7 @@ export const routes: Routes = [
    {
     path:'tovar',
     component:ProductCardInnerComponent,
-    title:'tovar'
+   
   },
   {
     path: 'admin',
