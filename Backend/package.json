@@ -16,6 +16,7 @@
     "global": "^4.4.0",
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.2",
+    "telegraf": "^4.16.3",
     "tsc": "^2.0.4",
     "typescript": "^5.8.3"
   },
