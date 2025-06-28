@@ -16,26 +16,39 @@ export class CardTovarComponent {
   @Input() price: number = 0;
   @Input() name: string = '';
   @Input() src: string = '';
-  
+
 
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['count'].currentValue < 1) return
-    this.price *= changes['count'].currentValue
-    this.constPrice = changes['price'].currentValue
-    console.log(changes)
+     if (changes['price']) {
+      this.constPrice = changes['price'].currentValue
+
+    }
     
+    this.price = this.constPrice * changes['count'].currentValue
+   
+
   }
 
   constPrice: number = 0
 
-  plusButton(element: HTMLElement) {
-    this.count += 1
+  constructor(){
+    setInterval(() => {
+      console.log(this.price)
+    }, 1000);
+  }
 
+  plusButton(element: HTMLElement) {
+
+    this.count += 1
+ 
     this.price = this.constPrice * this.count
+
 
     this.productChange.changeQuantityPlus = String(element.textContent)
 
+    
   }
   minusButton(element: HTMLElement) {
 
@@ -48,7 +61,7 @@ export class CardTovarComponent {
 
   }
 
-  deleteItem(name:HTMLHeadingElement){
+  deleteItem(name: HTMLHeadingElement) {
     this.productChange.clearOnItem(name.textContent!)
     console.log(this.productChange)
   }

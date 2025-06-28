@@ -6,13 +6,15 @@
 </p>
 
 <div class="confirmation-backdrop" *ngIf="Showconfirmation">
+    
     <div class="confirmation">
         <h1>Введіть контакти</h1>
+        <p class="close" (click)="closeConfirmation()">×</p>
         <form class="form-order" [formGroup]="dataForm">
             <label for="name">Введіть ПІБ:</label>
             <input type="text" id="name" class="name" formControlName="name">
             <label for="number">Введіть номер телефону:</label>
-            <input type="number" id="number" class="number" formControlName="number">
+            <input type="text" id="number" class="number" formControlName="number">
             <input type="button" value="Оформити покупку" class="send" (click)="buyCard()">
         </form>
         <p class="error" *ngIf="!dataForm.valid">Щось не так</p>

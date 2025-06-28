@@ -116,8 +116,16 @@
     height: 350px;
     background-color: rgb(38, 44, 49);
     border-radius: 20px;
+    position: relative;
 }
-
+.close{
+    position: absolute;
+    right: 10px;
+    top:0px;
+    font-size: 45px;
+    margin: 0;
+    cursor: pointer;
+}
 .confirmation h1 {
     color: white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -162,7 +170,9 @@ label {
     width: 100%;
 
 }
-
+.ng-invalid:not(form){
+    border: 1px solid red;
+}
 @media (max-width:1536px) {
     .container-tovar {
 

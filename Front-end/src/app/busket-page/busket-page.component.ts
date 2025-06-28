@@ -5,6 +5,7 @@ import { CardService } from '../core/services/card.service';
 import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.component';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { nameValidator } from './name.name.validators.directive';
 
 @Component({
   selector: 'app-busket-page',
@@ -27,8 +28,8 @@ export class BusketPageComponent {
   telNum: string = ''
 
   dataForm = new FormGroup({
-    name: new FormControl("", [Validators.required]),
-    number: new FormControl("", [Validators.required])
+    name: new FormControl("", [Validators.required, nameValidator()]),
+    number: new FormControl("", [Validators.required, Validators.minLength(13), Validators.pattern(/^\+?\d+$/)])
   })
 
   clearCard() {
@@ -66,6 +67,9 @@ export class BusketPageComponent {
   Товари:
 ${this.product.reduce((akk, item, i) => akk += `${i + 1}. ${item.name} (x${item.quantity}) \n`, '')}
 `
+  }
+  closeConfirmation(){
+    this.Showconfirmation = false
   }
 
 }
