@@ -39,23 +39,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var mongodb_1 = require("mongodb");
 var express = require('express');
 var cors = require('cors');
+var User = require("./models/user.js");
 var MongoClient = require('mongodb').MongoClient;
 var Telegraf = require("telegraf").Telegraf;
 require('dotenv').config();
 var app = express();
 var PORT = process.env.PORT;
 var uri = process.env.MONGO_URL;
+var userUri = process.env.USER_URI;
 var client = new MongoClient(uri);
 var ChatId = process.env.ChatId;
-var bot = new Telegraf(process.env.BotId);
+// const bot = new Telegraf(process.env.BotId)
 app.use(cors());
 //sharing bundle
 app.use(express.static("public/browser"));
 app.use(express.json());
 var ProductSave;
-bot.start(function (ctx) {
-    ctx.reply("Welcome to E-Katalog-Mini");
-});
+var userSave;
+// bot.start((ctx) => {
+//     ctx.reply(`Welcome to E-Katalog-Mini`)
+// })
 function connect() {
     return __awaiter(this, void 0, void 0, function () {
         var err_1;
@@ -67,7 +70,7 @@ function connect() {
                 case 1:
                     _a.sent();
                     ProductSave = client.db("Product");
-                    ChatId = client.db("ChatIdDates");
+                    userSave = client.db("UserData");
                     return [3 /*break*/, 3];
                 case 2:
                     err_1 = _a.sent();
@@ -79,6 +82,29 @@ function connect() {
     });
 }
 connect();
+app.post('/register', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, name, password, userCollection, finded;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _a = req.body, name = _a.name, password = _a.password;
+                return [4 /*yield*/, userSave.collection("Users")];
+            case 1:
+                userCollection = _b.sent();
+                return [4 /*yield*/, userCollection.findOne({ name: name })];
+            case 2:
+                finded = _b.sent();
+                if (finded) {
+                    res.status(403).json({ error: "login already exist" });
+                }
+                else {
+                    res.status(200).json({ okay: true });
+                    userCollection.insertOne({ name: name, password: password });
+                }
+                return [2 /*return*/];
+        }
+    });
+}); });
 app.get('/products', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var page, limit, products;
     return __generator(this, function (_a) {
@@ -285,16 +311,15 @@ app.get('/adminTovar', function (req, res) { return __awaiter(void 0, void 0, vo
         }
     });
 }); });
-app.post('/Message', function (req, res, next) {
-    try {
-        bot.telegram.sendMessage(process.env.ChatId, "\uD83D\uDCE6 \u041D\u043E\u0432\u0435 \u0437\u0430\u043C\u043E\u0432\u043B\u0435\u043D\u043D\u044F \u0443\u0441\u043F\u0456\u0448\u043D\u043E \u0441\u0442\u0432\u043E\u0440\u0435\u043D\u043E! \u2705  ".concat(req.body.message));
-    }
-    catch (error) {
-        console.log(error);
-    }
-    res.send({ response: 'Message was sended' });
-});
-bot.launch();
+// app.post('/Message', (req, res, next) => {
+//     try{
+//         bot.telegram.sendMessage(process.env.ChatId, `📦 Нове замовлення успішно створено! ✅  ${req.body.message}`)
+//     }catch(error){
+//         console.log(error)
+//     }
+//     res.send({response:'Message was sended'})
+// })
+// bot.launch()
 // sharing bundle
 // const indexPath = path.resolve(__dirname, "public/browser/index.html")
 // app.use((req, res) => {

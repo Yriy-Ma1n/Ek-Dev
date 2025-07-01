@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.component';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-sing-in-page',
@@ -11,6 +12,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class SingInPageComponent {
   router = inject(Router)
+  http = inject(HttpClient)
 
   logInForm = new FormGroup({
     name:new FormControl("", [Validators.required]),
@@ -20,5 +22,6 @@ export class SingInPageComponent {
   NavigateToRegister(){
     this.router.navigate(['/Register'])
   }
+ 
 
 }

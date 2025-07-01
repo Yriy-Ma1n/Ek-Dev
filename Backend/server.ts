@@ -1,19 +1,23 @@
+import { error } from "console";
 import type { LaptopItem } from "./Types/LapTopItem-type";
 import { ObjectId } from "mongodb";
 const express = require('express');
 const cors = require('cors');
+const User = require("./models/user.js")
 const { MongoClient } = require('mongodb');
-const { Telegraf  } = require("telegraf");
+const { Telegraf } = require("telegraf");
 require('dotenv').config();
 
 const app = express();
+
 const PORT = process.env.PORT;
 const uri = process.env.MONGO_URL
-const client = new MongoClient(uri)
+const userUri = process.env.USER_URI
 
+const client = new MongoClient(uri)
 let ChatId = process.env.ChatId
 
-const bot = new Telegraf(process.env.BotId)
+// const bot = new Telegraf(process.env.BotId)
 
 
 app.use(cors());
@@ -23,17 +27,19 @@ app.use(express.static("public/browser"))
 app.use(express.json())
 
 let ProductSave;
+let userSave
 
 
-bot.start((ctx) => {
-    ctx.reply(`Welcome to E-Katalog-Mini`)
-})
+// bot.start((ctx) => {
+//     ctx.reply(`Welcome to E-Katalog-Mini`)
+// })
 
 async function connect() {
     try {
         await client.connect()
         ProductSave = client.db("Product")
-        ChatId = client.db("ChatIdDates")
+
+        userSave = client.db("UserData")
     } catch (err) {
         console.log(err)
     }
@@ -41,7 +47,17 @@ async function connect() {
 connect()
 
 
-
+app.post('/register', async (req, res) => {
+    const { name, password } = req.body
+    const userCollection = await userSave.collection("Users")
+    const finded = await userCollection.findOne({ name })
+    if (finded) {
+        res.status(403).json({ error: "login already exist" })
+    } else {
+        res.status(200).json({ okay: true })
+        userCollection.insertOne({ name: name, password: password })
+    }
+})
 
 app.get('/products', async (req, res) => {
     const page = parseInt(req.query.page) || 0
@@ -163,17 +179,17 @@ app.get('/adminTovar', async (req, res) => {
     res.send(collectionAdmin)
 
 })
-app.post('/Message', (req, res, next) => {
- 
-    try{
-        bot.telegram.sendMessage(process.env.ChatId, `📦 Нове замовлення успішно створено! ✅  ${req.body.message}`)
-    }catch(error){
-        console.log(error)
-    }
+// app.post('/Message', (req, res, next) => {
 
-    res.send({response:'Message was sended'})
-})
-bot.launch()
+//     try{
+//         bot.telegram.sendMessage(process.env.ChatId, `📦 Нове замовлення успішно створено! ✅  ${req.body.message}`)
+//     }catch(error){
+//         console.log(error)
+//     }
+
+//     res.send({response:'Message was sended'})
+// })
+// bot.launch()
 
 // sharing bundle
 

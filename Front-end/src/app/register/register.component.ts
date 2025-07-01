@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.component';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +12,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class RegisterComponent {
   router = inject(Router)
+
+  http = inject(HttpClient)
 
   registerForm = new FormGroup({
     name:new FormControl("", [Validators.required, Validators.minLength(4), Validators.maxLength(12)]),
@@ -22,12 +25,17 @@ export class RegisterComponent {
     this.router.navigate(['/SingIn'])
   }
   
-  checkFormError(){
-  }
 
-  register(){
-    if(this.registerForm.valid){
-      console.log('register in process...')
+
+   register(name:HTMLInputElement, password:HTMLInputElement){
+    if(!this.registerForm.valid){
+      return
     }
+
+      const data = {
+      name:name.value,
+      password:password.value
+    }
+    this.http.post("http://localhost:5500/register", {name:"omg G", password:"12222"}).subscribe(data=>console.log(data));
   }
 }
