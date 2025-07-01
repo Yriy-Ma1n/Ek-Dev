@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.component';
 import { Router } from '@angular/router';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sing-in-page',
@@ -13,8 +13,8 @@ export class SingInPageComponent {
   router = inject(Router)
 
   logInForm = new FormGroup({
-    name:new FormControl(),
-    password:new FormControl()
+    name:new FormControl("", [Validators.required]),
+    password:new FormControl("", [Validators.required])
   })
 
   NavigateToRegister(){
