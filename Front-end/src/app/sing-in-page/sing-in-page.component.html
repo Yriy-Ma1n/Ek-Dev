@@ -1,0 +1,15 @@
+<app-header-bar></app-header-bar>
+<div class="login-container">
+  <form class="login-form" [fromGroup]="logInForm">
+    <h2>Вхід до особистого кабінету</h2>
+    <label for="login">Логін</label>
+    <input type="text" id="login" name="login" placeholder="Ваш логін" required formControlName="name">
+    
+    <label for="password">Пароль</label>
+    <input type="password" id="password" name="password" placeholder="Ваш пароль" required formControlName="password">
+ 
+    <div class="haventAccount">У вас немає ще облігового запису? <span class="Register" (click)="NavigateToRegister()">Реєстрація</span></div> 
+    
+    <button type="submit" class="btn-cta">Увійти</button>
+  </form>
+</div>

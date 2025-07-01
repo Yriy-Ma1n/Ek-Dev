@@ -1,0 +1,83 @@
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: #f5f5f5;
+  min-height: calc(100vh - 80px);
+}
+
+.register-form {
+  background: white;
+  width: 400px;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.register-form h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+}
+
+.register-form label {
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.register-form input {
+  height: 44px;
+  padding: 0 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.register-form input:focus {
+  outline: none;
+  border-color: var(--accent-color-orange);
+  box-shadow: 0 0 4px rgba(244, 128, 32, 0.4);
+}
+.LogIn{
+    color:var(--accent-color-blue); 
+    cursor: pointer;
+}
+.haveAccount{
+    margin-top: 10px;
+    margin-left: 5px;;
+}
+.btn-cta {
+  margin-top: 24px;
+  padding: 12px 0;
+  font-size: 1rem;
+  color: #fff;
+  background-color: var(--accent-color-orange);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-cta:hover {
+  background-color: var(--acent-color-orange-hover);
+}
+
+.btn-cta:active {
+  transform: scale(0.98);
+}
+.ng-invalid:not(form){
+    border: 1px solid rgb(255, 103, 103) !important;
+}
+.ng-valid:not(form){
+    border: 1px solid rgb(151, 255, 103) !important;
+
+}

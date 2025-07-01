@@ -1,0 +1,14 @@
+.container-sing{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.button-singin{
+    background-color: transparent;
+    font-size: 20px;
+    border: none;
+    color:var(--opacity-color-gray);
+    cursor: pointer;
+}
