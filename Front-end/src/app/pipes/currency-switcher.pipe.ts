@@ -5,19 +5,20 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CurrencySwitcherPipe implements PipeTransform {
 
-  transform(value: number, currency: string): string {
+  transform(value: string, currency: string): string {
     if(!value){
       return '0';
     }
 
     let formattedValue = ''
+    let num = Number(value.replace(' ',''))
 
     if(currency === "USD"){
-      formattedValue = `$${(value / 41.85).toFixed(2)}`;
+      formattedValue = `${(num / 41.85).toFixed(2)}$`;
     }else if(currency === "EUR"){
-      formattedValue = `€${(value / 49.43).toFixed(2)}`;
-    }else if(currency = "UAH"){
-      formattedValue = `${value.toFixed(2)} ₴`;
+      formattedValue = `${(num / 49.43).toFixed(2)}€`;
+    }else if(currency === "UAH"){
+      formattedValue = `${num.toFixed(0)} ₴`;
     }
 
     return formattedValue;

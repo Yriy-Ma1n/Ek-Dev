@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CurrencySwitcherPipe } from '../../pipes/currency-switcher.pipe';
+import { CurrencySwitcherPipe } from '../pipes/currency-switcher.pipe';
 
 @Component({
   selector: 'app-change-currency',
@@ -30,6 +30,7 @@ export class ChangeCurrencyComponent {
   getCurrencu(event: HTMLElement){
   localStorage.setItem('currencu', event.textContent!)
   this.CurrencuValue = localStorage.getItem('currencu')!;
+  location.reload();
   this.transformArrow = true;
   this.onClick();
  }

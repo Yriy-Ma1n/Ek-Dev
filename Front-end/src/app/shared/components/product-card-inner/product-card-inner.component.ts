@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 import { LaptopItem } from '../../types/LapTopItem-type';
 import type { characteristic } from '../../types/characteristics-type';
 import { FooterComponent } from "../../../footer/footer.component";
+import { CurrencySwitcherPipe } from '../../../pipes/currency-switcher.pipe';
 @Component({
   selector: 'app-product-card-inner',
   imports: [
@@ -20,7 +21,8 @@ import { FooterComponent } from "../../../footer/footer.component";
     NgFor,
     NgClass,
     NgIf,
-    FooterComponent
+    FooterComponent,
+    CurrencySwitcherPipe
 ],
   templateUrl: './product-card-inner.component.html',
   styleUrl: './product-card-inner.component.css'
@@ -29,6 +31,7 @@ export class ProductCardInnerComponent {
   router = inject(Router)
   activeRoute = inject(ActivatedRoute)
   CardProduct = inject(CardService)
+  Currency = localStorage.getItem('currencu')!;
 
   http = inject(HttpClient)
   data: any[] = [] //Тут будут все характеристики и описание к товару
