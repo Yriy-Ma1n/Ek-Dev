@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 export class SingInPageComponent {
   router = inject(Router)
   http = inject(HttpClient)
+  pass:string = '1'
 
   logInForm = new FormGroup({
     name:new FormControl("", [Validators.required]),
@@ -24,12 +25,14 @@ export class SingInPageComponent {
   }
   logIn(name:HTMLInputElement, password:HTMLInputElement){
 
-console.log(name.value)
-console.log(password.value)
+    console.log('start')
+    this.http.post<{succes:boolean, user:{name:string, password:string, _id:string}}>(`http://localhost:5500/login`, {name:name.value, password:password.value}).subscribe(data=>{
+      console.log('waiting for a data...')
+      console.log(data); 
+      this.pass = data.user.password
+    })
 
-    // this.http.post(`http://localhost:5500/login`, {name:name.value, password:password.value}).subscribe(data=>console.log(data))
-
-    this.http.get(`http://localhost:5500/omg`).subscribe(data=>console.log(data))
+    // this.http.get(`http://localhost:5500/omg`).subscribe(data=>console.log(data))
   }
 
 }

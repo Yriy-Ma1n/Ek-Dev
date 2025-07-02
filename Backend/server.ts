@@ -6,6 +6,9 @@ const cors = require('cors');
 const User = require("./models/user.js")
 const { MongoClient } = require('mongodb');
 const { Telegraf } = require("telegraf");
+
+const session = require("express-session")
+
 require('dotenv').config();
 
 const app = express();
@@ -25,6 +28,13 @@ app.use(cors());
 //sharing bundle
 app.use(express.static("public/browser"))
 app.use(express.json())
+
+//sesion
+app.use(session({
+    secret: 'e8f3d2f6a9b7c4d1e0a123456789abcd',
+    resave:false,
+    saveUninitialized: false
+}))
 
 let ProductSave;
 let userSave
@@ -59,11 +69,9 @@ app.post('/register', async (req, res) => {
         res.status(200).json({ okay: true })
     }
 })
-app.get('/omg', (req,res)=>{
-    res.send({omg:123})
-})
+
 app.post('/login', async (req, res)=>{
-    console.log(req.body)
+    
     const { name, password } = req.body
     const userCollection = await userSave.collection("Users")
     const finded = await userCollection.findOne({name})
@@ -74,7 +82,14 @@ app.post('/login', async (req, res)=>{
             req.session.user = finded
             req.session.isAuthenticated = true 
             req.session.save()
-            res.json(req.session.user)
+            res.send({
+                succes:true,
+                user:{
+                    name:finded.name,
+                    _id:finded._id,
+                    password:finded.password
+                }
+            })
         }else{
             res.status(403).json({error:'password not equal'})
         }

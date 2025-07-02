@@ -42,6 +42,7 @@ var cors = require('cors');
 var User = require("./models/user.js");
 var MongoClient = require('mongodb').MongoClient;
 var Telegraf = require("telegraf").Telegraf;
+var session = require("express-session");
 require('dotenv').config();
 var app = express();
 var PORT = process.env.PORT;
@@ -54,6 +55,12 @@ app.use(cors());
 //sharing bundle
 app.use(express.static("public/browser"));
 app.use(express.json());
+//sesion
+app.use(session({
+    secret: 'e8f3d2f6a9b7c4d1e0a123456789abcd',
+    resave: false,
+    saveUninitialized: false
+}));
 var ProductSave;
 var userSave;
 // bot.start((ctx) => {
@@ -105,15 +112,11 @@ app.post('/register', function (req, res) { return __awaiter(void 0, void 0, voi
         }
     });
 }); });
-app.get('/omg', function (req, res) {
-    res.send({ omg: 123 });
-});
 app.post('/login', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, name, password, userCollection, finded, areSame;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                console.log(req.body);
                 _a = req.body, name = _a.name, password = _a.password;
                 return [4 /*yield*/, userSave.collection("Users")];
             case 1:
@@ -127,7 +130,14 @@ app.post('/login', function (req, res) { return __awaiter(void 0, void 0, void 0
                         req.session.user = finded;
                         req.session.isAuthenticated = true;
                         req.session.save();
-                        res.json(req.session.user);
+                        res.send({
+                            succes: true,
+                            user: {
+                                name: finded.name,
+                                _id: finded._id,
+                                password: finded.password
+                            }
+                        });
                     }
                     else {
                         res.status(403).json({ error: 'password not equal' });
