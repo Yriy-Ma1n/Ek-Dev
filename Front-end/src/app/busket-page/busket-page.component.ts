@@ -1,12 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { CardTovarComponent } from './card-tovar/card-tovar.component';
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { CardService } from '../core/services/card.service';
 import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.component';
+import { HttpClient } from '@angular/common/http';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { nameValidator } from './name.name.validators.directive';
 
 @Component({
   selector: 'app-busket-page',
-  imports: [CardTovarComponent, NgFor, NgClass, HeaderBarComponent],
+  imports: [CardTovarComponent, NgFor, NgClass, HeaderBarComponent, NgIf, ReactiveFormsModule],
   templateUrl: './busket-page.component.html',
   styleUrl: './busket-page.component.css'
 })
@@ -14,12 +17,20 @@ import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.c
 export class BusketPageComponent {
   cardService = inject(CardService)
   product = this.cardService.GetProduct
-
+  http = inject(HttpClient)
 
   price: number = 0;
   sum: number = 0;
   show: boolean = false
+  Showconfirmation: boolean = false
 
+  name: string = ''
+  telNum: string = ''
+
+  dataForm = new FormGroup({
+    name: new FormControl("", [Validators.required, nameValidator()]),
+    number: new FormControl("", [Validators.required, Validators.minLength(13), Validators.pattern(/^\+?\d+$/)])
+  })
 
   clearCard() {
     this.cardService.clearCard()
@@ -27,9 +38,38 @@ export class BusketPageComponent {
   }
   buyCard() {
     if (this.product.length === 0) return
-    this.clearCard()
+
     this.show = true
+    this.name = this.dataForm.controls.name.value!
+    this.telNum = this.dataForm.controls.number.value!
+
+
     setTimeout(() => this.show = false, 3000)
+
+    this.http.post(`http://localhost:5500/Message`, {
+      message: this.text()
+    }).subscribe(anws => console.log(anws))
+
+    this.Showconfirmation = false
+    this.clearCard()
+
+  }
+  confirmation() {
+    if (this.product.length === 0) return
+    this.Showconfirmation = true
+  }
+  text() {
+    return `
+  Деталі замовлення:
+ - Покупець: ${this.name}
+ - Телефон: ${this.telNum}
+
+  Товари:
+${this.product.reduce((akk, item, i) => akk += `${i + 1}. ${item.name} (x${item.quantity}) \n`, '')}
+`
+  }
+  closeConfirmation(){
+    this.Showconfirmation = false
   }
 
 }

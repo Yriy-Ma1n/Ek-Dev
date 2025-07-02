@@ -7,6 +7,7 @@ import { CardTovarComponent } from "../../busket-page/card-tovar/card-tovar.comp
 import type { characteristic } from '../../shared/types/characteristics-type';
 import { NgIf } from '@angular/common';
 import { FooterComponent } from "../../footer/footer.component";
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-tovar-list',
   imports: [ProductCardComponent, HeaderBarComponent, NgIf, FooterComponent],
@@ -16,6 +17,7 @@ import { FooterComponent } from "../../footer/footer.component";
 export class TovarListComponent {
   http = inject(HttpClient);
   activeRoute = inject(ActivatedRoute);
+  title = inject(Title)
   name: string = '';
   data: characteristic[] = []
 
@@ -23,7 +25,7 @@ export class TovarListComponent {
     this.activeRoute.queryParams.subscribe(params => {
       this.name = params["q"]
       this.http.get<characteristic[]>(`http://localhost:5500/search?q=${this.name}`).subscribe(data => setTimeout(() => {
-       
+        this.title.setTitle(this.name)
         this.data = data
       }))
     })

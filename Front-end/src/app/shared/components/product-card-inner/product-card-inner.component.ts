@@ -11,6 +11,7 @@ import { LaptopItem } from '../../types/LapTopItem-type';
 import type { characteristic } from '../../types/characteristics-type';
 import { FooterComponent } from "../../../footer/footer.component";
 import { CurrencySwitcherPipe } from '../../../pipes/currency-switcher.pipe';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-product-card-inner',
   imports: [
@@ -32,7 +33,7 @@ export class ProductCardInnerComponent {
   activeRoute = inject(ActivatedRoute)
   CardProduct = inject(CardService)
   Currency = localStorage.getItem('currencu')!;
-
+  title = inject(Title)
   http = inject(HttpClient)
   data: any[] = [] //Тут будут все характеристики и описание к товару
   name: string = ''
@@ -42,9 +43,9 @@ export class ProductCardInnerComponent {
 
   constructor() {
     this.activeRoute.queryParams.subscribe(params => {
-      
-      this.http.get<any[]>(`http://localhost:5500/search?q=${params["id"]}`).subscribe(data => {
-        console.log(data)
+      const titleTovar = params["id"]
+      this.http.get<any[]>(`http://localhost:5500/search?q=${titleTovar}`).subscribe(data => {
+
         this.data = []
 
         this.ram = false
@@ -59,6 +60,8 @@ export class ProductCardInnerComponent {
 
         this.id = this.data[0]?._id
         this.comments = JSON.parse(localStorage.getItem(`comment:${this.id}`) || '[]') //Достаем из localStorage комент по id и записываем в comments для рендера
+      
+        this.title.setTitle(titleTovar)
       })
     })
     console.log(this.data)
@@ -96,6 +99,8 @@ export class ProductCardInnerComponent {
     const changedPrice = price.textContent?.replaceAll('грн', '').replaceAll(' ', '')!
 
     this.CardProduct.addProduct = { _id: this.id, name: name.textContent!, price: +changedPrice, quantity: 1, src: photo.src }
+
+ 
 
   }
 

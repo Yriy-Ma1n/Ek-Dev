@@ -40,16 +40,22 @@ var mongodb_1 = require("mongodb");
 var express = require('express');
 var cors = require('cors');
 var MongoClient = require('mongodb').MongoClient;
+var Telegraf = require("telegraf").Telegraf;
 require('dotenv').config();
 var app = express();
 var PORT = process.env.PORT;
 var uri = process.env.MONGO_URL;
 var client = new MongoClient(uri);
+var ChatId = process.env.ChatId;
+var bot = new Telegraf(process.env.BotId);
 app.use(cors());
 //sharing bundle
 app.use(express.static("public/browser"));
 app.use(express.json());
-var dbSave;
+var ProductSave;
+bot.start(function (ctx) {
+    ctx.reply("Welcome to E-Katalog-Mini");
+});
 function connect() {
     return __awaiter(this, void 0, void 0, function () {
         var err_1;
@@ -60,7 +66,8 @@ function connect() {
                     return [4 /*yield*/, client.connect()];
                 case 1:
                     _a.sent();
-                    dbSave = client.db("Product");
+                    ProductSave = client.db("Product");
+                    ChatId = client.db("ChatIdDates");
                     return [3 /*break*/, 3];
                 case 2:
                     err_1 = _a.sent();
@@ -79,7 +86,7 @@ app.get('/products', function (req, res) { return __awaiter(void 0, void 0, void
             case 0:
                 page = parseInt(req.query.page) || 0;
                 limit = parseInt(req.query.limit) || 5;
-                return [4 /*yield*/, dbSave.collection('Product')
+                return [4 /*yield*/, ProductSave.collection('Product')
                         .find()
                         .skip(page * limit)
                         .limit(limit)
@@ -103,7 +110,7 @@ app.get('/PopularModel', function (req, res) { return __awaiter(void 0, void 0, 
             case 0:
                 page = parseInt(req.query.page) || 0;
                 limit = parseInt(req.query.limit) || 5;
-                return [4 /*yield*/, dbSave.collection('PopularModel')
+                return [4 /*yield*/, ProductSave.collection('PopularModel')
                         .find()
                         .skip(page * limit)
                         .limit(limit)
@@ -124,7 +131,7 @@ app.get('/review', function (req, res) { return __awaiter(void 0, void 0, void 0
     var review;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, dbSave.collection('review').find().toArray()];
+            case 0: return [4 /*yield*/, ProductSave.collection('review').find().toArray()];
             case 1:
                 review = _a.sent();
                 res.send(review);
@@ -136,7 +143,7 @@ app.get('/CategoryList', function (req, res) { return __awaiter(void 0, void 0, 
     var CategoryList;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, dbSave.collection('Category-list').find().toArray()];
+            case 0: return [4 /*yield*/, ProductSave.collection('Category-list').find().toArray()];
             case 1:
                 CategoryList = _a.sent();
                 res.send(CategoryList);
@@ -148,7 +155,7 @@ app.get('/Laptop', function (req, res) { return __awaiter(void 0, void 0, void 0
     var LapTopData;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, dbSave.collection('LapTop').find().toArray()];
+            case 0: return [4 /*yield*/, ProductSave.collection('LapTop').find().toArray()];
             case 1:
                 LapTopData = _a.sent();
                 res.send(LapTopData);
@@ -162,8 +169,7 @@ app.get('/search', function (req, res) { return __awaiter(void 0, void 0, void 0
         switch (_a.label) {
             case 0:
                 searchType = req.query.q || '';
-                console.log(searchType);
-                return [4 /*yield*/, dbSave.collection('AllTovar').find({
+                return [4 /*yield*/, ProductSave.collection('AllTovar').find({
                         name: { $regex: searchType, $options: 'i' }
                     }).toArray()];
             case 1:
@@ -177,7 +183,7 @@ app.get('/adminpass', function (req, res) { return __awaiter(void 0, void 0, voi
     var getAdminPass;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, dbSave.collection('AdminPass').find().toArray()];
+            case 0: return [4 /*yield*/, ProductSave.collection('AdminPass').find().toArray()];
             case 1:
                 getAdminPass = _a.sent();
                 res.send(getAdminPass);
@@ -199,14 +205,13 @@ app.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, v
                 }
                 body = req.body;
                 if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'object')) return [3 /*break*/, 7];
-                console.log('all field');
-                return [4 /*yield*/, dbSave.collection('PopularModel')];
+                return [4 /*yield*/, ProductSave.collection('PopularModel')];
             case 1:
                 collectionPopular = _a.sent();
-                return [4 /*yield*/, dbSave.collection('AllTovar')];
+                return [4 /*yield*/, ProductSave.collection('AllTovar')];
             case 2:
                 collectionAllTovar = _a.sent();
-                return [4 /*yield*/, dbSave.collection('AdminAdded')];
+                return [4 /*yield*/, ProductSave.collection('AdminAdded')];
             case 3:
                 collectionAdmin = _a.sent();
                 return [4 /*yield*/, collectionPopular.insertOne(req.body)];
@@ -221,7 +226,6 @@ app.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, v
                 res.send(result);
                 return [3 /*break*/, 8];
             case 7:
-                console.log('bad');
                 res.status(400).json({
                     error: 'Bad Request',
                     message: 'should to be 4 field, img,name,cost,description and all field string'
@@ -244,13 +248,13 @@ app.delete('/DeleteProduct', function (req, res) { return __awaiter(void 0, void
                     });
                     return [2 /*return*/];
                 }
-                return [4 /*yield*/, dbSave.collection('PopularModel')];
+                return [4 /*yield*/, ProductSave.collection('PopularModel')];
             case 1:
                 collectionPopular = _a.sent();
-                return [4 /*yield*/, dbSave.collection('AllTovar')];
+                return [4 /*yield*/, ProductSave.collection('AllTovar')];
             case 2:
                 collectionAllTovar = _a.sent();
-                return [4 /*yield*/, dbSave.collection("AdminAdded")];
+                return [4 /*yield*/, ProductSave.collection("AdminAdded")];
             case 3:
                 collectionAdmin = _a.sent();
                 rightId = new mongodb_1.ObjectId(body.id);
@@ -272,14 +276,25 @@ app.get('/adminTovar', function (req, res) { return __awaiter(void 0, void 0, vo
     var collectionAdmin;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, dbSave.collection('AdminAdded').find().toArray()];
+            case 0: return [4 /*yield*/, ProductSave.collection('AdminAdded').find().toArray()];
             case 1:
                 collectionAdmin = _a.sent();
+                collectionAdmin.insertOne();
                 res.send(collectionAdmin);
                 return [2 /*return*/];
         }
     });
 }); });
+app.post('/Message', function (req, res, next) {
+    try {
+        bot.telegram.sendMessage(process.env.ChatId, "\uD83D\uDCE6 \u041D\u043E\u0432\u0435 \u0437\u0430\u043C\u043E\u0432\u043B\u0435\u043D\u043D\u044F \u0443\u0441\u043F\u0456\u0448\u043D\u043E \u0441\u0442\u0432\u043E\u0440\u0435\u043D\u043E! \u2705  ".concat(req.body.message));
+    }
+    catch (error) {
+        console.log(error);
+    }
+    res.send({ response: 'Message was sended' });
+});
+bot.launch();
 // sharing bundle
 // const indexPath = path.resolve(__dirname, "public/browser/index.html")
 // app.use((req, res) => {
