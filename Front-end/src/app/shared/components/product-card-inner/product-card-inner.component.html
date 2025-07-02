@@ -32,7 +32,7 @@
                     <img *ngFor="let item of data[0]?.secondaryPhoto" src="{{item}}">
                 </div>
                 <div class="price">
-                    <div #priceTovar>{{data[0]?.cost}} грн</div>
+                    <div #priceTovar>{{data[0]?.cost | currencySwitcher:Currency}}</div>
                     <button (click)="buyButton(buyButtonEl, nameTovar, photoTovar, priceTovar)" #buyButtonEl>В корзину</button>
                 </div>
             </div>

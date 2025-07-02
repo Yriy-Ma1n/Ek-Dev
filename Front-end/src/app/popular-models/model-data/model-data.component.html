@@ -5,7 +5,7 @@
       <img [src]="product.img" alt="" class="image-tovar">
     </div>
     <span class="name" #nameTovar>{{product.name}}</span>
-    <p class="price"> від {{ product.cost}} грн.</p>
+    <p class="price"> від {{ product.cost | currencySwitcher:Currency}}</p>
 
   </div>
   <div class="filters">

@@ -3,10 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import type { apiProduct } from '../../shared/types/apiGetProduct';
 import { Router } from '@angular/router';
+import { CurrencySwitcherPipe } from '../../pipes/currency-switcher.pipe';
 
 @Component({
   selector: 'app-model-data',
-  imports: [NgFor, NgClass],
+  imports: [NgFor, NgClass,CurrencySwitcherPipe],
   templateUrl: './model-data.component.html',
   styleUrl: './model-data.component.css'
 })
@@ -21,11 +22,11 @@ export class ModelDataComponent {
   padding: number = 0
   http = inject(HttpClient)
   router = inject(Router)
-  
+  Currency = localStorage.getItem('currencu')!
 
   ngOnInit() {
      this.getPageContent();
-    
+    console.log(this.Currency)
   }
 
 
