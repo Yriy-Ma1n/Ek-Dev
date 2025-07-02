@@ -3,7 +3,7 @@ import { CurrencySwitcherPipe } from '../pipes/currency-switcher.pipe';
 
 @Component({
   selector: 'app-change-currency',
-  imports: [CurrencySwitcherPipe],
+  imports: [],
   templateUrl: './change-currency.component.html',
   styleUrl: './change-currency.component.css'
 })
