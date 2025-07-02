@@ -54,11 +54,34 @@ app.post('/register', async (req, res) => {
     if (finded) {
         res.status(403).json({ error: "login already exist" })
     } else {
-        res.status(200).json({ okay: true })
         userCollection.insertOne({ name: name, password: password })
+
+        res.status(200).json({ okay: true })
     }
 })
+app.get('/omg', (req,res)=>{
+    res.send({omg:123})
+})
+app.post('/login', async (req, res)=>{
+    console.log(req.body)
+    const { name, password } = req.body
+    const userCollection = await userSave.collection("Users")
+    const finded = await userCollection.findOne({name})
 
+    if(finded){
+        const areSame = password === finded.password
+        if(areSame){
+            req.session.user = finded
+            req.session.isAuthenticated = true 
+            req.session.save()
+            res.json(req.session.user)
+        }else{
+            res.status(403).json({error:'password not equal'})
+        }
+    }else{
+        res.status(403).json({error:'nobody finded'})
+    }
+})
 app.get('/products', async (req, res) => {
     const page = parseInt(req.query.page) || 0
     const limit = parseInt(req.query.limit) || 5

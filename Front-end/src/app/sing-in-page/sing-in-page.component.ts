@@ -22,6 +22,14 @@ export class SingInPageComponent {
   NavigateToRegister(){
     this.router.navigate(['/Register'])
   }
- 
+  logIn(name:HTMLInputElement, password:HTMLInputElement){
+
+console.log(name.value)
+console.log(password.value)
+
+    // this.http.post(`http://localhost:5500/login`, {name:name.value, password:password.value}).subscribe(data=>console.log(data))
+
+    this.http.get(`http://localhost:5500/omg`).subscribe(data=>console.log(data))
+  }
 
 }

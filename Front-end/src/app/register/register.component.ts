@@ -36,6 +36,6 @@ export class RegisterComponent {
       name:name.value,
       password:password.value
     }
-    this.http.post("http://localhost:5500/register", {name:"omg G", password:"12222"}).subscribe(data=>console.log(data));
+    this.http.post("http://localhost:5500/register", data).subscribe(data=>console.log(data));
   }
 }

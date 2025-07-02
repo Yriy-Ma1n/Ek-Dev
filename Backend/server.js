@@ -98,8 +98,43 @@ app.post('/register', function (req, res) { return __awaiter(void 0, void 0, voi
                     res.status(403).json({ error: "login already exist" });
                 }
                 else {
-                    res.status(200).json({ okay: true });
                     userCollection.insertOne({ name: name, password: password });
+                    res.status(200).json({ okay: true });
+                }
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get('/omg', function (req, res) {
+    res.send({ omg: 123 });
+});
+app.post('/login', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, name, password, userCollection, finded, areSame;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                console.log(req.body);
+                _a = req.body, name = _a.name, password = _a.password;
+                return [4 /*yield*/, userSave.collection("Users")];
+            case 1:
+                userCollection = _b.sent();
+                return [4 /*yield*/, userCollection.findOne({ name: name })];
+            case 2:
+                finded = _b.sent();
+                if (finded) {
+                    areSame = password === finded.password;
+                    if (areSame) {
+                        req.session.user = finded;
+                        req.session.isAuthenticated = true;
+                        req.session.save();
+                        res.json(req.session.user);
+                    }
+                    else {
+                        res.status(403).json({ error: 'password not equal' });
+                    }
+                }
+                else {
+                    res.status(403).json({ error: 'nobody finded' });
                 }
                 return [2 /*return*/];
         }
