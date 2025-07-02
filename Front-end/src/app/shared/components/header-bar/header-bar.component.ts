@@ -6,10 +6,12 @@ import { BasketComponent } from '../../../basket/basket.component';
 import { CategoryComponent } from '../../../Header/category/category.component';
 import { SingInComponent } from '../../../sing-in/sing-in.component';
 import { ChangeCurrencyComponent } from '../../../change-currency/change-currency.component';
+import { AppToggleThemeComponent } from '../../../Header/app-toggle-theme/app-toggle-theme.component';
+
 
 @Component({
   selector: 'app-header-bar',
-  imports: [LogoComponent, SearchComponent, SinginAdminComponent, BasketComponent, CategoryComponent, SingInComponent, ChangeCurrencyComponent],
+  imports: [LogoComponent, SearchComponent, SinginAdminComponent, BasketComponent, CategoryComponent, SingInComponent, ChangeCurrencyComponent, AppToggleThemeComponent ],
   templateUrl: './header-bar.component.html',
   styleUrl: './header-bar.component.css'
 })
