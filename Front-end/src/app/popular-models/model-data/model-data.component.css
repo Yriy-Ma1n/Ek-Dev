@@ -110,11 +110,15 @@ app-button-arrow:hover {
   background: none;
   border: transparent;
 }
-
+.arrow{
+  cursor: pointer;
+}
 .arrow:hover {
   transform: scale(1.1);
 }
-
+.none{
+  display: none;
+}
 @media (max-width: 1023px) {
   .product-grid {
   overflow: hidden;

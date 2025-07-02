@@ -1,0 +1,81 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: relative;
+}
+.btn{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    cursor: pointer;
+}
+p{
+    margin: 0;
+}
+.btn p{
+    text-decoration: none;
+    color: #fff;
+    font-family: "Proxima Soft";
+    font-weight: 700;
+    font-size: 21px;
+}
+.btn-arrow-up{
+    transition: 0.3s;
+}
+.mini-window-language{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid rgb(187, 187, 187);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: 0.3s;
+    position: absolute;
+    top: 26px;
+    z-index: 4;
+}
+.mini-window-language.open{
+    animation: 0.2s linear 0s running slide;
+}
+.mini-window-language.close {
+    animation: 0.2s linear 0s running slide-off;
+}
+@keyframes slide{
+    from{
+        height: 0px;
+    }
+
+    to{
+        height: 68px;
+    }
+}
+@keyframes slide-off{
+    from{
+        height: 68px;
+    }
+
+    to{
+        height: 0px;
+    }
+}
+.mini-window-language p {
+    text-decoration: none;
+    text-align: center;
+    color: rgb(102, 102, 102);
+    padding: 4px 20px;
+    font-family: "Proxima Soft";
+    font-size: 16px;
+}
+.mini-window-language p:hover{
+    background: rgb(233, 233, 233);
+}

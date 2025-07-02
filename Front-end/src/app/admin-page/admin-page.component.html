@@ -1,11 +1,13 @@
-<div class="main-container">
+<div [style.overflow]="modal ? 'hidden' : 'auto'"  class="main-container">
     <div *ngIf="modal" class="modal">
         <app-andmin-password (inputEmiter)="inputValueBul($event)"></app-andmin-password>
     </div>
     <app-header-bar></app-header-bar>
     <div class="container">
         <h1 style="font-family: Proxima Soft;">Панель Адміністратора</h1>
-        <app-create-tovar></app-create-tovar>
+        <div class="flex-conteiner">
+            <app-create-tovar></app-create-tovar>
+        </div>
         <app-tovar-list></app-tovar-list>
     </div>
 </div>

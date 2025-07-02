@@ -8,7 +8,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './card-category.component.css'
 })
 export class CardCategoryComponent {
-    @Input() width:number = 0;
-    @Input() height:number = 0
     @Input() img:string = ''
+
+   
 }

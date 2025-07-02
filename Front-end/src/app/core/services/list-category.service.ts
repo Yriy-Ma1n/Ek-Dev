@@ -169,7 +169,7 @@ export class ListCategoryService {
   private arrDo = [
     {
       name: 'TV',
-      do: ()=>{console.log('Телевизор'); this.NavigateToPage('Телевизор')}
+      do: ()=>{console.log('Телевизор'); this.NavigateToPage('Телевізор')}
     },
     {
       name: 'TabletAccessories',
@@ -185,7 +185,7 @@ export class ListCategoryService {
     },
     {
       name: 'Fridge',
-       do: ()=>{console.log('Холодильник'); this.NavigateToPage('Холодильник')}
+       do: ()=>{console.log('Холодильник'); this.NavigateToPage('Холодільник')}
     }
   ]
   private changeData = [

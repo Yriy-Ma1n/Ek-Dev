@@ -6,33 +6,46 @@
     gap: 8px;
 }
 .cart{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    box-shadow: 0 0 4px 0 #000;
-    border-radius: 8px;
-    padding: 10px 20px;
-    position: relative;
+  position: relative;
+  width: 180px;
+  padding: 15px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: 0.3s;
+}
+.cart:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 img{
-    width: 200px;
-    height: 200px;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
 }
 h2{
-    margin: 0;
-    font-size: 23px;
-    font-family: Proxima Soft;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  font-family: Proxima Soft;
 }
 svg{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    cursor: pointer;
-    transition: 300ms;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+  transition: 0.2s;
 }
 svg:hover{
+    color: #ff3b3b;
+    transform: scale(1.2);
     fill: red;
 }
 
@@ -42,37 +55,47 @@ svg:hover{
     align-items: center;
     justify-content: center;
     gap: 10px;
-    border-radius: 8px;
-    width: 300px;
-    padding: 10px 25px;
-    background-color: var(--accent-color-blue);
     position: fixed;
     right: calc(50% - 175px);
     top: calc(50% - 44.2px);
+    background: #264e9c;
+    color: #fff;
+    padding: 25px 20px;
+    border-radius: 16px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 .confirmation h2{
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
     color: #fff;
 }
 .confirmation button{
-    background-color: var(--accent-color-orange);
-    color: #fff;
-    border: 0;
-    outline: 0;
-    border-radius: 6px;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: 300ms;
+  background: #ff9100;
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 4px 12px rgba(255, 145, 0, 0.3);
 }
 .confirmation button:nth-child(2):hover{
     background-color: #f91313;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 145, 0, 0.4);
 }
 .confirmation button:nth-child(1):hover{
     background-color: #08a4ec;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 145, 0, 0.4);
 }
 .btn-case{
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
 }

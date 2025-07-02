@@ -7,6 +7,8 @@ import { ProductCardInnerComponent } from './shared/components/product-card-inne
 import { TovarListComponent } from './main-section/tovar-list/tovar-list.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AppCategoryListComponent } from './main-section/app-category-list/app-category-list.component';
+import { SingInPageComponent } from './sing-in-page/sing-in-page.component';
+import { RegisterComponent } from './register/register.component';
 
 export const routes: Routes = [
   {
@@ -27,7 +29,7 @@ export const routes: Routes = [
    {
     path:'tovar',
     component:ProductCardInnerComponent,
-    title:'tovar'
+   
   },
   {
     path: 'admin',
@@ -38,6 +40,16 @@ export const routes: Routes = [
      path:'tovarList',
     component:TovarListComponent,
     title:'catagol tovars'
+  },
+  {
+    path:'SingIn',
+    component:SingInPageComponent,
+    title:'SingIn'
+  },
+  {
+    path:'Register',
+    component:RegisterComponent,
+    title:'Register'
   },
   {
     path: '**',

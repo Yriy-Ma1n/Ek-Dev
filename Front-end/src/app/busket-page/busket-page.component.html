@@ -5,8 +5,25 @@
     Покупка успішно оформленна!
 </p>
 
+<div class="confirmation-backdrop" *ngIf="Showconfirmation">
+    
+    <div class="confirmation">
+        <h1>Введіть контакти</h1>
+        <p class="close" (click)="closeConfirmation()">×</p>
+        <form class="form-order" [formGroup]="dataForm">
+            <label for="name">Введіть ПІБ:</label>
+            <input type="text" id="name" class="name" formControlName="name">
+            <label for="number">Введіть номер телефону:</label>
+            <input type="text" id="number" class="number" formControlName="number">
+            <input type="button" value="Оформити покупку" class="send" (click)="buyCard()">
+        </form>
+        <p class="error" *ngIf="!dataForm.valid">Щось не так</p>
+    </div>
+</div>
+
 <div class="container-tovar">
-    <app-card-tovar *ngFor="let item of cardService.GetProduct" [price]="item.price" [name]="item.name" [src]="item.src" [count]="item.quantity"></app-card-tovar>
+    <app-card-tovar *ngFor="let item of cardService.GetProduct" [price]="item.price" [name]="item.name" [src]="item.src"
+        [count]="item.quantity"></app-card-tovar>
 </div>
 
 <div class="clear-button-container">
@@ -16,5 +33,5 @@
 
 <div class="buy-button-container">
     <strong>${{cardService.GetTotalPrice()}}</strong>
-    <button (click)="buyCard()">Оформить покупку</button>
+    <button (click)="confirmation()">Оформить покупку</button>
 </div>

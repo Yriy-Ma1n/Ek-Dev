@@ -7,10 +7,12 @@ footer {
     padding-top: 20px;
     margin-top: 100px;
 }
-.ek-img{
+
+.ek-img {
     width: 100px;
     height: 110px;
 }
+
 .title {
     color: var(--accent-color-blue);
     margin-bottom: 20px;
@@ -18,7 +20,7 @@ footer {
 
 .finded-error {
     width: 300px;
-    color:rgb(105, 105, 105);
+    color: rgb(105, 105, 105);
     margin-top: 30px;
 }
 
@@ -27,12 +29,58 @@ footer {
     flex-direction: column;
     gap: 15px;
     font-size: 18px;
-    
+
 }
 
 li {
     list-style: none;
     cursor: pointer;
-    color:rgb(105, 105, 105);
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+    color: rgb(105, 105, 105);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+
+@media (max-width:1564px) {
+    footer {
+        gap: 50px
+    }
+}
+
+@media (max-width:1340px) {
+    footer {
+        gap: 40px;
+        justify-content: space-around;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+
+    .ek-img {
+        width: 80px;
+        height: 90px;
+    }
+}
+@media (max-width:1040px) {
+    footer {
+        gap: 30px;
+        justify-content: space-around;
+        height: fit-content;
+        padding-bottom: 30px;
+    }
+
+    .title {
+        font-size: 16px;
+        height: fit-content;
+    }
+    li{
+        font-size: 13px;
+        
+    }
+    .ek-img {
+        width: 60px;
+        height: 80px;
+    }
+    .curr{
+        height: fit-content;
+    }
 }
