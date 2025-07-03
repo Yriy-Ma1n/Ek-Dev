@@ -95,10 +95,22 @@ export class ProductCardInnerComponent {
     this.updateUI(true, 'Добавленно в корзину', true, element)
 
     setTimeout(() => this.updateUI(false, 'В корзину', false, element), 1500)
+    console.log(this.Currency);
+    let changedPrice
+    let uahPrise
+    if(this.Currency === "UAH"){
+      changedPrice = price.textContent?.replaceAll('₴', '').replaceAll(' ', '')!;
+      uahPrise = `${(+changedPrice).toFixed(0)}`
+    }else if(this.Currency === "USD"){
+      changedPrice = price.textContent?.replaceAll('$', '').replaceAll(' ', '')!
+      uahPrise = `${(+changedPrice * 41.85).toFixed(2)}`
+    }else if(this.Currency === "EUR"){
+      changedPrice = price.textContent?.replaceAll('€', '').replaceAll(' ', '')!
+      uahPrise = `${(+changedPrice * 49.43).toFixed(2)}`
+    }
 
-    const changedPrice = price.textContent?.replaceAll('грн', '').replaceAll(' ', '')!
 
-    this.CardProduct.addProduct = { _id: this.id, name: name.textContent!, price: +changedPrice, quantity: 1, src: photo.src }
+    this.CardProduct.addProduct = { _id: this.id, name: name.textContent!, price: +uahPrise!, quantity: 1, src: photo.src }
 
  
 

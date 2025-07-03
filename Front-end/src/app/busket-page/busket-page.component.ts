@@ -6,10 +6,11 @@ import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.c
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { nameValidator } from './name.name.validators.directive';
+import { CurrencySwitcherPipe } from '../pipes/currency-switcher.pipe';
 
 @Component({
   selector: 'app-busket-page',
-  imports: [CardTovarComponent, NgFor, NgClass, HeaderBarComponent, NgIf, ReactiveFormsModule],
+  imports: [CardTovarComponent, NgFor, NgClass, HeaderBarComponent, NgIf, ReactiveFormsModule, CurrencySwitcherPipe],
   templateUrl: './busket-page.component.html',
   styleUrl: './busket-page.component.css'
 })
@@ -17,7 +18,8 @@ import { nameValidator } from './name.name.validators.directive';
 export class BusketPageComponent {
   cardService = inject(CardService)
   product = this.cardService.GetProduct
-  http = inject(HttpClient)
+  http = inject(HttpClient);
+  Currency = localStorage.getItem('currencu')!;
 
   price: number = 0;
   sum: number = 0;
@@ -70,6 +72,12 @@ ${this.product.reduce((akk, item, i) => akk += `${i + 1}. ${item.name} (x${item.
   }
   closeConfirmation(){
     this.Showconfirmation = false
+  }
+
+
+
+  constructor(){
+    console.log(this.cardService.GetProduct)
   }
 
 }

@@ -32,6 +32,6 @@
 
 
 <div class="buy-button-container">
-    <strong>${{cardService.GetTotalPrice()}}</strong>
+    <strong>{{cardService.GetTotalPrice()! | currencySwitcher:Currency}}</strong>
     <button (click)="confirmation()">Оформить покупку</button>
 </div>

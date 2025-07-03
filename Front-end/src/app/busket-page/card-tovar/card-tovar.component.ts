@@ -1,43 +1,37 @@
 import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { CardService } from '../../core/services/card.service';
+import { CurrencySwitcherPipe } from '../../pipes/currency-switcher.pipe';
 
 
 @Component({
   selector: 'app-card-tovar',
-  imports: [],
+  imports: [CurrencySwitcherPipe],
   templateUrl: './card-tovar.component.html',
   styleUrl: './card-tovar.component.css'
 })
 export class CardTovarComponent {
-
-  productChange = inject(CardService)
+  productChange = inject(CardService);
+  Currency = localStorage.getItem('currencu')!;
 
   @Input() count: number = 1;
-  @Input() price: number = 0;
   @Input() name: string = '';
+  @Input() price: number = 0;
+  priceString = '';
   @Input() src: string = '';
 
-
-
-  ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges(changes: SimpleChanges) {
     if (changes['count'].currentValue < 1) return
-     if (changes['price']) {
+     if (changes['price']?.currentValue) {
       this.constPrice = changes['price'].currentValue
-
     }
     
     this.price = this.constPrice * changes['count'].currentValue
-   
+    this.priceString = String(this.price);
 
   }
 
-  constPrice: number = 0
+  constPrice: number = 0;
 
-  constructor(){
-    setInterval(() => {
-      console.log(this.price)
-    }, 1000);
-  }
 
   plusButton(element: HTMLElement) {
 
@@ -48,7 +42,7 @@ export class CardTovarComponent {
 
     this.productChange.changeQuantityPlus = String(element.textContent)
 
-    
+    this.priceString = String(this.price)
   }
   minusButton(element: HTMLElement) {
 
@@ -58,6 +52,8 @@ export class CardTovarComponent {
     this.price -= this.constPrice
 
     this.productChange.changeQuantityMinus = String(element.textContent)
+
+    this.priceString = String(this.price);
 
   }
 

@@ -65,7 +65,7 @@ export class CardService {
       total += item.price * item.quantity
     }
 
-    return total
+    return String(total)
   }
 
   clearCard() {
