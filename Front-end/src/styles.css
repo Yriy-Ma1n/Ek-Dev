@@ -9,7 +9,8 @@ body,html{
     --scrollbar-color: #a8a8a8;
     --color-text: #cccccd;
     --accent-color-black: #202124;
-    --opacity-color-gray:#dfdfdfd3
+    --opacity-color-gray:#dfdfdfd3;
+    --footer-bg: rgba(240, 240, 240, 255);
 }
 
 @font-face {
@@ -27,8 +28,11 @@ body,html{
 
 /* Змінні для темної теми */
 .dark-theme {
-  --bg-color: #121212;
-  --text-color:  #a8a8a8;
+  --bg-color:  #202124;
+  --text-color: var(--color-text);
+  --accent-color-blue: #303133;
+  --scrollbar-color: #a8a8a8;
+   --footer-bg: #303133;
 
 }
 
