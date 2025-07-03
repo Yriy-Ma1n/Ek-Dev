@@ -1,0 +1,11 @@
+.theme-toggle-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--text-color);
+      transition: color 0.3s;
+    }
+    svg {
+      display: block;
+    }
