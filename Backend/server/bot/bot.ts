@@ -6,7 +6,7 @@ let ChatId = process.env.ChatId
 
 const bot = new Telegraf(process.env.BotId)
 
-const router = express()
+const router = express.Router()
 
 bot.start((ctx) => {
     ctx.reply(`Welcome to E-Katalog-Mini`)
