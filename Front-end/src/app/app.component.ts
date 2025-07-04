@@ -16,5 +16,10 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   http = inject(HttpClient)
 
+  constructor(){
+    this.http.get("http://localhost:5500/userInAccount",{
+      withCredentials:true
+    })
+  }
 
 }

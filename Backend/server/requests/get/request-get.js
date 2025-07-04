@@ -152,3 +152,10 @@ exports.router.get('/adminTovar', function (req, res) { return __awaiter(void 0,
         }
     });
 }); });
+exports.router.get('/userInAccount', function (req, res) {
+    if (req.session.isAuthenticated) {
+        res.send(req.session.user);
+        return;
+    }
+    res.send({ userInAccount: false });
+});

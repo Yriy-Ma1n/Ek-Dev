@@ -1,5 +1,6 @@
 import { ProductSave } from "../../../server";
 const express = require("express")
+
 export const router = express.Router()
 
 
@@ -68,4 +69,13 @@ router.get('/adminTovar', async (req, res) => {
     const collectionAdmin = await ProductSave.collection('AdminAdded').find().toArray()
     res.send(collectionAdmin)
 
+})
+router.get('/userInAccount', (req, res)=>{
+    if(req.session.isAuthenticated){
+        res.send(req.session.user)
+        return
+    }
+
+    res.send({userInAccount:false})
+    
 })

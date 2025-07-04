@@ -29,8 +29,12 @@ const PORT = process.env.PORT;
 
 const userUri = process.env.USER_URI
 
-
-
+const app = express();
+app.use(cors({
+    origin: 'http://localhost:4200',
+    credentials: true,
+    maxAge:1000 * 60 * 60 * 24
+}));
 async function startServer() {
     try {
         const dbConnect = await connect()
@@ -38,16 +42,20 @@ async function startServer() {
         ProductSave = dbConnect.ProductSave
         userSave = dbConnect.userSave
 
-        const app = express();
 
-        app.use(cors());
+
+
         app.use(express.static("public/browser"))
         app.use(express.json())
-
+        
         app.use(session({
             secret: process.env.secretSession,
             resave: false,
-            saveUninitialized: false
+            saveUninitialized: false,
+            cookie: {
+                secure: false,
+                maxAge: 1000 * 60 * 60
+            }
         }))
 
         app.use('', BotRouter)

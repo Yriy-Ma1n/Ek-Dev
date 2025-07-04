@@ -52,9 +52,15 @@ var session = require("express-session");
 require('dotenv').config();
 var PORT = process.env.PORT;
 var userUri = process.env.USER_URI;
+var app = express();
+app.use(cors({
+    origin: 'http://localhost:4200',
+    credentials: true,
+    maxAge: 1000 * 60 * 60 * 24
+}));
 function startServer() {
     return __awaiter(this, void 0, void 0, function () {
-        var dbConnect, app, e_1;
+        var dbConnect, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -64,14 +70,16 @@ function startServer() {
                     dbConnect = _a.sent();
                     exports.ProductSave = dbConnect.ProductSave;
                     exports.userSave = dbConnect.userSave;
-                    app = express();
-                    app.use(cors());
                     app.use(express.static("public/browser"));
                     app.use(express.json());
                     app.use(session({
                         secret: process.env.secretSession,
                         resave: false,
-                        saveUninitialized: false
+                        saveUninitialized: false,
+                        cookie: {
+                            secure: false,
+                            maxAge: 1000 * 60 * 60
+                        }
                     }));
                     app.use('', bot_1.router);
                     app.use('', login_register_1.router);

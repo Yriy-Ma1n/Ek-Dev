@@ -40,12 +40,17 @@ exports.router = void 0;
 var server_1 = require("../../server");
 var express = require("express");
 exports.router = express.Router();
+var cors = require("cors");
+exports.router.use(cors({
+    origin: 'http://localhost:4200',
+    credentials: true
+}));
 exports.router.post('/register', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, password, userCollection, finded;
+    var _a, name, password, profileImg, userCollection, finded;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _a = req.body, name = _a.name, password = _a.password;
+                _a = req.body, name = _a.name, password = _a.password, profileImg = _a.profileImg;
                 return [4 /*yield*/, server_1.userSave.collection("Users")];
             case 1:
                 userCollection = _b.sent();
@@ -56,7 +61,7 @@ exports.router.post('/register', function (req, res) { return __awaiter(void 0, 
                     res.status(403).json({ error: "login already exist" });
                 }
                 else {
-                    userCollection.insertOne({ name: name, password: password });
+                    userCollection.insertOne({ name: name, password: password, profileImg: profileImg });
                     res.status(200).json({ okay: true });
                 }
                 return [2 /*return*/];
