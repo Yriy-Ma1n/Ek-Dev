@@ -57,7 +57,7 @@ app.use(express.static("public/browser"));
 app.use(express.json());
 //sesion
 app.use(session({
-    secret: 'e8f3d2f6a9b7c4d1e0a123456789abcd',
+    secret: process.env.secretSession,
     resave: false,
     saveUninitialized: false
 }));
