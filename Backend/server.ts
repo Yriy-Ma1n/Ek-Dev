@@ -1,4 +1,5 @@
 import { error } from "console";
+import "./server/bot/bot"
 import type { LaptopItem } from "./Types/LapTopItem-type";
 import { ObjectId } from "mongodb";
 const express = require('express');
@@ -18,9 +19,6 @@ const uri = process.env.MONGO_URL
 const userUri = process.env.USER_URI
 
 const client = new MongoClient(uri)
-let ChatId = process.env.ChatId
-
-// const bot = new Telegraf(process.env.BotId)
 
 
 app.use(cors());
@@ -39,10 +37,6 @@ app.use(session({
 let ProductSave;
 let userSave
 
-
-// bot.start((ctx) => {
-//     ctx.reply(`Welcome to E-Katalog-Mini`)
-// })
 
 async function connect() {
     try {
@@ -217,17 +211,7 @@ app.get('/adminTovar', async (req, res) => {
     res.send(collectionAdmin)
 
 })
-// app.post('/Message', (req, res, next) => {
 
-//     try{
-//         bot.telegram.sendMessage(process.env.ChatId, `📦 Нове замовлення успішно створено! ✅  ${req.body.message}`)
-//     }catch(error){
-//         console.log(error)
-//     }
-
-//     res.send({response:'Message was sended'})
-// })
-// bot.launch()
 
 // sharing bundle
 

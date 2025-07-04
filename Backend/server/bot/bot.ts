@@ -1,5 +1,7 @@
 const { Telegraf } = require("telegraf");
 const express = require("express")
+require('dotenv').config();
+
 let ChatId = process.env.ChatId
 
 const bot = new Telegraf(process.env.BotId)
@@ -11,7 +13,7 @@ bot.start((ctx) => {
 })
 
 app.post('/Message', (req, res, next) => {
-
+    console.log('213')
     try{
         bot.telegram.sendMessage(process.env.ChatId, `📦 Нове замовлення успішно створено! ✅  ${req.body.message}`)
     }catch(error){
