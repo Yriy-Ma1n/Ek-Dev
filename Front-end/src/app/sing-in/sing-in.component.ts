@@ -16,11 +16,13 @@ export class SingInComponent {
   loadSingInPage() {
     this.router.navigate(['/SingIn'])
   }
+  user:{_id:string, name:string, password:string, profileImg:string} = {_id:'', name:'', password:'', profileImg:''}
   constructor() {
     setTimeout(() => {
       if (Object.keys(this.UserInAccountData.TakeUser).length === 0){
         this.UserInAccount = false
       }else{
+        this.user = this.UserInAccountData.TakeUser
         this.UserInAccount = true
       }
         

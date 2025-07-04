@@ -14,7 +14,7 @@ export class UserDataService {
       console.log(data)  
       if (data.name) {
         
-        this.userData = data
+        this.userData = data || null
       }else{
         this.userData = false
       }
@@ -22,6 +22,11 @@ export class UserDataService {
     })
   }
   get TakeUser() {
-    return {...this.userData}
+    return this.userData || {
+      _id:'',
+      name:'',
+      password:'',
+      profileImg:''
+    }
   }
 }
