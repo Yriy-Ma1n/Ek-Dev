@@ -1,6 +1,6 @@
 import { error } from "console";
 const botRout = require("./server/bot/bot.ts")
-
+const loginRegisterRout = require("./server/login-register/login-register.ts")
 import type { LaptopItem } from "./Types/LapTopItem-type";
 import { ObjectId } from "mongodb";
 const express = require('express');
@@ -8,6 +8,7 @@ const cors = require('cors');
 const User = require("./models/user.js")
 const { MongoClient } = require('mongodb');
 const { Telegraf } = require("telegraf");
+
 
 const session = require("express-session")
 
@@ -35,12 +36,13 @@ app.use(session({
     saveUninitialized: false
 }))
 
+
+
+export let ProductSave;
+export let userSave
+
 app.use('/', botRout)
-
-let ProductSave;
-let userSave
-
-
+app.use('/', loginRegisterRout)
 async function connect() {
     try {
         await client.connect()
@@ -54,46 +56,6 @@ async function connect() {
 connect()
 
 
-app.post('/register', async (req, res) => {
-    const { name, password } = req.body
-    const userCollection = await userSave.collection("Users")
-    const finded = await userCollection.findOne({ name })
-    if (finded) {
-        res.status(403).json({ error: "login already exist" })
-    } else {
-        userCollection.insertOne({ name: name, password: password })
-
-        res.status(200).json({ okay: true })
-    }
-})
-
-app.post('/login', async (req, res)=>{
-    
-    const { name, password } = req.body
-    const userCollection = await userSave.collection("Users")
-    const finded = await userCollection.findOne({name})
-
-    if(finded){
-        const areSame = password === finded.password
-        if(areSame){
-            req.session.user = finded
-            req.session.isAuthenticated = true 
-            req.session.save()
-            res.send({
-                succes:true,
-                user:{
-                    name:finded.name,
-                    _id:finded._id,
-                    password:finded.password
-                }
-            })
-        }else{
-            res.status(403).json({error:'password not equal'})
-        }
-    }else{
-        res.status(403).json({error:'nobody finded'})
-    }
-})
 app.get('/products', async (req, res) => {
     const page = parseInt(req.query.page) || 0
     const limit = parseInt(req.query.limit) || 5
