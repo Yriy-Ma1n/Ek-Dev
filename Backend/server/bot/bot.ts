@@ -2,11 +2,10 @@ const { Telegraf } = require("telegraf");
 const express = require("express")
 require('dotenv').config();
 
-let ChatId = process.env.ChatId
 
 const bot = new Telegraf(process.env.BotId)
 
-const router = express.Router()
+export const router = express.Router()
 
 bot.start((ctx) => {
     ctx.reply(`Welcome to E-Katalog-Mini`)
@@ -24,5 +23,3 @@ router.post('/Message', (req, res, next) => {
 })
 
 bot.launch()
-
-module.exports = router

@@ -1,7 +1,7 @@
 import { userSave } from "../../server";
 const express = require("express")
 
-const router = express.Router()
+export const router = express.Router()
 
 
 router.post('/register', async (req, res) => {
@@ -43,3 +43,4 @@ router.post('/login', async (req, res)=>{
         res.status(403).json({error:'nobody finded'})
     }
 })
+

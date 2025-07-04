@@ -1,14 +1,15 @@
 import { error } from "console";
-const botRout = require("./server/bot/bot.ts")
-const loginRegisterRout = require("./server/login-register/login-register.ts")
 import type { LaptopItem } from "./Types/LapTopItem-type";
 import { ObjectId } from "mongodb";
+
+import { router as BotRouter } from "./server/bot/bot";
+import { router as LoginRouter } from "./server/login-register/login-register";
+import { router as DeleteRouter } from "./server/requests/delete/request-delete";
 const express = require('express');
 const cors = require('cors');
 const User = require("./models/user.js")
 const { MongoClient } = require('mongodb');
 const { Telegraf } = require("telegraf");
-
 
 const session = require("express-session")
 
@@ -36,13 +37,10 @@ app.use(session({
     saveUninitialized: false
 }))
 
-
-
 export let ProductSave;
 export let userSave
 
-app.use('/', botRout)
-app.use('/', loginRegisterRout)
+
 async function connect() {
     try {
         await client.connect()
@@ -55,6 +53,9 @@ async function connect() {
 }
 connect()
 
+app.use('', BotRouter)
+app.use('', LoginRouter)
+app.use('', DeleteRouter)
 
 app.get('/products', async (req, res) => {
     const page = parseInt(req.query.page) || 0

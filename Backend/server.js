@@ -37,9 +37,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userSave = exports.ProductSave = void 0;
-var botRout = require("./server/bot/bot.ts");
-var loginRegisterRout = require("./server/login-register/login-register.ts");
 var mongodb_1 = require("mongodb");
+var bot_1 = require("./server/bot/bot");
+var login_register_1 = require("./server/login-register/login-register");
 var express = require('express');
 var cors = require('cors');
 var User = require("./models/user.js");
@@ -62,8 +62,6 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-app.use('/', botRout);
-app.use('/', loginRegisterRout);
 function connect() {
     return __awaiter(this, void 0, void 0, function () {
         var err_1;
@@ -87,6 +85,44 @@ function connect() {
     });
 }
 connect();
+app.use('', bot_1.router);
+app.use('', login_register_1.router);
+// app.post('/register', async (req, res) => {
+//     const { name, password } = req.body
+//     const userCollection = await userSave.collection("Users")
+//     const finded = await userCollection.findOne({ name })
+//     if (finded) {
+//         res.status(403).json({ error: "login already exist" })
+//     } else {
+//         userCollection.insertOne({ name: name, password: password })
+//         res.status(200).json({ okay: true })
+//     }
+// })
+// app.post('/login', async (req, res)=>{
+//     const { name, password } = req.body
+//     const userCollection = await userSave.collection("Users")
+//     const finded = await userCollection.findOne({name})
+//     if(finded){
+//         const areSame = password === finded.password
+//         if(areSame){
+//             req.session.user = finded
+//             req.session.isAuthenticated = true 
+//             req.session.save()
+//             res.send({
+//                 succes:true,
+//                 user:{
+//                     name:finded.name,
+//                     _id:finded._id,
+//                     password:finded.password
+//                 }
+//             })
+//         }else{
+//             res.status(403).json({error:'password not equal'})
+//         }
+//     }else{
+//         res.status(403).json({error:'nobody finded'})
+//     }
+// })
 app.get('/products', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var page, limit, products;
     return __generator(this, function (_a) {
