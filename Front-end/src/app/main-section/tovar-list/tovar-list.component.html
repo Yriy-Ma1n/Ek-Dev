@@ -1,4 +1,3 @@
-<app-header-bar></app-header-bar>
 <div class="container-tovar-list" >
     <app-product-card *ngIf="data.length > 0; else notFound" [data]="data"></app-product-card>
     <ng-template #notFound class="notFound">
@@ -6,4 +5,3 @@
         <h1>Нічого не знайдено</h1>
     </ng-template>
 </div>
-<app-footer></app-footer>

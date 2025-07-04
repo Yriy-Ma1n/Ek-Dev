@@ -153,6 +153,7 @@ exports.router.get('/adminTovar', function (req, res) { return __awaiter(void 0,
     });
 }); });
 exports.router.get('/userInAccount', function (req, res) {
+    console.log(req.session);
     if (req.session.isAuthenticated) {
         res.send(req.session.user);
         return;

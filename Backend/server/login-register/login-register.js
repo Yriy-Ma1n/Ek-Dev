@@ -106,3 +106,17 @@ exports.router.post('/login', function (req, res) { return __awaiter(void 0, voi
         }
     });
 }); });
+exports.router.delete('/logout', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        req.session.destroy(function (err) {
+            if (err) {
+                return res.status(500).send({ message: 'err' });
+            }
+            res.clearCookie('user-session', {
+                path: '/'
+            });
+            res.send({ message: 'Logout1' });
+        });
+        return [2 /*return*/];
+    });
+}); });

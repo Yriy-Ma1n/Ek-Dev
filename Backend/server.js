@@ -75,8 +75,10 @@ function startServer() {
                     app.use(session({
                         secret: process.env.secretSession,
                         resave: false,
+                        name: 'user-session',
                         saveUninitialized: false,
                         cookie: {
+                            path: '/',
                             secure: false,
                             maxAge: 1000 * 60 * 60
                         }
@@ -86,6 +88,10 @@ function startServer() {
                     app.use('', request_delete_1.router);
                     app.use('', request_post_1.router);
                     app.use('', request_get_1.router);
+                    app.use(function (req, res, next) {
+                        res.set('Cache-Control', 'no-store');
+                        next();
+                    });
                     app.listen(PORT, function () {
                         console.log("Server was started on port ".concat(PORT));
                     });

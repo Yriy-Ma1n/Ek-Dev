@@ -24,18 +24,15 @@ export class SingInPageComponent {
     this.router.navigate(['/Register'])
   }
   logIn(name: HTMLInputElement, password: HTMLInputElement) {
-
-    console.log('start')
     this.http.post<{ succes: boolean, user: { name: string, password: string, _id: string } }>(
       `http://localhost:5500/login`,
       { name: name.value, password: password.value },
       { withCredentials: true }
     ).subscribe(data => {
-      
+      console.log(data)
       this.pass = data.user.password
     })
 
-    // this.http.get(`http://localhost:5500/omg`).subscribe(data=>console.log(data))
   }
 
 }

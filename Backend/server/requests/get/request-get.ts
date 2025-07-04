@@ -71,7 +71,9 @@ router.get('/adminTovar', async (req, res) => {
 
 })
 router.get('/userInAccount', (req, res)=>{
+        console.log(req.session)
     if(req.session.isAuthenticated){
+        
         res.send(req.session.user)
         return
     }

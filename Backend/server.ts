@@ -33,7 +33,7 @@ const app = express();
 app.use(cors({
     origin: 'http://localhost:4200',
     credentials: true,
-    maxAge:1000 * 60 * 60 * 24
+    maxAge: 1000 * 60 * 60 * 24
 }));
 async function startServer() {
     try {
@@ -47,12 +47,14 @@ async function startServer() {
 
         app.use(express.static("public/browser"))
         app.use(express.json())
-        
+
         app.use(session({
             secret: process.env.secretSession,
             resave: false,
+            name: 'user-session',
             saveUninitialized: false,
             cookie: {
+                path:'/',
                 secure: false,
                 maxAge: 1000 * 60 * 60
             }
@@ -63,6 +65,11 @@ async function startServer() {
         app.use('', DeleteRouter)
         app.use('', PostRouter)
         app.use('', GetRouter)
+
+        app.use((req, res, next) => {
+            res.set('Cache-Control', 'no-store');
+            next();
+        });
 
         app.listen(PORT, () => {
             console.log(`Server was started on port ${PORT}`);

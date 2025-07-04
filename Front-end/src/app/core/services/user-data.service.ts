@@ -1,32 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { User } from '../../shared/types/User-Types';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserDataService {
   http = inject(HttpClient)
-  userData = {}
+
+  userSubject = new BehaviorSubject<User | null>(null)
+  user$ = this.userSubject.asObservable()
+
+  userData = false
+  UserinAccount: boolean = false
   constructor() {
-    this.http.get<{_id:string, name:string, password:string, profileImg:string}>("http://localhost:5500/userInAccount", {
+    this.http.get<{ _id: string, name: string, password: string, profileImg: string }>("http://localhost:5500/userInAccount", {
       withCredentials: true
     }).subscribe(data => {
-      console.log(data)  
+      console.log(data)
       if (data.name) {
-        
-        this.userData = data || null
-      }else{
+        this.userSubject.next(data)
+        this.UserinAccount = true
+      } else {
+        this.UserinAccount = false
         this.userData = false
       }
 
     })
   }
-  get TakeUser() {
-    return this.userData || {
-      _id:'',
-      name:'',
-      password:'',
-      profileImg:''
-    }
+
+  get inAccount() {
+    return this.UserinAccount
   }
 }

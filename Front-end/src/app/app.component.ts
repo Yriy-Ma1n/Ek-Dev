@@ -6,10 +6,11 @@ import { MainSectionComponent } from "./main-section/main-section.component";
 
 import { BusketPageComponent } from "./busket-page/busket-page.component";
 import { HttpClient } from '@angular/common/http';
+import { FooterComponent } from "./footer/footer.component";
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderBarComponent, RouterOutlet],
+  imports: [HeaderBarComponent, RouterOutlet, FooterComponent, MainSectionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -19,7 +20,7 @@ export class AppComponent {
   constructor(){
     this.http.get("http://localhost:5500/userInAccount",{
       withCredentials:true
-    })
+    }).subscribe(data=>console.log('main', data))
   }
 
 }

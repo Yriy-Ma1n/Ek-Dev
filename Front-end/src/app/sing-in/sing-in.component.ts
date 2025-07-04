@@ -1,31 +1,40 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserDataService } from '../core/services/user-data.service';
-import { NgIf } from '@angular/common';
+import { NgClass, NgIf } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-sing-in',
-  imports: [NgIf],
+  imports: [NgIf, NgClass],
   templateUrl: './sing-in.component.html',
   styleUrl: './sing-in.component.css'
 })
 export class SingInComponent {
   router = inject(Router)
   UserInAccountData = inject(UserDataService)
-  UserInAccount: boolean = false
+  UserInAccount: boolean = true
+  showInfoAccount:boolean = true
+  http = inject(HttpClient)
   loadSingInPage() {
     this.router.navigate(['/SingIn'])
   }
-  user:{_id:string, name:string, password:string, profileImg:string} = {_id:'', name:'', password:'', profileImg:''}
-  constructor() {
-    setTimeout(() => {
-      if (Object.keys(this.UserInAccountData.TakeUser).length === 0){
-        this.UserInAccount = false
-      }else{
-        this.user = this.UserInAccountData.TakeUser
-        this.UserInAccount = true
+  user: { _id: string, name: string, password: string, profileImg: string } = { _id: '', name: '', password: '', profileImg: '' }
+  ngOnInit(){
+    
+    console.log(this.UserInAccount)
+    this.UserInAccountData.user$.subscribe(data=>{
+      if(data){
+        this.user = data 
+        this.UserInAccount = this.UserInAccountData.UserinAccount
       }
-        
-      }, 5)
+    })
+  }
+
+  logout(){
+    this.http.delete(`http://localhost:5500/logout`, {withCredentials:true}).subscribe(data=>console.log(data))
+  }
+  openAdditional(){
+    this.showInfoAccount = !this.showInfoAccount
   }
 }
