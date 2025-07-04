@@ -1,5 +1,6 @@
 import { error } from "console";
-import "./server/bot/bot"
+const botRout = require("./server/bot/bot.ts")
+
 import type { LaptopItem } from "./Types/LapTopItem-type";
 import { ObjectId } from "mongodb";
 const express = require('express');
@@ -33,6 +34,8 @@ app.use(session({
     resave:false,
     saveUninitialized: false
 }))
+
+app.use('/', botRout)
 
 let ProductSave;
 let userSave

@@ -6,13 +6,13 @@ let ChatId = process.env.ChatId
 
 const bot = new Telegraf(process.env.BotId)
 
-const app = express()
+const router = express()
 
 bot.start((ctx) => {
     ctx.reply(`Welcome to E-Katalog-Mini`)
 })
 
-app.post('/Message', (req, res, next) => {
+router.post('/Message', (req, res, next) => {
     console.log('213')
     try{
         bot.telegram.sendMessage(process.env.ChatId, `📦 Нове замовлення успішно створено! ✅  ${req.body.message}`)
@@ -20,7 +20,9 @@ app.post('/Message', (req, res, next) => {
         console.log(error)
     }
 
-    res.send({response:'Message was sended'})
+    res.send({response:'Message was sent'})
 })
 
 bot.launch()
+
+module.exports = router

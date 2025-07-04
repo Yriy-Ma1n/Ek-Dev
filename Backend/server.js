@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("./server/bot/bot");
+var botRout = require("./server/bot/bot.ts");
 var mongodb_1 = require("mongodb");
 var express = require('express');
 var cors = require('cors');
@@ -60,6 +60,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+app.use('/', botRout);
 var ProductSave;
 var userSave;
 function connect() {
