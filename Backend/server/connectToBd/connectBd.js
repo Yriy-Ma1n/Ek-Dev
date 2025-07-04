@@ -36,66 +36,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userSave = exports.ProductSave = void 0;
-var bot_1 = require("./server/bot/bot");
-var login_register_1 = require("./server/login-register/login-register");
-var request_delete_1 = require("./server/requests/delete/request-delete");
-var request_post_1 = require("./server/requests/post/request-post");
-var request_get_1 = require("./server/requests/get/request-get");
-var connectBd_1 = require("./server/connectToBd/connectBd");
-var express = require('express');
-var cors = require('cors');
-var User = require("./models/user.js");
-var MongoClient = require('mongodb').MongoClient;
-var Telegraf = require("telegraf").Telegraf;
-var session = require("express-session");
-require('dotenv').config();
-var PORT = process.env.PORT;
-var userUri = process.env.USER_URI;
-function startServer() {
+exports.connect = connect;
+var mongodb_1 = require("mongodb");
+var uri = process.env.MONGO_URL;
+var client = new mongodb_1.MongoClient(uri);
+function connect() {
     return __awaiter(this, void 0, void 0, function () {
-        var dbConnect, app, e_1;
+        var ProductSave, userSave, err_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, (0, connectBd_1.connect)()];
+                    ProductSave = void 0;
+                    userSave = void 0;
+                    return [4 /*yield*/, client.connect()];
                 case 1:
-                    dbConnect = _a.sent();
-                    exports.ProductSave = dbConnect.ProductSave;
-                    exports.userSave = dbConnect.userSave;
-                    app = express();
-                    app.use(cors());
-                    app.use(express.static("public/browser"));
-                    app.use(express.json());
-                    app.use(session({
-                        secret: process.env.secretSession,
-                        resave: false,
-                        saveUninitialized: false
-                    }));
-                    app.use('', bot_1.router);
-                    app.use('', login_register_1.router);
-                    app.use('', request_delete_1.router);
-                    app.use('', request_post_1.router);
-                    app.use('', request_get_1.router);
-                    app.listen(PORT, function () {
-                        console.log("Server was started on port ".concat(PORT));
-                    });
-                    return [3 /*break*/, 3];
+                    _a.sent();
+                    ProductSave = client.db("Product");
+                    userSave = client.db("UserData");
+                    return [2 /*return*/, { ProductSave: ProductSave, userSave: userSave }];
                 case 2:
-                    e_1 = _a.sent();
-                    console.log(e_1);
-                    return [3 /*break*/, 3];
+                    err_1 = _a.sent();
+                    console.log(err_1);
+                    return [2 /*return*/, null];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-startServer();
-//sharing bundle
-//sesion
-// sharing bundle
-// const indexPath = path.resolve(__dirname, "public/browser/index.html")
-// app.use((req, res) => {
-//     res.sendFile(indexPath)
-// });

@@ -36,66 +36,45 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userSave = exports.ProductSave = void 0;
-var bot_1 = require("./server/bot/bot");
-var login_register_1 = require("./server/login-register/login-register");
-var request_delete_1 = require("./server/requests/delete/request-delete");
-var request_post_1 = require("./server/requests/post/request-post");
-var request_get_1 = require("./server/requests/get/request-get");
-var connectBd_1 = require("./server/connectToBd/connectBd");
-var express = require('express');
-var cors = require('cors');
-var User = require("./models/user.js");
-var MongoClient = require('mongodb').MongoClient;
-var Telegraf = require("telegraf").Telegraf;
-var session = require("express-session");
-require('dotenv').config();
-var PORT = process.env.PORT;
-var userUri = process.env.USER_URI;
-function startServer() {
-    return __awaiter(this, void 0, void 0, function () {
-        var dbConnect, app, e_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, (0, connectBd_1.connect)()];
-                case 1:
-                    dbConnect = _a.sent();
-                    exports.ProductSave = dbConnect.ProductSave;
-                    exports.userSave = dbConnect.userSave;
-                    app = express();
-                    app.use(cors());
-                    app.use(express.static("public/browser"));
-                    app.use(express.json());
-                    app.use(session({
-                        secret: process.env.secretSession,
-                        resave: false,
-                        saveUninitialized: false
-                    }));
-                    app.use('', bot_1.router);
-                    app.use('', login_register_1.router);
-                    app.use('', request_delete_1.router);
-                    app.use('', request_post_1.router);
-                    app.use('', request_get_1.router);
-                    app.listen(PORT, function () {
-                        console.log("Server was started on port ".concat(PORT));
+exports.router = void 0;
+var express = require("express");
+var mongodb_1 = require("mongodb");
+var server_1 = require("../../../server");
+exports.router = express.Router();
+exports.router.delete('/DeleteProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var body, collectionPopular, collectionAllTovar, collectionAdmin, rightId;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                body = req.body;
+                if (!body.id) {
+                    res.status(400).json({
+                        error: 'Bad Request',
+                        message: "You have to put id product"
                     });
-                    return [3 /*break*/, 3];
-                case 2:
-                    e_1 = _a.sent();
-                    console.log(e_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
+                    return [2 /*return*/];
+                }
+                return [4 /*yield*/, server_1.ProductSave.collection('PopularModel')];
+            case 1:
+                collectionPopular = _a.sent();
+                return [4 /*yield*/, server_1.ProductSave.collection('AllTovar')];
+            case 2:
+                collectionAllTovar = _a.sent();
+                return [4 /*yield*/, server_1.ProductSave.collection("AdminAdded")];
+            case 3:
+                collectionAdmin = _a.sent();
+                rightId = new mongodb_1.ObjectId(body.id);
+                return [4 /*yield*/, collectionAllTovar.deleteOne({ _id: rightId })];
+            case 4:
+                _a.sent();
+                return [4 /*yield*/, collectionPopular.deleteOne({ _id: rightId })];
+            case 5:
+                _a.sent();
+                return [4 /*yield*/, collectionAdmin.deleteOne({ _id: rightId })];
+            case 6:
+                _a.sent();
+                res.send({ status: "Everything okay" });
+                return [2 /*return*/];
+        }
     });
-}
-startServer();
-//sharing bundle
-//sesion
-// sharing bundle
-// const indexPath = path.resolve(__dirname, "public/browser/index.html")
-// app.use((req, res) => {
-//     res.sendFile(indexPath)
-// });
+}); });

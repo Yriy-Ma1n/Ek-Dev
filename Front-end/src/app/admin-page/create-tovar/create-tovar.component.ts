@@ -92,6 +92,7 @@ export class CreateTovarComponent {
         cost: newCart.cost
       }
       this.service.getData()
+      console.log('here')
       this.http.post("http://localhost:5500/addProduct", newCart).subscribe(data=>console.log(data));
     }
   }

@@ -36,66 +36,52 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userSave = exports.ProductSave = void 0;
-var bot_1 = require("./server/bot/bot");
-var login_register_1 = require("./server/login-register/login-register");
-var request_delete_1 = require("./server/requests/delete/request-delete");
-var request_post_1 = require("./server/requests/post/request-post");
-var request_get_1 = require("./server/requests/get/request-get");
-var connectBd_1 = require("./server/connectToBd/connectBd");
-var express = require('express');
-var cors = require('cors');
-var User = require("./models/user.js");
-var MongoClient = require('mongodb').MongoClient;
-var Telegraf = require("telegraf").Telegraf;
-var session = require("express-session");
-require('dotenv').config();
-var PORT = process.env.PORT;
-var userUri = process.env.USER_URI;
-function startServer() {
-    return __awaiter(this, void 0, void 0, function () {
-        var dbConnect, app, e_1;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, (0, connectBd_1.connect)()];
-                case 1:
-                    dbConnect = _a.sent();
-                    exports.ProductSave = dbConnect.ProductSave;
-                    exports.userSave = dbConnect.userSave;
-                    app = express();
-                    app.use(cors());
-                    app.use(express.static("public/browser"));
-                    app.use(express.json());
-                    app.use(session({
-                        secret: process.env.secretSession,
-                        resave: false,
-                        saveUninitialized: false
-                    }));
-                    app.use('', bot_1.router);
-                    app.use('', login_register_1.router);
-                    app.use('', request_delete_1.router);
-                    app.use('', request_post_1.router);
-                    app.use('', request_get_1.router);
-                    app.listen(PORT, function () {
-                        console.log("Server was started on port ".concat(PORT));
+exports.router = void 0;
+var express = require("express");
+var server_1 = require("../../../server");
+exports.router = express.Router();
+exports.router.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var body, collectionPopular, collectionAllTovar, collectionAdmin;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                if (!req.body) {
+                    res.status(400).json({
+                        error: 'Bad Request',
+                        message: 'something wrong with body'
                     });
-                    return [3 /*break*/, 3];
-                case 2:
-                    e_1 = _a.sent();
-                    console.log(e_1);
-                    return [3 /*break*/, 3];
-                case 3: return [2 /*return*/];
-            }
-        });
+                    return [2 /*return*/];
+                }
+                if (!server_1.ProductSave) {
+                    res.status(500).json({
+                        error: 'Internal Server Error',
+                        message: 'Database connection not established'
+                    });
+                    return [2 /*return*/];
+                }
+                body = req.body;
+                if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'object')) return [3 /*break*/, 4];
+                collectionPopular = server_1.ProductSave.collection('PopularModel');
+                collectionAllTovar = server_1.ProductSave.collection('AllTovar');
+                collectionAdmin = server_1.ProductSave.collection('AdminAdded');
+                return [4 /*yield*/, collectionPopular.insertOne(req.body)];
+            case 1:
+                _a.sent();
+                return [4 /*yield*/, collectionAllTovar.insertOne(req.body)];
+            case 2:
+                _a.sent();
+                return [4 /*yield*/, collectionAdmin.insertOne(req.body)];
+            case 3:
+                _a.sent();
+                res.send({ succes: true });
+                return [3 /*break*/, 5];
+            case 4:
+                res.status(400).json({
+                    error: 'Bad Request',
+                    message: 'should to be 4 field, img,name,cost,description and all field string'
+                });
+                _a.label = 5;
+            case 5: return [2 /*return*/];
+        }
     });
-}
-startServer();
-//sharing bundle
-//sesion
-// sharing bundle
-// const indexPath = path.resolve(__dirname, "public/browser/index.html")
-// app.use((req, res) => {
-//     res.sendFile(indexPath)
-// });
+}); });
