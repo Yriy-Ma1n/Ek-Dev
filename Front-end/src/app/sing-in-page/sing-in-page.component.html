@@ -9,7 +9,8 @@
  
     <div class="haventAccount">У вас немає ще облігового запису? <span class="Register" (click)="NavigateToRegister()">Реєстрація</span></div> 
     
+    <div class="error" [ngClass]="{'none':hideError}">Ошибка, неверный логин или пароль!</div>
     <button type="submit" class="btn-cta" (click)="logIn(name, password)">Увійти</button>
-    {{pass}}
+   
   </form>
 </div>
