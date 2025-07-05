@@ -81,3 +81,9 @@
     border: 1px solid rgb(151, 255, 103) !important;
 
 }
+.error{
+  margin-top: 10px;
+}
+.none{
+  display: none;
+}
