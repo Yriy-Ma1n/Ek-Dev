@@ -28,11 +28,12 @@ export class SingInPageComponent {
       `http://localhost:5500/login`,
       { name: name.value, password: password.value },
       { withCredentials: true }
-    ).subscribe(data => {
-      console.log(data)
-      this.pass = data.user.password
+    ).subscribe(() => {
+      
+      location.reload()
+      
     })
-
+    this.router.navigate(['/Home'])
   }
 
 }
