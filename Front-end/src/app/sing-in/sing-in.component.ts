@@ -33,6 +33,7 @@ export class SingInComponent {
 
   logout(){
     this.http.delete(`http://localhost:5500/logout`, {withCredentials:true}).subscribe(data=>console.log(data))
+    location.reload()
   }
   openAdditional(){
     this.showInfoAccount = !this.showInfoAccount

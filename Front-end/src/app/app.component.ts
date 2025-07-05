@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { HeaderBarComponent } from './shared/components/header-bar/header-bar.component';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { PopularModelsComponent } from './popular-models/popular-models.component';
 import { MainSectionComponent } from "./main-section/main-section.component";
 
@@ -10,7 +10,7 @@ import { FooterComponent } from "./footer/footer.component";
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderBarComponent, RouterOutlet, FooterComponent, MainSectionComponent],
+  imports: [HeaderBarComponent, RouterOutlet, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -21,6 +21,8 @@ export class AppComponent {
     this.http.get("http://localhost:5500/userInAccount",{
       withCredentials:true
     }).subscribe(data=>console.log('main', data))
+
+    
   }
 
 }
