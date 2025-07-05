@@ -11,7 +11,8 @@ export class ChangeCurrencyComponent {
   transformArrow = false;
   transformValue = "rotate(180deg)";
   displayValue = "none";
-  CurrencuValue:string = localStorage.getItem('currencu')!;
+  CurrencuValue:string = localStorage.getItem('currencu')! || "UAH";
+
  onClick(){
   if(this.transformArrow){
     setTimeout(()=>{this.displayValue = "none"}, 200);
