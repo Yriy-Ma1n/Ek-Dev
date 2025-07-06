@@ -1,11 +1,11 @@
-import { NgClass, NgFor } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ListCategoryService } from '../../core/services/list-category.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category',
-  imports: [NgClass, NgFor],
+  imports: [NgClass, NgFor, NgIf],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
@@ -16,7 +16,7 @@ export class CategoryComponent {
   categoryesData = inject(ListCategoryService).dataCategoryes
   listArr = inject(ListCategoryService)
 
-  listCategoryItem: { img: string, name: string }[] = []
+  listCategoryItem: { img: string, name: string, additional:string }[] = []
 
   hoverToElemet(event: Event) {
     const element = event.target as HTMLElement

@@ -1,26 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
-body,html{
-    margin: 0;
-    height: 100vh;
+body,
+html {
+  margin: 0;
+  height: 100vh;
 
-    --accent-color-blue: #2c509a;
-    --accent-color-orange: #ff8d02;
-    --acent-color-orange-hover:#f09000;
-    --scrollbar-color: #a8a8a8;
-    --color-text: #cccccd;
-    --accent-color-black: #202124;
-    --opacity-color-gray:#dfdfdfd3;
-    --footer-bg: rgba(240, 240, 240, 255);
-    --accent-color-blue-new: #2c509a;
-    --form-bg-color:white
+  --accent-color-blue: #2c509a;
+  --accent-color-orange: #ff8d02;
+  --acent-color-orange-hover: #f09000;
+  --scrollbar-color: #a8a8a8;
+  --color-text: #cccccd;
+  --accent-color-black: #202124;
+  --opacity-color-gray: #dfdfdfd3;
+  --footer-bg: rgba(240, 240, 240, 255);
+  --accent-color-blue-new: #2c509a;
+  --form-bg-color: white
 }
 
 @font-face {
   font-family: "Proxima Soft";
   src: url("assets/ProximaSoftCond-Regular.woff") format("woff");
 }
-.error{
-  color:red;
+
+.error {
+  color: red;
 }
 
 :root {
@@ -30,13 +32,13 @@ body,html{
 
 /* Змінні для темної теми */
 .dark-theme {
-  --bg-color:  #202124;
+  --bg-color: #202124;
   --text-color: var(--color-text);
   --accent-color-blue: #303133;
   --scrollbar-color: #a8a8a8;
-   --footer-bg: #303133;
-   --accent-color-blue-new: #ffffff;
-   --form-bg-color: #303133;
+  --footer-bg: #303133;
+  --accent-color-blue-new: #ffffff;
+  --form-bg-color: #303133;
 }
 
 /* Використовуємо змінні в базових стилях */
@@ -45,4 +47,3 @@ body {
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
 }
-

@@ -20,6 +20,9 @@
         <div class="item">
             <img src="{{item.img}}" alt="" class="item-img">
             <p>{{item.name}}</p>
+            <div *ngIf="item.additional" class="notWorking">
+                <img src="./info.svg" alt="" title="this category not working">
+            </div>
         </div>
     </div>
 </div>
