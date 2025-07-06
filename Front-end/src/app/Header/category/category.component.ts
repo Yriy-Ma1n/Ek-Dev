@@ -50,7 +50,7 @@ export class CategoryComponent {
     } else if (element === 'Планшети') {
       this.NavigateToPage("Планшет")
     } else if (element === 'Телевізори') {
-      this.NavigateToPage('Телевизор')
+      this.NavigateToPage('Телевізор')
     } else if (element === 'Холодильники') {
       this.NavigateToPage("Холодильник")
     }

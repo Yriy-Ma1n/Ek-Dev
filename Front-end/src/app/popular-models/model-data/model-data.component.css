@@ -36,7 +36,7 @@
   display: flex;
   position: absolute;
   right: 20px;
-  top: -20px;
+  top: -35px;
 }
 
 .filters img {
@@ -44,6 +44,10 @@
   height: 40px;
   cursor: pointer;
   user-select: none;
+  background: white;
+  padding: 5px;
+  border-radius: 5px;
+  
 }
 
 .filters input {
