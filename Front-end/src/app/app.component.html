@@ -1,3 +1,4 @@
-<app-header-bar></app-header-bar>
+<app-header-bar *ngIf="!hideLayout"></app-header-bar>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<app-footer *ngIf="!hideLayout"></app-footer>
+
