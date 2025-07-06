@@ -75,7 +75,6 @@ router.get('/adminTovar', async (req, res) => {
 router.get('/userInAccount', async (req, res)=>{
     if(req.session.isAuthenticated && req.session.user?._id){
         const user = await userSave.collection("Users").findOne({_id:new ObjectId(req.session.user._id)})
-        console.log(user)
         if(user){
             res.send(user)
         }else{

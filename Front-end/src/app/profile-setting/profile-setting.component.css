@@ -13,6 +13,7 @@
     font-size: 28px;
     margin-bottom: 30px;
     text-align: center;
+    margin-top: 0px;
 }
 
 .avatar-section {
@@ -101,3 +102,4 @@
 .save-settings-btn:hover {
     background-color: #1d3d7c;
 }
+

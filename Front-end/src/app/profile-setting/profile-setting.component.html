@@ -1,12 +1,19 @@
+<p class="modal-message" [ngClass]="{'show':showSuccesImageR}">
+  {{messageTextRed}}
+</p>
+<p class="modal-message" [ngClass]="{'showAdd':showSuccesImageG}">
+  {{messageTextGreen}}
+</p>
+
 <section class="profile-settings">
   <h2 class="settings-title">Налаштування профілю</h2>
 
   <div class="avatar-section">
     <img [src]="UserImage" alt="Avatar" class="avatar-preview" />
     <div class="avatar-actions">
-      <input type="text"placeholder="URL каринки" class="URL-image" #URLInput/>
+      <input type="text" placeholder="URL каринки" class="URL-image" #URLInput />
       <button class="remove-avatar-btn" (click)="addProfileImage(URLInput)">Додати картинку</button>
-      <button class="remove-avatar-btn">Видалити картинку</button>
+      <button class="remove-avatar-btn" (click)="removeProfileImage()">Видалити картинку</button>
     </div>
   </div>
 
