@@ -1,3 +1,11 @@
+<p class="modal-message" [ngClass]="{'show':showEror}">
+  {{messageTextRed}}
+</p>
+<p class="modal-message" [ngClass]="{'showAdd':showSucces}">
+  {{messageTextGreen}}
+</p>
+
+
 
 <div class="register-container">
   <form class="register-form" [formGroup]="registerForm">
@@ -8,14 +16,16 @@
 
 
     <label for="password">Пароль</label>
-    <input type="password" id="password" name="password" placeholder="Придумайте пароль" formControlName="password" #password>
+    <input type="password" id="password" name="password" placeholder="Придумайте пароль" formControlName="password"
+      #password>
 
     <label for="confirm-password">Підтвердіть пароль</label>
-    <input type="password" id="confirm-password" name="confirm-password" placeholder="Повторіть пароль" formControlName="confirmPassword">
+    <input type="password" id="confirm-password" name="confirm-password" placeholder="Повторіть пароль"
+      formControlName="confirmPassword">
 
     <div class="haveAccount">У вас уже є акаунт? <span class="LogIn" (click)="NavigateToLogin()">Увійти</span></div>
 
-    <div class="error" [ngClass]="{'none':!showEror}">Ім’я  користувача зайнято</div>
+    <div class="error" [ngClass]="{'none':!showEror}">Ім’я користувача зайнято</div>
 
     <button type="submit" class="btn-cta" (click)="register(name, password)">Зареєструватися</button>
   </form>

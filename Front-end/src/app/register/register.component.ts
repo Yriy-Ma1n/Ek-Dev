@@ -16,7 +16,11 @@ export class RegisterComponent {
 
   http = inject(HttpClient)
 
-  showEror:boolean = false
+  showEror: boolean = false;
+  showSucces: boolean = false;
+
+  messageTextRed: string = ''
+  messageTextGreen: string = ''
 
   registerForm = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.minLength(4), Validators.maxLength(12)]),
@@ -38,17 +42,31 @@ export class RegisterComponent {
     const data = {
       name: name.value,
       password: password.value,
-      profileImg:'https://i.pinimg.com/236x/08/35/0c/08350cafa4fabb8a6a1be2d9f18f2d88.jpg',
-      
+      profileImg: 'https://i.pinimg.com/236x/08/35/0c/08350cafa4fabb8a6a1be2d9f18f2d88.jpg',
+
     }
     this.http.post("http://localhost:5500/register", data).subscribe(
-      () =>{
-      this.NavigateToLogin()
-    }, 
-    (error)=>{
-      if(error){
-       this.showEror = true
-      }
-    });
+      (data) => {
+        if (data) {
+          this.messageTextGreen = 'Ви успішно за реєструвалися'
+          this.showSucces = true
+
+          setTimeout(() => {
+            this.showSucces = false
+            this.NavigateToLogin()
+          }, 1500)
+
+
+        }
+      },
+      (error) => {
+        if (error) {
+          setTimeout(() => {
+            this.showEror = false
+          }, 2000)
+          this.messageTextGreen = 'Виникла помилка('
+          this.showEror = true
+        }
+      });
   }
 }

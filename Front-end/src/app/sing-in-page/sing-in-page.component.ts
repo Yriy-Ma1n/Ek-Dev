@@ -16,6 +16,14 @@ export class SingInPageComponent {
   http = inject(HttpClient)
 
   hideError: boolean = true
+
+  showError: boolean = false;
+  showSucces: boolean = false;
+
+  messageTextRed: string = ''
+  messageTextGreen: string = ''
+
+
   logInForm = new FormGroup({
     name: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required])
@@ -29,16 +37,32 @@ export class SingInPageComponent {
       `http://localhost:5500/login`,
       { name: name.value, password: password.value },
       { withCredentials: true }
-    ).subscribe((data) => {
-      this.router.navigate(['/Home'])
-      this.hideError = true
+    ).subscribe(() => {
+
+      this.hideError = true;
+      this.showSucces = true;
+
+      this.messageTextGreen = 'Ви успішно увійшли до аккаунту✅'
+
       setTimeout(() => {
-        location.reload()
-      }, 100)
+        this.showSucces = false;
+        this.router.navigate(['/Home'])
+        setTimeout(() => {
+          location.reload()
+
+        }, 100)
+      }, 500)
 
     }, (error) => {
       if (error) {
         this.hideError = false
+        this.showError = true
+
+        this.messageTextRed = 'Помилка('
+
+        setTimeout(() => {
+          this.showError = false
+        }, 1500)
       }
     })
 
