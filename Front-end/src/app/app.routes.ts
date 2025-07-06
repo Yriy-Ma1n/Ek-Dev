@@ -10,6 +10,7 @@ import { AppCategoryListComponent } from './main-section/app-category-list/app-c
 import { SingInPageComponent } from './sing-in-page/sing-in-page.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 
 export const routes: Routes = [
   {
@@ -56,6 +57,11 @@ export const routes: Routes = [
     path:'Profile',
     component:ProfileComponent,
     title:'Profile'
+  },
+   {
+    path:'Profile-setting',
+    component:ProfileSettingComponent,
+    title:'Profile settng'
   },
   {
     path: '**',

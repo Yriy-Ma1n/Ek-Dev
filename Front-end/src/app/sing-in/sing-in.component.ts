@@ -40,9 +40,9 @@ export class SingInComponent {
   openDataProfile(event:Event){
     const text = (event.target as HTMLDivElement).textContent
     if(text === 'Вийти') this.logout()
-    if(text === 'Мої замовлення')console.log('замовлення')
+    if(text === 'Мої замовлення')this.router.navigate(['/busket'])
     if(text === 'Профіль') this.router.navigate(['/Profile'])
-    if(text === 'Налаштування')console.log('Налаштування')
+    if(text === 'Налаштування')this.router.navigate(['/Profile-setting'])
 
 
   }

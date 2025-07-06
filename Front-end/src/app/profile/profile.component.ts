@@ -33,4 +33,8 @@ export class ProfileComponent {
 
   }
 
+  openSettingPage(){
+    this.router.navigate(['/Profile-setting'])
+  }
+
 }
