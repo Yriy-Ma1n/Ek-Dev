@@ -7,22 +7,23 @@ import { MainSectionComponent } from "./main-section/main-section.component";
 import { BusketPageComponent } from "./busket-page/busket-page.component";
 import { HttpClient } from '@angular/common/http';
 import { FooterComponent } from "./footer/footer.component";
+import { AdminService } from './admin-page/admin.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderBarComponent, RouterOutlet, FooterComponent],
+  imports: [HeaderBarComponent, RouterOutlet, FooterComponent, NgIf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  http = inject(HttpClient)
+  hideLayout = false;
+  layout = inject(AdminService)
 
-  constructor(){
-    this.http.get("http://localhost:5500/userInAccount",{
-      withCredentials:true
-    }).subscribe(data=>console.log('main', data))
-
-    
+  constructor() {
+    this.layout.hideLayout$.subscribe(value => {
+      console.log(value)
+      this.hideLayout = value;
+    });
   }
-
 }
