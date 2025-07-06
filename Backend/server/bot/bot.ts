@@ -3,7 +3,7 @@ const express = require("express")
 require('dotenv').config();
 
 
-const bot = new Telegraf(process.env.BotId)
+export const bot = new Telegraf(process.env.BotId)
 
 export const router = express.Router()
 
@@ -22,4 +22,3 @@ router.post('/Message', (req, res, next) => {
     res.send({response:'Message was sent'})
 })
 
-bot.launch()
