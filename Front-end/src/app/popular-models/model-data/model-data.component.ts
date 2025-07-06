@@ -22,7 +22,7 @@ export class ModelDataComponent {
   padding: number = 0
   http = inject(HttpClient)
   router = inject(Router)
-  Currency = localStorage.getItem('currencu')!
+  Currency =  localStorage.getItem('currencu') ? localStorage.getItem('currencu')! : "UAH";
 
   ngOnInit() {
      this.getPageContent();

@@ -11,7 +11,7 @@ import { CurrencySwitcherPipe } from '../../pipes/currency-switcher.pipe';
 })
 export class CardTovarComponent {
   productChange = inject(CardService);
-  Currency = localStorage.getItem('currencu')!;
+  Currency =  localStorage.getItem('currencu') ? localStorage.getItem('currencu')! : "UAH";
 
   @Input() count: number = 1;
   @Input() name: string = '';
