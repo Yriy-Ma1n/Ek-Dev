@@ -22,7 +22,6 @@ export class SingInComponent {
   user: { _id: string, name: string, password: string, profileImg: string } = { _id: '', name: '', password: '', profileImg: '' }
   ngOnInit(){
     
-    console.log(this.UserInAccount)
     this.UserInAccountData.user$.subscribe(data=>{
       if(data){
         this.user = data 
@@ -42,7 +41,7 @@ export class SingInComponent {
     const text = (event.target as HTMLDivElement).textContent
     if(text === 'Вийти') this.logout()
     if(text === 'Мої замовлення')console.log('замовлення')
-    if(text === 'Профіль')console.log('Профіль')
+    if(text === 'Профіль') this.router.navigate(['/Profile'])
     if(text === 'Налаштування')console.log('Налаштування')
 
 

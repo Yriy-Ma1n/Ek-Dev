@@ -9,7 +9,7 @@
 }
 
 .register-form {
-  background: white;
+  background: var(--bg-color);
   width: 400px;
   padding: 30px;
   border-radius: 8px;
@@ -22,7 +22,7 @@
 .register-form h2 {
   margin-bottom: 20px;
   font-size: 1.5rem;
-  color: #333;
+  color: var(--text-color);
   text-align: center;
 }
 
@@ -30,7 +30,7 @@
   margin-top: 12px;
   margin-bottom: 6px;
   font-size: 0.95rem;
-  color: #555;
+  color: var(--text-color);
 }
 
 .register-form input {
@@ -47,8 +47,9 @@
   border-color: var(--accent-color-orange);
   box-shadow: 0 0 4px rgba(244, 128, 32, 0.4);
 }
+
 .LogIn{
-    color:var(--accent-color-blue); 
+    color: #2c509a;;
     cursor: pointer;
 }
 .haveAccount{
