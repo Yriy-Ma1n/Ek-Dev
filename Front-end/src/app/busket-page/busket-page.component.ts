@@ -19,7 +19,7 @@ export class BusketPageComponent {
   cardService = inject(CardService)
   product = this.cardService.GetProduct
   http = inject(HttpClient);
-  Currency = localStorage.getItem('currencu')!;
+  Currency =  localStorage.getItem('currencu') ? localStorage.getItem('currencu')! : "UAH";
 
   price: number = 0;
   sum: number = 0;

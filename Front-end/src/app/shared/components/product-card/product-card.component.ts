@@ -16,7 +16,7 @@ export class ProductCardComponent {
   @Input() data: characteristic[] = []
   randomCounts: number[] = [0, 0, 0, 0, 0, 0]
   router = inject(Router)
-    Currency = localStorage.getItem('currencu')!;
+    Currency =  localStorage.getItem('currencu') ? localStorage.getItem('currencu')! : "UAH";
     title = inject(Title)
 
 

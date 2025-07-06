@@ -32,7 +32,7 @@ export class ProductCardInnerComponent {
   router = inject(Router)
   activeRoute = inject(ActivatedRoute)
   CardProduct = inject(CardService)
-  Currency = localStorage.getItem('currencu')!;
+  Currency =  localStorage.getItem('currencu') ? localStorage.getItem('currencu')! : "UAH";
   title = inject(Title)
   http = inject(HttpClient)
   data: any[] = [] //Тут будут все характеристики и описание к товару
