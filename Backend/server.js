@@ -43,15 +43,12 @@ var request_delete_1 = require("./server/requests/delete/request-delete");
 var request_post_1 = require("./server/requests/post/request-post");
 var request_get_1 = require("./server/requests/get/request-get");
 var connectBd_1 = require("./server/connectToBd/connectBd");
+var bot_2 = require("./server/bot/bot");
 var express = require('express');
 var cors = require('cors');
-var User = require("./models/user.js");
-var MongoClient = require('mongodb').MongoClient;
-var Telegraf = require("telegraf").Telegraf;
 var session = require("express-session");
 require('dotenv').config();
 var PORT = process.env.PORT;
-var userUri = process.env.USER_URI;
 var app = express();
 app.use(cors({
     origin: 'http://localhost:4200',
@@ -84,6 +81,7 @@ function startServer() {
                         }
                     }));
                     app.use('', bot_1.router);
+                    bot_2.bot.launch();
                     app.use('', login_register_1.router);
                     app.use('', request_delete_1.router);
                     app.use('', request_post_1.router);

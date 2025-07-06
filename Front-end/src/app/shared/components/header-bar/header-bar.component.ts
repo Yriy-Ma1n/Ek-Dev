@@ -7,13 +7,12 @@ import { CategoryComponent } from '../../../Header/category/category.component';
 import { SingInComponent } from '../../../sing-in/sing-in.component';
 import { ChangeCurrencyComponent } from '../../../change-currency/change-currency.component';
 import { AppToggleThemeComponent } from '../../../Header/app-toggle-theme/app-toggle-theme.component';
-import { NgClass } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+
 
 
 @Component({
   selector: 'app-header-bar',
-  imports: [LogoComponent, SearchComponent, SinginAdminComponent, BasketComponent, CategoryComponent, SingInComponent, ChangeCurrencyComponent, AppToggleThemeComponent, NgClass, RouterLink, RouterLinkActive ],
+  imports: [LogoComponent, SearchComponent, SinginAdminComponent, BasketComponent, CategoryComponent, SingInComponent, ChangeCurrencyComponent, AppToggleThemeComponent],
   templateUrl: './header-bar.component.html',
   styleUrl: './header-bar.component.css'
 })

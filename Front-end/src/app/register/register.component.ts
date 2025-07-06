@@ -3,10 +3,11 @@ import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.c
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [HeaderBarComponent, ReactiveFormsModule],
+  imports: [HeaderBarComponent, ReactiveFormsModule, NgClass],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -14,6 +15,8 @@ export class RegisterComponent {
   router = inject(Router)
 
   http = inject(HttpClient)
+
+  showEror:boolean = false
 
   registerForm = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.minLength(4), Validators.maxLength(12)]),
@@ -38,6 +41,14 @@ export class RegisterComponent {
       profileImg:'https://i.pinimg.com/236x/08/35/0c/08350cafa4fabb8a6a1be2d9f18f2d88.jpg',
       
     }
-    this.http.post("http://localhost:5500/register", data).subscribe(data => console.log(data));
+    this.http.post("http://localhost:5500/register", data).subscribe(
+      () =>{
+      this.NavigateToLogin()
+    }, 
+    (error)=>{
+      if(error){
+       this.showEror = true
+      }
+    });
   }
 }

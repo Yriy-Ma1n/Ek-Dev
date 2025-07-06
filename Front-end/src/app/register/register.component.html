@@ -15,6 +15,8 @@
 
     <div class="haveAccount">У вас уже є акаунт? <span class="LogIn" (click)="NavigateToLogin()">Увійти</span></div>
 
+    <div class="error" [ngClass]="{'none':!showEror}">Ім’я  користувача зайнято</div>
+
     <button type="submit" class="btn-cta" (click)="register(name, password)">Зареєструватися</button>
   </form>
 </div>

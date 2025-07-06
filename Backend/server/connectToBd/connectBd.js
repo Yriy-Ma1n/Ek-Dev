@@ -57,7 +57,7 @@ function connect() {
                     return [2 /*return*/, { ProductSave: ProductSave, userSave: userSave }];
                 case 2:
                     err_1 = _a.sent();
-                    console.log(err_1);
+                    console.log('I got error DB', err_1);
                     return [2 /*return*/, null];
                 case 3: return [2 /*return*/];
             }

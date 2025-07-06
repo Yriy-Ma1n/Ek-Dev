@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   padding: 40px 20px;
-  background: var(--footer-bg);
+  background: var(--bg-color);
   min-height: calc(100vh - 80px);
 }
 
@@ -13,7 +13,7 @@
   width: 400px;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 7px 20px var(--text-color);
   font-family: "Helvetica Neue", Arial, sans-serif;
   display: flex;
   flex-direction: column;
@@ -80,4 +80,10 @@
 .ng-valid:not(form){
     border: 1px solid rgb(151, 255, 103) !important;
 
+}
+.error{
+  margin-top: 10px;
+}
+.none{
+  display: none;
 }
