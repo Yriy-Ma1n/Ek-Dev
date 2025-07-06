@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 var express = require("express");
+var mongodb_1 = require("mongodb");
 var server_1 = require("../../../server");
 exports.router = express.Router();
 exports.router.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -81,6 +82,31 @@ exports.router.post('/addProduct', function (req, res) { return __awaiter(void 0
                     message: 'should to be 4 field, img,name,cost,description and all field string'
                 });
                 _a.label = 5;
+            case 5: return [2 /*return*/];
+        }
+    });
+}); });
+exports.router.post('/changeProfileAvatar', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, id, URL, userDataBase, user;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _a = req.body, id = _a.id, URL = _a.URL;
+                return [4 /*yield*/, server_1.userSave.collection("Users")];
+            case 1:
+                userDataBase = _b.sent();
+                return [4 /*yield*/, userDataBase.findOne({ _id: new mongodb_1.ObjectId(id) })];
+            case 2:
+                user = _b.sent();
+                if (!user) return [3 /*break*/, 4];
+                return [4 /*yield*/, userDataBase.updateOne({ _id: new mongodb_1.ObjectId(id) }, { $set: { profileImg: URL } })];
+            case 3:
+                _b.sent();
+                res.send({ status: 'Your avatar image was changed' });
+                return [3 /*break*/, 5];
+            case 4:
+                res.status(400).send({ error: 'User not found' });
+                _b.label = 5;
             case 5: return [2 /*return*/];
         }
     });

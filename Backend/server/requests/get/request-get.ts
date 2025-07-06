@@ -1,4 +1,6 @@
-import { ProductSave } from "../../../server";
+import { ObjectId } from "mongodb";
+import { ProductSave, userSave } from "../../../server";
+import { error } from "console";
 const express = require("express")
 
 export const router = express.Router()
@@ -70,10 +72,15 @@ router.get('/adminTovar', async (req, res) => {
     res.send(collectionAdmin)
 
 })
-router.get('/userInAccount', (req, res)=>{
-    if(req.session.isAuthenticated){
-        
-        res.send(req.session.user)
+router.get('/userInAccount', async (req, res)=>{
+    if(req.session.isAuthenticated && req.session.user?._id){
+        const user = await userSave.collection("Users").findOne({_id:new ObjectId(req.session.user._id)})
+        console.log(user)
+        if(user){
+            res.send(user)
+        }else{
+            res.status(400).send({error:'User not found'})
+        }
         return
     }
 

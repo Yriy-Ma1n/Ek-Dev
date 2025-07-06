@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
+var mongodb_1 = require("mongodb");
 var server_1 = require("../../../server");
 var express = require("express");
 exports.router = express.Router();
@@ -152,10 +153,27 @@ exports.router.get('/adminTovar', function (req, res) { return __awaiter(void 0,
         }
     });
 }); });
-exports.router.get('/userInAccount', function (req, res) {
-    if (req.session.isAuthenticated) {
-        res.send(req.session.user);
-        return;
-    }
-    res.send({ userInAccount: false });
-});
+exports.router.get('/userInAccount', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var user;
+    var _a;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                if (!(req.session.isAuthenticated && ((_a = req.session.user) === null || _a === void 0 ? void 0 : _a._id))) return [3 /*break*/, 2];
+                return [4 /*yield*/, server_1.userSave.collection("Users").findOne({ _id: new mongodb_1.ObjectId(req.session.user._id) })];
+            case 1:
+                user = _b.sent();
+                console.log(user);
+                if (user) {
+                    res.send(user);
+                }
+                else {
+                    res.status(400).send({ error: 'User not found' });
+                }
+                return [2 /*return*/];
+            case 2:
+                res.send({ userInAccount: false });
+                return [2 /*return*/];
+        }
+    });
+}); });

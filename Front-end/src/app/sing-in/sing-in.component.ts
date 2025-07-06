@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 export class SingInComponent {
   router = inject(Router)
   UserInAccountData = inject(UserDataService)
-  UserInAccount: boolean = true
+  UserInAccount: boolean = false
   showInfoAccount:boolean = true
   http = inject(HttpClient)
   loadSingInPage() {
@@ -25,7 +25,10 @@ export class SingInComponent {
     this.UserInAccountData.user$.subscribe(data=>{
       if(data){
         this.user = data 
-        this.UserInAccount = this.UserInAccountData.UserinAccount
+        this.UserInAccountData.inAccount.subscribe(status=>{
+          this.UserInAccount = status
+        })
+
       }
     })
   }

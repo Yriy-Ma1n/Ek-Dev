@@ -1,4 +1,4 @@
-<div class="container-sing" (click)="loadSingInPage()" *ngIf="UserInAccount; else profileImg">
+<div class="container-sing" (click)="loadSingInPage()" *ngIf="!UserInAccount; else profileImg">
     <img src="./log-in.svg" alt="loginImg">
 
     <button class="button-singin">Увійти</button>

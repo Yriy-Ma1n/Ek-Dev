@@ -13,24 +13,29 @@ export class UserDataService {
   user$ = this.userSubject.asObservable()
 
   userData = false
-  UserinAccount: boolean = false
-  constructor() {
-    this.http.get<{ _id: string, name: string, password: string, profileImg: string }>("http://localhost:5500/userInAccount", {
-      withCredentials: true
-    }).subscribe(data => {
-      
-      if (data.name) {
-        this.userSubject.next(data)
-        this.UserinAccount = true
-      } else {
-        this.UserinAccount = false
-        this.userData = false
-      }
+  UserInAccountSubject = new BehaviorSubject<boolean>(false)
+  UserinAccount$ = this.UserInAccountSubject.asObservable()
 
-    })
+  constructor() {
+    this.request()
   }
 
   get inAccount() {
-    return this.UserinAccount
+    return this.UserinAccount$
+  }
+
+  request() {
+    this.http.get<{ _id: string, name: string, password: string, profileImg: string }>("http://localhost:5500/userInAccount", {
+      withCredentials: true
+    }).subscribe(data => {
+      console.log('take data', data)
+      if (data.name) {
+        this.userSubject.next(data)
+        this.UserInAccountSubject.next(true)
+      } else {
+        this.UserInAccountSubject.next(false)
+        this.userData = false
+      }
+    })
   }
 }

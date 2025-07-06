@@ -1,5 +1,7 @@
 const express = require("express")
-import { ProductSave } from "../../../server"
+import { ObjectId } from "mongodb"
+import { ProductSave, userSave } from "../../../server"
+import { connect } from "../../connectToBd/connectBd"
 export const router = express.Router()
 
 
@@ -37,4 +39,24 @@ router.post('/addProduct', async (req, res) => {
             message: 'should to be 4 field, img,name,cost,description and all field string'
         });
     }
+})
+router.post('/changeProfileAvatar',async (req, res)=>{
+    const {id, URL } = req.body
+
+    const userDataBase = await userSave.collection("Users")
+
+    const user = await userDataBase.findOne({_id:new ObjectId(id)})
+    
+    if(user){
+        await userDataBase.updateOne(
+            {_id:new ObjectId(id)},
+            {$set:{ profileImg: URL }}
+        )
+        res.send({status:'Your avatar image was changed'})
+    }else{
+        res.status(400).send({error:'User not found'})
+    }
+
+    
+
 })

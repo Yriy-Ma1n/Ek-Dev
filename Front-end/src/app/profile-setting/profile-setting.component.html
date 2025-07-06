@@ -1,1 +1,31 @@
-<p>profile-setting works!</p>
+<section class="profile-settings">
+  <h2 class="settings-title">Налаштування профілю</h2>
+
+  <div class="avatar-section">
+    <img [src]="UserImage" alt="Avatar" class="avatar-preview" />
+    <div class="avatar-actions">
+      <input type="text"placeholder="URL каринки" class="URL-image" #URLInput/>
+      <button class="remove-avatar-btn" (click)="addProfileImage(URLInput)">Додати картинку</button>
+      <button class="remove-avatar-btn">Видалити картинку</button>
+    </div>
+  </div>
+
+  <form class="settings-form">
+    <div class="form-group">
+      <label for="username">Ім’я</label>
+      <input type="text" id="username" value="username123" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" value="example@email.com" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Новий пароль</label>
+      <input type="password" id="password" placeholder="••••••••" />
+    </div>
+
+    <button type="submit" class="save-settings-btn">💾 Зберегти</button>
+  </form>
+</section>
