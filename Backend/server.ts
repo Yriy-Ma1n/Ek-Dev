@@ -1,6 +1,3 @@
-import { error } from "console";
-import type { LaptopItem } from "./Types/LapTopItem-type";
-import { ObjectId } from "mongodb";
 
 import { router as BotRouter } from "./server/bot/bot";
 import { router as LoginRouter } from "./server/login-register/login-register";
@@ -8,16 +5,13 @@ import { router as DeleteRouter } from "./server/requests/delete/request-delete"
 import { router as PostRouter } from "./server/requests/post/request-post";
 import { router as GetRouter } from "./server/requests/get/request-get";
 import { connect } from "./server/connectToBd/connectBd"
-
+import { bot } from "./server/bot/bot"
 export let ProductSave;
 export let userSave
 
 
 const express = require('express');
 const cors = require('cors');
-const User = require("./models/user.js")
-const { MongoClient } = require('mongodb');
-const { Telegraf } = require("telegraf");
 
 const session = require("express-session")
 
@@ -27,7 +21,7 @@ require('dotenv').config();
 
 const PORT = process.env.PORT;
 
-const userUri = process.env.USER_URI
+
 
 const app = express();
 app.use(cors({
@@ -61,6 +55,7 @@ async function startServer() {
         }))
 
         app.use('', BotRouter)
+        bot.launch()
         app.use('', LoginRouter)
         app.use('', DeleteRouter)
         app.use('', PostRouter)

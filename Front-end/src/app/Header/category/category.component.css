@@ -40,8 +40,8 @@
     left: 0;
     height: 110px;
     width: 100%;
-    background-color: white;
-    z-index: 9999;
+    background-color: var(--bg-color);
+    z-index: 9998;
     transition: 0.5s;
     box-shadow: 1px 7px 10px -1px rgba(0, 0, 0, 0.37);
 
@@ -67,6 +67,10 @@
 .item img {
     width: 24px;
     height: 32px;
+}
+
+.item p {
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 .container-item {
@@ -98,8 +102,9 @@
         font-size: 15px;
     }
 }
+
 @media (max-width:1168px) {
-    .list-category-container{
+    .list-category-container {
         gap: 20px;
     }
 }

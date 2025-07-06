@@ -14,7 +14,7 @@ export async function connect() {
 
     return {ProductSave, userSave}
     } catch (err) {
-        console.log(err)
+        console.log('I got error DB',err)
         return null
     }
 }

@@ -13,7 +13,7 @@
         </div>
 
         <div class="additional-info-account" [ngClass]="{'hide':showInfoAccount}">
-            <div class="additional-info-item">
+            <div class="additional-info-item" (click)="openDataProfile($event)">
                  <div class="additional-info-item-account item">
                     <p>Профіль</p>
                 </div>
@@ -23,13 +23,11 @@
                 <div class="additional-info-item-settings item">
                     <p>Налаштування</p>
                 </div>
-                <div class="additional-info-item-singout item" (click)="logout()">
+                <div class="additional-info-item-singout item">
                     <p>Вийти</p>
                     <img src="./logout.svg" alt="">
                 </div>
             </div>
         </div>
     </div>
-
-
 </ng-template>

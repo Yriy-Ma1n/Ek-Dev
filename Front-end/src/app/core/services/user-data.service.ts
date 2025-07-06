@@ -18,7 +18,7 @@ export class UserDataService {
     this.http.get<{ _id: string, name: string, password: string, profileImg: string }>("http://localhost:5500/userInAccount", {
       withCredentials: true
     }).subscribe(data => {
-      console.log(data)
+      
       if (data.name) {
         this.userSubject.next(data)
         this.UserinAccount = true

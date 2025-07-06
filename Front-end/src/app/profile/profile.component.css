@@ -1,0 +1,77 @@
+.profile-page {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: 'Proxima Soft', sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  background: var(--form-bg-color);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--accent-color-blue);
+  object-fit: cover;
+}
+
+.user-details h1 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--text-color);
+}
+
+.email {
+  color: var(--scrollbar-color);
+  font-size: 14px;
+}
+
+.profile-sections {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.profile-card {
+  background: var(--form-bg-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: box-shadow 0.3s, background 0.3s;
+  cursor: pointer;
+}
+
+.profile-card:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+.profile-card h3 {
+  margin-top: 0;
+  color: var(--text-color);
+}
+
+.edit-btn {
+  background: var(--accent-color-orange);
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s ease-in-out;
+}
+
+.edit-btn:hover {
+  background: var(--acent-color-orange-hover);
+}

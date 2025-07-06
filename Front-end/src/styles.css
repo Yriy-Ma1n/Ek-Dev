@@ -11,6 +11,8 @@ body,html{
     --accent-color-black: #202124;
     --opacity-color-gray:#dfdfdfd3;
     --footer-bg: rgba(240, 240, 240, 255);
+    --accent-color-blue-new: #2c509a;
+    --form-bg-color:white
 }
 
 @font-face {
@@ -33,7 +35,8 @@ body,html{
   --accent-color-blue: #303133;
   --scrollbar-color: #a8a8a8;
    --footer-bg: #303133;
-
+   --accent-color-blue-new: #ffffff;
+   --form-bg-color: #303133;
 }
 
 /* Використовуємо змінні в базових стилях */

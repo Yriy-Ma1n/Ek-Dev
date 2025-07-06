@@ -9,6 +9,7 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AppCategoryListComponent } from './main-section/app-category-list/app-category-list.component';
 import { SingInPageComponent } from './sing-in-page/sing-in-page.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -50,6 +51,11 @@ export const routes: Routes = [
     path:'Register',
     component:RegisterComponent,
     title:'Register'
+  },
+  {
+    path:'Profile',
+    component:ProfileComponent,
+    title:'Profile'
   },
   {
     path: '**',
