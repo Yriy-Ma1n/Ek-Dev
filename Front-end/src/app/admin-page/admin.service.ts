@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http'
 import { inject, Injectable } from '@angular/core'
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,17 @@ export class AdminService {
       await this.http.get<{ _id: string, cost: string, description: string[], img: string, name: string }[]>("http://localhost:5500/adminTovar").subscribe(data => { this.data = data; });
     }, 200)
 
+  }
+
+  private hideLayoutSubject = new BehaviorSubject<boolean>(false);
+  hideLayout$ = this.hideLayoutSubject.asObservable();
+
+  hide() {
+    this.hideLayoutSubject.next(true);
+  }
+
+  show() {
+    this.hideLayoutSubject.next(false);
   }
 
 }
