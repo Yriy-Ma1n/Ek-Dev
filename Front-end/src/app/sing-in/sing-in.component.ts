@@ -38,4 +38,13 @@ export class SingInComponent {
   openAdditional(){
     this.showInfoAccount = !this.showInfoAccount
   }
+  openDataProfile(event:Event){
+    const text = (event.target as HTMLDivElement).textContent
+    if(text === 'Вийти') this.logout()
+    if(text === 'Мої замовлення')console.log('замовлення')
+    if(text === 'Профіль')console.log('Профіль')
+    if(text === 'Налаштування')console.log('Налаштування')
+
+
+  }
 }
