@@ -42,6 +42,7 @@ export class SingInComponent {
   }
   openDataProfile(event:Event){
     const text = (event.target as HTMLDivElement).textContent
+    console.log(text)
     if(text === 'Вийти') this.logout()
     if(text === 'Мої замовлення')this.router.navigate(['/busket'])
     if(text === 'Профіль') this.router.navigate(['/Profile'])
