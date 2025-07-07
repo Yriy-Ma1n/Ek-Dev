@@ -163,7 +163,6 @@ exports.router.get('/userInAccount', function (req, res) { return __awaiter(void
                 return [4 /*yield*/, server_1.userSave.collection("Users").findOne({ _id: new mongodb_1.ObjectId(req.session.user._id) })];
             case 1:
                 user = _b.sent();
-                console.log(user);
                 if (user) {
                     res.send(user);
                 }

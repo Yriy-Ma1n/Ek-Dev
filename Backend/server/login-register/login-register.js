@@ -39,6 +39,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 var server_1 = require("../../server");
 var express = require("express");
+var passwordHash = require("password-hash");
 exports.router = express.Router();
 var cors = require("cors");
 exports.router.use(cors({
@@ -46,7 +47,7 @@ exports.router.use(cors({
     credentials: true
 }));
 exports.router.post('/register', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, password, profileImg, userCollection, finded;
+    var _a, name, password, profileImg, userCollection, finded, hashedPassword;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
@@ -61,7 +62,8 @@ exports.router.post('/register', function (req, res) { return __awaiter(void 0, 
                     res.status(403).json({ error: "login already exist" });
                 }
                 else {
-                    userCollection.insertOne({ name: name, password: password, profileImg: profileImg });
+                    hashedPassword = passwordHash.generate(password);
+                    userCollection.insertOne({ name: name, password: hashedPassword, profileImg: profileImg });
                     res.status(200).json({ okay: true });
                 }
                 return [2 /*return*/];
@@ -81,7 +83,7 @@ exports.router.post('/login', function (req, res) { return __awaiter(void 0, voi
             case 2:
                 finded = _b.sent();
                 if (finded) {
-                    areSame = password === finded.password;
+                    areSame = passwordHash.verify(password, finded.password);
                     if (areSame) {
                         req.session.user = finded;
                         req.session.isAuthenticated = true;
