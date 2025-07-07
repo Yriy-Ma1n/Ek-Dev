@@ -3,4 +3,5 @@ export type User = {
   name: string;
   password: string;
   profileImg: string;
+  theme:string
 }

@@ -40,7 +40,7 @@ router.post('/addProduct', async (req, res) => {
         });
     }
 })
-router.post('/changeProfileAvatar',async (req, res)=>{
+router.patch('/changeProfileAvatar',async (req, res)=>{
     const {id, URL } = req.body
 
     const userDataBase = await userSave.collection("Users")
@@ -56,7 +56,21 @@ router.post('/changeProfileAvatar',async (req, res)=>{
     }else{
         res.status(400).send({error:'User not found'})
     }
-
+})
+router.patch('/changeStatusTheme', async (req, res)=>{
+    const { id, theme } = req.body
     
+    const userDataBase = await userSave.collection("Users")
 
+    const user = await userDataBase.findOne({_id:new ObjectId(id)})
+
+    if(user){
+        await userDataBase.updateOne(
+            {_id:new ObjectId(id)},
+            {$set:{theme:theme}}
+        )
+        res.send({status:'Your theme was changed'})
+    }else{
+         res.status(400).send({error:'User not found'})
+    }
 })

@@ -34,7 +34,7 @@ export class ProfileSettingComponent {
   }
 
   addProfileImage(URLInput: HTMLInputElement) {
-    this.http.post('http://localhost:5500/changeProfileAvatar', { id: this.UserId, URL: URLInput.value }).subscribe((data) => {
+    this.http.patch('http://localhost:5500/changeProfileAvatar', { id: this.UserId, URL: URLInput.value }).subscribe((data) => {
       if (data) {
         this.User.request()
         URLInput.value = ''

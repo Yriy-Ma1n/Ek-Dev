@@ -17,7 +17,7 @@ export class ProfileComponent {
   userData = inject(UserDataService);
   router = inject(Router)
 
-  user: User  = {_id:'', name:'', password:'', profileImg:''}
+  user: User  = {_id:'', name:'', password:'', profileImg:'', theme:''}
   constructor() {
     setTimeout(() => {
       this.userData.user$.subscribe(user => {

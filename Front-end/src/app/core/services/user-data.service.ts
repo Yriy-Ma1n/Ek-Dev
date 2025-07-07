@@ -13,7 +13,7 @@ export class UserDataService {
   user$ = this.userSubject.asObservable()
 
   userData = false
-  UserInAccountSubject = new BehaviorSubject<boolean>(false)
+  UserInAccountSubject = new BehaviorSubject<boolean | null>(null)
   UserinAccount$ = this.UserInAccountSubject.asObservable()
 
   constructor() {
@@ -25,9 +25,10 @@ export class UserDataService {
   }
 
   request() {
-    this.http.get<{ _id: string, name: string, password: string, profileImg: string }>("http://localhost:5500/userInAccount", {
+    this.http.get<{ _id: string, name: string, password: string, profileImg: string, theme:string }>("http://localhost:5500/userInAccount", {
       withCredentials: true
     }).subscribe(data => {
+      console.log(data)
       if (data.name) {
         this.userSubject.next(data)
         this.UserInAccountSubject.next(true)
