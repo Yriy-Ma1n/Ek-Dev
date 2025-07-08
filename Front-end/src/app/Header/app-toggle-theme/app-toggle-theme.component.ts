@@ -19,30 +19,13 @@ export class AppToggleThemeComponent {
   currTheme = localStorage.getItem("theme") || ''
 
   isDark = computed(() => {
-    if (this.userInAccount) {
-      this.currTheme === 'ligth' ? this.currTheme = 'dark' : this.currTheme = 'ligth'
-      this.http.patch('http://localhost:5500/changeStatusTheme', { id: this.userId, theme: this.currTheme }).subscribe(data=>console.log(data))
-    }
     return this.themeService.theme() === 'dark'
   });
 
   constructor(public themeService: ThemeService) {
-    this.getUserData()
+    
   }
 
-  getUserData() {
-    this.userService.UserinAccount$.subscribe(data => {
-      console.log(data)
-      if (data) {
-        this.userInAccount = data
-      }
-    })
-    this.userService.user$.subscribe(data => {
-      if (data) {
-        this.userId = data._id
-      }
-    })
-  }
-
+ 
 
 }
