@@ -103,3 +103,6 @@
     background-color: #1d3d7c;
 }
 
+.red-border{
+    border: 1px solid red;
+}
