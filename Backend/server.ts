@@ -2,7 +2,7 @@
 import { router as BotRouter } from "./server/bot/bot";
 import { router as LoginRouter } from "./server/login-register/login-register";
 import { router as DeleteRouter } from "./server/requests/delete/request-delete";
-import { router as PostRouter } from "./server/requests/post/request-post";
+import { router as PostRouter } from "./server/requests/post-patch/request-post";
 import { router as GetRouter } from "./server/requests/get/request-get";
 import { connect } from "./server/connectToBd/connectBd"
 import { bot } from "./server/bot/bot"
