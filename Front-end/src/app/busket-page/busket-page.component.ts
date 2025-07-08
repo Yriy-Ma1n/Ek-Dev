@@ -77,7 +77,10 @@ ${this.product.reduce((akk, item, i) => akk += `${i + 1}. ${item.name} (x${item.
 
 
   constructor(){
+    setTimeout(()=>{
     console.log(this.cardService.GetProduct)
+
+    },1000)
   }
 
 }

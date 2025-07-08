@@ -63,12 +63,16 @@ router.patch('/addItemToCard', async (req, res) => {
 
     const Finduser = await userSave.collection("Users")
 
-    const user = await Finduser.findOne({ _id: new ObjectId(id) })
+    const idLikeObj = new ObjectId(id)
 
+    if(!ObjectId.isValid(idLikeObj))res.status(403).json({error:'UserId Invalid'})
+
+    const user = await Finduser.findOne({ _id: idLikeObj })
+    console.log('ID получен:', id, typeof id);
     if (user) {
-        await user.updateOne(
-            { _id: new ObjectId(id) },
-            { $push: { item } }
+        await Finduser.updateOne(
+            { _id: idLikeObj },
+            { $push: { cardItem:item } }
         )
         res.send({ status: 'Item was added' })
     } else {

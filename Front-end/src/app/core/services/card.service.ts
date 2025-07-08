@@ -1,18 +1,32 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { UserDataService } from './user-data.service';
+import { firstValueFrom } from 'rxjs';
 
-export type objProduct = { _id: string, name: string, price: number, quantity: number, src: string }
+export type objProduct = { _Itemid: string; name: string; price: number; quantity: number; src: string; }
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardService {
 
-  private arrProduct: objProduct[] = JSON.parse(localStorage.getItem("allCardTovar")!) || []
+  private arrProduct: objProduct[] = []
+  userData = inject(UserDataService)
+
+  constructor() {
+    this.rewriteProduct()
+  }
+
+  async takeUser() {
+    return await this.userData.show()
+  }
 
   get GetProduct() {
     return [...this.arrProduct]
   }
 
+  async rewriteProduct(){
+    this.arrProduct = (await this.takeUser()).cardItem
+  }
 
   get CountProduct() {
     return this.arrProduct.reduce((akk, item) => akk += item.quantity, 0)
@@ -41,19 +55,8 @@ export class CardService {
 
   set addProduct(item: objProduct) {
 
-    this.arrProduct.push(item)
-
-    this.arrProduct = this.arrProduct.reduce((acc: any[], obj) => {
-      const existing = acc.find(item => item._id === obj._id);
-
-      existing ? existing.quantity += obj.quantity : acc.push({ ...obj })
-
-      return acc;
-    }, [] as any[]);
-
-    this.changeData()
-
-  } 
+   
+  }
 
   GetTotalPrice() {
     let total: number = 0
@@ -72,13 +75,13 @@ export class CardService {
     this.arrProduct = []
     this.changeData()
   }
-  clearOnItem(nameProduct:string){
-   
-    this.arrProduct = this.arrProduct.filter(({name})=>name !== nameProduct)
+  clearOnItem(nameProduct: string) {
+
+    this.arrProduct = this.arrProduct.filter(({ name }) => name !== nameProduct)
     this.changeData()
   }
 
-  changeData(){
+  changeData() {
     localStorage.setItem("allCardTovar", JSON.stringify(this.arrProduct))
   }
 }

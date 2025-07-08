@@ -28,13 +28,6 @@ export class AppComponent {
     this.layout.hideLayout$.subscribe(value => {
       this.hideLayout = value;
     });
-   this.userData.user$.subscribe(data=>{
-    if(data?.name){
-      data.theme === 'dark' ? this.changeClassBody('dark-theme') : document.body.classList.remove('dark-theme')
-      
-    }
-   })
-
   }
 
   changeClassBody(clas:string){

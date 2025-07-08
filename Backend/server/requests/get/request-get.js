@@ -176,3 +176,22 @@ exports.router.get('/userInAccount', function (req, res) { return __awaiter(void
         }
     });
 }); });
+exports.router.get('/cardProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, user;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                id = req.body.id;
+                return [4 /*yield*/, server_1.userSave.collection("Users").findOne({ _id: new mongodb_1.ObjectId(id) }, { projection: { cardItem: 1 } })];
+            case 1:
+                user = _a.sent();
+                if (user) {
+                    res.send(user);
+                }
+                else {
+                    res.status(404).json({ error: 'not found' });
+                }
+                return [2 /*return*/];
+        }
+    });
+}); });

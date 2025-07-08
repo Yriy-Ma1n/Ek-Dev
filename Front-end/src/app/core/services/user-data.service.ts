@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { User } from '../../shared/types/User-Types';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, filter, firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +24,18 @@ export class UserDataService {
     return this.UserinAccount$
   }
 
+  getAsyncUser() {
+    return firstValueFrom(this.user$.pipe(filter(user=>!!user)))
+  }
+  async show() {
+    return await this.getAsyncUser()
+  }
+
   request() {
-    this.http.get<{ _id: string, name: string, password: string, profileImg: string, theme:string }>("http://localhost:5500/userInAccount", {
+    this.http.get<{ _id: string, name: string, password: string, profileImg: string, cardItem:{_Itemid:string, name:string, price:number, quantity:number, src:string}[] }>("http://localhost:5500/userInAccount", {
       withCredentials: true
     }).subscribe(data => {
-      console.log(data)
+      
       if (data.name) {
         this.userSubject.next(data)
         this.UserInAccountSubject.next(true)

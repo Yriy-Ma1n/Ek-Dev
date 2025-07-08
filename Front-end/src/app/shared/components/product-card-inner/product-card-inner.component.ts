@@ -12,6 +12,7 @@ import type { characteristic } from '../../types/characteristics-type';
 import { FooterComponent } from "../../../footer/footer.component";
 import { CurrencySwitcherPipe } from '../../../pipes/currency-switcher.pipe';
 import { Title } from '@angular/platform-browser';
+import { UserDataService } from '../../../core/services/user-data.service';
 @Component({
   selector: 'app-product-card-inner',
   imports: [
@@ -24,7 +25,7 @@ import { Title } from '@angular/platform-browser';
     NgIf,
     FooterComponent,
     CurrencySwitcherPipe
-],
+  ],
   templateUrl: './product-card-inner.component.html',
   styleUrl: './product-card-inner.component.css'
 })
@@ -32,16 +33,18 @@ export class ProductCardInnerComponent {
   router = inject(Router)
   activeRoute = inject(ActivatedRoute)
   CardProduct = inject(CardService)
-  Currency =  localStorage.getItem('currencu') ? localStorage.getItem('currencu')! : "UAH";
+  Currency = localStorage.getItem('currencu') ? localStorage.getItem('currencu')! : "UAH";
   title = inject(Title)
   http = inject(HttpClient)
   data: any[] = [] //Тут будут все характеристики и описание к товару
   name: string = ''
-
   ram: boolean = false;
+  userData = inject(UserDataService);
+  userId: string = ''
 
 
   constructor() {
+    this.getsUserId()
     this.activeRoute.queryParams.subscribe(params => {
       const titleTovar = params["id"]
       this.http.get<any[]>(`http://localhost:5500/search?q=${titleTovar}`).subscribe(data => {
@@ -60,11 +63,11 @@ export class ProductCardInnerComponent {
 
         this.id = this.data[0]?._id
         this.comments = JSON.parse(localStorage.getItem(`comment:${this.id}`) || '[]') //Достаем из localStorage комент по id и записываем в comments для рендера
-      
+
         this.title.setTitle(titleTovar)
       })
     })
-    console.log(this.data)
+
   }
 
 
@@ -91,28 +94,31 @@ export class ProductCardInnerComponent {
     localStorage.setItem(`comment:${this.id}`, JSON.stringify(this.comments))
   }
 
-  buyButton(element: HTMLButtonElement, name: HTMLElement, photo: HTMLImageElement, price: HTMLElement) {
+  async buyButton(element: HTMLButtonElement, name: HTMLElement, photo: HTMLImageElement, price: HTMLElement) {
     this.updateUI(true, 'Добавленно в корзину', true, element)
 
     setTimeout(() => this.updateUI(false, 'В корзину', false, element), 1500)
     console.log(this.Currency);
     let changedPrice
     let uahPrise
-    if(this.Currency === "UAH"){
+
+
+    if (this.Currency === "UAH") {
       changedPrice = price.textContent?.replaceAll('₴', '').replaceAll(' ', '')!;
       uahPrise = `${(+changedPrice).toFixed(0)}`
-    }else if(this.Currency === "USD"){
+    } else if (this.Currency === "USD") {
       changedPrice = price.textContent?.replaceAll('$', '').replaceAll(' ', '')!
       uahPrise = `${(+changedPrice * 41.85).toFixed(2)}`
-    }else if(this.Currency === "EUR"){
+    } else if (this.Currency === "EUR") {
       changedPrice = price.textContent?.replaceAll('€', '').replaceAll(' ', '')!
       uahPrise = `${(+changedPrice * 49.43).toFixed(2)}`
     }
 
 
-    this.CardProduct.addProduct = { _id: this.id, name: name.textContent!, price: +uahPrise!, quantity: 1, src: photo.src }
 
- 
+    this.http.patch('http://localhost:5500/addItemToCard', { id: this.userId, item: { _Itemid: this.id, name: name.textContent!, price: +uahPrise!, quantity: 1, src: photo.src } }).subscribe(data => console.log(data))
+
+
 
   }
 
@@ -132,6 +138,11 @@ export class ProductCardInnerComponent {
     if (String(arr) === "[]") {
       return true
     }
+  }
+
+  async getsUserId() {
+    const id = (await this.userData.show())._id
+    this.userId = id
   }
 
 }
