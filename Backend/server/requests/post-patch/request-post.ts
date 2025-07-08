@@ -2,6 +2,7 @@ const express = require("express")
 import { ObjectId } from "mongodb"
 import { ProductSave, userSave } from "../../../server"
 import { connect } from "../../connectToBd/connectBd"
+import { error } from "console"
 export const router = express.Router()
 
 
@@ -32,7 +33,7 @@ router.post('/addProduct', async (req, res) => {
         await collectionPopular.insertOne(req.body)
         await collectionAllTovar.insertOne(req.body)
         await collectionAdmin.insertOne(req.body)
-        res.send({succes:true})
+        res.send({ succes: true })
     } else {
         res.status(400).json({
             error: 'Bad Request',
@@ -40,20 +41,38 @@ router.post('/addProduct', async (req, res) => {
         });
     }
 })
-router.patch('/changeProfileAvatar',async (req, res)=>{
-    const {id, URL } = req.body
+router.patch('/changeProfileAvatar', async (req, res) => {
+    const { id, URL } = req.body
 
     const userDataBase = await userSave.collection("Users")
 
-    const user = await userDataBase.findOne({_id:new ObjectId(id)})
-    
-    if(user){
+    const user = await userDataBase.findOne({ _id: new ObjectId(id) })
+
+    if (user) {
         await userDataBase.updateOne(
-            {_id:new ObjectId(id)},
-            {$set:{ profileImg: URL }}
+            { _id: new ObjectId(id) },
+            { $set: { profileImg: URL } }
         )
-        res.send({status:'Your avatar image was changed'})
-    }else{
-        res.status(400).send({error:'User not found'})
+        res.send({ status: 'Your avatar image was changed' })
+    } else {
+        res.status(400).send({ error: 'User not found' })
+    }
+})
+router.patch('/addItemToCard', async (req, res) => {
+    const { id, item } = req.body
+
+    const Finduser = await userSave.collection("Users")
+
+    const user = await Finduser.findOne({ _id: new ObjectId(id) })
+
+    if (user) {
+        await user.updateOne(
+            { _id: new ObjectId(id) },
+            { $push: { item } }
+        )
+        res.send({ status: 'Item was added' })
+    } else {
+        res.status(400).send({error:'error'})
+
     }
 })

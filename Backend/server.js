@@ -40,7 +40,7 @@ exports.userSave = exports.ProductSave = void 0;
 var bot_1 = require("./server/bot/bot");
 var login_register_1 = require("./server/login-register/login-register");
 var request_delete_1 = require("./server/requests/delete/request-delete");
-var request_post_1 = require("./server/requests/post/request-post");
+var request_post_1 = require("./server/requests/post-patch/request-post");
 var request_get_1 = require("./server/requests/get/request-get");
 var connectBd_1 = require("./server/connectToBd/connectBd");
 var bot_2 = require("./server/bot/bot");

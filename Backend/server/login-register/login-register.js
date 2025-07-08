@@ -47,11 +47,11 @@ exports.router.use(cors({
     credentials: true
 }));
 exports.router.post('/register', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, password, profileImg, userCollection, finded, hashedPassword;
+    var _a, name, password, profileImg, cardItem, userCollection, finded, hashedPassword;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _a = req.body, name = _a.name, password = _a.password, profileImg = _a.profileImg;
+                _a = req.body, name = _a.name, password = _a.password, profileImg = _a.profileImg, cardItem = _a.cardItem;
                 return [4 /*yield*/, server_1.userSave.collection("Users")];
             case 1:
                 userCollection = _b.sent();
@@ -63,7 +63,7 @@ exports.router.post('/register', function (req, res) { return __awaiter(void 0, 
                 }
                 else {
                     hashedPassword = passwordHash.generate(password);
-                    userCollection.insertOne({ name: name, password: hashedPassword, profileImg: profileImg });
+                    userCollection.insertOne({ name: name, password: hashedPassword, profileImg: profileImg, cardItem: cardItem });
                     res.status(200).json({ okay: true });
                 }
                 return [2 /*return*/];
