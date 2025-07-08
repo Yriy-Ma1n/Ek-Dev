@@ -126,7 +126,6 @@ exports.router.patch('/addItemToCard', function (req, res) { return __awaiter(vo
                 return [4 /*yield*/, Finduser.findOne({ _id: idLikeObj })];
             case 2:
                 user = _b.sent();
-                console.log('ID получен:', id, typeof id);
                 if (!user) return [3 /*break*/, 4];
                 return [4 /*yield*/, Finduser.updateOne({ _id: idLikeObj }, { $push: { cardItem: item } })];
             case 3:
@@ -136,6 +135,61 @@ exports.router.patch('/addItemToCard', function (req, res) { return __awaiter(vo
             case 4:
                 res.status(400).send({ error: 'error' });
                 _b.label = 5;
+            case 5: return [2 /*return*/];
+        }
+    });
+}); });
+exports.router.patch('/removeItemFromCard', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, id, itemId, Finduser, idLikeObj, user;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _a = req.body, id = _a.id, itemId = _a.itemId;
+                return [4 /*yield*/, server_1.userSave.collection("Users")];
+            case 1:
+                Finduser = _b.sent();
+                idLikeObj = new mongodb_1.ObjectId(id);
+                if (!mongodb_1.ObjectId.isValid(idLikeObj))
+                    res.status(403).json({ error: 'UserId Invalid' });
+                return [4 /*yield*/, Finduser.findOne({ _id: idLikeObj })];
+            case 2:
+                user = _b.sent();
+                if (!user) return [3 /*break*/, 4];
+                return [4 /*yield*/, Finduser.updateOne({ _id: idLikeObj }, { $pull: { cardItem: { _Itemid: itemId } } })];
+            case 3:
+                _b.sent();
+                res.send({ status: 'Item was added' });
+                return [3 /*break*/, 5];
+            case 4:
+                res.status(400).send({ error: 'error' });
+                _b.label = 5;
+            case 5: return [2 /*return*/];
+        }
+    });
+}); });
+exports.router.patch('/deleteItemFromCard', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var itemName, id, Finduser, idLikeObj, user;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                itemName = req.body.itemName;
+                id = req.session.user._id;
+                return [4 /*yield*/, server_1.userSave.collection("Users")];
+            case 1:
+                Finduser = _a.sent();
+                idLikeObj = new mongodb_1.ObjectId(id);
+                return [4 /*yield*/, Finduser.findOne({ _id: idLikeObj })];
+            case 2:
+                user = _a.sent();
+                if (!user) return [3 /*break*/, 4];
+                return [4 /*yield*/, Finduser.updateOne({ _id: idLikeObj }, { $pull: { cardItem: { name: itemName } } })];
+            case 3:
+                _a.sent();
+                res.send({ data: 'everything okay' });
+                return [3 /*break*/, 5];
+            case 4:
+                res.status(404).json({ error: "something went wrong" });
+                _a.label = 5;
             case 5: return [2 /*return*/];
         }
     });

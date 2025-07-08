@@ -40,11 +40,8 @@ export class ProductCardInnerComponent {
   name: string = ''
   ram: boolean = false;
   userData = inject(UserDataService);
-  userId: string = ''
-
 
   constructor() {
-    this.getsUserId()
     this.activeRoute.queryParams.subscribe(params => {
       const titleTovar = params["id"]
       this.http.get<any[]>(`http://localhost:5500/search?q=${titleTovar}`).subscribe(data => {
@@ -101,8 +98,6 @@ export class ProductCardInnerComponent {
     console.log(this.Currency);
     let changedPrice
     let uahPrise
-
-
     if (this.Currency === "UAH") {
       changedPrice = price.textContent?.replaceAll('₴', '').replaceAll(' ', '')!;
       uahPrise = `${(+changedPrice).toFixed(0)}`
@@ -114,11 +109,12 @@ export class ProductCardInnerComponent {
       uahPrise = `${(+changedPrice * 49.43).toFixed(2)}`
     }
 
+    const userId = this.userData.datas?._id
+
+    this.http.patch('http://localhost:5500/addItemToCard', { id: userId, item: { _Itemid: this.id, name: name.textContent!, price: +uahPrise!, quantity: 1, src: photo.src } }).subscribe(data => console.log(data))
 
 
-    this.http.patch('http://localhost:5500/addItemToCard', { id: this.userId, item: { _Itemid: this.id, name: name.textContent!, price: +uahPrise!, quantity: 1, src: photo.src } }).subscribe(data => console.log(data))
-
-
+    await this.CardProduct.rewriteProduct();
 
   }
 
@@ -140,9 +136,6 @@ export class ProductCardInnerComponent {
     }
   }
 
-  async getsUserId() {
-    const id = (await this.userData.show())._id
-    this.userId = id
-  }
+
 
 }

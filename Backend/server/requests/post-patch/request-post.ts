@@ -59,24 +59,68 @@ router.patch('/changeProfileAvatar', async (req, res) => {
     }
 })
 router.patch('/addItemToCard', async (req, res) => {
+
     const { id, item } = req.body
 
     const Finduser = await userSave.collection("Users")
 
     const idLikeObj = new ObjectId(id)
 
-    if(!ObjectId.isValid(idLikeObj))res.status(403).json({error:'UserId Invalid'})
+    if (!ObjectId.isValid(idLikeObj)) res.status(403).json({ error: 'UserId Invalid' })
 
     const user = await Finduser.findOne({ _id: idLikeObj })
-    console.log('ID получен:', id, typeof id);
+
     if (user) {
         await Finduser.updateOne(
             { _id: idLikeObj },
-            { $push: { cardItem:item } }
+            { $push: { cardItem: item } }
         )
         res.send({ status: 'Item was added' })
     } else {
-        res.status(400).send({error:'error'})
+        res.status(400).send({ error: 'error' })
 
+    }
+})
+router.patch('/removeItemFromCard', async (req, res) => {
+    const { id, itemId } = req.body
+
+    const Finduser = await userSave.collection("Users")
+
+    const idLikeObj = new ObjectId(id)
+
+    if (!ObjectId.isValid(idLikeObj)) res.status(403).json({ error: 'UserId Invalid' })
+
+    const user = await Finduser.findOne({ _id: idLikeObj })
+
+    if (user) {
+        await Finduser.updateOne(
+            { _id: idLikeObj },
+            { $pull: { cardItem: { _Itemid: itemId } } }
+        )
+        res.send({ status: 'Item was added' })
+    } else {
+        res.status(400).send({ error: 'error' })
+
+    }
+})
+
+router.patch('/deleteItemFromCard', async (req, res) => {
+    const { itemName } = req.body
+    const id = req.session.user._id
+
+    const Finduser = await userSave.collection("Users")
+
+    const idLikeObj = new ObjectId(id)
+
+    const user = await Finduser.findOne({ _id: idLikeObj })
+
+    if (user) {
+        await Finduser.updateOne(
+            { _id: idLikeObj },
+            { $pull: { cardItem: { name:itemName } } }
+        )
+        res.send({data:'everything okay'})
+    }else{
+        res.status(404).json({error:"something went wrong"})
     }
 })

@@ -11,9 +11,12 @@ export class CardService {
 
   private arrProduct: objProduct[] = []
   userData = inject(UserDataService)
+  count: number = 0
 
   constructor() {
     this.rewriteProduct()
+    
+
   }
 
   async takeUser() {
@@ -24,12 +27,22 @@ export class CardService {
     return [...this.arrProduct]
   }
 
-  async rewriteProduct(){
-    this.arrProduct = (await this.takeUser()).cardItem
+  async rewriteProduct() {
+    const item = await this.takeUser()
+    this.arrProduct = item.cardItem
+    if (this.arrProduct) {
+      this.count = this.arrProduct.reduce((akk, item) => {
+        akk = item.quantity + akk
+        return akk
+      }, 0)
+    }
+
+
   }
 
+
   get CountProduct() {
-    return this.arrProduct.reduce((akk, item) => akk += item.quantity, 0)
+    return this.count
   }
 
   set changeQuantityPlus(name: string) {
@@ -55,7 +68,7 @@ export class CardService {
 
   set addProduct(item: objProduct) {
 
-   
+
   }
 
   GetTotalPrice() {

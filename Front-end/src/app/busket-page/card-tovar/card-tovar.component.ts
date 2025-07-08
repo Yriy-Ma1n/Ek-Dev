@@ -1,6 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { CardService } from '../../core/services/card.service';
 import { CurrencySwitcherPipe } from '../../pipes/currency-switcher.pipe';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -12,6 +13,8 @@ import { CurrencySwitcherPipe } from '../../pipes/currency-switcher.pipe';
 export class CardTovarComponent {
   productChange = inject(CardService);
   Currency =  localStorage.getItem('currencu') ? localStorage.getItem('currencu')! : "UAH";
+
+  http = inject(HttpClient)
 
   @Input() count: number = 1;
   @Input() name: string = '';
@@ -58,8 +61,8 @@ export class CardTovarComponent {
   }
 
   deleteItem(name: HTMLHeadingElement) {
-    this.productChange.clearOnItem(name.textContent!)
-    console.log(this.productChange)
+    console.log('delete')
+    this.http.patch('http://localhost:5500/deleteItemFromCard', {itemName:name.textContent}, { withCredentials: true }).subscribe(data=>console.log(data))
   }
 
 

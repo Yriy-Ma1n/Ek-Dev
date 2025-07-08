@@ -91,10 +91,9 @@ router.get('/cardProduct', async (req, res) => {
     const { id } = req.body
 
     const user = await userSave.collection("Users").findOne({ _id: new ObjectId(id) }, { projection: { cardItem: 1 } })
-    if(user){
+    if (user) {
         res.send(user)
-    }else{
-        res.status(404).json({error:'not found'})
+    } else {
+        res.status(404).json({ error: 'not found' })
     }
-
 })
