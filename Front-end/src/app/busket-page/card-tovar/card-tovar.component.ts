@@ -61,8 +61,12 @@ export class CardTovarComponent {
   }
 
   deleteItem(name: HTMLHeadingElement) {
-    console.log('delete')
-    this.http.patch('http://localhost:5500/deleteItemFromCard', {itemName:name.textContent}, { withCredentials: true }).subscribe(data=>console.log(data))
+    
+    this.http.patch('http://localhost:5500/deleteItemFromCard', {itemName:name.textContent}, { withCredentials: true }).subscribe(data=>{
+      if(data){
+        this.productChange.rewriteProduct()
+      }
+    })
   }
 
 

@@ -87,82 +87,102 @@ exports.router.post('/addProduct', function (req, res) { return __awaiter(void 0
     });
 }); });
 exports.router.patch('/changeProfileAvatar', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, id, URL, userDataBase, user;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var URL, id, userDataBase, user;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _a = req.body, id = _a.id, URL = _a.URL;
+                URL = req.body.URL;
+                id = req.session.user._id;
                 return [4 /*yield*/, server_1.userSave.collection("Users")];
             case 1:
-                userDataBase = _b.sent();
+                userDataBase = _a.sent();
                 return [4 /*yield*/, userDataBase.findOne({ _id: new mongodb_1.ObjectId(id) })];
             case 2:
-                user = _b.sent();
+                user = _a.sent();
                 if (!user) return [3 /*break*/, 4];
                 return [4 /*yield*/, userDataBase.updateOne({ _id: new mongodb_1.ObjectId(id) }, { $set: { profileImg: URL } })];
             case 3:
-                _b.sent();
+                _a.sent();
                 res.send({ status: 'Your avatar image was changed' });
                 return [3 /*break*/, 5];
             case 4:
                 res.status(400).send({ error: 'User not found' });
-                _b.label = 5;
+                _a.label = 5;
             case 5: return [2 /*return*/];
         }
     });
 }); });
 exports.router.patch('/addItemToCard', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, id, item, Finduser, idLikeObj, user;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var item, id, Finduser, idLikeObj, user, userHasItem, error_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _a = req.body, id = _a.id, item = _a.item;
+                item = req.body.item;
+                id = req.session.user._id;
                 return [4 /*yield*/, server_1.userSave.collection("Users")];
             case 1:
-                Finduser = _b.sent();
+                Finduser = _a.sent();
                 idLikeObj = new mongodb_1.ObjectId(id);
                 if (!mongodb_1.ObjectId.isValid(idLikeObj))
                     res.status(403).json({ error: 'UserId Invalid' });
                 return [4 /*yield*/, Finduser.findOne({ _id: idLikeObj })];
             case 2:
-                user = _b.sent();
-                if (!user) return [3 /*break*/, 4];
-                return [4 /*yield*/, Finduser.updateOne({ _id: idLikeObj }, { $push: { cardItem: item } })];
+                user = _a.sent();
+                _a.label = 3;
             case 3:
-                _b.sent();
-                res.send({ status: 'Item was added' });
-                return [3 /*break*/, 5];
+                _a.trys.push([3, 9, , 10]);
+                return [4 /*yield*/, Finduser.findOne({
+                        _id: idLikeObj,
+                        "cardItem._Itemid": item._Itemid
+                    })];
             case 4:
-                res.status(400).send({ error: 'error' });
-                _b.label = 5;
-            case 5: return [2 /*return*/];
+                userHasItem = _a.sent();
+                if (!userHasItem) return [3 /*break*/, 6];
+                return [4 /*yield*/, Finduser.updateOne({ _id: idLikeObj, "cardItem._Itemid": item._Itemid }, { $inc: { "cardItem.$.quantity": 1 } })];
+            case 5:
+                _a.sent();
+                res.send({ message: 'quantity was updated' });
+                return [3 /*break*/, 8];
+            case 6: return [4 /*yield*/, Finduser.updateOne({ _id: idLikeObj }, { $push: { cardItem: item } })];
+            case 7:
+                _a.sent();
+                res.send({ status: 'Item was added' });
+                _a.label = 8;
+            case 8: return [3 /*break*/, 10];
+            case 9:
+                error_1 = _a.sent();
+                console.error(error_1);
+                res.status(500).send({ error: 'Server error' });
+                return [3 /*break*/, 10];
+            case 10: return [2 /*return*/];
         }
     });
 }); });
 exports.router.patch('/removeItemFromCard', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, id, itemId, Finduser, idLikeObj, user;
-    return __generator(this, function (_b) {
-        switch (_b.label) {
+    var itemId, id, Finduser, idLikeObj, user;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
             case 0:
-                _a = req.body, id = _a.id, itemId = _a.itemId;
+                itemId = req.body.itemId;
+                id = req.session.user._id;
                 return [4 /*yield*/, server_1.userSave.collection("Users")];
             case 1:
-                Finduser = _b.sent();
+                Finduser = _a.sent();
                 idLikeObj = new mongodb_1.ObjectId(id);
                 if (!mongodb_1.ObjectId.isValid(idLikeObj))
                     res.status(403).json({ error: 'UserId Invalid' });
                 return [4 /*yield*/, Finduser.findOne({ _id: idLikeObj })];
             case 2:
-                user = _b.sent();
+                user = _a.sent();
                 if (!user) return [3 /*break*/, 4];
                 return [4 /*yield*/, Finduser.updateOne({ _id: idLikeObj }, { $pull: { cardItem: { _Itemid: itemId } } })];
             case 3:
-                _b.sent();
+                _a.sent();
                 res.send({ status: 'Item was added' });
                 return [3 /*break*/, 5];
             case 4:
                 res.status(400).send({ error: 'error' });
-                _b.label = 5;
+                _a.label = 5;
             case 5: return [2 /*return*/];
         }
     });
@@ -191,6 +211,29 @@ exports.router.patch('/deleteItemFromCard', function (req, res) { return __await
                 res.status(404).json({ error: "something went wrong" });
                 _a.label = 5;
             case 5: return [2 /*return*/];
+        }
+    });
+}); });
+exports.router.delete('/clearCard', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, Finduser, idLikeObj, user;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                id = req.session.user._id;
+                return [4 /*yield*/, server_1.userSave.collection("Users")];
+            case 1:
+                Finduser = _a.sent();
+                idLikeObj = new mongodb_1.ObjectId(id);
+                return [4 /*yield*/, Finduser.findOne({ _id: idLikeObj })];
+            case 2:
+                user = _a.sent();
+                if (!user) return [3 /*break*/, 4];
+                return [4 /*yield*/, Finduser.updateOne({ _id: idLikeObj }, { $set: { cardItem: [] } })];
+            case 3:
+                _a.sent();
+                res.send({ message: 'Your card was clear' });
+                _a.label = 4;
+            case 4: return [2 /*return*/];
         }
     });
 }); });

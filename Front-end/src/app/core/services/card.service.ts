@@ -15,7 +15,7 @@ export class CardService {
 
   constructor() {
     this.rewriteProduct()
-    
+
 
   }
 
@@ -35,8 +35,8 @@ export class CardService {
         akk = item.quantity + akk
         return akk
       }, 0)
+      
     }
-
 
   }
 
@@ -95,6 +95,6 @@ export class CardService {
   }
 
   changeData() {
-    localStorage.setItem("allCardTovar", JSON.stringify(this.arrProduct))
+    
   }
 }

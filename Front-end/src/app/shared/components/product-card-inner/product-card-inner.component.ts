@@ -91,11 +91,10 @@ export class ProductCardInnerComponent {
     localStorage.setItem(`comment:${this.id}`, JSON.stringify(this.comments))
   }
 
-  async buyButton(element: HTMLButtonElement, name: HTMLElement, photo: HTMLImageElement, price: HTMLElement) {
+  buyButton(element: HTMLButtonElement, name: HTMLElement, photo: HTMLImageElement, price: HTMLElement) {
     this.updateUI(true, 'Добавленно в корзину', true, element)
-
     setTimeout(() => this.updateUI(false, 'В корзину', false, element), 1500)
-    console.log(this.Currency);
+
     let changedPrice
     let uahPrise
     if (this.Currency === "UAH") {
@@ -109,12 +108,12 @@ export class ProductCardInnerComponent {
       uahPrise = `${(+changedPrice * 49.43).toFixed(2)}`
     }
 
-    const userId = this.userData.datas?._id
 
-    this.http.patch('http://localhost:5500/addItemToCard', { id: userId, item: { _Itemid: this.id, name: name.textContent!, price: +uahPrise!, quantity: 1, src: photo.src } }).subscribe(data => console.log(data))
-
-
-    await this.CardProduct.rewriteProduct();
+    this.http.patch('http://localhost:5500/addItemToCard', {item: { _Itemid: this.id, name: name.textContent!, price: +uahPrise!, quantity: 1, src: photo.src } }, { withCredentials: true }).subscribe(async (data)=>{
+      console.log(data)
+      console.log('rewrite')
+      await this.CardProduct.rewriteProduct();
+    })
 
   }
 

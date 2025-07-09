@@ -19,7 +19,7 @@ export class BusketPageComponent {
   cardService = inject(CardService)
   product = this.cardService.GetProduct
   http = inject(HttpClient);
-  Currency =  localStorage.getItem('currencu') ? localStorage.getItem('currencu')! : "UAH";
+  Currency = localStorage.getItem('currencu') ? localStorage.getItem('currencu')! : "UAH";
 
   price: number = 0;
   sum: number = 0;
@@ -35,8 +35,13 @@ export class BusketPageComponent {
   })
 
   clearCard() {
-    this.cardService.clearCard()
-    this.product = []
+    if (this.product.length > 0) {
+      this.http.delete('http://localhost:5500/clearCard', { withCredentials: true }).subscribe(data => {
+        if (data) {
+          this.cardService.rewriteProduct()
+        }
+      })
+    }
   }
   buyCard() {
     if (this.product.length === 0) return
@@ -70,15 +75,15 @@ export class BusketPageComponent {
 ${this.product.reduce((akk, item, i) => akk += `${i + 1}. ${item.name} (x${item.quantity}) \n`, '')}
 `
   }
-  closeConfirmation(){
+  closeConfirmation() {
     this.Showconfirmation = false
   }
 
 
 
-async ngOnInit() {
-  await this.cardService.rewriteProduct();
-  this.product = this.cardService.GetProduct
-}
+  async ngOnInit() {
+    await this.cardService.rewriteProduct();
+    this.product = this.cardService.GetProduct
+  }
 
 }

@@ -42,7 +42,8 @@ router.post('/addProduct', async (req, res) => {
     }
 })
 router.patch('/changeProfileAvatar', async (req, res) => {
-    const { id, URL } = req.body
+    const { URL } = req.body
+    const id = req.session.user._id
 
     const userDataBase = await userSave.collection("Users")
 
@@ -60,7 +61,8 @@ router.patch('/changeProfileAvatar', async (req, res) => {
 })
 router.patch('/addItemToCard', async (req, res) => {
 
-    const { id, item } = req.body
+    const { item } = req.body
+    const id = req.session.user._id
 
     const Finduser = await userSave.collection("Users")
 
@@ -70,19 +72,32 @@ router.patch('/addItemToCard', async (req, res) => {
 
     const user = await Finduser.findOne({ _id: idLikeObj })
 
-    if (user) {
-        await Finduser.updateOne(
-            { _id: idLikeObj },
-            { $push: { cardItem: item } }
-        )
-        res.send({ status: 'Item was added' })
-    } else {
-        res.status(400).send({ error: 'error' })
-
+    try {
+        const userHasItem = await Finduser.findOne({
+            _id: idLikeObj,
+            "cardItem._Itemid": item._Itemid
+        })
+        if (userHasItem) {
+            await Finduser.updateOne(
+                { _id: idLikeObj, "cardItem._Itemid": item._Itemid },
+                { $inc: { "cardItem.$.quantity": 1 } }
+            )
+            res.send({message:'quantity was updated'})
+        } else {
+            await Finduser.updateOne(
+                { _id: idLikeObj },
+                { $push: { cardItem: item } }
+            )
+            res.send({ status: 'Item was added' })
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Server error' });
     }
 })
 router.patch('/removeItemFromCard', async (req, res) => {
-    const { id, itemId } = req.body
+    const { itemId } = req.body
+    const id = req.session.user._id
 
     const Finduser = await userSave.collection("Users")
 
@@ -117,10 +132,27 @@ router.patch('/deleteItemFromCard', async (req, res) => {
     if (user) {
         await Finduser.updateOne(
             { _id: idLikeObj },
-            { $pull: { cardItem: { name:itemName } } }
+            { $pull: { cardItem: { name: itemName } } }
         )
-        res.send({data:'everything okay'})
-    }else{
-        res.status(404).json({error:"something went wrong"})
+        res.send({ data: 'everything okay' })
+    } else {
+        res.status(404).json({ error: "something went wrong" })
+    }
+})
+
+router.delete('/clearCard', async(req,res)=>{
+    const id = req.session.user._id
+
+    const Finduser = await userSave.collection("Users")
+
+    const idLikeObj = new ObjectId(id)
+
+    const user = await Finduser.findOne({ _id: idLikeObj })
+    if(user){
+        await Finduser.updateOne(
+            {_id:idLikeObj},
+            {$set:{cardItem:[]}}
+        )
+        res.send({message:'Your card was clear'})
     }
 })
