@@ -1,6 +1,8 @@
 <div class="profile-page" *ngIf="userInAccount">
   <section class="profile-header">
-    <img class="avatar" [src]="user.profileImg" alt="User avatar">
+    <div class="avatar-container">
+      <img class="avatar" [src]="user.profileImg" alt="User avatar">
+    </div>
     <div class="user-details">
       <h1>{{user.name}}</h1>
     </div>
