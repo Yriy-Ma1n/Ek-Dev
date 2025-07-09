@@ -24,7 +24,11 @@ export class CardService {
   }
 
   get GetProduct() {
-    return [...this.arrProduct]
+    if (this.arrProduct) {
+      return [...this.arrProduct]
+    }else{
+      return  []
+    }
   }
 
   async rewriteProduct() {
@@ -35,7 +39,7 @@ export class CardService {
         akk = item.quantity + akk
         return akk
       }, 0)
-      
+
     }
 
   }
@@ -73,11 +77,11 @@ export class CardService {
 
   GetTotalPrice() {
     let total: number = 0
-    const savedProduct = JSON.parse(localStorage.getItem("allCardTovar")!)
 
-    if (!savedProduct) return
 
-    for (let item of savedProduct) {
+    if (!this.arrProduct) return
+
+    for (let item of this.arrProduct) {
       total += item.price * item.quantity
     }
 
@@ -95,6 +99,6 @@ export class CardService {
   }
 
   changeData() {
-    
+
   }
 }

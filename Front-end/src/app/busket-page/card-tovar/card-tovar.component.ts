@@ -54,10 +54,6 @@ export class CardTovarComponent {
     this.count -= 1
     this.price -= this.constPrice
 
-    this.productChange.changeQuantityMinus = String(element.textContent)
-
-    this.priceString = String(this.price);
-
   }
 
   deleteItem(name: HTMLHeadingElement) {
