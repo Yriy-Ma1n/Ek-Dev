@@ -1,11 +1,5 @@
-<p class="modal-message" [ngClass]="{'show':showEror}">
-  {{messageTextRed}}
-</p>
-<p class="modal-message" [ngClass]="{'showAdd':showSucces}">
-  {{messageTextGreen}}
-</p>
-
-
+<app-message [message]="messageTextGreen" [showCommentR]="showEror"></app-message>
+<app-message [message]="messageTextGreen" [showCommentG]="showSucces"></app-message>
 
 <div class="register-container">
   <form class="register-form" [formGroup]="registerForm">

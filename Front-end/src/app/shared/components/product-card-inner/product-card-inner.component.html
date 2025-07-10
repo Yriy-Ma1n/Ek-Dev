@@ -1,11 +1,7 @@
 <div *ngIf="data.length > 0; else ngElse">
     <div class="main-container-card">
-        <p class="modal-message" [ngClass]="{'show':showComment}">
-            Напишіть що небудь щоб додати коментар
-        </p>
-        <p class="modal-message" [ngClass]="{'showAdd':showAdd}">
-            Товар було додано до корзини!
-        </p>
+        <app-message [showCommentR]="showComment" [message]="messageR"></app-message>
+        <app-message [showCommentG]="showAdd" [message]="messageG"></app-message>
 
         <div class="container-card">
             <div class="arrow-back" (click)="backToMainPage()">

@@ -3,10 +3,11 @@ import { UserDataService } from '../core/services/user-data.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgClass } from '@angular/common';
+import { MessageComponent } from '../shared/components/message/message.component';
 
 @Component({
   selector: 'app-profile-setting',
-  imports: [NgClass],
+  imports: [NgClass, MessageComponent],
   templateUrl: './profile-setting.component.html',
   styleUrl: './profile-setting.component.css'
 })
@@ -34,7 +35,7 @@ export class ProfileSettingComponent {
   }
 
   addProfileImage(URLInput: HTMLInputElement) {
-    this.http.patch('http://localhost:5500/changeProfileAvatar', { id: this.UserId, URL: URLInput.value }).subscribe((data) => {
+    this.http.patch('http://localhost:5500/changeProfileAvatar', { id: this.UserId, URL: URLInput.value }, {withCredentials:true}).subscribe((data) => {
       if (data) {
         this.User.request()
         URLInput.value = ''
@@ -49,7 +50,7 @@ export class ProfileSettingComponent {
   }
   removeProfileImage() {
     const defaulUrl = 'https://t4.ftcdn.net/jpg/13/11/63/01/240_F_1311630131_47VU96ZZgv9lff8TSCCU1xvnncQQU1wN.jpg'
-    this.http.post('http://localhost:5500/changeProfileAvatar', { id: this.UserId, URL: defaulUrl }).subscribe((data) => {
+    this.http.patch('http://localhost:5500/changeProfileAvatar', { id: this.UserId, URL: defaulUrl }, {withCredentials:true}).subscribe((data) => {
       if (data) {
         this.User.request()
         this.showSuccesImageG = true

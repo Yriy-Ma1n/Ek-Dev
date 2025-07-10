@@ -1,9 +1,5 @@
-<p class="modal-message" [ngClass]="{'show':showSuccesImageR}">
-  {{messageTextRed}}
-</p>
-<p class="modal-message" [ngClass]="{'showAdd':showSuccesImageG}">
-  {{messageTextGreen}}
-</p>
+<app-message [message]="messageTextRed" [showCommentR]="showSuccesImageR"></app-message>
+<app-message [message]="messageTextGreen" [showCommentG]="showSuccesImageG"></app-message>
 
 <section class="profile-settings">
   <h2 class="settings-title">Налаштування профілю</h2>

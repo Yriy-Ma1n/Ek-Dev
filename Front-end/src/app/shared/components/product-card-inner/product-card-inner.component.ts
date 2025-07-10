@@ -13,6 +13,7 @@ import { FooterComponent } from "../../../footer/footer.component";
 import { CurrencySwitcherPipe } from '../../../pipes/currency-switcher.pipe';
 import { Title } from '@angular/platform-browser';
 import { UserDataService } from '../../../core/services/user-data.service';
+import { MessageComponent } from "../message/message.component";
 @Component({
   selector: 'app-product-card-inner',
   imports: [
@@ -24,8 +25,9 @@ import { UserDataService } from '../../../core/services/user-data.service';
     NgClass,
     NgIf,
     FooterComponent,
-    CurrencySwitcherPipe
-  ],
+    CurrencySwitcherPipe,
+    MessageComponent
+],
   templateUrl: './product-card-inner.component.html',
   styleUrl: './product-card-inner.component.css'
 })
@@ -139,6 +141,8 @@ export class ProductCardInnerComponent {
       return true
     }
   }
+  messageR:string = 'Напишіть що небудь щоб додати коментар'
+  messageG:string = 'Товар було додано до корзини!'
 
 
 
