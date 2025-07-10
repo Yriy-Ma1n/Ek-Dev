@@ -55,9 +55,6 @@ export class ProductCardInnerComponent {
         !data[0].MemoryRam ? this.ram = false : false
         this.data = [...data]
 
-        console.log('here')
-        console.log(data)
-
         this.id = this.data[0]?._id
         this.comments = JSON.parse(localStorage.getItem(`comment:${this.id}`) || '[]') //Достаем из localStorage комент по id и записываем в comments для рендера
 
@@ -91,7 +88,15 @@ export class ProductCardInnerComponent {
     localStorage.setItem(`comment:${this.id}`, JSON.stringify(this.comments))
   }
 
-  buyButton(element: HTMLButtonElement, name: HTMLElement, photo: HTMLImageElement, price: HTMLElement) {
+  async buyButton(element: HTMLButtonElement, name: HTMLElement, photo: HTMLImageElement, price: HTMLElement) {
+    const userInAccount = await this.userData.checkAcc
+  
+    if(!userInAccount){
+      this.router.navigate(['/SingIn'])
+      return
+    }
+
+   
     this.updateUI(true, 'Добавленно в корзину', true, element)
     setTimeout(() => this.updateUI(false, 'В корзину', false, element), 1500)
 
@@ -109,7 +114,7 @@ export class ProductCardInnerComponent {
     }
 
 
-    this.http.patch('http://localhost:5500/addItemToCard', {item: { _Itemid: this.id, name: name.textContent!, price: +uahPrise!, quantity: 1, src: photo.src } }, { withCredentials: true }).subscribe(async (data)=>{
+    this.http.patch('http://localhost:5500/addItemToCard', { item: { _Itemid: this.id, name: name.textContent!, price: +uahPrise!, quantity: 1, src: photo.src } }, { withCredentials: true }).subscribe(async (data) => {
       console.log(data)
       console.log('rewrite')
       await this.CardProduct.rewriteProduct();

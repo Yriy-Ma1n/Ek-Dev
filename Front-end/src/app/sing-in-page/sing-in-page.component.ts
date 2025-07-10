@@ -7,7 +7,7 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-sing-in-page',
-  imports: [HeaderBarComponent, ReactiveFormsModule, NgClass],
+  imports: [ReactiveFormsModule, NgClass],
   templateUrl: './sing-in-page.component.html',
   styleUrl: './sing-in-page.component.css'
 })

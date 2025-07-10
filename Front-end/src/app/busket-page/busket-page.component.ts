@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { nameValidator } from './name.name.validators.directive';
 import { CurrencySwitcherPipe } from '../pipes/currency-switcher.pipe';
+import { UserDataService } from '../core/services/user-data.service';
 
 @Component({
   selector: 'app-busket-page',
@@ -17,6 +18,7 @@ import { CurrencySwitcherPipe } from '../pipes/currency-switcher.pipe';
 
 export class BusketPageComponent {
   cardService = inject(CardService)
+  userData = inject(UserDataService)
   product = this.cardService.GetProduct
   http = inject(HttpClient);
   Currency = localStorage.getItem('currencu') ? localStorage.getItem('currencu')! : "UAH";
@@ -26,8 +28,10 @@ export class BusketPageComponent {
   show: boolean = false
   Showconfirmation: boolean = false
 
-  name: string = ''
-  telNum: string = ''
+  name: string = '';
+  telNum: string = '';
+
+  showThatUserNotInAccount: boolean = false
 
   dataForm = new FormGroup({
     name: new FormControl("", [Validators.required, nameValidator()]),
@@ -82,8 +86,13 @@ ${this.product.reduce((akk, item, i) => akk += `${i + 1}. ${item.name} (x${item.
 
 
   async ngOnInit() {
+
     await this.cardService.rewriteProduct();
     this.product = this.cardService.GetProduct
-  }
 
+    const userInAccount = await this.userData.checkAcc
+
+    !userInAccount ? this.showThatUserNotInAccount = true : this.showThatUserNotInAccount = false
+
+  }
 }

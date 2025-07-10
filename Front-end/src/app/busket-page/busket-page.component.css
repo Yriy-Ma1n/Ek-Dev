@@ -4,6 +4,10 @@
     position: relative;
 }
 
+.name-cart {
+    margin-left: 150px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
 
 .message {
     position: absolute;
@@ -73,6 +77,19 @@
 
 }
 
+.container-empty-cart {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+.container-empty-cart h1{
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.cart-svg-container {
+    width: 400px;
+}
+
 .clear-button-container button {
     background-image: gray;
     border-radius: 4px;
@@ -118,14 +135,16 @@
     border-radius: 20px;
     position: relative;
 }
-.close{
+
+.close {
     position: absolute;
     right: 10px;
-    top:0px;
+    top: 0px;
     font-size: 45px;
     margin: 0;
     cursor: pointer;
 }
+
 .confirmation h1 {
     color: white;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -170,9 +189,11 @@ label {
     width: 100%;
 
 }
-.ng-invalid:not(form){
+
+.ng-invalid:not(form) {
     border: 1px solid red;
 }
+
 @media (max-width:1536px) {
     .container-tovar {
 

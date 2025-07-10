@@ -25,6 +25,9 @@ export class UserDataService {
     return this.UserinAccount$
   }
 
+  get checkAcc(){
+    return firstValueFrom(this.UserinAccount$)
+  }
   getAsyncUser() {
     return firstValueFrom(this.user$.pipe(filter(user=>!!user)))
   }
