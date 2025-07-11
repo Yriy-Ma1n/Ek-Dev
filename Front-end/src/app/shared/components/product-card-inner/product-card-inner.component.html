@@ -68,7 +68,9 @@
 
             <div class="comment">
                 <div class="comment-message" *ngFor="let item of comments">
-                    {{item.comment | badWord}}
+                  {{item.name}}
+                  {{item.message}}
+
                 </div>
             </div>
         </div>

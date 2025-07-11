@@ -4,7 +4,7 @@ import { HeaderBarComponent } from "../header-bar/header-bar.component";
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BadWordPipe } from '../../pipes/bad-word.pipe';
-import { NgFor, NgClass, NgIf } from '@angular/common';
+import { NgFor, NgClass, NgIf, KeyValuePipe } from '@angular/common';
 import { CardService } from '../../../core/services/card.service';
 import { HttpClient } from '@angular/common/http';
 import { LaptopItem } from '../../types/LapTopItem-type';
@@ -26,7 +26,8 @@ import { MessageComponent } from "../message/message.component";
     NgIf,
     FooterComponent,
     CurrencySwitcherPipe,
-    MessageComponent
+    MessageComponent,
+    KeyValuePipe
 ],
   templateUrl: './product-card-inner.component.html',
   styleUrl: './product-card-inner.component.css'
@@ -74,7 +75,7 @@ export class ProductCardInnerComponent {
 
   id: string = this.data[0]?._id
 
-  comments: { comment: string }[] = []
+  comments: { name: string, message:string }[] = []
 
   backToMainPage() {
     history.back()
@@ -85,7 +86,7 @@ export class ProductCardInnerComponent {
       setTimeout(() => this.showComment = false, 2500)
       return
     }
-    this.comments.push({ comment: this.commentInput.value! })
+    this.comments.push({name:'1', message: this.commentInput.value! })
     this.commentInput.reset()
     localStorage.setItem(`comment:${this.id}`, JSON.stringify(this.comments))
   }
