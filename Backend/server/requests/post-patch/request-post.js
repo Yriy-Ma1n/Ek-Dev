@@ -214,26 +214,3 @@ exports.router.patch('/deleteItemFromCard', function (req, res) { return __await
         }
     });
 }); });
-exports.router.delete('/clearCard', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var id, Finduser, idLikeObj, user;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                id = req.session.user._id;
-                return [4 /*yield*/, server_1.userSave.collection("Users")];
-            case 1:
-                Finduser = _a.sent();
-                idLikeObj = new mongodb_1.ObjectId(id);
-                return [4 /*yield*/, Finduser.findOne({ _id: idLikeObj })];
-            case 2:
-                user = _a.sent();
-                if (!user) return [3 /*break*/, 4];
-                return [4 /*yield*/, Finduser.updateOne({ _id: idLikeObj }, { $set: { cardItem: [] } })];
-            case 3:
-                _a.sent();
-                res.send({ message: 'Your card was clear' });
-                _a.label = 4;
-            case 4: return [2 /*return*/];
-        }
-    });
-}); });

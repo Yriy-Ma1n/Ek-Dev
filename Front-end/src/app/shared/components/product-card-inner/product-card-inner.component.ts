@@ -56,9 +56,9 @@ export class ProductCardInnerComponent {
 
         !data[0].MemoryRam ? this.ram = false : false
         this.data = [...data]
-
+        
         this.id = this.data[0]?._id
-        this.comments = JSON.parse(localStorage.getItem(`comment:${this.id}`) || '[]') //Достаем из localStorage комент по id и записываем в comments для рендера
+        this.comments = data[0].comments //Достаем из базы комент по id и записываем в comments для рендера
 
         this.title.setTitle(titleTovar)
       })

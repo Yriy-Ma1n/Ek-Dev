@@ -141,19 +141,3 @@ router.patch('/deleteItemFromCard', async (req, res) => {
     }
 })
 
-router.delete('/clearCard', async(req,res)=>{
-    const id = req.session.user._id
-
-    const Finduser = await userSave.collection("Users")
-
-    const idLikeObj = new ObjectId(id)
-
-    const user = await Finduser.findOne({ _id: idLikeObj })
-    if(user){
-        await Finduser.updateOne(
-            {_id:idLikeObj},
-            {$set:{cardItem:[]}}
-        )
-        res.send({message:'Your card was clear'})
-    }
-})
