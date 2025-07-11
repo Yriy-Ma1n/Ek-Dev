@@ -1,11 +1,67 @@
 .theme-toggle-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-      color: var(--text-color);
-      transition: color 0.3s;
-    }
-    svg {
-      display: block;
-    }
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--text-color);
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.theme-toggle-btn svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s;
+}
+
+@media (hover: hover) {
+  .theme-toggle-btn:hover {
+      color: var(--accent-color-orange);
+  }
+
+  .theme-toggle-btn:hover svg {
+      transform: rotate(15deg);
+  }
+}
+
+@media (max-width: 1024px) {
+  .theme-toggle-btn {
+      width: 36px;
+      height: 36px;
+  }
+
+  .theme-toggle-btn svg {
+      width: 22px;
+      height: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .theme-toggle-btn {
+      width: 34px;
+      height: 34px;
+  }
+
+  .theme-toggle-btn svg {
+      width: 20px;
+      height: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .theme-toggle-btn {
+      width: 30px;
+      height: 30px;
+      padding: 2px;
+  }
+
+  .theme-toggle-btn svg {
+      width: 18px;
+      height: 18px;
+  }
+}

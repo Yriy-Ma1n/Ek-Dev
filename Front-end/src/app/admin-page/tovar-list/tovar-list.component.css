@@ -1,11 +1,15 @@
-.container{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 8px;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-.cart{
+
+.cart {
   position: relative;
   width: 180px;
   padding: 15px;
@@ -14,25 +18,30 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: 0.3s;
+  cursor: default;
 }
+
 .cart:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
-img{
+
+img {
   width: 100px;
   height: 100px;
   object-fit: contain;
   margin-bottom: 10px;
 }
-h2{
+
+h2 {
   margin: 0;
   font-size: 16px;
   font-weight: 500;
   color: #333;
-  font-family: Proxima Soft;
+  font-family: "Proxima Soft", sans-serif;
 }
-svg{
+
+svg {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -43,36 +52,43 @@ svg{
   color: #555;
   transition: 0.2s;
 }
-svg:hover{
-    color: #ff3b3b;
-    transform: scale(1.2);
-    fill: red;
+
+svg:hover {
+  color: #ff3b3b;
+  transform: scale(1.2);
+  fill: red;
 }
 
-.confirmation{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    position: fixed;
-    right: calc(50% - 175px);
-    top: calc(50% - 44.2px);
-    background: #264e9c;
-    color: #fff;
-    padding: 25px 20px;
-    border-radius: 16px;
-    text-align: center;
-    max-width: 400px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+.confirmation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: fixed;
+  right: calc(50% - 175px);
+  top: calc(50% - 44.2px);
+  background: #264e9c;
+  color: #fff;
+  padding: 25px 20px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 10000;
+  width: 90%;
+  max-width: 400px;
+  box-sizing: border-box;
 }
-.confirmation h2{
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    color: #fff;
+
+.confirmation h2 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #fff;
 }
-.confirmation button{
+
+.confirmation button {
   background: #ff9100;
   color: #fff;
   border: none;
@@ -84,18 +100,100 @@ svg:hover{
   transition: 0.25s;
   box-shadow: 0 4px 12px rgba(255, 145, 0, 0.3);
 }
-.confirmation button:nth-child(2):hover{
-    background-color: #f91313;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(255, 145, 0, 0.4);
+
+.confirmation button:nth-child(2):hover {
+  background-color: #f91313;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 145, 0, 0.4);
 }
-.confirmation button:nth-child(1):hover{
-    background-color: #08a4ec;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(255, 145, 0, 0.4);
+
+.confirmation button:nth-child(1):hover {
+  background-color: #08a4ec;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 145, 0, 0.4);
 }
-.btn-case{
-    display: flex;
-    justify-content: center;
-    gap: 15px;
+
+.btn-case {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  width: 100%;
+}
+
+
+@media (max-width: 1280px) {
+  .cart {
+      width: 150px;
+      padding: 12px;
+  }
+  img {
+      width: 90px;
+      height: 90px;
+  }
+  h2 {
+      font-size: 15px;
+  }
+  .confirmation {
+      right: calc(50% - 160px);
+      top: calc(50% - 44px);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+      justify-content: center;
+      gap: 12px;
+      padding: 10px 15px;
+  }
+  .cart {
+      width: 45vw;
+      max-width: 220px;
+      padding: 10px;
+  }
+  img {
+      width: 80px;
+      height: 80px;
+  }
+  h2 {
+      font-size: 14px;
+  }
+  .confirmation {
+      width: 90%;
+      max-width: 350px;
+      right: 50%;
+      transform: translateX(50%);
+      top: 40%;
+      padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 8px;
+  }
+  .cart {
+      width: 90vw;
+      padding: 10px 8px;
+  }
+  img {
+      width: 70px;
+      height: 70px;
+  }
+  h2 {
+      font-size: 13px;
+  }
+  .confirmation {
+      width: 95%;
+      max-width: none;
+      right: 50%;
+      transform: translateX(50%);
+      top: 35%;
+      padding: 15px 10px;
+  }
+  .confirmation button {
+      padding: 10px 18px;
+      font-size: 14px;
+  }
 }

@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    gap: 10px;
 }
 
 .container-loged {
@@ -28,6 +29,24 @@
     border: none;
     color: var(--opacity-color-gray);
     cursor: pointer;
+    transition: color 0.2s;
+}
+
+.button-singin:hover {
+    color: var(--accent-color);
+}
+
+@media (max-width: 480px) {
+  .container-sing {
+    gap: 6px;
+  }
+  .button-singin {
+    font-size: 16px;
+  }
+  .container-sing img {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .profile-picture {

@@ -1,4 +1,4 @@
-.container{
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,72 +10,152 @@
     -ms-user-select: none;
     user-select: none;
     position: relative;
+    width: max-content;
+    min-width: 100px;
 }
-.btn{
+
+.btn {
     display: flex;
     align-items: center;
     gap: 7px;
     cursor: pointer;
+    padding: 6px 12px;
+    background-color: #333;
+    border-radius: 6px;
+    user-select: none;
+    transition: background-color 0.3s;
 }
-p{
+
+.btn:hover {
+    background-color: #444;
+}
+
+.btn p {
     margin: 0;
-}
-.btn p{
     text-decoration: none;
     color: #fff;
-    font-family: "Proxima Soft";
+    font-family: "Proxima Soft", sans-serif;
     font-weight: 700;
     font-size: 21px;
+    user-select: none;
 }
-.btn-arrow-up{
-    transition: 0.3s;
+
+.btn-arrow-up {
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
 }
-.mini-window-language{
+
+.mini-window-language {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
     background-color: #fff;
     border: 1px solid rgb(187, 187, 187);
     border-radius: 5px;
     overflow: hidden;
-    transition: 0.3s;
+    transition: height 0.3s ease;
     position: absolute;
-    top: 26px;
-    z-index: 4;
+    top: 38px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 10;
 }
-.mini-window-language.open{
-    animation: 0.2s linear 0s running slide;
+
+.mini-window-language.open {
+    animation: slideDown 0.2s linear forwards;
 }
+
 .mini-window-language.close {
-    animation: 0.2s linear 0s running slide-off;
+    animation: slideUp 0.2s linear forwards;
 }
-@keyframes slide{
-    from{
-        height: 0px;
-    }
 
-    to{
+@keyframes slideDown {
+    from {
+        height: 0;
+        opacity: 0;
+    }
+    to {
         height: 68px;
+        opacity: 1;
     }
 }
-@keyframes slide-off{
-    from{
-        height: 68px;
-    }
 
-    to{
-        height: 0px;
+@keyframes slideUp {
+    from {
+        height: 68px;
+        opacity: 1;
+    }
+    to {
+        height: 0;
+        opacity: 0;
     }
 }
+
 .mini-window-language p {
+    margin: 0;
     text-decoration: none;
     text-align: center;
     color: rgb(102, 102, 102);
-    padding: 4px 20px;
-    font-family: "Proxima Soft";
+    padding: 8px 12px;
+    font-family: "Proxima Soft", sans-serif;
     font-size: 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid #eee;
 }
-.mini-window-language p:hover{
+
+.mini-window-language p:last-child {
+    border-bottom: none;
+}
+
+.mini-window-language p:hover {
     background: rgb(233, 233, 233);
+}
+
+
+@media (max-width: 1280px) {
+    .btn p {
+        font-size: 18px;
+    }
+    .mini-window-language p {
+        font-size: 14px;
+        padding: 7px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .btn p {
+        font-size: 16px;
+    }
+    .btn {
+        padding: 5px 10px;
+    }
+    .mini-window-language {
+        top: 34px;
+        width: 110px;
+    }
+    .mini-window-language p {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn p {
+        font-size: 14px;
+    }
+    .btn {
+        padding: 4px 8px;
+    }
+    .mini-window-language {
+        width: 100px;
+        top: 30px;
+    }
+    .mini-window-language p {
+        font-size: 12px;
+        padding: 5px 6px;
+    }
 }

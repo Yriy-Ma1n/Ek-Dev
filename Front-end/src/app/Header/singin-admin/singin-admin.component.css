@@ -1,7 +1,38 @@
-svg{
+svg {
     cursor: pointer;
     transition: 500ms;
+    width: 30px;
+    height: 30px;
 }
-svg:hover{
+
+svg:hover {
     fill: var(--accent-color-orange);
+}
+
+@media (max-width: 1024px) {
+    svg {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+@media (max-width: 900px) {
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width: 600px) {
+    svg {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+@media (max-width: 400px) {
+    svg {
+        width: 20px;
+        height: 20px;
+    }
 }
