@@ -83,7 +83,7 @@ router.patch('/addItemToCard', async (req, res) => {
                 { _id: idLikeObj, "cardItem._Itemid": item._Itemid },
                 { $inc: { "cardItem.$.quantity": 1 } }
             )
-            res.send({message:'quantity was updated'})
+            res.send({ message: 'quantity was updated' })
         } else {
             await Finduser.updateOne(
                 { _id: idLikeObj },
@@ -141,3 +141,15 @@ router.patch('/deleteItemFromCard', async (req, res) => {
     }
 })
 
+router.post('/addCommentToProduct', async (req, res) => {
+    const { name, date, image, message, tovarId } = req.body
+
+    const findedCollection = await ProductSave.collection("AllTovar")
+
+    const idLikeObjId = new ObjectId(tovarId)
+   
+
+    findedCollection.updateOne({ _id: idLikeObjId }, { $push: { comments: { name: name, date: date, image: image, message: message } } })
+    res.send({ okay: true })
+
+})

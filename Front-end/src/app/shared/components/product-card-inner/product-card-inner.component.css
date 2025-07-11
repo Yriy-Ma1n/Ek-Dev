@@ -271,10 +271,56 @@
 }
 
 .comment-message {
-    background-color: var(--opacity-color-gray);
-    border: 1px solid #0000001f;
-    padding: 10px;
-    border-radius: 5px;
+  background-color: var(--form-bg-color);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  font-family: 'Segoe UI', sans-serif;
+  width: 100%;
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.comment-message:hover{
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
+}
+.comment-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin-right: 12px;
+  object-fit: cover;
+  border: 2px solid var(--accent-color-blue);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.timestamp {
+  font-size: 0.85em;
+  color: var(--scrollbar-color);
+}
+
+.comment-text p {
+  margin: 0;
+  font-size: 1em;
+  color: var(--text-color);
+  line-height: 1.5;
 }
 
 .cantFound img {

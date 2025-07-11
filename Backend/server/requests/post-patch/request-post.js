@@ -214,3 +214,19 @@ exports.router.patch('/deleteItemFromCard', function (req, res) { return __await
         }
     });
 }); });
+exports.router.post('/addCommentToProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, name, date, image, message, tovarId, findedCollection, idLikeObjId;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _a = req.body, name = _a.name, date = _a.date, image = _a.image, message = _a.message, tovarId = _a.tovarId;
+                return [4 /*yield*/, server_1.ProductSave.collection("AllTovar")];
+            case 1:
+                findedCollection = _b.sent();
+                idLikeObjId = new mongodb_1.ObjectId(tovarId);
+                findedCollection.updateOne({ _id: idLikeObjId }, { $push: { comments: { name: name, date: date, image: image, message: message } } });
+                res.send({ okay: true });
+                return [2 /*return*/];
+        }
+    });
+}); });
