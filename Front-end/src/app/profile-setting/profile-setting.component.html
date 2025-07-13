@@ -14,21 +14,22 @@
   </div>
 
   <form class="settings-form">
-    <div class="form-group">
-      <label for="username">Ім’я</label>
-      <input type="text" id="username" value="username123" />
-    </div>
 
     <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" value="example@email.com" />
+      <label for="username">Ім’я користувача</label>
+      <div class="input-with-button">
+        <input type="text" id="username" value="username123" />
+        <button class="save-btn" type="submit">Зберегти</button>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="password">Новий пароль</label>
-      <input type="password" id="password" placeholder="••••••••" />
+      <div class="input-with-button">
+        <input type="password" id="password" placeholder="••••••••" />
+        <button class="save-btn" type="submit">Змінити пароль</button>
+      </div>
     </div>
-
-    <button type="submit" class="save-settings-btn">💾 Зберегти</button>
   </form>
+
 </section>

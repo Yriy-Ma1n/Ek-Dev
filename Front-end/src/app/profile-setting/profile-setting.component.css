@@ -63,43 +63,64 @@
 }
 
 .settings-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  background-color: var(--form-bg-color);
+  color: var(--text-color);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  max-width: 450px;
+  margin: 30px auto;
+  font-family: "Proxima Soft", sans-serif;
+}
+
+.settings-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--accent-color-blue-new);
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .form-group label {
-    margin-bottom: 6px;
-    font-weight: 500;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
 }
 
-.form-group input,
-.form-group select {
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+.input-with-button {
+  display: flex;
+  gap: 10px;
 }
 
-.save-settings-btn {
-    margin-top: 20px;
-    padding: 14px;
-    font-size: 16px;
-    background-color: var(--accent-color-orange);
-    color: #fff;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+input[type="text"],
+input[type="password"] {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: border 0.3s;
 }
 
-.save-settings-btn:hover {
-    background-color: #1d3d7c;
+input:focus {
+  outline: none;
+  border-color: var(--accent-color-orange);
+}
+
+.save-btn {
+  background-color: var(--accent-color-orange);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.save-btn:hover {
+  background-color: var(--acent-color-orange-hover);
 }
 

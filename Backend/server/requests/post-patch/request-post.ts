@@ -153,3 +153,11 @@ router.post('/addCommentToProduct', async (req, res) => {
     res.send({ okay: true })
 
 })
+
+router.patch('/changeUserName', (req, res)=>{
+    const { username } = req.body
+    const id = req.session.user._id
+    console.log(id)
+    console.log(req.session)
+
+})
