@@ -38,6 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.connect = connect;
 var mongodb_1 = require("mongodb");
+require("dotenv").config();
 var uri = process.env.MONGO_URL;
 var client = new mongodb_1.MongoClient(uri);
 function connect() {

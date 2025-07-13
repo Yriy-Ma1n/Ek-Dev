@@ -1,11 +1,11 @@
 
-import { router as BotRouter } from "./server/bot/bot";
+// import { router as BotRouter } from "./server/bot/bot";
 import { router as LoginRouter } from "./server/login-register/login-register";
 import { router as DeleteRouter } from "./server/requests/delete/request-delete";
 import { router as PostRouter } from "./server/requests/post-patch/request-post";
 import { router as GetRouter } from "./server/requests/get/request-get";
 import { connect } from "./server/connectToBd/connectBd"
-import { bot } from "./server/bot/bot"
+// import { bot } from "./server/bot/bot"
 export let ProductSave;
 export let userSave
 
@@ -39,7 +39,6 @@ async function startServer() {
 
         app.use(express.static("public/browser"))
         app.use(express.json())
-
         app.use(session({
             secret: process.env.secretSession,
             resave: false,
@@ -52,8 +51,8 @@ async function startServer() {
             }
         }))
 
-        app.use('', BotRouter)
-        bot.launch()
+        // app.use('', BotRouter)
+        // bot.launch()
         app.use('', LoginRouter)
         app.use('', DeleteRouter)
         app.use('', PostRouter)
