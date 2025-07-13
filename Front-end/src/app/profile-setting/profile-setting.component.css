@@ -92,6 +92,7 @@
 .input-with-button {
   display: flex;
   gap: 10px;
+  margin-bottom: 20px;
 }
 
 input[type="text"],
@@ -122,5 +123,8 @@ input:focus {
 
 .save-btn:hover {
   background-color: var(--acent-color-orange-hover);
+}
+.redBord{
+  border: 1px solid red !important;
 }
 

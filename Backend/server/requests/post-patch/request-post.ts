@@ -1,8 +1,8 @@
 const express = require("express")
 import { ObjectId } from "mongodb"
 import { ProductSave, userSave } from "../../../server"
-import { connect } from "../../connectToBd/connectBd"
-import { error } from "console"
+const  passwordHash  =  require("password-hash")
+
 export const router = express.Router()
 
 
@@ -147,17 +147,50 @@ router.post('/addCommentToProduct', async (req, res) => {
     const findedCollection = await ProductSave.collection("AllTovar")
 
     const idLikeObjId = new ObjectId(tovarId)
-   
+
 
     findedCollection.updateOne({ _id: idLikeObjId }, { $push: { comments: { name: name, date: date, image: image, message: message } } })
     res.send({ okay: true })
 
 })
 
-router.patch('/changeUserName', (req, res)=>{
+router.patch('/changeUserName', async (req, res) => {
     const { username } = req.body
-    const id = req.session.user._id
-    console.log(id)
-    console.log(req.session)
+    const id = new ObjectId(req.session.user._id)
+    const userColletion = await userSave.collection("Users")
 
+    const trytofind = await userColletion.findOne({ name: username })
+
+    if (trytofind) {
+        res.send({ message: 'Імя користувача зайнято' })
+    } else {
+        userColletion.updateOne(
+            { _id: id },
+            { $set: { name: username } }
+        )
+        res.send({ sended: true })
+
+    }
+})
+
+router.patch('/changePassword', async(req, res)=>{
+    const { oldPassword, newPassword } = req.body
+
+    const areSame = passwordHash.verify(oldPassword, req.session.user.password)
+
+    const id = new ObjectId(req.session.user._id)
+
+    if(areSame){
+    const userColletion = await userSave.collection("Users")
+    const hashedPassword = passwordHash.generate(newPassword)
+
+    userColletion.updateOne(
+        { _id: id},
+        { $set: {password:hashedPassword}}
+    )
+    res.send({success:true})
+    }else{
+        res.send({message:"Паролі не збігаються"})
+    }
+    
 })

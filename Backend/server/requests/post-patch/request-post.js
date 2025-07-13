@@ -40,6 +40,7 @@ exports.router = void 0;
 var express = require("express");
 var mongodb_1 = require("mongodb");
 var server_1 = require("../../../server");
+var passwordHash = require("password-hash");
 exports.router = express.Router();
 exports.router.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var body, collectionPopular, collectionAllTovar, collectionAdmin;
@@ -227,6 +228,53 @@ exports.router.post('/addCommentToProduct', function (req, res) { return __await
                 findedCollection.updateOne({ _id: idLikeObjId }, { $push: { comments: { name: name, date: date, image: image, message: message } } });
                 res.send({ okay: true });
                 return [2 /*return*/];
+        }
+    });
+}); });
+exports.router.patch('/changeUserName', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var username, id, userColletion, trytofind;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                username = req.body.username;
+                id = new mongodb_1.ObjectId(req.session.user._id);
+                return [4 /*yield*/, server_1.userSave.collection("Users")];
+            case 1:
+                userColletion = _a.sent();
+                return [4 /*yield*/, userColletion.findOne({ name: username })];
+            case 2:
+                trytofind = _a.sent();
+                if (trytofind) {
+                    res.send({ message: 'Імя користувача зайнято' });
+                }
+                else {
+                    userColletion.updateOne({ _id: id }, { $set: { name: username } });
+                    res.send({ sended: true });
+                }
+                return [2 /*return*/];
+        }
+    });
+}); });
+exports.router.patch('/changePassword', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var _a, oldPassword, newPassword, areSame, id, userColletion, hashedPassword;
+    return __generator(this, function (_b) {
+        switch (_b.label) {
+            case 0:
+                _a = req.body, oldPassword = _a.oldPassword, newPassword = _a.newPassword;
+                areSame = passwordHash.verify(oldPassword, req.session.user.password);
+                id = new mongodb_1.ObjectId(req.session.user._id);
+                if (!areSame) return [3 /*break*/, 2];
+                return [4 /*yield*/, server_1.userSave.collection("Users")];
+            case 1:
+                userColletion = _b.sent();
+                hashedPassword = passwordHash.generate(newPassword);
+                userColletion.updateOne({ _id: id }, { $set: { password: hashedPassword } });
+                res.send({ success: true });
+                return [3 /*break*/, 3];
+            case 2:
+                res.send({ message: "Паролі не збігаються" });
+                _b.label = 3;
+            case 3: return [2 /*return*/];
         }
     });
 }); });
