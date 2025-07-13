@@ -17,6 +17,7 @@ html {
   --category-text-color:#525252;
   --accent-text-color-blue: #2c509a;
   --info-text-color:black;
+  --accent-color-span: #2c509a;
 }
 
 @font-face {
@@ -44,6 +45,7 @@ html {
   --form-bg-color: #303133;
   --category-text-color:#ffffff;
   --info-text-color:white;
+  --accent-color-span: #ff8d02;
 }
 
 /* Використовуємо змінні в базових стилях */
