@@ -1,11 +1,5 @@
-<p class="modal-message" [ngClass]="{'show':showEror}">
-  {{messageTextRed}}
-</p>
-<p class="modal-message" [ngClass]="{'showAdd':showSucces}">
-  {{messageTextGreen}}
-</p>
-
-
+<app-message [message]="messageTextGreen" [showCommentR]="showEror"></app-message>
+<app-message [message]="messageTextGreen" [showCommentG]="showSucces"></app-message>
 
 <div class="register-container">
   <form class="register-form" [formGroup]="registerForm">
@@ -26,6 +20,8 @@
     <div class="haveAccount">У вас уже є акаунт? <span class="LogIn" (click)="NavigateToLogin()">Увійти</span></div>
 
     <div class="error" [ngClass]="{'none':!showEror}">Ім’я користувача зайнято</div>
+    <div class="error" *ngIf="showNotEqualPassError">{{textNotEqualPassError}}</div>
+
 
     <button type="submit" class="btn-cta" (click)="register(name, password)">Зареєструватися</button>
   </form>

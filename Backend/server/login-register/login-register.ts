@@ -1,5 +1,6 @@
 import { userSave } from "../../server";
 const express = require("express")
+const  passwordHash  =  require("password-hash")
 
 export const router = express.Router()
 
@@ -10,13 +11,15 @@ router.use(cors({
     credentials: true
 }))
 router.post('/register', async (req, res) => {
-    const { name, password, profileImg } = req.body
+    const { name, password, profileImg, cardItem } = req.body
     const userCollection = await userSave.collection("Users")
     const finded = await userCollection.findOne({ name })
     if (finded) {
         res.status(403).json({ error: "login already exist" })
     } else {
-        userCollection.insertOne({ name: name, password: password, profileImg: profileImg })
+        const hashedPassword = passwordHash.generate(password)
+
+        userCollection.insertOne({ name: name, password: hashedPassword, profileImg: profileImg, cardItem:cardItem })
 
         res.status(200).json({ okay: true })
     }
@@ -28,7 +31,8 @@ router.post('/login', async (req, res) => {
     const finded = await userCollection.findOne({ name })
 
     if (finded) {
-        const areSame = password === finded.password
+        const areSame = passwordHash.verify(password, finded.password)
+        
         if (areSame) {
             req.session.user = finded
             req.session.isAuthenticated = true

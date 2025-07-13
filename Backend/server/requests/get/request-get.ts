@@ -72,17 +72,28 @@ router.get('/adminTovar', async (req, res) => {
     res.send(collectionAdmin)
 
 })
-router.get('/userInAccount', async (req, res)=>{
-    if(req.session.isAuthenticated && req.session.user?._id){
-        const user = await userSave.collection("Users").findOne({_id:new ObjectId(req.session.user._id)})
-        if(user){
+router.get('/userInAccount', async (req, res) => {
+    if (req.session.isAuthenticated && req.session.user?._id) {
+        const user = await userSave.collection("Users").findOne({ _id: new ObjectId(req.session.user._id) })
+        if (user) {
             res.send(user)
-        }else{
-            res.status(400).send({error:'User not found'})
+        } else {
+            res.status(400).send({ error: 'User not found' })
         }
         return
     }
 
-    res.send({userInAccount:false})
-    
+    res.send({ userInAccount: false })
+
+})
+
+router.get('/cardProduct', async (req, res) => {
+    const { id } = req.body
+
+    const user = await userSave.collection("Users").findOne({ _id: new ObjectId(id) }, { projection: { cardItem: 1 } })
+    if (user) {
+        res.send(user)
+    } else {
+        res.status(404).json({ error: 'not found' })
+    }
 })

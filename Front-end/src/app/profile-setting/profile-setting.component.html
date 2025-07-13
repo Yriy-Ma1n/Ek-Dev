@@ -1,9 +1,8 @@
-<p class="modal-message" [ngClass]="{'show':showSuccesImageR}">
-  {{messageTextRed}}
-</p>
-<p class="modal-message" [ngClass]="{'showAdd':showSuccesImageG}">
-  {{messageTextGreen}}
-</p>
+<app-message [message]="messageTextRed" [showCommentR]="showSuccesImageR"></app-message>
+<app-message [message]="messageTextGreen" [showCommentG]="showSuccesImageG"></app-message>
+<app-message [message]="messageTextRed" [showCommentR]="showSuccesImageR"></app-message>
+<app-message [message]="messageTextGreen" [showCommentG]="showSuccesImageG"></app-message>
+
 
 <section class="profile-settings">
   <h2 class="settings-title">Налаштування профілю</h2>
@@ -21,21 +20,28 @@
   </div>
 
   <form class="settings-form">
+
     <div class="form-group">
-      <label for="username">Ім’я</label>
-      <input type="text" id="username" value="username123" />
+      <label for="username">Ім’я користувача</label>
+      <div class="input-with-button">
+        <input type="text" id="username" placeholder="username123" #username />
+        <button class="save-btn" (click)="changeUserName(username, $event)">Зберегти</button>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" value="example@email.com" />
-    </div>
-
-    <div class="form-group">
+       <label for="password">Старий пароль</label>
+      <div class="input-with-button">
+        <input type="password" id="password-old" placeholder="••••••••" [ngClass]="{'redBord' : passwordNotTheSame}" #oldPassword/>
+      </div>
       <label for="password">Новий пароль</label>
-      <input type="password" id="password" placeholder="••••••••" />
+      <div class="input-with-button">
+        <input type="password" id="password-new" placeholder="••••••••" #newPassword />
+        <button class="save-btn" type="submit" (click)="changePassword($event, oldPassword, newPassword)">Змінити пароль</button>
+      </div>
     </div>
-
-    <button type="submit" class="save-settings-btn">💾 Зберегти</button>
+    <div class="error" *ngIf="passwordNotTheSame">Паролі не збігаються</div>
   </form>
+
 </section>
+

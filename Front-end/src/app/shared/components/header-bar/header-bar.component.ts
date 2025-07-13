@@ -7,12 +7,13 @@ import { CategoryComponent } from '../../../Header/category/category.component';
 import { SingInComponent } from '../../../sing-in/sing-in.component';
 import { ChangeCurrencyComponent } from '../../../change-currency/change-currency.component';
 import { AppToggleThemeComponent } from '../../../Header/app-toggle-theme/app-toggle-theme.component';
+import { BurgerMenuComponent } from '../../../Header/burger-menu/burger-menu.component';
 
 
 
 @Component({
   selector: 'app-header-bar',
-  imports: [LogoComponent, SearchComponent, SinginAdminComponent, BasketComponent, CategoryComponent, SingInComponent, ChangeCurrencyComponent, AppToggleThemeComponent],
+  imports: [LogoComponent, SearchComponent, SinginAdminComponent, BasketComponent, CategoryComponent, SingInComponent, ChangeCurrencyComponent, AppToggleThemeComponent, BurgerMenuComponent],
   templateUrl: './header-bar.component.html',
   styleUrl: './header-bar.component.css'
 })

@@ -1,7 +1,7 @@
 
 const express = require("express")
 import { ObjectId } from "mongodb"
-import { ProductSave } from "../../../server"
+import { ProductSave, userSave } from "../../../server"
 export const router = express.Router()
 
 
@@ -26,4 +26,20 @@ router.delete('/DeleteProduct',async (req, res) => {
     await collectionAdmin.deleteOne({ _id: rightId })
 
     res.send({ status: "Everything okay" })
+})
+router.delete('/clearCard', async(req,res)=>{
+    const id = req.session.user._id
+
+    const Finduser = await userSave.collection("Users")
+
+    const idLikeObj = new ObjectId(id)
+
+    const user = await Finduser.findOne({ _id: idLikeObj })
+    if(user){
+        await Finduser.updateOne(
+            {_id:idLikeObj},
+            {$set:{cardItem:[]}}
+        )
+        res.send({message:'Your card was clear'})
+    }
 })

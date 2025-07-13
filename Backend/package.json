@@ -11,12 +11,14 @@
   "description": "",
   "dependencies": {
     "@types/express": "^5.0.3",
+    "@types/password-hash": "^1.2.24",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
     "global": "^4.4.0",
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.2",
+    "password-hash": "^1.2.2",
     "telegraf": "^4.16.3"
   },
   "devDependencies": {

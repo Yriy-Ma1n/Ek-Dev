@@ -6,7 +6,6 @@ import { PageNfComponent } from './page404/page-nf/page-nf.component';
 import { ProductCardInnerComponent } from './shared/components/product-card-inner/product-card-inner.component';
 import { TovarListComponent } from './main-section/tovar-list/tovar-list.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
-import { AppCategoryListComponent } from './main-section/app-category-list/app-category-list.component';
 import { SingInPageComponent } from './sing-in-page/sing-in-page.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';

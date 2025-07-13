@@ -1,6 +1,8 @@
-import { Component, computed } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { ThemeService } from '../../core/services/theme.service';
 import { NgIf } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { UserDataService } from '../../core/services/user-data.service';
 
 @Component({
   selector: 'app-app-toggle-theme',
@@ -9,7 +11,21 @@ import { NgIf } from '@angular/common';
   styleUrl: './app-toggle-theme.component.css'
 })
 export class AppToggleThemeComponent {
-  isDark = computed(() => this.themeService.theme() === 'dark');
+  http = inject(HttpClient)
 
-  constructor(public themeService: ThemeService){}
+  userService = inject(UserDataService)
+  userInAccount: boolean = false;
+  userId: string = ''
+  currTheme = localStorage.getItem("theme") || ''
+
+  isDark = computed(() => {
+    return this.themeService.theme() === 'dark'
+  });
+
+  constructor(public themeService: ThemeService) {
+    
+  }
+
+ 
+
 }

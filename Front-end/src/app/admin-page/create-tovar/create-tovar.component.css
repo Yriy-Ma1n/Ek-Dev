@@ -1,4 +1,4 @@
-.container{
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,69 +6,154 @@
     gap: 15px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
-    width: 100%; 
+    width: 100%;
+    max-width: 700px;
     padding: 20px 40px;
+    box-sizing: border-box;
 }
-h1{
-    margin: 0;
-    margin-bottom: 20px;
+
+h1 {
+    margin: 0 0 20px 0;
     font-size: 28px;
     font-weight: bold;
+    font-family: "Proxima Soft", sans-serif;
+    text-align: center;
 }
-form{
+
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
     width: 70%;
+    min-width: 280px;
+    box-sizing: border-box;
 }
-form div{
+
+form div {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: flex-start;
     gap: 8px;
     width: 100%;
 }
-form div p{
-    font-family: Proxima Soft;
+
+form div p {
+    font-family: "Proxima Soft", sans-serif;
     font-size: 20px;
     margin: 0;
     font-weight: 500;
 }
-form div input, form div textarea{
-  width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 15px;
-  border: 2px solid #ddd;
-  border-radius: 12px;
-  font-size: 14px;
-  transition: 0.3s;
+
+form div input,
+form div textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    font-size: 14px;
+    transition: 0.3s;
+    box-sizing: border-box;
 }
-form div input:focus, form div textarea:focus{
+
+form div input:focus,
+form div textarea:focus {
     border-color: #ff7a00;
     box-shadow: 0 0 5px rgba(255, 122, 0, 0.3);
     outline: none;
 }
-button{
-  background: #ff7a00;
-  color: #fff;
-  border: none;
-  padding: 14px 25px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s
+
+button {
+    background: #ff7a00;
+    color: #fff;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    align-self: center;
+    min-width: 120px;
 }
+
 button:hover {
-  background: #e86900;
-  box-shadow: 0 5px 15px rgba(255, 122, 0, 0.4);
+    background: #e86900;
+    box-shadow: 0 5px 15px rgba(255, 122, 0, 0.4);
 }
-.err{
+
+.err {
     text-align: center;
     color: red;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
 }
-.red-border{
+
+.red-border {
     border: 2px solid red !important;
+}
+
+
+@media (max-width: 1280px) {
+    .container {
+        max-width: 600px;
+        padding: 20px 30px;
+    }
+    form {
+        width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 90vw;
+        padding: 15px 20px;
+    }
+    form {
+        width: 90%;
+    }
+    h1 {
+        font-size: 24px;
+    }
+    form div p {
+        font-size: 18px;
+    }
+    form div input,
+    form div textarea {
+        font-size: 13px;
+    }
+    button {
+        font-size: 15px;
+        padding: 12px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px 15px;
+        border-radius: 8px;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    form {
+        width: 100%;
+    }
+    form div p {
+        font-size: 16px;
+    }
+    form div input,
+    form div textarea {
+        font-size: 12px;
+        padding: 10px 12px;
+    }
+    button {
+        width: 100%;
+        font-size: 14px;
+        padding: 12px 0;
+        border-radius: 10px;
+    }
 }

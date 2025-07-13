@@ -1,26 +1,82 @@
-svg {
-    cursor: pointer;
-    transition: 500ms;
-}
-
-svg:hover {
-    fill: var(--accent-color-orange);
-}
-
 .busket {
     position: relative;
+    display: inline-block;
+}
+
+.busket svg {
+    cursor: pointer;
+    transition: fill 0.5s ease;
+    width: 30px;
+    height: 30px;
+    fill: #fff;
+    display: block;
+}
+
+.busket svg:hover {
+    fill: var(--accent-color-orange);
 }
 
 .busket strong {
     position: absolute;
+    top: -6px;
     right: -7px;
     background-color: var(--accent-color-orange);
     border-radius: 50%;
     font-size: 12px;
-    color:white;
+    color: white;
     padding: 1px 5px;
-    top: -6px;
     border: 2px solid var(--accent-color-blue);
-    
+    min-width: 18px;
+    height: 18px;
+    line-height: 15px;
+    text-align: center;
+    font-weight: bold;
+    user-select: none;
+    box-sizing: border-box;
+}
 
+
+@media (max-width: 1280px) {
+    .busket svg {
+        width: 26px;
+        height: 26px;
+    }
+    .busket strong {
+        font-size: 11px;
+        min-width: 16px;
+        height: 16px;
+        padding: 1px 4px;
+        top: -5px;
+        right: -6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .busket svg {
+        width: 24px;
+        height: 24px;
+    }
+    .busket strong {
+        font-size: 10px;
+        min-width: 14px;
+        height: 14px;
+        padding: 0 4px;
+        top: -4px;
+        right: -5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .busket svg {
+        width: 22px;
+        height: 22px;
+    }
+    .busket strong {
+        font-size: 9px;
+        min-width: 14px;
+        height: 14px;
+        padding: 0 3px;
+        top: -3px;
+        right: -5px;
+    }
 }
