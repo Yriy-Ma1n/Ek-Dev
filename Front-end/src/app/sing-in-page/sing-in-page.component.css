@@ -1,7 +1,12 @@
+.omg{
+  --accent-color: #f48020;
+  --accent-color-hover: #d1661a;
+  --input-height: 44px;
+}
 
-.container-sing {
-  display: flex;
-  justify-content: center;
+.container-sing{
+    display: flex;
+    justify-content: center;
 }
 
 .login-container {
@@ -50,7 +55,7 @@
 
 .login-form input:focus {
   outline: none;
-  border-color: var(--accent-color-orange);
+  border-color: var(--accent-color);
   box-shadow: 0 0 4px rgba(244, 128, 32, 0.4);
 }
 
@@ -59,43 +64,68 @@
   padding: 12px 0;
   font-size: 1rem;
   color: #fff;
-  background-color: var(--accent-color-orange);
+  background-color: var(--accent-color);
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
 }
 
-.haventAccount {
-  margin-top: 15px;
-  color:var(--text-color)
+.haventAccount{
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #333;
 }
 
-.Register {
-  color: #2c509a;
-  cursor: pointer;
+.Register{
+    color: var(--accent-color-blue);
+    cursor: pointer;
+    font-weight: 600;
 }
 
 .btn-cta:hover {
-  background-color: var(--acent-color-orange-hover);
+  background-color: var(--accent-color-hover);
 }
 
 .btn-cta:active {
   transform: scale(0.98);
 }
 
-.ng-invalid:not(form) {
-  border: 1px solid rgb(255, 103, 103) !important;
+.ng-invalid:not(form){
+    border: 1px solid rgb(255, 103, 103) !important;
 }
 
-.ng-valid:not(form) {
-  border: 1px solid rgb(151, 255, 103) !important;
+.ng-valid:not(form){
+    border: 1px solid rgb(151, 255, 103) !important;
+}
 
-}
-.none{
-  display: none;
-}
-.error{
-  margin: 0;
-  margin-top: 10px;
+@media (max-width: 480px) {
+  .login-container {
+    padding: 30px 10px;
+    min-height: auto;
+  }
+  .login-form {
+    width: 100%;
+    padding: 20px;
+  }
+  .login-form h2 {
+    font-size: 1.2rem;
+  }
+  .login-form label {
+    font-size: 0.9rem;
+  }
+  .login-form input {
+    height: 38px;
+    font-size: 0.9rem;
+  }
+  .btn-cta {
+    font-size: 0.9rem;
+    padding: 10px 0;
+  }
+  .haventAccount {
+    font-size: 0.85rem;
+  }
+  .Register {
+    font-size: 0.9rem;
+  }
 }

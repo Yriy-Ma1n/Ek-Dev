@@ -59,4 +59,13 @@ export class CategoryComponent {
     this.router.navigate(['/tovarList'], { queryParams: { q: page } })
   }
 
+  isMobile = window.innerWidth <= 768;
+
+toggleOnMobile(event: Event) {
+  if (this.isMobile) {
+    this.hovered = !this.hovered;
+  }
+}
+
+
 }

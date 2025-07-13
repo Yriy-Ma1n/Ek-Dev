@@ -1,5 +1,32 @@
-img{
+img {
     cursor: pointer;
     width: 160px;
-    height: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
+    transition: width 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+    img {
+        width: 140px;
+    }
+}
+
+@media (max-width: 768px) {
+    img {
+        width: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    img {
+        display: 100px;
+    }
+}
+
+@media (max-width: 360px) {
+    img {
+        display: none;
+    }
 }
