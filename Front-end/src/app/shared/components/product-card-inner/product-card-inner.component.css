@@ -31,7 +31,7 @@
 
 .name-ram h1 {
     margin: 0;
-    color: var(--accent-color-blue)
+    color: var(--accent-text-color-blue)
 }
 
 .name-ram p {
@@ -214,7 +214,7 @@
     padding: 8px 15px;
     font-size: 12px;
     font-family: "Gill Sans", sans-serif;
-    color: var(--accent-color-blue);
+    color: var(--info-text-color);
     border: 1px solid var(--accent-color-blue);
     cursor: pointer;
     border-radius: 7px;
