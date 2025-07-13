@@ -47,7 +47,7 @@
     transform: scale(1.02);
 }
 .name-card{
-    color:var(--accent-color-blue);
+    color:var(--accent-text-color-blue);
     font-size: 22px;
     margin-top: 10px;
     margin-bottom: 0px;

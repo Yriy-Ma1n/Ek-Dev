@@ -9,3 +9,6 @@
     svg {
       display: block;
     }
+  path:hover {
+    fill: black;
+  }
