@@ -1,0 +1,33 @@
+<div class="container-sing" (click)="loadSingInPage()" *ngIf="!UserInAccount; else profileImg">
+    <img src="./log-in.svg" alt="loginImg">
+
+    <button class="button-singin">Увійти</button>
+</div>
+<ng-template #profileImg>
+    <div class="container-loged" (click)="openAdditional()">
+        <div class="profile-picture">
+            <img [src]="user.profileImg" alt="">
+        </div>
+        <div class="profile-name">
+            <p class="user-name">{{user.name}}</p>
+        </div>
+
+        <div class="additional-info-account" [ngClass]="{'hide':showInfoAccount}">
+            <div class="additional-info-item" (click)="openDataProfile($event)">
+                 <div class="additional-info-item-account item">
+                    <p>Профіль</p>
+                </div>
+                 <div class="additional-info-item-account item">
+                    <p>Мої замовлення</p>
+                </div>
+                <div class="additional-info-item-settings item">
+                    <p>Налаштування</p>
+                </div>
+                <div class="additional-info-item-singout item">
+                    <p>Вийти</p>
+                    <img src="./logout.svg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

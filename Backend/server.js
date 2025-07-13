@@ -36,255 +36,78 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongodb_1 = require("mongodb");
+exports.userSave = exports.ProductSave = void 0;
+var bot_1 = require("./server/bot/bot");
+var login_register_1 = require("./server/login-register/login-register");
+var request_delete_1 = require("./server/requests/delete/request-delete");
+var request_post_1 = require("./server/requests/post-patch/request-post");
+var request_get_1 = require("./server/requests/get/request-get");
+var connectBd_1 = require("./server/connectToBd/connectBd");
+var bot_2 = require("./server/bot/bot");
 var express = require('express');
 var cors = require('cors');
-var MongoClient = require('mongodb').MongoClient;
+var session = require("express-session");
 require('dotenv').config();
-var app = express();
 var PORT = process.env.PORT;
-var uri = process.env.MONGO_URL;
-var client = new MongoClient(uri);
-app.use(cors());
-//sharing bundle
-app.use(express.static("public/browser"));
-app.use(express.json());
-var dbSave;
-function connect() {
+var app = express();
+app.use(cors({
+    origin: 'http://localhost:4200',
+    credentials: true,
+    maxAge: 1000 * 60 * 60 * 24
+}));
+function startServer() {
     return __awaiter(this, void 0, void 0, function () {
-        var err_1;
+        var dbConnect, e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, client.connect()];
+                    return [4 /*yield*/, (0, connectBd_1.connect)()];
                 case 1:
-                    _a.sent();
-                    dbSave = client.db("Product");
+                    dbConnect = _a.sent();
+                    exports.ProductSave = dbConnect.ProductSave;
+                    exports.userSave = dbConnect.userSave;
+                    app.use(express.static("public/browser"));
+                    app.use(express.json());
+                    app.use(session({
+                        secret: process.env.secretSession,
+                        resave: false,
+                        name: 'user-session',
+                        saveUninitialized: false,
+                        cookie: {
+                            path: '/',
+                            secure: false,
+                            maxAge: 1000 * 60 * 60
+                        }
+                    }));
+                    app.use('', bot_1.router);
+                    bot_2.bot.launch();
+                    app.use('', login_register_1.router);
+                    app.use('', request_delete_1.router);
+                    app.use('', request_post_1.router);
+                    app.use('', request_get_1.router);
+                    app.use(function (req, res, next) {
+                        res.set('Cache-Control', 'no-store');
+                        next();
+                    });
+                    app.listen(PORT, function () {
+                        console.log("Server was started on port ".concat(PORT));
+                    });
                     return [3 /*break*/, 3];
                 case 2:
-                    err_1 = _a.sent();
-                    console.log(err_1);
+                    e_1 = _a.sent();
+                    console.log(e_1);
                     return [3 /*break*/, 3];
                 case 3: return [2 /*return*/];
             }
         });
     });
 }
-connect();
-app.get('/products', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var page, limit, products;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                page = parseInt(req.query.page) || 0;
-                limit = parseInt(req.query.limit) || 5;
-                return [4 /*yield*/, dbSave.collection('Product')
-                        .find()
-                        .skip(page * limit)
-                        .limit(limit)
-                        .toArray()];
-            case 1:
-                products = _a.sent();
-                if (products.length === 0) {
-                    res.send('[]');
-                }
-                else {
-                    res.json(products);
-                }
-                return [2 /*return*/];
-        }
-    });
-}); });
-app.get('/PopularModel', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var page, limit, model;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                page = parseInt(req.query.page) || 0;
-                limit = parseInt(req.query.limit) || 5;
-                return [4 /*yield*/, dbSave.collection('PopularModel')
-                        .find()
-                        .skip(page * limit)
-                        .limit(limit)
-                        .toArray()];
-            case 1:
-                model = _a.sent();
-                if (model.length === 0) {
-                    res.send(model);
-                }
-                else {
-                    res.json(model);
-                }
-                return [2 /*return*/];
-        }
-    });
-}); });
-app.get('/review', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var review;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, dbSave.collection('review').find().toArray()];
-            case 1:
-                review = _a.sent();
-                res.send(review);
-                return [2 /*return*/];
-        }
-    });
-}); });
-app.get('/CategoryList', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var CategoryList;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, dbSave.collection('Category-list').find().toArray()];
-            case 1:
-                CategoryList = _a.sent();
-                res.send(CategoryList);
-                return [2 /*return*/];
-        }
-    });
-}); });
-app.get('/Laptop', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var LapTopData;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, dbSave.collection('LapTop').find().toArray()];
-            case 1:
-                LapTopData = _a.sent();
-                res.send(LapTopData);
-                return [2 /*return*/];
-        }
-    });
-}); });
-app.get('/search', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var searchType, allFindedData;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                searchType = req.query.q || '';
-                console.log(searchType);
-                return [4 /*yield*/, dbSave.collection('AllTovar').find({
-                        name: { $regex: searchType, $options: 'i' }
-                    }).toArray()];
-            case 1:
-                allFindedData = _a.sent();
-                res.send(allFindedData);
-                return [2 /*return*/];
-        }
-    });
-}); });
-app.get('/adminpass', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var getAdminPass;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, dbSave.collection('AdminPass').find().toArray()];
-            case 1:
-                getAdminPass = _a.sent();
-                res.send(getAdminPass);
-                return [2 /*return*/];
-        }
-    });
-}); });
-app.post('/addProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var body, collectionPopular, collectionAllTovar, collectionAdmin, result;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                if (!req.body) {
-                    res.status(400).json({
-                        error: 'Bad Request',
-                        message: 'something wrong with body'
-                    });
-                    return [2 /*return*/];
-                }
-                body = req.body;
-                if (!(typeof (body.img) === 'string' && typeof (body.name) === 'string' && typeof (body.cost) === 'string' && typeof (body.description) === 'object')) return [3 /*break*/, 7];
-                console.log('all field');
-                return [4 /*yield*/, dbSave.collection('PopularModel')];
-            case 1:
-                collectionPopular = _a.sent();
-                return [4 /*yield*/, dbSave.collection('AllTovar')];
-            case 2:
-                collectionAllTovar = _a.sent();
-                return [4 /*yield*/, dbSave.collection('AdminAdded')];
-            case 3:
-                collectionAdmin = _a.sent();
-                return [4 /*yield*/, collectionPopular.insertOne(req.body)];
-            case 4:
-                result = _a.sent();
-                return [4 /*yield*/, collectionAllTovar.insertOne(req.body)];
-            case 5:
-                _a.sent();
-                return [4 /*yield*/, collectionAdmin.insertOne(req.body)];
-            case 6:
-                _a.sent();
-                res.send(result);
-                return [3 /*break*/, 8];
-            case 7:
-                console.log('bad');
-                res.status(400).json({
-                    error: 'Bad Request',
-                    message: 'should to be 4 field, img,name,cost,description and all field string'
-                });
-                _a.label = 8;
-            case 8: return [2 /*return*/];
-        }
-    });
-}); });
-app.delete('/DeleteProduct', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var body, collectionPopular, collectionAllTovar, collectionAdmin, rightId;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                body = req.body;
-                if (!body.id) {
-                    res.status(400).json({
-                        error: 'Bad Request',
-                        message: "You have to put id product"
-                    });
-                    return [2 /*return*/];
-                }
-                return [4 /*yield*/, dbSave.collection('PopularModel')];
-            case 1:
-                collectionPopular = _a.sent();
-                return [4 /*yield*/, dbSave.collection('AllTovar')];
-            case 2:
-                collectionAllTovar = _a.sent();
-                return [4 /*yield*/, dbSave.collection("AdminAdded")];
-            case 3:
-                collectionAdmin = _a.sent();
-                rightId = new mongodb_1.ObjectId(body.id);
-                return [4 /*yield*/, collectionAllTovar.deleteOne({ _id: rightId })];
-            case 4:
-                _a.sent();
-                return [4 /*yield*/, collectionPopular.deleteOne({ _id: rightId })];
-            case 5:
-                _a.sent();
-                return [4 /*yield*/, collectionAdmin.deleteOne({ _id: rightId })];
-            case 6:
-                _a.sent();
-                res.send({ status: "Everything okay" });
-                return [2 /*return*/];
-        }
-    });
-}); });
-app.get('/adminTovar', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var collectionAdmin;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, dbSave.collection('AdminAdded').find().toArray()];
-            case 1:
-                collectionAdmin = _a.sent();
-                res.send(collectionAdmin);
-                return [2 /*return*/];
-        }
-    });
-}); });
+startServer();
+//sharing bundle
+//sesion
 // sharing bundle
 // const indexPath = path.resolve(__dirname, "public/browser/index.html")
 // app.use((req, res) => {
 //     res.sendFile(indexPath)
 // });
-app.listen(PORT, function () {
-    console.log("Server was started on port ".concat(PORT));
-});

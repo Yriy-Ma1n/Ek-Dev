@@ -1,21 +1,52 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { UserDataService } from './user-data.service';
+import { firstValueFrom } from 'rxjs';
 
-export type objProduct = { _id: string, name: string, price: number, quantity: number, src: string }
+export type objProduct = { _Itemid: string; name: string; price: number; quantity: number; src: string; }
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardService {
 
-  private arrProduct: objProduct[] = JSON.parse(localStorage.getItem("allCardTovar")!) || []
+  private arrProduct: objProduct[] = []
+  userData = inject(UserDataService)
+  count: number = 0
+
+  constructor() {
+    this.rewriteProduct()
+
+
+  }
+
+  async takeUser() {
+    return await this.userData.show()
+  }
 
   get GetProduct() {
-    return [...this.arrProduct]
+    if (this.arrProduct) {
+      return [...this.arrProduct]
+    }else{
+      return  []
+    }
+  }
+
+  async rewriteProduct() {
+    const item = await this.takeUser()
+    this.arrProduct = item.cardItem
+    if (this.arrProduct) {
+      this.count = this.arrProduct.reduce((akk, item) => {
+        akk = item.quantity + akk
+        return akk
+      }, 0)
+
+    }
+
   }
 
 
   get CountProduct() {
-    return this.arrProduct.reduce((akk, item) => akk += item.quantity, 0)
+    return this.count
   }
 
   set changeQuantityPlus(name: string) {
@@ -41,44 +72,33 @@ export class CardService {
 
   set addProduct(item: objProduct) {
 
-    this.arrProduct.push(item)
 
-    this.arrProduct = this.arrProduct.reduce((acc: any[], obj) => {
-      const existing = acc.find(item => item._id === obj._id);
-
-      existing ? existing.quantity += obj.quantity : acc.push({ ...obj })
-
-      return acc;
-    }, [] as any[]);
-
-    this.changeData()
-
-  } 
+  }
 
   GetTotalPrice() {
     let total: number = 0
-    const savedProduct = JSON.parse(localStorage.getItem("allCardTovar")!)
 
-    if (!savedProduct) return
 
-    for (let item of savedProduct) {
+    if (!this.arrProduct) return
+
+    for (let item of this.arrProduct) {
       total += item.price * item.quantity
     }
 
-    return total
+    return String(total)
   }
 
   clearCard() {
     this.arrProduct = []
     this.changeData()
   }
-  clearOnItem(nameProduct:string){
-   
-    this.arrProduct = this.arrProduct.filter(({name})=>name !== nameProduct)
+  clearOnItem(nameProduct: string) {
+
+    this.arrProduct = this.arrProduct.filter(({ name }) => name !== nameProduct)
     this.changeData()
   }
 
-  changeData(){
-    localStorage.setItem("allCardTovar", JSON.stringify(this.arrProduct))
+  changeData() {
+
   }
 }

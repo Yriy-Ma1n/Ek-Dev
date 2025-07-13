@@ -58,6 +58,7 @@
     color: #ff8d02;
     text-decoration: underline;
 }
+
 @media (max-width:1662px) {
      .main-container-list {
         width: 1400px;

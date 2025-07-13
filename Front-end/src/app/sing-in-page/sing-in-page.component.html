@@ -1,0 +1,24 @@
+<p class="modal-message" [ngClass]="{'show':showError}">
+  {{messageTextRed}}
+</p>
+<p class="modal-message" [ngClass]="{'showAdd':showSucces}">
+  {{messageTextGreen}}
+</p>
+
+
+<div class="login-container">
+  <form class="login-form" [formGroup]="logInForm">
+    <h2>Вхід до особистого кабінету</h2>  
+    <label for="login">Логін</label>
+    <input type="text" id="login" name="login" placeholder="Ваш логін" required formControlName="name" #name>
+    
+    <label for="password">Пароль</label>
+    <input type="password" id="password" name="password" placeholder="Ваш пароль" required formControlName="password" #password>
+ 
+    <div class="haventAccount">У вас немає ще облігового запису? <span class="Register" (click)="NavigateToRegister()">Реєстрація</span></div> 
+    
+    <div class="error" [ngClass]="{'none':hideError}">Помилка, невірний логін або пароль</div>
+    <button type="submit" class="btn-cta" (click)="logIn(name, password)">Увійти</button>
+   
+  </form>
+</div>

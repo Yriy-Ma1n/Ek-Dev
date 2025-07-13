@@ -1,14 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
-body,html{
-    margin: 0;
-    height: 100vh;
+body,
+html {
+  margin: 0;
+  height: 100vh;
 
-    --accent-color-blue: #2c509a;
-    --accent-color-orange: #ff8d02;
-    --scrollbar-color: #a8a8a8;
-    --color-text: #cccccd;
-    --accent-color-black: #202124;
-    --opacity-color-gray:#dfdfdfd3
+  --accent-color-blue: #2c509a;
+  --accent-color-orange: #ff8d02;
+  --acent-color-orange-hover: #f09000;
+  --scrollbar-color: #a8a8a8;
+  --color-text: #cccccd;
+  --accent-color-black: #202124;
+  --opacity-color-gray: #dfdfdfd3;
+  --footer-bg: rgba(240, 240, 240, 255);
+  --accent-color-blue-new: #2c509a;
+  --form-bg-color: white
 }
 
 @font-face {
@@ -16,3 +21,51 @@ body,html{
   src: url("assets/ProximaSoftCond-Regular.woff") format("woff");
 }
 
+.error {
+  color: red;
+}
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+
+/* Змінні для темної теми */
+.dark-theme {
+  --bg-color: #202124;
+  --text-color: var(--color-text);
+  --accent-color-blue: #303133;
+  --scrollbar-color: #a8a8a8;
+  --footer-bg: #303133;
+  --accent-color-blue-new: #ffffff;
+  --form-bg-color: #303133;
+}
+
+/* Використовуємо змінні в базових стилях */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+.modal-message {
+    position: fixed;
+    top: 40px;
+    right: -400px;
+    padding: 30px;
+    border-radius: 15px;
+    transition: 0.5s;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.modal-message.show {
+    background-color: rgb(238, 124, 124);
+    right: 40px;
+}
+
+.modal-message.showAdd {
+    background-color: rgb(147, 228, 80);
+    right: 40px;
+    color:black;
+}

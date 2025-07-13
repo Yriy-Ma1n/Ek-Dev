@@ -4,6 +4,7 @@ import { PasswordValidator } from './Passwors.validators.directive';
 import { NgClass, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-andmin-password',
@@ -12,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './andmin-password.component.css'
 })
 export class AndminPasswordComponent {
+  service = inject(AdminService);
   adminPassword: string = "";
   inputValue: string = "";
   inputValueBul: boolean = true;
@@ -45,6 +47,7 @@ export class AndminPasswordComponent {
   checkValueInput() {
     if (this.inputValue === this.adminPassword) {
       this.inputValueBul = false;
+      this.service.show()
     } else {
       this.inputValueBul = true;
     }

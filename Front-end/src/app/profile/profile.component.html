@@ -1,0 +1,27 @@
+<div class="profile-page" *ngIf="userInAccount">
+  <section class="profile-header">
+    <div class="avatar-container">
+      <img class="avatar" [src]="user.profileImg" alt="User avatar">
+    </div>
+    <div class="user-details">
+      <h1>{{user.name}}</h1>
+    </div>
+  </section>
+
+  <section class="profile-sections">
+    <div class="profile-card">
+      <h3>Мої замовлення</h3>
+      <p>Ви ще нічого не замовляли</p>
+    </div>
+
+    <div class="profile-card">
+      <h3>Налаштування</h3>
+      <button class="edit-btn" (click)="openSettingPage()">Редагувати профіль</button>
+    </div>
+
+    <div class="profile-card">
+      <h3>Адреса доставки</h3>
+      <p>Не вказано</p>
+    </div>
+  </section>
+</div>

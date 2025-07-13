@@ -1,41 +1,51 @@
 import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
 import { CardService } from '../../core/services/card.service';
+import { CurrencySwitcherPipe } from '../../pipes/currency-switcher.pipe';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-card-tovar',
-  imports: [],
+  imports: [CurrencySwitcherPipe],
   templateUrl: './card-tovar.component.html',
   styleUrl: './card-tovar.component.css'
 })
 export class CardTovarComponent {
+  productChange = inject(CardService);
+  Currency =  localStorage.getItem('currencu') ? localStorage.getItem('currencu')! : "UAH";
 
-  productChange = inject(CardService)
+  http = inject(HttpClient)
 
   @Input() count: number = 1;
-  @Input() price: number = 0;
   @Input() name: string = '';
+  @Input() price: number = 0;
+  priceString = '';
   @Input() src: string = '';
-  
 
-
-  ngOnChanges(changes: SimpleChanges) {
+    ngOnChanges(changes: SimpleChanges) {
     if (changes['count'].currentValue < 1) return
-    this.price *= changes['count'].currentValue
-    this.constPrice = changes['price'].currentValue
-    console.log(changes)
+     if (changes['price']?.currentValue) {
+      this.constPrice = changes['price'].currentValue
+    }
     
+    this.price = this.constPrice * changes['count'].currentValue
+    this.priceString = String(this.price);
+
   }
 
-  constPrice: number = 0
+  constPrice: number = 0;
+
 
   plusButton(element: HTMLElement) {
-    this.count += 1
 
+    this.count += 1
+ 
     this.price = this.constPrice * this.count
+
 
     this.productChange.changeQuantityPlus = String(element.textContent)
 
+    this.priceString = String(this.price)
   }
   minusButton(element: HTMLElement) {
 
@@ -44,13 +54,15 @@ export class CardTovarComponent {
     this.count -= 1
     this.price -= this.constPrice
 
-    this.productChange.changeQuantityMinus = String(element.textContent)
-
   }
 
-  deleteItem(name:HTMLHeadingElement){
-    this.productChange.clearOnItem(name.textContent!)
-    console.log(this.productChange)
+  deleteItem(name: HTMLHeadingElement) {
+    
+    this.http.patch('http://localhost:5500/deleteItemFromCard', {itemName:name.textContent}, { withCredentials: true }).subscribe(data=>{
+      if(data){
+        this.productChange.rewriteProduct()
+      }
+    })
   }
 
 

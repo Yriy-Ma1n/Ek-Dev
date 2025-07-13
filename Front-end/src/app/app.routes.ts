@@ -6,7 +6,10 @@ import { PageNfComponent } from './page404/page-nf/page-nf.component';
 import { ProductCardInnerComponent } from './shared/components/product-card-inner/product-card-inner.component';
 import { TovarListComponent } from './main-section/tovar-list/tovar-list.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
-import { AppCategoryListComponent } from './main-section/app-category-list/app-category-list.component';
+import { SingInPageComponent } from './sing-in-page/sing-in-page.component';
+import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 
 export const routes: Routes = [
   {
@@ -27,7 +30,7 @@ export const routes: Routes = [
    {
     path:'tovar',
     component:ProductCardInnerComponent,
-    title:'tovar'
+   
   },
   {
     path: 'admin',
@@ -38,6 +41,26 @@ export const routes: Routes = [
      path:'tovarList',
     component:TovarListComponent,
     title:'catagol tovars'
+  },
+  {
+    path:'SingIn',
+    component:SingInPageComponent,
+    title:'SingIn'
+  },
+  {
+    path:'Register',
+    component:RegisterComponent,
+    title:'Register'
+  },
+  {
+    path:'Profile',
+    component:ProfileComponent,
+    title:'Profile'
+  },
+   {
+    path:'Profile-setting',
+    component:ProfileSettingComponent,
+    title:'Profile settng'
   },
   {
     path: '**',

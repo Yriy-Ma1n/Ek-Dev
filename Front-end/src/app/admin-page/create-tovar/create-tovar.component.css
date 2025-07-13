@@ -4,16 +4,16 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
-    box-shadow: 0 0 10px 0 #000;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
-    width: 11%; 
+    width: 100%; 
     padding: 20px 40px;
 }
 h1{
     margin: 0;
-    width: 100%;
-    font-size: 21px;
-    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
 }
 form{
     display: flex;
@@ -21,28 +21,54 @@ form{
     align-items: center;
     justify-content: center;
     gap: 10px;
+    width: 70%;
+}
+form div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 8px;
+    width: 100%;
 }
 form div p{
     font-family: Proxima Soft;
+    font-size: 20px;
     margin: 0;
+    font-weight: 500;
 }
 form div input, form div textarea{
-    border-radius: 6px;
-    width: 200px;
-    height: 20px;
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+form div input:focus, form div textarea:focus{
+    border-color: #ff7a00;
+    box-shadow: 0 0 5px rgba(255, 122, 0, 0.3);
+    outline: none;
 }
 button{
-    background-color: var(--accent-color-orange);
-    color: #fff;
-    border: 0;
-    border-radius: 6px;
-    padding: 10px 25px;
-    cursor: pointer;
+  background: #ff7a00;
+  color: #fff;
+  border: none;
+  padding: 14px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s
+}
+button:hover {
+  background: #e86900;
+  box-shadow: 0 5px 15px rgba(255, 122, 0, 0.4);
 }
 .err{
     text-align: center;
     color: red;
 }
 .red-border{
-    border: 1.8px solid red;
+    border: 2px solid red !important;
 }
