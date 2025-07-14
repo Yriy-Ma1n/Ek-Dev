@@ -32,3 +32,15 @@ button{
 button:hover{
    background-image: linear-gradient(#ff961d, #ff6708);
 }
+
+@media (max-width: 1285px){
+    input{
+        width: 470px;
+    }
+}
+
+@media (max-width: 1100px){
+    input{
+        width: 400px;
+    }
+}
