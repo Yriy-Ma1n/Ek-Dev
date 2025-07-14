@@ -92,3 +92,18 @@
 .hide {
     display: none;
 }
+
+@media (max-width: 1100px){
+    .container-sing{
+        border: 2px solid var(--opacity-color-gray);
+        background-color: hsla(0, 0%, 100%, .1);
+        padding: 7px 80px;
+    }
+    .button-singin{
+        font-size: 16px;
+    }
+    .container-sing img{
+        width: 16px;
+        height: 16px;
+    }
+}
