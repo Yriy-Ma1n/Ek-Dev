@@ -8,6 +8,10 @@
     background-color: var(--accent-color-blue);
 }
 
+app-burger-menu{
+    display: none;
+}
+
 .header-container{
     height: 62px;
     display: flex;
@@ -18,4 +22,19 @@
 }
 .show{
     display: flex;
+}
+
+@media (max-width: 1285px){
+    .container{
+        gap: 20px;
+    }
+}
+
+@media (max-width: 1100px){
+    .header-container, app-change-currency, app-app-toggle-theme, app-basket, app-singin-admin, app-sing-in{
+        display: none;
+    }
+    app-burger-menu{
+        display: block;
+    }
 }
