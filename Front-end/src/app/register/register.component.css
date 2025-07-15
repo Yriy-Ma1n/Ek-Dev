@@ -71,7 +71,20 @@
 .btn-cta:hover {
   background-color: var(--acent-color-orange-hover);
 }
-
+  
+.password-container{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.hide-icon{
+  width: 20px;
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top:48px;
+  
+}
 .btn-cta:active {
   transform: scale(0.98);
 }

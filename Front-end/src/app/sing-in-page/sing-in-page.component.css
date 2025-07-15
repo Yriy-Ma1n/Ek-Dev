@@ -65,7 +65,11 @@
   cursor: pointer;
   transition: background-color 0.2s, transform 0.1s;
 }
-
+.password-container{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
 .haventAccount {
   margin-top: 15px;
   color:var(--text-color)
@@ -91,6 +95,15 @@
 .ng-valid:not(form) {
   border: 1px solid rgb(151, 255, 103) !important;
 
+}
+
+.hide-icon{
+  width: 20px;
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top:48px;
+  
 }
 .none{
   display: none;

@@ -8,15 +8,15 @@
     <label for="username">Ім’я користувача</label>
     <input type="text" id="username" name="username" placeholder="Ваше ім’я" formControlName="name" #name>
 
-
-    <label for="password">Пароль</label>
-    <input type="password" id="password" name="password" placeholder="Придумайте пароль" formControlName="password"
-      #password>
-
+    <div class="password-container">
+      <label for="password">Пароль</label>
+      <input [type]="showPassword ? 'password' : 'text'" id="password" name="password" placeholder="Придумайте пароль"
+        formControlName="password" #password>
+      <img src="./eye-password-.svg" alt="" class="hide-icon" (click)="showPasswordMethod()">
+    </div>
     <label for="confirm-password">Підтвердіть пароль</label>
     <input type="password" id="confirm-password" name="confirm-password" placeholder="Повторіть пароль"
       formControlName="confirmPassword">
-
     <div class="haveAccount">У вас уже є акаунт? <span class="LogIn" (click)="NavigateToLogin()">Увійти</span></div>
 
     <div class="error" [ngClass]="{'none':!showEror}">Ім’я користувача зайнято</div>
