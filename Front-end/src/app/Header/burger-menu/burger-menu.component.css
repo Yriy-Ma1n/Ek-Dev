@@ -2,3 +2,105 @@ svg{
     fill: #ffffff;
     cursor: pointer;
 }
+.container{
+    position: fixed;
+    z-index: 9996;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.black{
+    position: absolute;
+    z-index: 9997;
+    width: 100%;
+    height: 100%;
+}
+aside{
+    position: absolute;
+    top: 0;
+    z-index: 9999;
+    left: -300px;
+    width: 320px;
+    height: 100%;
+    background-color: #fff;
+    transition: 300ms;
+}
+aside.open {
+    animation: slideIn 0.3s forwards;
+}
+aside.close {
+    animation: slideOut 0.3s forwards;
+}
+   @keyframes slideIn {
+      from {
+        left: -300px;
+      }
+      to {
+        left: 0;
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        left: 0;
+      }
+      to {
+        left: -300px;
+      }
+    }
+aside svg{
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 23px;
+    height: 23px;
+}
+.aside-header{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    height: 188px;
+    padding-top: 10px;
+    background-color: var(--accent-color-blue);
+}
+.betwin-case{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 90px;
+}
+.betwin-case div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.betwin-case div svg{
+  position: static;
+  transition: 500ms;
+}
+.betwin-case div svg:hover{
+  fill: var(--accent-color-orange);
+}
+
+.betwin-case p{
+  color: #fff;
+}
+
+hr{
+  width: 238.53px;
+  opacity: 0.2;
+  margin: 0;
+}
+
+@media (max-width: 325px){
+  aside{
+    width: 245px;
+  }
+}

@@ -1,1 +1,29 @@
-<svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M3 5C2.44772 5 2 5.44772 2 6C2 6.55228 2.44772 7 3 7H21C21.5523 7 22 6.55228 22 6C22 5.44772 21.5523 5 21 5H3ZM2 12C2 11.4477 2.44772 11 3 11H21C21.5523 11 22 11.4477 22 12C22 12.5523 21.5523 13 21 13H3C2.44772 13 2 12.5523 2 12ZM2 18C2 17.4477 2.44772 17 3 17H21C21.5523 17 22 17.4477 22 18C22 18.5523 21.5523 19 21 19H3C2.44772 19 2 18.5523 2 18Z" fill-rule="evenodd"/></svg>
+<svg (click)="onClickBurgerMenu(aside)" fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M3 5C2.44772 5 2 5.44772 2 6C2 6.55228 2.44772 7 3 7H21C21.5523 7 22 6.55228 22 6C22 5.44772 21.5523 5 21 5H3ZM2 12C2 11.4477 2.44772 11 3 11H21C21.5523 11 22 11.4477 22 12C22 12.5523 21.5523 13 21 13H3C2.44772 13 2 12.5523 2 12ZM2 18C2 17.4477 2.44772 17 3 17H21C21.5523 17 22 17.4477 22 18C22 18.5523 21.5523 19 21 19H3C2.44772 19 2 18.5523 2 18Z" fill-rule="evenodd"/></svg>
+
+
+<div [style.display] = 'burgerMenuScreen' class="container">
+    <div (click)="onClickCross(aside)" [style.background-color]="bgColor" class="black"></div>
+    <aside #aside>
+        <div class="aside-header">
+            <svg (click)="onClickCross(aside)" style="enable-background:new 0 0 24 24;" version="1.1" viewBox="0 0 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">.st0{opacity:0.2;fill:none;stroke:#000000;stroke-width:5.000000e-02;stroke-miterlimit:10;}</style><g id="grid_system"/><g id="_icons"><path d="M5.3,18.7C5.5,18.9,5.7,19,6,19s0.5-0.1,0.7-0.3l5.3-5.3l5.3,5.3c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3   c0.4-0.4,0.4-1,0-1.4L13.4,12l5.3-5.3c0.4-0.4,0.4-1,0-1.4s-1-0.4-1.4,0L12,10.6L6.7,5.3c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4   l5.3,5.3l-5.3,5.3C4.9,17.7,4.9,18.3,5.3,18.7z"/></g></svg>
+            <div class="betwin-case">
+                <app-change-currency></app-change-currency>
+                <div>
+                    <a href="/Home">
+                        <svg fill="#fff" height="30" viewBox="0 0 16 16" width="34" xmlns="http://www.w3.org/2000/svg"><path d="M1 6V15H6V11C6 9.89543 6.89543 9 8 9C9.10457 9 10 9.89543 10 11V15H15V6L8 0L1 6Z"/></svg>
+                    </a>
+                    <app-basket (click)="onClickCross(aside)"></app-basket>
+                    <app-singin-admin></app-singin-admin>
+                </div>
+            </div>
+            <app-sing-in (click)="onClickCross(aside)"></app-sing-in>
+            <div>
+                <hr>
+                <div class="betwin-case">
+                    <p>Тема</p>
+                    <app-app-toggle-theme (click)="onClickCross(aside)"></app-app-toggle-theme>
+                </div>
+            </div>
+        </div>
+    </aside>
+</div>
