@@ -73,3 +73,9 @@ aside svg{
   justify-content: center;
   gap: 8px;
 }
+
+@media (max-width: 325px){
+  aside{
+    width: 245px;
+  }
+}

@@ -4,6 +4,7 @@ import { ChangeCurrencyComponent } from '../../change-currency/change-currency.c
 import { BusketPageComponent } from '../../busket-page/busket-page.component';
 import { BasketComponent } from '../../basket/basket.component';
 import { SinginAdminComponent } from '../singin-admin/singin-admin.component';
+import { LogoComponent } from '../logo/logo.component';
 
 @Component({
   selector: 'app-burger-menu',
