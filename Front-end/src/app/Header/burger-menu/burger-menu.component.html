@@ -8,11 +8,21 @@
             <div class="betwin-case">
                 <app-change-currency></app-change-currency>
                 <div>
-                    <app-basket></app-basket>
+                    <a href="/Home">
+                        <svg fill="#fff" height="30" viewBox="0 0 16 16" width="34" xmlns="http://www.w3.org/2000/svg"><path d="M1 6V15H6V11C6 9.89543 6.89543 9 8 9C9.10457 9 10 9.89543 10 11V15H15V6L8 0L1 6Z"/></svg>
+                    </a>
+                    <app-basket (click)="onClickCross(aside)"></app-basket>
                     <app-singin-admin></app-singin-admin>
                 </div>
             </div>
-            <app-sing-in></app-sing-in>
+            <app-sing-in (click)="onClickCross(aside)"></app-sing-in>
+            <div>
+                <hr>
+                <div class="betwin-case">
+                    <p>Тема</p>
+                    <app-app-toggle-theme (click)="onClickCross(aside)"></app-app-toggle-theme>
+                </div>
+            </div>
         </div>
     </aside>
 </div>

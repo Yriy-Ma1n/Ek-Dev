@@ -59,19 +59,38 @@ aside svg{
     gap: 15px;
     width: 100%;
     height: 188px;
+    padding-top: 10px;
     background-color: var(--accent-color-blue);
 }
 .betwin-case{
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 122px;
+  gap: 90px;
 }
 .betwin-case div{
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+}
+
+.betwin-case div svg{
+  position: static;
+  transition: 500ms;
+}
+.betwin-case div svg:hover{
+  fill: var(--accent-color-orange);
+}
+
+.betwin-case p{
+  color: #fff;
+}
+
+hr{
+  width: 238.53px;
+  opacity: 0.2;
+  margin: 0;
 }
 
 @media (max-width: 325px){
