@@ -4,16 +4,22 @@ svg{
 }
 .container{
     position: fixed;
+    z-index: 9996;
     top: 0;
     left: 0;
-    z-index: 9999;
     width: 100%;
     height: 100%;
-    transition: 300ms;
+}
+.black{
+    position: absolute;
+    z-index: 9997;
+    width: 100%;
+    height: 100%;
 }
 aside{
     position: absolute;
     top: 0;
+    z-index: 9999;
     left: -300px;
     width: 320px;
     height: 100%;
