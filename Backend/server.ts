@@ -1,11 +1,11 @@
 
-// import { router as BotRouter } from "./server/bot/bot";
+import { router as BotRouter } from "./server/bot/bot";
 import { router as LoginRouter } from "./server/login-register/login-register";
 import { router as DeleteRouter } from "./server/requests/delete/request-delete";
 import { router as PostRouter } from "./server/requests/post-patch/request-post";
 import { router as GetRouter } from "./server/requests/get/request-get";
 import { connect } from "./server/connectToBd/connectBd"
-// import { bot } from "./server/bot/bot"
+import { bot } from "./server/bot/bot"
 export let ProductSave;
 export let userSave
 //
@@ -45,14 +45,13 @@ async function startServer() {
             name: 'user-session',
             saveUninitialized: false,
             cookie: {
-                path:'/',
+                path: '/',
                 secure: false,
                 maxAge: 1000 * 60 * 60
             }
         }))
 
-        // app.use('', BotRouter)
-        // bot.launch()
+        app.use('', BotRouter)
         app.use('', LoginRouter)
         app.use('', DeleteRouter)
         app.use('', PostRouter)
@@ -64,6 +63,8 @@ async function startServer() {
         });
 
         app.listen(PORT, () => {
+            bot.launch()
+
             console.log(`Server was started on port ${PORT}`);
         });
 
