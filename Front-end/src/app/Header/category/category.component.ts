@@ -19,8 +19,10 @@ export class CategoryComponent {
   listCategoryItem: { img: string, name: string, additional:string }[] = []
 
   hoverToElemet(event: Event) {
+    console.log('up')
     const element = event.target as HTMLElement
     if (element.classList.contains("list-category-container")) return
+    console.log('123')
     this.hovered = false
     this.showItem(element)
   }
@@ -42,7 +44,7 @@ export class CategoryComponent {
     })
   }
   clickCategory(event: Event) {
-    
+    this.hovered = true
     const element = (event.target as HTMLElement).parentElement?.textContent
 
     if (element === 'Смартфони') {
@@ -58,5 +60,6 @@ export class CategoryComponent {
   NavigateToPage(page: string) {
     this.router.navigate(['/tovarList'], { queryParams: { q: page } })
   }
+
 
 }
