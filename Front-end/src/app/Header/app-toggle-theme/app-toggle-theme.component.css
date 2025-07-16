@@ -9,3 +9,10 @@
     svg {
       display: block;
     }
+  path:hover {
+    fill: black;
+  }
+  circle:hover {
+    fill: #ff8d02;
+  }
+ 

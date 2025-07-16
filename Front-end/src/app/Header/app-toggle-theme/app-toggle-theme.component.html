@@ -3,7 +3,7 @@
       (click)="themeService.toggle()" 
       aria-label="Переключити тему"
     >
-      <svg *ngIf="isDark()" width="24" height="24" viewBox="0 0 24 24">
+      <svg *ngIf="isDark()" width="30" height="30" viewBox="0 0 24 24">
         <!-- Сонце для світлої теми -->
         <circle cx="12" cy="12" r="5" fill="currentColor"/>
         <g stroke="currentColor" stroke-width="2">
@@ -18,10 +18,10 @@
         </g>
       </svg>
 
-      <svg *ngIf="!isDark()" width="24" height="24" viewBox="0 0 24 24">
+      <svg *ngIf="!isDark()" width="35" height="35" viewBox="0 0 24 24">
         <!-- Місяць для темної теми -->
         <path 
-          fill="currentColor" 
+          fill="white" 
           d="M21 12.79A9 9 0 0111.21 3 7 7 0 0012 17a7 7 0 009-4.21z"
         />
       </svg>

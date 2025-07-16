@@ -105,3 +105,15 @@
     color: red;
     cursor: pointer;
 }
+@media (max-width:420px) {
+    .img-count{
+        justify-content: center;
+    }
+    .img-tovar{
+        width: 100px;
+        height: 100px;
+    }
+    .name-cost h1{
+        font-size: 20px;
+    }
+}
