@@ -75,3 +75,28 @@
         grid-template-columns: 340px 340px
     }
 }
+@media (max-width:724px) {
+    .container-card{
+        width: 250px;
+    }
+  
+    .name-card{
+        font-size: 17px;
+    }
+    .main-container-card{
+        grid-template-columns:280px 280px; 
+
+    }
+   
+}
+@media (max-width:610px) {
+    .main-container-card {
+        grid-template-columns: 300px;
+    }
+}
+
+@media (max-width:320px) {
+    .main-container-card {
+        grid-template-columns: 250px;
+    }
+}
