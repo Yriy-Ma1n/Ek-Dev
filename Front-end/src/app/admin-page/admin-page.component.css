@@ -24,10 +24,27 @@ app-tovar-list{
     margin: 20px;
 }
 .flex-conteiner{
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 app-create-tovar{
     width: 40%;
+}
+
+@media (max-width: 888px){
+    .flex-conteiner{
+        justify-content: start;
+        padding-right: 80px;
+    }
+    app-create-tovar{
+        width: 100%;
+    }
+}
+
+@media (max-width: 485px){
+    .flex-conteiner{
+        padding-right: 40px;
+    }
 }

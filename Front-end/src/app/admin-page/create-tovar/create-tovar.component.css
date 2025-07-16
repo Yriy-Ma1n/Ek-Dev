@@ -72,3 +72,25 @@ button:hover {
 .red-border{
     border: 2px solid red !important;
 }
+
+@media (max-width: 485px){
+    form{
+        width: 90%;
+    }
+    form div input, form div textarea{
+        padding: 12px 0;
+    }
+    .container{
+        padding: 20px;
+    }
+}
+
+@media (max-width: 350px){
+    form div input, form div textarea{
+        padding: 8px 0;
+    }
+    form{
+        gap: 5px;
+        margin-bottom: 5px;
+    }
+}
