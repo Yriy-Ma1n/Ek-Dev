@@ -118,7 +118,7 @@
 }
 
   .img-contanier {
-    height: 120px;
+    width: 145px;
   }
   .name {
   font-size: 12px;
@@ -146,7 +146,7 @@
 
 @media (min-width: 1024px) and (max-width: 1439px) {
    .img-contanier {
-    height: 165px;
+    width: 165px;
   }
   .name {
   font-size: 14px;
