@@ -6,10 +6,11 @@ import { BasketComponent } from '../../basket/basket.component';
 import { SinginAdminComponent } from '../singin-admin/singin-admin.component';
 import { LogoComponent } from '../logo/logo.component';
 import { AppToggleThemeComponent } from '../app-toggle-theme/app-toggle-theme.component';
+import { CategoryComponent } from "../category/category.component";
 
 @Component({
   selector: 'app-burger-menu',
-  imports: [AppToggleThemeComponent, SingInComponent, ChangeCurrencyComponent, BasketComponent, SinginAdminComponent],
+  imports: [AppToggleThemeComponent, SingInComponent, ChangeCurrencyComponent, BasketComponent, SinginAdminComponent, CategoryComponent],
   templateUrl: './burger-menu.component.html',
   styleUrl: './burger-menu.component.css'
 })

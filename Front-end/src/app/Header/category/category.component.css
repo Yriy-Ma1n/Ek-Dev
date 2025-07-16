@@ -93,6 +93,8 @@
 .container-item:hover .item p {
     color: var(--accent-color-orange)
 }
+.item .notWorking{
+}
 
 @media (max-width:1340px) {
     .list-category-container {
@@ -119,5 +121,11 @@
 @media (max-width:1168px) {
     .list-category-container {
         gap: 20px;
+    }
+}
+
+@media (max-width:1030px) {
+    .list-category-container {
+        flex-direction: column;
     }
 }
