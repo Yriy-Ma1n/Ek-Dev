@@ -13,7 +13,11 @@ html {
   --opacity-color-gray: #dfdfdfd3;
   --footer-bg: rgba(240, 240, 240, 255);
   --accent-color-blue-new: #2c509a;
-  --form-bg-color: white
+  --form-bg-color: white;
+  --category-text-color:#525252;
+  --accent-text-color-blue: #2c509a;
+  --info-text-color:black;
+  --accent-color-span: #2c509a;
 }
 
 @font-face {
@@ -39,6 +43,9 @@ html {
   --footer-bg: #303133;
   --accent-color-blue-new: #ffffff;
   --form-bg-color: #303133;
+  --category-text-color:#ffffff;
+  --info-text-color:white;
+  --accent-color-span: #ff8d02;
 }
 
 /* Використовуємо змінні в базових стилях */

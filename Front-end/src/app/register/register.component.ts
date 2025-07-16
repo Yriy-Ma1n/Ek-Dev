@@ -27,6 +27,8 @@ export class RegisterComponent {
   messageTextRed: string = ''
   messageTextGreen: string = ''
 
+  showPassword:boolean = false
+
   registerForm = new FormGroup({
     name: new FormControl("", [Validators.required, Validators.minLength(4), Validators.maxLength(12)]),
     password: new FormControl("", [Validators.required, Validators.minLength(6), Validators.maxLength(36)]),
@@ -79,5 +81,9 @@ export class RegisterComponent {
 
         }
       });
+  }
+  showPasswordMethod(){
+    this.showPassword = !this.showPassword
+
   }
 }

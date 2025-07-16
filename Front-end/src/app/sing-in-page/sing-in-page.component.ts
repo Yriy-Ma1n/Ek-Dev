@@ -20,8 +20,10 @@ export class SingInPageComponent {
   showError: boolean = false;
   showSucces: boolean = false;
 
-  messageTextRed: string = ''
-  messageTextGreen: string = ''
+  messageTextRed: string = '';
+  messageTextGreen: string = '';
+
+  showPassword:boolean = false
 
 
   logInForm = new FormGroup({
@@ -68,4 +70,7 @@ export class SingInPageComponent {
 
   }
 
+  showPasswordMethod(){
+    this.showPassword = !this.showPassword
+  }
 }

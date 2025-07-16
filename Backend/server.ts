@@ -63,7 +63,7 @@ async function startServer() {
         });
 
         app.listen(PORT, () => {
-            bot.launch()
+            // bot.launch()
 
             console.log(`Server was started on port ${PORT}`);
         });
