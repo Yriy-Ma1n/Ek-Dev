@@ -13,7 +13,7 @@
 .list-category-container {
     display: flex;
     gap: 40px;
-    color: #525252;
+    color: var(--category-text-color);
     font-family: Proxima Soft;
 
 }

@@ -4,6 +4,9 @@
     align-items: center;
     gap: 16px;
 }
+svg{
+    display: none;
+}
 input{
     width: 540.91px;
     height: 36px;
@@ -31,4 +34,49 @@ button{
 }
 button:hover{
    background-image: linear-gradient(#ff961d, #ff6708);
+}
+
+@media (max-width: 1285px){
+    input{
+        width: 470px;
+    }
+}
+
+@media (max-width: 1100px){
+    input{
+        width: 380px;
+    }
+}
+
+@media (max-width: 750px){
+    .container{
+        gap: 5px;
+        flex-direction: column;
+    }
+    button{
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px){
+    :host{
+        width: 97%;
+    }
+    .container{
+        position: relative;
+        width: 100%;
+    }
+    button{
+        display: none;
+    }
+    input{
+        padding-left: 35px;
+        width: 100%;
+    }
+    svg{
+        position: absolute;
+        left: 5px;
+        display: block;
+        cursor: pointer;
+    }
 }
