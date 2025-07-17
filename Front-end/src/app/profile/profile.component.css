@@ -6,11 +6,13 @@
   color: var(--text-color);
   background-color: var(--bg-color);
 }
-.avatar-container{
+
+.avatar-container {
   width: fit-content;
   position: relative;
 }
-.avatar-container::before{
+
+.avatar-container::before {
   content: '';
   width: 20px;
   height: 20px;
@@ -31,6 +33,7 @@
   object-fit: cover;
   position: relative;
 }
+
 .profile-header {
   display: flex;
   align-items: center;
@@ -74,6 +77,17 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
 }
 
+.moveToHistory {
+  background: var(--accent-color-orange);
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s ease-in-out;
+}
+
 .profile-card h3 {
   margin-top: 0;
   color: var(--text-color);
@@ -93,4 +107,3 @@
 .edit-btn:hover {
   background: var(--acent-color-orange-hover);
 }
-
