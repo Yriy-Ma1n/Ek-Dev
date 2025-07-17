@@ -43,12 +43,12 @@
 .additional-actions button {
     padding: 10px 20px;
     border: 1px solid var(--scrollbar-color);
-    background-color: white;
+    background-color:var(--form-bg-color);
     color: gray;
 }
 
 .additional-actions button.selected {
-    background-color: var(--accent-color-blue);
+    background-color: var(--accent-text-color-blue);
     color: white;
 }
 

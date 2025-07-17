@@ -8,6 +8,7 @@
     border-radius: 10px;
     width: 100%; 
     padding: 20px 40px;
+    background-color: var(--form-bg-color);
 }
 h1{
     margin: 0;

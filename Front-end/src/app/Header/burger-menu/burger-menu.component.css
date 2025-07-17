@@ -23,7 +23,7 @@ aside{
     left: -300px;
     width: 320px;
     height: 100%;
-    background-color: #fff;
+    background-color: var(--form-bg-color);
     transition: 300ms;
 }
 aside.open {
