@@ -2,6 +2,7 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ListCategoryService } from '../../core/services/list-category.service';
 import { Router } from '@angular/router';
+import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-category',
@@ -35,6 +36,7 @@ export class CategoryComponent {
   }
   itemout() {
     this.hovered = true
+    console.log("leav")
   }
   showItem(element: HTMLElement) {
     this.listArr.getChangeData.forEach(item => {
@@ -59,6 +61,20 @@ export class CategoryComponent {
   }
   NavigateToPage(page: string) {
     this.router.navigate(['/tovarList'], { queryParams: { q: page } })
+  }
+
+
+  display = 'none';
+
+  displayOn(event: Event){
+    const element = event.target as HTMLElement
+    if (element.classList.contains("list-category-container")) return
+    this.showItem(element)
+    this.display = "flex"
+  }
+
+  displayOff(){
+    this.display = "none"
   }
 
 
