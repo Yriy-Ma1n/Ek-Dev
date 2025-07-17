@@ -5,7 +5,7 @@
   height: 200px;
   text-align: center;
   margin: auto;
-  background: var(--model-contanier-bg);
+  background: #FFFFFF;
 }
 
 .image-tovar {
@@ -17,7 +17,7 @@
 
 .name {
   font-size: 16.5px;
-  color: var(--accent-text-color-blue);
+  color: var(--accent-color-blue);
   font-weight: 500;
   margin-top: 10px;
   margin-bottom: 0px;
@@ -44,7 +44,7 @@
   height: 40px;
   cursor: pointer;
   user-select: none;
-  background: var(--text-color);
+  background: white;
   padding: 5px;
   border-radius: 5px;
   
@@ -73,7 +73,7 @@
   padding: 12px;
   text-align: center;
   border-radius: 8px;
-  background-color:var(--model-contanier-bg);
+  background-color: #fdfdfd;
   transition: transform 0.2s ease;
 
 
@@ -141,9 +141,6 @@
 .pagination-controls {
   margin-top: 10px;
  
-}
-.filters {
-  display: none;
 }
 }
 
