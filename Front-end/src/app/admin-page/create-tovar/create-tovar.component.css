@@ -4,10 +4,11 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgba(70, 69, 69, 0.15);
     border-radius: 10px;
     width: 100%; 
     padding: 20px 40px;
+    background-color: var(--form-bg-color);
 }
 h1{
     margin: 0;

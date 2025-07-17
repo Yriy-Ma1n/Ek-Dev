@@ -18,6 +18,7 @@ html {
   --accent-text-color-blue: #2c509a;
   --info-text-color:black;
   --accent-color-span: #2c509a;
+  --button-card-color: gray;
 }
 
 @font-face {
@@ -46,7 +47,9 @@ html {
   --category-text-color:#ffffff;
   --info-text-color:white;
   --accent-color-span: #ff8d02;
+  --button-text-color:white;
 }
+
 
 /* Використовуємо змінні в базових стилях */
 body {
