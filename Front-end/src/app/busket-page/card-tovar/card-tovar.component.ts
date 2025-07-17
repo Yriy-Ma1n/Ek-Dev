@@ -38,6 +38,7 @@ export class CardTovarComponent {
 
 
   plusButton(element: HTMLElement) {
+    console.log('1')
 
     this.count += 1
 
@@ -54,7 +55,6 @@ export class CardTovarComponent {
 
   }
   minusButton(element: HTMLElement) {
-
     if (this.count <= 1) return
 
     this.count -= 1

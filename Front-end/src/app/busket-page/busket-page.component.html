@@ -26,7 +26,7 @@
 </div>
 <ng-template #cardEmptry>
     <div class="container-empty-cart">
-        <h1>Твоя корзина порожня</h1>
+        <h1>Ваша корзина порожня</h1>
         <div class="cart-svg-container">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="size-6">
@@ -38,11 +38,11 @@
 </ng-template>
 
 <div class="clear-button-container">
-    <button (click)="clearCard()">Очистить Корзину</button>
+    <button (click)="clearCard()">Очистити корзину</button>
 </div>
 
 
 <div class="buy-button-container">
     <strong>{{cardService.GetTotalPrice()! | currencySwitcher:Currency}}</strong>
-    <button (click)="confirmation()">Оформить покупку</button>
+    <button (click)="confirmation()">Оформити покупку</button>
 </div>

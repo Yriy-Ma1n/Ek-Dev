@@ -55,10 +55,7 @@ export class CardService {
     this.changeQuantityM(name)
   }
 
-  set addProduct(item: objProduct) {
 
-
-  }
 
   GetTotalPrice() {
     let total: number = 0

@@ -5,7 +5,7 @@
   height: 200px;
   text-align: center;
   margin: auto;
-  background: #FFFFFF;
+  background: var(--model-contanier-bg);
 }
 
 .image-tovar {
@@ -73,7 +73,7 @@
   padding: 12px;
   text-align: center;
   border-radius: 8px;
-  background-color: #fdfdfd;
+  background-color: var(--model-contanier-bg);
   transition: transform 0.2s ease;
 
 

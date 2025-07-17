@@ -18,6 +18,8 @@ html {
   --accent-text-color-blue: #2c509a;
   --info-text-color:black;
   --accent-color-span: #2c509a;
+  --button-card-color: gray;
+   --model-contanier-bg: #fdfdfd;
 }
 
 @font-face {
@@ -45,8 +47,11 @@ html {
   --form-bg-color: #303133;
   --category-text-color:#ffffff;
   --info-text-color:white;
+  --model-contanier-bg: #303133;
   --accent-color-span: #ff8d02;
+  --button-text-color:white;
 }
+
 
 /* Використовуємо змінні в базових стилях */
 body {

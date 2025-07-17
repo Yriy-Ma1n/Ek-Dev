@@ -99,6 +99,12 @@ hr{
   margin: 0;
 }
 
+.aside-main{
+  position: relative;
+  padding: 15px;
+  background-color: var(--form-bg-color);
+}
+
 @media (max-width: 325px){
   aside{
     width: 245px;

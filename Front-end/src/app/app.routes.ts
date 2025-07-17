@@ -10,6 +10,7 @@ import { SingInPageComponent } from './sing-in-page/sing-in-page.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
+import { UserOrderComponent } from './user-order/user-order.component';
 
 export const routes: Routes = [
   {
@@ -61,6 +62,11 @@ export const routes: Routes = [
     path:'Profile-setting',
     component:ProfileSettingComponent,
     title:'Profile settng'
+  },
+  {
+    path:'OrderHistory',
+    component:UserOrderComponent,
+    title:'OrderHistory'
   },
   {
     path: '**',

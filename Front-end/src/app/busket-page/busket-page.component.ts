@@ -11,7 +11,7 @@ import { UserDataService } from '../core/services/user-data.service';
 
 @Component({
   selector: 'app-busket-page',
-  imports: [CardTovarComponent, NgFor, NgClass, HeaderBarComponent, NgIf, ReactiveFormsModule, CurrencySwitcherPipe],
+  imports: [CardTovarComponent, NgFor, NgClass, NgIf, ReactiveFormsModule, CurrencySwitcherPipe],
   templateUrl: './busket-page.component.html',
   styleUrl: './busket-page.component.css'
 })
@@ -60,10 +60,18 @@ export class BusketPageComponent {
     this.http.post(`http://localhost:5500/Message`, {
       message: this.text()
     }).subscribe(anws => console.log(anws))
+    const date = new Date()
+    this.http.post(`http://localhost:5500/addLastOrder`, {
+        orderId:crypto.randomUUID().slice(0, 8),
+        item:this.product,
+        date: date.toLocaleDateString('uk-UA',{day:'numeric', month:'long', year:'numeric'})
+    }, {withCredentials:true}).subscribe(data=>console.log(data))
+
 
     this.Showconfirmation = false
     this.clearCard()
-
+    
+    location.reload()
   }
   confirmation() {
     if (this.product.length === 0) return

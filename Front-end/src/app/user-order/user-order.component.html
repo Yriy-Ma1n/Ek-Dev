@@ -1,0 +1,18 @@
+<section class="orders-section">
+  <h2 class="orders-title">Останні замовлення</h2>
+  <div class="orders-list" *ngFor="let item of grouped | keyvalue">
+    <div class="order-card">
+      <div class="order-header">
+        <h3>Замовлення #{{ item.key }}</h3>
+      </div>
+      <div class="order-items">
+        <div class="order-item" *ngFor="let product of item.value">
+          <div class="product-name">{{ product.name }}</div>
+          <div class="product-qty">Кількість: {{ product.quantity }}</div>
+          <div class="product-price">Ціна: {{ product.price }}₴</div>
+          <div class="product-data">Дата:{{product.date}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
