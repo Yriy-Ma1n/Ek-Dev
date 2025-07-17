@@ -2,6 +2,7 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ListCategoryService } from '../../core/services/list-category.service';
 import { Router } from '@angular/router';
+import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-category',
@@ -19,8 +20,10 @@ export class CategoryComponent {
   listCategoryItem: { img: string, name: string, additional:string }[] = []
 
   hoverToElemet(event: Event) {
+    console.log('up')
     const element = event.target as HTMLElement
     if (element.classList.contains("list-category-container")) return
+    console.log('123')
     this.hovered = false
     this.showItem(element)
   }
@@ -33,6 +36,7 @@ export class CategoryComponent {
   }
   itemout() {
     this.hovered = true
+    console.log("leav")
   }
   showItem(element: HTMLElement) {
     this.listArr.getChangeData.forEach(item => {
@@ -42,7 +46,7 @@ export class CategoryComponent {
     })
   }
   clickCategory(event: Event) {
-    
+    this.hovered = true
     const element = (event.target as HTMLElement).parentElement?.textContent
 
     if (element === 'Смартфони') {
@@ -58,5 +62,20 @@ export class CategoryComponent {
   NavigateToPage(page: string) {
     this.router.navigate(['/tovarList'], { queryParams: { q: page } })
   }
+
+
+  display = 'none';
+
+  displayOn(event: Event){
+    const element = event.target as HTMLElement
+    if (element.classList.contains("list-category-container")) return
+    this.showItem(element)
+    this.display = "flex"
+  }
+
+  displayOff(){
+    this.display = "none"
+  }
+
 
 }

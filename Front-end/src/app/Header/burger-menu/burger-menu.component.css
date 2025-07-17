@@ -23,7 +23,7 @@ aside{
     left: -300px;
     width: 320px;
     height: 100%;
-    background-color: #fff;
+    background-color: var(--form-bg-color);
     transition: 300ms;
 }
 aside.open {
@@ -97,6 +97,12 @@ hr{
   width: 238.53px;
   opacity: 0.2;
   margin: 0;
+}
+
+.aside-main{
+  position: relative;
+  padding: 15px;
+  background-color: #fff;
 }
 
 @media (max-width: 325px){

@@ -11,7 +11,7 @@ import { UserDataService } from '../core/services/user-data.service';
 
 @Component({
   selector: 'app-busket-page',
-  imports: [CardTovarComponent, NgFor, NgClass, HeaderBarComponent, NgIf, ReactiveFormsModule, CurrencySwitcherPipe],
+  imports: [CardTovarComponent, NgFor, NgClass, NgIf, ReactiveFormsModule, CurrencySwitcherPipe],
   templateUrl: './busket-page.component.html',
   styleUrl: './busket-page.component.css'
 })

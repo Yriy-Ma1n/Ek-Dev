@@ -78,6 +78,7 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    color:var(--accent-text-color-blue);
 }
 
 .name-cost-delete h1:hover {
