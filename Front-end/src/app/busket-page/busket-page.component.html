@@ -22,7 +22,7 @@
 
 <div class="container-tovar" *ngIf="cardService.GetProduct.length >= 1; else cardEmptry">
     <app-card-tovar *ngFor="let item of cardService.GetProduct" [price]="item.price" [name]="item.name" [src]="item.src"
-        [count]="item.quantity"></app-card-tovar>
+        [count]="item.quantity" [id]="item._Itemid"></app-card-tovar>
 </div>
 <ng-template #cardEmptry>
     <div class="container-empty-cart">

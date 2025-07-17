@@ -1,7 +1,8 @@
 const express = require("express")
 import { ObjectId } from "mongodb"
 import { ProductSave, userSave } from "../../../server"
-const  passwordHash  =  require("password-hash")
+import { error } from "console"
+const passwordHash = require("password-hash")
 
 export const router = express.Router()
 
@@ -173,24 +174,62 @@ router.patch('/changeUserName', async (req, res) => {
     }
 })
 
-router.patch('/changePassword', async(req, res)=>{
+router.patch('/changePassword', async (req, res) => {
     const { oldPassword, newPassword } = req.body
 
     const areSame = passwordHash.verify(oldPassword, req.session.user.password)
 
     const id = new ObjectId(req.session.user._id)
 
-    if(areSame){
+    if (areSame) {
+        const userColletion = await userSave.collection("Users")
+        const hashedPassword = passwordHash.generate(newPassword)
+
+        userColletion.updateOne(
+            { _id: id },
+            { $set: { password: hashedPassword } }
+        )
+        res.send({ success: true })
+    } else {
+        res.send({ message: "Паролі не збігаються" })
+    }
+
+})
+
+router.patch('/productQuantityPlus', async (req, res) => {
+    const { ItemId } = req.body
+    if (!ItemId) {
+        res.status(404).json({ error: "Item not found" })
+        return
+    }
     const userColletion = await userSave.collection("Users")
-    const hashedPassword = passwordHash.generate(newPassword)
+
+    const id = req.session.user._id
+
+
 
     userColletion.updateOne(
-        { _id: id},
-        { $set: {password:hashedPassword}}
+        { _id: new ObjectId(id), "cardItem._Itemid": ItemId },
+        { $inc: { "cardItem.$.quantity": 1 } }
     )
-    res.send({success:true})
-    }else{
-        res.send({message:"Паролі не збігаються"})
+    res.status(200).json({ message: "Item quantity was updated" })
+
+})
+
+router.patch('/productQuantityMinus', async (req, res) => {
+    const { ItemId } = req.body
+
+    if (!ItemId) {
+        res.status(404).json({ error: "Item not found" })
+        return
     }
-    
+    const userColletion = await userSave.collection("Users")
+
+    const id = req.session.user._id
+
+    userColletion.updateOne(
+        {_id:new ObjectId(id), "cardItem._Itemid": ItemId},
+        {$inc:{"cardItem.$.quantity": -1}}
+    )
+     res.status(200).json({ message: "Item quantity was updated" })
 })

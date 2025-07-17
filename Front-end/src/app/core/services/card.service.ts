@@ -26,8 +26,8 @@ export class CardService {
   get GetProduct() {
     if (this.arrProduct) {
       return [...this.arrProduct]
-    }else{
-      return  []
+    } else {
+      return []
     }
   }
 
@@ -35,10 +35,7 @@ export class CardService {
     const item = await this.takeUser()
     this.arrProduct = item.cardItem
     if (this.arrProduct) {
-      this.count = this.arrProduct.reduce((akk, item) => {
-        akk = item.quantity + akk
-        return akk
-      }, 0)
+      this.count = this.getQuantity()
 
     }
 
@@ -46,28 +43,16 @@ export class CardService {
 
 
   get CountProduct() {
+
     return this.count
   }
 
   set changeQuantityPlus(name: string) {
-    this.arrProduct.find(element => {
-      if (element.name !== name) return
-
-      element.quantity += 1
-      this.changeData()
-
-    })
+    this.changeQuantity(name)
   }
 
   set changeQuantityMinus(name: string) {
-    this.arrProduct.find(element => {
-      if (element.name !== name) return
-      if (element.quantity < 1) return
-
-      element.quantity -= 1
-      this.changeData()
-
-    })
+    this.changeQuantityM(name)
   }
 
   set addProduct(item: objProduct) {
@@ -90,15 +75,52 @@ export class CardService {
 
   clearCard() {
     this.arrProduct = []
-    this.changeData()
   }
   clearOnItem(nameProduct: string) {
 
     this.arrProduct = this.arrProduct.filter(({ name }) => name !== nameProduct)
-    this.changeData()
   }
 
-  changeData() {
+
+  async changeQuantity(name: string) {
+    await this.takeAndRewriteUserItem()
+    if (!this.arrProduct) return
+
+   this.findAndChangeQuantity(name, true)
 
   }
+  async changeQuantityM(name: string) {
+
+    await this.takeAndRewriteUserItem()
+    if (!this.arrProduct) return
+
+    this.findAndChangeQuantity(name, false)
+  }
+  async takeAndRewriteUserItem() {
+    const item = await this.takeUser()
+    this.arrProduct = item.cardItem
+  }
+
+  findAndChangeQuantity(name: string, plus: boolean) {
+    this.arrProduct.find(element => {
+      if (element.name !== name) return
+
+      if (plus) {
+        element.quantity += 1
+        return
+      }
+
+      element.quantity -= 1
+    })
+
+    this.count = this.getQuantity()
+  }
+
+  getQuantity() {
+    return this.arrProduct.reduce((akk, item) => {
+      akk = item.quantity + akk
+      return akk
+    }, 0)
+  }
+
 }
