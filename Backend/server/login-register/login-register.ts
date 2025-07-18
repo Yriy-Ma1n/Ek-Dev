@@ -66,6 +66,5 @@ router.delete('/logout', async (req, res) => {
         })
         res.send({ message: 'Logout1' })
     })
-
-
 })
+
