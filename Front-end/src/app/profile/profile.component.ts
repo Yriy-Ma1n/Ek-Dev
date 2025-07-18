@@ -17,7 +17,7 @@ export class ProfileComponent {
   userData = inject(UserDataService);
   router = inject(Router)
 
-  user: User = { _id: '', name: '', password: '', profileImg: '', cardItem: [], OrderHistory: [] }
+  user: User = { _id: '', email:'', name: '', password: '', profileImg: '', cardItem: [], OrderHistory: [] }
 
   constructor() {
     setTimeout(() => {

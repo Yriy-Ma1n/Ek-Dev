@@ -21,6 +21,8 @@ export class AppComponent {
   hideLayout = false;
   layout = inject(AdminService);
 
+  http = inject(HttpClient)
+
   userInAccount: boolean = false;
   userData = inject(UserDataService)
 
@@ -28,6 +30,8 @@ export class AppComponent {
     this.layout.hideLayout$.subscribe(value => {
       this.hideLayout = value;
     });
+
+    // this.http.post(`http://localhost:5500/sendEmail`, {}).subscribe(data=>console.log(data))
   }
 
   changeClassBody(clas:string){

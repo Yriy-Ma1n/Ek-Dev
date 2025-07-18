@@ -5,14 +5,16 @@ require('dotenv').config();
 
 import { Resend } from "resend"
 
-const resend = new Resend('re_63dDES8c_52AtjuaS1xrz1J3M4cicLnH4')
+const resend = new Resend(process.env.emailId)
 
 router.post('/sendEmail', (req, res) => {
     resend.emails.send({
-        from:'kskiller2020@gmail.com',
+        from:'ekatalogmini.com',
         to:'kskiller2019@gmail.com',
         subject:'Hello',
         html:'<h1>Hi dude</h1>'
-    })
+    }).then(res=>console.log(res)).catch(err=>console.log(err))
+
+    res.send({message:'okay'})
 
 })

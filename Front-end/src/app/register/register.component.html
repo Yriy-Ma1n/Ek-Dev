@@ -5,6 +5,9 @@
   <form class="register-form" [formGroup]="registerForm">
     <h2>Реєстрація</h2>
 
+    <label for="email">Пошта</label>
+    <input type="email" id="email" name="username" placeholder="example@gmail.com" formControlName="email" #email>
+
     <label for="username">Ім’я користувача</label>
     <input type="text" id="username" name="username" placeholder="Ваше ім’я" formControlName="name" #name>
 
@@ -23,6 +26,6 @@
     <div class="error" *ngIf="showNotEqualPassError">{{textNotEqualPassError}}</div>
 
 
-    <button type="submit" class="btn-cta" (click)="register(name, password)">Зареєструватися</button>
+    <button type="submit" class="btn-cta" (click)="register(name, password, email)">Зареєструватися</button>
   </form>
 </div> 

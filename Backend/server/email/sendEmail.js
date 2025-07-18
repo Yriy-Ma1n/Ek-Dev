@@ -5,12 +5,13 @@ var express = require("express");
 exports.router = express.Router();
 require('dotenv').config();
 var resend_1 = require("resend");
-var resend = new resend_1.Resend('re_63dDES8c_52AtjuaS1xrz1J3M4cicLnH4');
+var resend = new resend_1.Resend(process.env.emailId);
 exports.router.post('/sendEmail', function (req, res) {
     resend.emails.send({
-        from: 'kskiller2020@gmail.com',
+        from: 'ekatalogmini.com',
         to: 'kskiller2019@gmail.com',
         subject: 'Hello',
         html: '<h1>Hi dude</h1>'
-    });
+    }).then(function (res) { return console.log(res); }).catch(function (err) { return console.log(err); });
+    res.send({ message: 'okay' });
 });

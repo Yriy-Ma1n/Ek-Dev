@@ -41,6 +41,7 @@ export class UserDataService {
   request() {
     this.http.get<{
        _id: string, 
+       email:string,
        name: string, 
        password: string, 
        profileImg: string, 

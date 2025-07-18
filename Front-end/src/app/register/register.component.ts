@@ -40,7 +40,7 @@ export class RegisterComponent {
 
 
 
-  register(name: HTMLInputElement, password: HTMLInputElement) {
+  register(name: HTMLInputElement, password: HTMLInputElement, email:HTMLInputElement) {
 
     if (!this.registerForm.valid) {
       this.textNotEqualPassError = this.registerForm.errors!['PasswordValidator']
@@ -50,6 +50,7 @@ export class RegisterComponent {
 
 
     const data = {
+      email:email.value,
       name: name.value,
       password: password.value,
       profileImg: 'https://i.pinimg.com/236x/08/35/0c/08350cafa4fabb8a6a1be2d9f18f2d88.jpg',
