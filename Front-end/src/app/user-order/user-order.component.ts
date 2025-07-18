@@ -2,12 +2,12 @@ import { Component, inject } from '@angular/core';
 import { UserDataService } from '../core/services/user-data.service';
 import { Router } from '@angular/router';
 import type { HistoryOrd } from '../shared/types/User-Types';
-import { KeyValuePipe, NgFor, CurrencyPipe } from '@angular/common';
+import { KeyValuePipe, NgFor } from '@angular/common';
 import { CurrencySwitcherPipe } from '../pipes/currency-switcher.pipe';
 
 @Component({
   selector: 'app-user-order',
-  imports: [NgFor, KeyValuePipe, CurrencySwitcherPipe, CurrencyPipe],
+  imports: [NgFor, KeyValuePipe, CurrencySwitcherPipe],
   templateUrl: './user-order.component.html',
   styleUrl: './user-order.component.css'
 })
