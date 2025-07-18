@@ -228,8 +228,29 @@ router.patch('/productQuantityMinus', async (req, res) => {
     const id = req.session.user._id
 
     userColletion.updateOne(
-        {_id:new ObjectId(id), "cardItem._Itemid": ItemId},
-        {$inc:{"cardItem.$.quantity": -1}}
+        { _id: new ObjectId(id), "cardItem._Itemid": ItemId },
+        { $inc: { "cardItem.$.quantity": -1 } }
     )
-     res.status(200).json({ message: "Item quantity was updated" })
+    res.status(200).json({ message: "Item quantity was updated" })
+})
+
+
+router.post('/addLastOrder', (req, res) => {
+    const id = req.session.user._id
+    const { item, orderId, date } = req.body
+    console.log(orderId)
+    if (item) {
+        const userData = userSave.collection("Users")
+
+        item.forEach((data) => {
+            userData.updateOne(
+                { _id: new ObjectId(id) },
+                { $push: { OrderHistory: { orderId, ...data, date} } }
+            )
+        })
+        res.send({ message: 'tovar was added to last order' })
+    } else {
+        res.status(404).json({ error: 'item not found' })
+    }
+
 })

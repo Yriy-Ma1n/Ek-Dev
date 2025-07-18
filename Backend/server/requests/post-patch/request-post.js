@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -318,3 +329,18 @@ exports.router.patch('/productQuantityMinus', function (req, res) { return __awa
         }
     });
 }); });
+exports.router.post('/addLastOrder', function (req, res) {
+    var id = req.session.user._id;
+    var _a = req.body, item = _a.item, orderId = _a.orderId, date = _a.date;
+    console.log(orderId);
+    if (item) {
+        var userData_1 = server_1.userSave.collection("Users");
+        item.forEach(function (data) {
+            userData_1.updateOne({ _id: new mongodb_1.ObjectId(id) }, { $push: { OrderHistory: __assign(__assign({ orderId: orderId }, data), { date: date }) } });
+        });
+        res.send({ message: 'tovar was added to last order' });
+    }
+    else {
+        res.status(404).json({ error: 'item not found' });
+    }
+});
