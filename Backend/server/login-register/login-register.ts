@@ -11,7 +11,7 @@ router.use(cors({
     credentials: true
 }))
 router.post('/register', async (req, res) => {
-    const { name, password, profileImg, cardItem } = req.body
+    const { name, password, profileImg, cardItem, OrderHistory } = req.body
     const userCollection = await userSave.collection("Users")
     const finded = await userCollection.findOne({ name })
     if (finded) {
@@ -19,7 +19,7 @@ router.post('/register', async (req, res) => {
     } else {
         const hashedPassword = passwordHash.generate(password)
 
-        userCollection.insertOne({ name: name, password: hashedPassword, profileImg: profileImg, cardItem:cardItem })
+        userCollection.insertOne({ name: name, password: hashedPassword, profileImg: profileImg, cardItem:cardItem, OrderHistory:OrderHistory })
 
         res.status(200).json({ okay: true })
     }

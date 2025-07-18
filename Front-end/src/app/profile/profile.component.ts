@@ -17,7 +17,8 @@ export class ProfileComponent {
   userData = inject(UserDataService);
   router = inject(Router)
 
-  user: User  = {_id:'', name:'', password:'', profileImg:'', cardItem:[],  OrderHistory:[]}
+  user: User = { _id: '', name: '', password: '', profileImg: '', cardItem: [], OrderHistory: [] }
+
   constructor() {
     setTimeout(() => {
       this.userData.user$.subscribe(user => {
@@ -29,15 +30,15 @@ export class ProfileComponent {
           this.router.navigate(['/SingIn'])
         }
       })
+      console.log(this.user)
     }, 200)
-
   }
 
-  openSettingPage(){
+  openSettingPage() {
     this.router.navigate(['/Profile-setting'])
   }
 
-  openOrder(){
+  openOrder() {
     this.router.navigate(['/OrderHistory'])
   }
 
