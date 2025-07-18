@@ -47,23 +47,29 @@ exports.router.use(cors({
     credentials: true
 }));
 exports.router.post('/register', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, name, password, profileImg, cardItem, OrderHistory, userCollection, finded, hashedPassword;
+    var _a, email, name, password, profileImg, cardItem, OrderHistory, userCollection, finded, findedEmail, hashedPassword;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
-                _a = req.body, name = _a.name, password = _a.password, profileImg = _a.profileImg, cardItem = _a.cardItem, OrderHistory = _a.OrderHistory;
+                _a = req.body, email = _a.email, name = _a.name, password = _a.password, profileImg = _a.profileImg, cardItem = _a.cardItem, OrderHistory = _a.OrderHistory;
                 return [4 /*yield*/, server_1.userSave.collection("Users")];
             case 1:
                 userCollection = _b.sent();
                 return [4 /*yield*/, userCollection.findOne({ name: name })];
             case 2:
                 finded = _b.sent();
+                return [4 /*yield*/, userCollection.findOne({ email: email })];
+            case 3:
+                findedEmail = _b.sent();
                 if (finded) {
                     res.status(403).json({ error: "login already exist" });
                 }
+                else if (findedEmail) {
+                    res.status(403).json({ error: "email already exist" });
+                }
                 else {
                     hashedPassword = passwordHash.generate(password);
-                    userCollection.insertOne({ name: name, password: hashedPassword, profileImg: profileImg, cardItem: cardItem, OrderHistory: OrderHistory });
+                    userCollection.insertOne({ email: email, name: name, password: hashedPassword, profileImg: profileImg, cardItem: cardItem, OrderHistory: OrderHistory });
                     res.status(200).json({ okay: true });
                 }
                 return [2 /*return*/];

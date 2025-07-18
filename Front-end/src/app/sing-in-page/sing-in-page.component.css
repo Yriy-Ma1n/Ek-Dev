@@ -79,6 +79,13 @@
   color: #2c509a;
   cursor: pointer;
 }
+.ForgotPassword{
+  margin-top: 10px;
+
+}
+.ForgotPassword:hover{
+  text-decoration: underline;
+}
 
 .btn-cta:hover {
   background-color: var(--acent-color-orange-hover);

@@ -1,6 +1,6 @@
 import { userSave } from "../../server";
 const express = require("express")
-const  passwordHash  =  require("password-hash")
+const passwordHash = require("password-hash")
 
 export const router = express.Router()
 
@@ -11,15 +11,18 @@ router.use(cors({
     credentials: true
 }))
 router.post('/register', async (req, res) => {
-    const { name, password, profileImg, cardItem, OrderHistory } = req.body
+    const { email, name, password, profileImg, cardItem, OrderHistory } = req.body
     const userCollection = await userSave.collection("Users")
     const finded = await userCollection.findOne({ name })
+    const findedEmail = await userCollection.findOne({ email })
     if (finded) {
         res.status(403).json({ error: "login already exist" })
+    } else if (findedEmail) {
+        res.status(403).json({ error: "email already exist" })
     } else {
         const hashedPassword = passwordHash.generate(password)
 
-        userCollection.insertOne({ name: name, password: hashedPassword, profileImg: profileImg, cardItem:cardItem, OrderHistory:OrderHistory })
+        userCollection.insertOne({ email: email, name: name, password: hashedPassword, profileImg: profileImg, cardItem: cardItem, OrderHistory: OrderHistory })
 
         res.status(200).json({ okay: true })
     }
@@ -32,7 +35,7 @@ router.post('/login', async (req, res) => {
 
     if (finded) {
         const areSame = passwordHash.verify(password, finded.password)
-        
+
         if (areSame) {
             req.session.user = finded
             req.session.isAuthenticated = true
@@ -54,15 +57,14 @@ router.post('/login', async (req, res) => {
     }
 })
 router.delete('/logout', async (req, res) => {
-    req.session.destroy(err =>{
-        if(err){
-            return res.status(500).send({message:'err'})
+    req.session.destroy(err => {
+        if (err) {
+            return res.status(500).send({ message: 'err' })
         }
         res.clearCookie('user-session', {
-            path:'/'
+            path: '/'
         })
-        res.send({message:'Logout1'})
-    }) 
-   
-    
+        res.send({ message: 'Logout1' })
+    })
 })
+

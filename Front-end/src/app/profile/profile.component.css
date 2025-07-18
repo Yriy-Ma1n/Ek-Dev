@@ -50,8 +50,13 @@
   margin: 0;
   font-size: 28px;
   color: var(--text-color);
+  margin-bottom: 0;
 }
+.user-details p{
+  margin: 0;
+  margin-top:5px;
 
+}
 .email {
   color: var(--scrollbar-color);
   font-size: 14px;

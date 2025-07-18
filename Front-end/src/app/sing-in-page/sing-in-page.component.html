@@ -18,7 +18,7 @@
       <img src="./eye-password-.svg" alt="" class="hide-icon" (click)="showPasswordMethod()">
     </div>
     <div class="haventAccount">У вас немає ще облігового запису? <span class="Register" (click)="NavigateToRegister()">Реєстрація</span></div>
-
+    <div class="ForgotPassword Register " (click)="forgotPasswordSend()">Забув пароль</div>
     <div class="error" [ngClass]="{'none':hideError}">Помилка, невірний логін або пароль</div>
     <button type="submit" class="btn-cta" (click)="logIn(name, password)">Увійти</button>
 
