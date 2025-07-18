@@ -1,16 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ProductCardComponent } from "../../shared/components/product-card/product-card.component";
-import { HeaderBarComponent } from "../../shared/components/header-bar/header-bar.component";
-import { CardTovarComponent } from "../../busket-page/card-tovar/card-tovar.component";
 import type { characteristic } from '../../shared/types/characteristics-type';
 import { NgIf } from '@angular/common';
-import { FooterComponent } from "../../footer/footer.component";
 import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-tovar-list',
-  imports: [ProductCardComponent, HeaderBarComponent, NgIf, FooterComponent],
+  imports: [ProductCardComponent, NgIf],
   templateUrl: './tovar-list.component.html',
   styleUrl: './tovar-list.component.css'
 })

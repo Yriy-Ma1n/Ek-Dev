@@ -1,15 +1,11 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ProductCardCharacteristicsComponent } from '../product-card-characteristics/product-card-characteristics.component';
-import { HeaderBarComponent } from "../header-bar/header-bar.component";
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BadWordPipe } from '../../pipes/bad-word.pipe';
-import { NgFor, NgClass, NgIf, KeyValuePipe } from '@angular/common';
+import { NgFor, NgClass, NgIf} from '@angular/common';
 import { CardService } from '../../../core/services/card.service';
 import { HttpClient } from '@angular/common/http';
-import { LaptopItem } from '../../types/LapTopItem-type';
-import type { characteristic } from '../../types/characteristics-type';
-import { FooterComponent } from "../../../footer/footer.component";
 import { CurrencySwitcherPipe } from '../../../pipes/currency-switcher.pipe';
 import { Title } from '@angular/platform-browser';
 import { UserDataService } from '../../../core/services/user-data.service';
@@ -18,16 +14,13 @@ import { MessageComponent } from "../message/message.component";
   selector: 'app-product-card-inner',
   imports: [
     ProductCardCharacteristicsComponent,
-    HeaderBarComponent,
     ReactiveFormsModule,
     BadWordPipe,
     NgFor,
     NgClass,
     NgIf,
-    FooterComponent,
     CurrencySwitcherPipe,
     MessageComponent,
-    KeyValuePipe
   ],
   templateUrl: './product-card-inner.component.html',
   styleUrl: './product-card-inner.component.css'
