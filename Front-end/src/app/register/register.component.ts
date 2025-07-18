@@ -54,7 +54,8 @@ export class RegisterComponent {
       name: name.value,
       password: password.value,
       profileImg: 'https://i.pinimg.com/236x/08/35/0c/08350cafa4fabb8a6a1be2d9f18f2d88.jpg',
-      cardItem: []
+      cardItem: [],
+      OrderHistory:[],
     }
     this.http.post("http://localhost:5500/register", data).subscribe(
       (data) => {

@@ -63,3 +63,15 @@
 .product-data{
   margin-top: 10px;
 }
+@media (max-width:525px) {
+  .order-item{
+    gap:10px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width:525px) {
+  .order-item{
+   flex-direction: column;
+  }
+}
