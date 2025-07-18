@@ -41,7 +41,7 @@
 
 .order-item {
   padding: 0.8rem 1rem;
-  background-color: #f1f5fb;
+  background-color: var(--orderColor);
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
@@ -58,7 +58,8 @@
 .order-item .product-qty,
 .order-item .product-price {
   flex: 1 1 25%;
-  color: #555;
+  color: var(--text-color);
+  font-size: 15px;
 }
 .product-data{
   margin-top: 10px;

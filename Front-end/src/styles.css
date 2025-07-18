@@ -20,6 +20,7 @@ html {
   --accent-color-span: #2c509a;
   --button-card-color: gray;
    --model-contanier-bg: #fdfdfd;
+   --orderColor: #f1f5fb;
 }
 
 @font-face {
@@ -50,6 +51,7 @@ html {
   --model-contanier-bg: #303133;
   --accent-color-span: #ff8d02;
   --button-text-color:white;
+  --orderColor: #636464;
 }
 
 
