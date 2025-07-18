@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { HeaderBarComponent } from '../shared/components/header-bar/header-bar.component';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -9,7 +8,7 @@ import { MessageComponent } from '../shared/components/message/message.component
 
 @Component({
   selector: 'app-register',
-  imports: [HeaderBarComponent, ReactiveFormsModule, NgClass, NgIf, MessageComponent],
+  imports: [ReactiveFormsModule, NgClass, NgIf, MessageComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
