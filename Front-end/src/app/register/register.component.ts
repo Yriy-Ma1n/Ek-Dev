@@ -26,9 +26,14 @@ export class RegisterComponent {
   messageTextRed: string = ''
   messageTextGreen: string = ''
 
-  showPassword:boolean = false
+  showPassword: boolean = false;
+  showEmail: boolean | string = false;
+  showName: boolean = false
+
+
 
   registerForm = new FormGroup({
+    email: new FormControl("", [Validators.required, Validators.email]),
     name: new FormControl("", [Validators.required, Validators.minLength(4), Validators.maxLength(12)]),
     password: new FormControl("", [Validators.required, Validators.minLength(6), Validators.maxLength(36)]),
     confirmPassword: new FormControl("", [Validators.required, Validators.minLength(6), Validators.maxLength(36)])
@@ -40,22 +45,30 @@ export class RegisterComponent {
 
 
 
-  register(name: HTMLInputElement, password: HTMLInputElement, email:HTMLInputElement) {
-
+  register(name: HTMLInputElement, password: HTMLInputElement, email: HTMLInputElement) {
     if (!this.registerForm.valid) {
-      this.textNotEqualPassError = this.registerForm.errors!['PasswordValidator']
-      this.showNotEqualPassError = true
+      if (this.registerForm.errors) {
+        this.textNotEqualPassError = this.registerForm.errors!['PasswordValidator']
+        this.showNotEqualPassError = true
+      }
+      else {
+        this.showNotEqualPassError = false
+      }
+      if (this.registerForm.controls.email.errors) {
+        this.showEmail = 'Введіть коректний email'
+      }
+
       return
     }
 
 
     const data = {
-      email:email.value,
+      email: email.value,
       name: name.value,
       password: password.value,
       profileImg: 'https://i.pinimg.com/236x/08/35/0c/08350cafa4fabb8a6a1be2d9f18f2d88.jpg',
       cardItem: [],
-      OrderHistory:[],
+      OrderHistory: [],
     }
     this.http.post("http://localhost:5500/register", data).subscribe(
       (data) => {
@@ -73,17 +86,20 @@ export class RegisterComponent {
       },
       (error) => {
         if (error) {
-          this.showEror = true
-          this.messageTextGreen = 'Виникла помилка'
-          setTimeout(() => {
-            this.showEror = false
-          }, 2000)
-
-
+          if (error.error.error === 'login already exist') {
+            this.showEror = true
+            this.messageTextGreen = 'Виникла помилка'
+            this.showName = true
+            setTimeout(() => {
+              this.showEror = false
+            }, 2000)
+          }else if(error.error.error === 'email already exist'){
+              this.showEmail = 'Данна email адреса зайнята'
+          }
         }
       });
   }
-  showPasswordMethod(){
+  showPasswordMethod() {
     this.showPassword = !this.showPassword
 
   }

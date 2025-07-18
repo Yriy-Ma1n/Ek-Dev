@@ -6,7 +6,7 @@
     <h2>Реєстрація</h2>
 
     <label for="email">Пошта</label>
-    <input type="email" id="email" name="username" placeholder="example@gmail.com" formControlName="email" #email>
+    <input type="email" id="email" name="email" placeholder="example@gmail.com" formControlName="email" #email>
 
     <label for="username">Ім’я користувача</label>
     <input type="text" id="username" name="username" placeholder="Ваше ім’я" formControlName="name" #name>
@@ -22,8 +22,9 @@
       formControlName="confirmPassword">
     <div class="haveAccount">У вас уже є акаунт? <span class="LogIn" (click)="NavigateToLogin()">Увійти</span></div>
 
-    <div class="error" [ngClass]="{'none':!showEror}">Ім’я користувача зайнято</div>
+    <div class="error" [ngClass]="{'none':!showName}">Ім’я користувача зайнято</div>
     <div class="error" *ngIf="showNotEqualPassError">{{textNotEqualPassError}}</div>
+    <div class="error" *ngIf="showEmail">{{showEmail}}</div>
 
 
     <button type="submit" class="btn-cta" (click)="register(name, password, email)">Зареєструватися</button>

@@ -31,7 +31,7 @@ export class AppComponent {
       this.hideLayout = value;
     });
 
-    // this.http.post(`http://localhost:5500/sendEmail`, {}).subscribe(data=>console.log(data))
+    // this.http.post(`http://localhost:5500/dropPassword`, {message:`Пароль для скидання 20002`}).subscribe(data=>console.log(data))
   }
 
   changeClassBody(clas:string){

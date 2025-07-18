@@ -73,4 +73,8 @@ export class SingInPageComponent {
   showPasswordMethod(){
     this.showPassword = !this.showPassword
   }
+
+  forgotPasswordSend(){
+    this.router.navigate(['/restorePassword'])
+  }
 }

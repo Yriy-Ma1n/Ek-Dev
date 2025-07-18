@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileSettingComponent } from './profile-setting/profile-setting.component';
 import { UserOrderComponent } from './user-order/user-order.component';
+import { RestorePasswordComponent } from './restore-password/restore-password.component';
 
 export const routes: Routes = [
   {
@@ -67,6 +68,11 @@ export const routes: Routes = [
     path:'OrderHistory',
     component:UserOrderComponent,
     title:'OrderHistory'
+  },
+  {
+    path:"restorePassword",
+    component:RestorePasswordComponent,
+    title:'RestorePassword'
   },
   {
     path: '**',
