@@ -1,7 +1,6 @@
 const express = require("express")
 import { ObjectId } from "mongodb"
 import { ProductSave, userSave } from "../../../server"
-import { error } from "console"
 const passwordHash = require("password-hash")
 
 export const router = express.Router()

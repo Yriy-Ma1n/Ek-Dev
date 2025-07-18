@@ -42,6 +42,7 @@ var login_register_1 = require("./server/login-register/login-register");
 var request_delete_1 = require("./server/requests/delete/request-delete");
 var request_post_1 = require("./server/requests/post-patch/request-post");
 var request_get_1 = require("./server/requests/get/request-get");
+var sendEmail_1 = require("./server/email/sendEmail");
 var connectBd_1 = require("./server/connectToBd/connectBd");
 //
 var express = require('express');
@@ -85,6 +86,7 @@ function startServer() {
                     app.use('', request_delete_1.router);
                     app.use('', request_post_1.router);
                     app.use('', request_get_1.router);
+                    app.use('', sendEmail_1.router);
                     app.use(function (req, res, next) {
                         res.set('Cache-Control', 'no-store');
                         next();

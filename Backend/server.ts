@@ -4,6 +4,7 @@ import { router as LoginRouter } from "./server/login-register/login-register";
 import { router as DeleteRouter } from "./server/requests/delete/request-delete";
 import { router as PostRouter } from "./server/requests/post-patch/request-post";
 import { router as GetRouter } from "./server/requests/get/request-get";
+import { router as EmailRouter } from "./server/email/sendEmail";
 import { connect } from "./server/connectToBd/connectBd"
 import { bot } from "./server/bot/bot"
 export let ProductSave;
@@ -56,6 +57,7 @@ async function startServer() {
         app.use('', DeleteRouter)
         app.use('', PostRouter)
         app.use('', GetRouter)
+        app.use('', EmailRouter)
 
         app.use((req, res, next) => {
             res.set('Cache-Control', 'no-store');
