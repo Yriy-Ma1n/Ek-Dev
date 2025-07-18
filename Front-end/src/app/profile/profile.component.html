@@ -10,8 +10,11 @@
 
   <section class="profile-sections">
     <div class="profile-card">
-      <h3>Мої замовлення</h3>
-      <p>Ви ще нічого не замовляли</p>
+      <h3>Історія замовленнь</h3>
+      <p *ngIf="user.OrderHistory === []; else button">Ви ще нічого не замовляли</p>
+      <ng-template #button>
+        <button class="moveToHistory" (click)="openOrder()">Перейти до історії замовлень</button>
+      </ng-template>
     </div>
 
     <div class="profile-card">

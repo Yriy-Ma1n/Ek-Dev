@@ -39,7 +39,15 @@ export class UserDataService {
   }
 
   request() {
-    this.http.get<{ _id: string, name: string, password: string, profileImg: string, cardItem:{_Itemid:string, name:string, price:number, quantity:number, src:string}[] }>("http://localhost:5500/userInAccount", {
+    this.http.get<{
+       _id: string, 
+       name: string, 
+       password: string, 
+       profileImg: string, 
+       cardItem:{_Itemid:string, name:string, price:number, quantity:number, src:string}[] ,
+       OrderHistory:{orderId:string, _Itemid:string, name:string, price:number, quantity:number, src:string, date:string}[] | []
+      
+      }>("http://localhost:5500/userInAccount", {
       withCredentials: true
     }).subscribe(data => {
       this.datas = data

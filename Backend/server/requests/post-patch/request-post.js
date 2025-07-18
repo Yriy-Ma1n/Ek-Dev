@@ -278,3 +278,43 @@ exports.router.patch('/changePassword', function (req, res) { return __awaiter(v
         }
     });
 }); });
+exports.router.patch('/productQuantityPlus', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var ItemId, userColletion, id;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                ItemId = req.body.ItemId;
+                if (!ItemId) {
+                    res.status(404).json({ error: "Item not found" });
+                    return [2 /*return*/];
+                }
+                return [4 /*yield*/, server_1.userSave.collection("Users")];
+            case 1:
+                userColletion = _a.sent();
+                id = req.session.user._id;
+                userColletion.updateOne({ _id: new mongodb_1.ObjectId(id), "cardItem._Itemid": ItemId }, { $inc: { "cardItem.$.quantity": 1 } });
+                res.status(200).json({ message: "Item quantity was updated" });
+                return [2 /*return*/];
+        }
+    });
+}); });
+exports.router.patch('/productQuantityMinus', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var ItemId, userColletion, id;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                ItemId = req.body.ItemId;
+                if (!ItemId) {
+                    res.status(404).json({ error: "Item not found" });
+                    return [2 /*return*/];
+                }
+                return [4 /*yield*/, server_1.userSave.collection("Users")];
+            case 1:
+                userColletion = _a.sent();
+                id = req.session.user._id;
+                userColletion.updateOne({ _id: new mongodb_1.ObjectId(id), "cardItem._Itemid": ItemId }, { $inc: { "cardItem.$.quantity": -1 } });
+                res.status(200).json({ message: "Item quantity was updated" });
+                return [2 /*return*/];
+        }
+    });
+}); });

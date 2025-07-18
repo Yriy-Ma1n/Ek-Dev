@@ -111,7 +111,7 @@
     height: 100%;
     padding: 20px;
     flex-wrap: wrap;
-    background-color: #fff;
+    background-color: var(--form-bg-color);
 }
 .list-category-container-burger-menu span{
     font-size: 18px;
