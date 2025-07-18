@@ -23,7 +23,10 @@ export class RestorePasswordComponent {
     this.http.post('http://localhost:5500/dropPassword', {
       name:userName.value,
       email:email.value
-    })
+    }, {withCredentials:true}).subscribe(data=>console.log(data))
+  }
+  backToHistory(){
+    history.back()
   }
 
 }
