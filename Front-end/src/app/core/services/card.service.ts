@@ -47,12 +47,14 @@ export class CardService {
     return this.count
   }
 
-  set changeQuantityPlus(name: string) {
-    this.changeQuantity(name)
+  set changeQuantityPlus(some: string) {
+    this.count += 1
   }
 
-  set changeQuantityMinus(name: string) {
-    this.changeQuantityM(name)
+  set changeQuantityMinus(itemD: string) {
+    this.count -= 1
+
+
   }
 
 
@@ -83,7 +85,9 @@ export class CardService {
     await this.takeAndRewriteUserItem()
     if (!this.arrProduct) return
 
-   this.findAndChangeQuantity(name, true)
+    this.findAndChangeQuantity(name, true)
+
+    console.log(this.arrProduct)
 
   }
   async changeQuantityM(name: string) {
@@ -111,6 +115,7 @@ export class CardService {
     })
 
     this.count = this.getQuantity()
+
   }
 
   getQuantity() {

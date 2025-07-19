@@ -24,6 +24,7 @@ export class CardTovarComponent {
   @Input() id: string = ''
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log(changes)
     if (changes['count'].currentValue < 1) return
     if (changes['price']?.currentValue) {
       this.constPrice = changes['price'].currentValue
@@ -36,34 +37,40 @@ export class CardTovarComponent {
 
   constPrice: number = 0;
 
+  disabledPlus: boolean = false
+  disabledMinus: boolean = false
 
-  plusButton(element: HTMLElement) {
-    console.log('1')
+
+  plusButton() {
 
     this.count += 1
-
     this.price = this.constPrice * this.count
-
-
-    this.productChange.changeQuantityPlus = String(element.textContent)
 
     this.priceString = String(this.price)
 
+    this.productChange.changeQuantityPlus = ''
+
+    this.disabledPlus = true
+    console.log(this.disabledPlus)
     this.http.patch('http://localhost:5500/productQuantityPlus', { ItemId: this.id }, { withCredentials: true }).subscribe(data => {
-      console.log(data)
+      this.disabledPlus = false
     })
 
   }
-  minusButton(element: HTMLElement) {
+  minusButton() {
     if (this.count <= 1) return
 
     this.count -= 1
+
     this.price -= this.constPrice
 
-    this.productChange.changeQuantityMinus = String(element.textContent)
+    this.priceString = String(this.price)
 
+    this.productChange.changeQuantityMinus = ''
+
+    this.disabledMinus = true
     this.http.patch('http://localhost:5500/productQuantityMinus', { ItemId: this.id }, { withCredentials: true }).subscribe(data => {
-      console.log(data)
+      this.disabledMinus = false
     })
 
   }
@@ -75,6 +82,10 @@ export class CardTovarComponent {
         this.productChange.rewriteProduct()
       }
     })
+  }
+
+  showCount() {
+    return this.count
   }
 
 
