@@ -5,6 +5,7 @@
     padding-top: 20px;
     margin-top: 40px;
     cursor: pointer;
+    width: 100%;
 
 
 }
@@ -206,37 +207,85 @@
 }
 
 @media (max-width:730px) {
-    .name-tovar{
+    .name-tovar {
         font-size: 20px;
     }
-    .additional-info-item{
+
+    .additional-info-item {
         padding: 4px 7px
     }
-    .image-tovar img{
+
+    .image-tovar img {
         width: 130px;
     }
-     .name-statistic-tovar {
+
+    .name-statistic-tovar {
         width: 250px;
     }
-    .price{
+
+    .price {
         font-size: 16px;
     }
 }
 
 @media (max-width:525px) {
-     .name-tovar{
+    :host {
+        width: 95%;
+    }
+
+    .name-tovar {
         font-size: 15px;
     }
-     .additional-info-item{
-       font-size: 10px;
+
+    .additional-info-item {
+        font-size: 10px;
     }
-    .container-statisctics-price{
+
+    .container-statisctics-price {
         margin-left: 12px;
     }
-     .name-statistic-tovar {
-        width: 190px;
+
+    .name-statistic-tovar {
+        width: 250px;
     }
-    .price{
+
+    .price {
+        font-size: 12px;
+    }
+
+    .image-tovar img {
+        width: 100px;
+    }
+}
+
+@media (max-width:490px) {
+    .name-statistic-tovar {
+        width: 220px;
+    }
+
+    .characteristics {
         font-size: 13px;
+    }
+
+    .container-statisctics-price {
+        gap: 5px;
+    }
+
+    .price {
+        font-size: 10px;
+    }
+
+    .image-tovar img {
+        width: 80px;
+    }
+
+    .container-statisctics-price {
+        margin-left: 5px;
+    }
+}
+
+@media (max-width:400px) {
+    .name-statistic-tovar {
+        width: 180px;
     }
 }
