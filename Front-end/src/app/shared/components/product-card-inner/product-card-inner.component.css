@@ -33,7 +33,7 @@
 
 .name-ram h1 {
     font-size: 22px;
-    color: #0a2c6b;
+    color: var(--accent-text-color-blue);
     font-family: 'Segoe UI', sans-serif;
     font-weight: 600;
     margin-bottom: 5px;
