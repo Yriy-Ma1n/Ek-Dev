@@ -59,18 +59,19 @@
     text-decoration: underline;
 }
 
-@media (max-width:1662px) {
-     .main-container-list {
-        width: 1400px;
-        grid-template-columns: 70px 400px 400px;
+@media (max-width:1677px) {
+    .main-container-list {
+        grid-template-columns: 900px 100px 300px;
+        width: 1300px;
     }
-}
-@media (max-width:1408px) {
-     .main-container-list {
-        width:1300px;
-        grid-template-columns: 70px 400px 400px;
+
+    .high-text-ctga {
+        grid-column: 1;
     }
+
 }
+
+
 /* ! 1150-1302px */
 @media screen and (min-width: 1150px) and (max-width: 1302px) {
     .item-list-cont {
@@ -81,8 +82,8 @@
 
     .main-container-list {
         width: 1000px;
-        grid-template-columns: 0px 400px 400px;
-        
+        grid-template-columns: 800px 100px 100px;
+
     }
 
     .item-list-cont>div {
@@ -114,7 +115,7 @@
     }
 
     .main-container-list {
-        grid-template-columns: 0px 400px 300px;
+        grid-template-columns: 500px 100px 100px;
         width: 700px;
     }
 
@@ -144,9 +145,10 @@
     .item-list-cont {
         flex-direction: column;
     }
-  .main-container-list {
-    width: 1000px;
-        grid-template-columns: 155px 400px 400px;
+
+    .main-container-list {
+        width: 690px;
+        grid-template-columns: 500px 100px 90px;
     }
 
     .item-list-cont>div {
@@ -173,52 +175,61 @@
         width: 250px !important;
     }
 }
+
 @media (max-width:724px) {
-    .main-container-list{
+    .main-container-list {
         margin-left: 65px;
+         width: 400px;
+        grid-template-columns: 200px 100px 20px;
+    }
+    .high-text-ctga{
+        font-size: 22px;
     }
 }
 
 @media (max-width:570px) {
-    .main-container-list h1{
+    .main-container-list h1 {
         width: fit-content;
         font-size: 30px;
     }
-     .main-container-list {
-    width: 1000px;
+
+    .main-container-list {
+        width: 300px;
         grid-template-columns: 330px 400px 400px;
     }
 }
 
 @media (max-width:450px) {
-    .main-container-list h1{
+    .main-container-list h1 {
         width: fit-content;
         font-size: 25px;
     }
 }
 
 @media (max-width:400px) {
-   .main-container-list{
+    .main-container-list {
         margin-left: 45px;
-        
+
     }
-    .main-container-list h1{
+
+    .main-container-list h1 {
         font-size: 23px;
     }
 }
 
 @media (max-width:348px) {
-     .main-container-list{
+    .main-container-list {
         margin-left: 20px;
-        
+
     }
-     .main-container-list h1{
+
+    .main-container-list h1 {
         font-size: 23px;
     }
 }
 
 @media (max-width:312px) {
-     .main-container-list h1{
+    .main-container-list h1 {
         font-size: 20px;
     }
 }

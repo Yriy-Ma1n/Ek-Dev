@@ -83,3 +83,7 @@ body {
     right: 40px;
     color:black;
 }
+
+*{
+  border: 1px solid black;
+}
