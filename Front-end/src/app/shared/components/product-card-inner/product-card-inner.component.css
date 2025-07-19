@@ -362,6 +362,12 @@
 }
 
 
+@media (max-width: 1060px) {
+    .input-comment {
+        margin-left: 150px;
+    }
+} 
+
 @media (max-width: 768px) {
     .container-card,
     .comment-block {
@@ -369,6 +375,10 @@
         padding: 10px;
     }
 
+    .input-comment {
+        margin-left: 0px;
+    }
+    
     .arrow-back {
         left: 10px;
         top: 10px;
@@ -400,7 +410,7 @@
 
     .comment-area {
         width: 100%;
-        height: 70px;
+        height: 40px;
     }
 
     .photo-tovar img {
