@@ -28,7 +28,7 @@ router.post('/dropPassword', async (req, res) => {
     const { name, email } = req.body
 
     const user = await userSave.collection("Users").findOne({ name })
-   
+   console.log(user)
 
     if (user.email !== email) {
         res.status(403).json({ error: "Email та user не зівпадають" })

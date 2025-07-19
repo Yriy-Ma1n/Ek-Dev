@@ -66,8 +66,7 @@ exports.router.post('/dropPassword', function (req, res) { return __awaiter(void
                 return [4 /*yield*/, server_1.userSave.collection("Users").findOne({ name: name })];
             case 1:
                 user = _b.sent();
-                console.log(user.email);
-                console.log(email);
+                console.log(user);
                 if (user.email !== email) {
                     res.status(403).json({ error: "Email та user не зівпадають" });
                     return [2 /*return*/];
