@@ -6,6 +6,7 @@
   }
   
   .container-category {
+    margin-left: 50px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: auto auto;
@@ -42,6 +43,7 @@
   
   @media (max-width: 1114px) {
     .container-category {
+        margin-left: 0px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -69,6 +71,7 @@
     .TV,
     .Telephone,
     .Fridge {
+        margin-left: 0px;
       width: 100%;
       max-width: 100%;
     }
