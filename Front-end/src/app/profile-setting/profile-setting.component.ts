@@ -25,7 +25,10 @@ export class ProfileSettingComponent {
   messageTextGreen: string = ''
   messageTextRed: string = ''
 
-  passwordNotTheSame:boolean = false
+  passwordNotTheSame: boolean = false
+
+  showPassword: boolean = false
+  showPasswordOld: boolean = false
 
 
 
@@ -68,8 +71,8 @@ export class ProfileSettingComponent {
     if (name === '') return
 
     this.http.patch<{ message: "Імя користувача зайнято" } | { sended: true }>('http://localhost:5500/changeUserName', { username: name }, { withCredentials: true }).subscribe(data => {
-        console.log('another way1')
-      
+      console.log('another way1')
+
       if ('sended' in data) {
         this.messageTextGreen = 'Ви успішно змінили логін користувача'
         this.showSuccesImageG = true
@@ -101,21 +104,29 @@ export class ProfileSettingComponent {
     }
   }
 
-  changePassword(event:Event, oldPassword:HTMLInputElement, newPassword:HTMLInputElement){
+  changePassword(event: Event, oldPassword: HTMLInputElement, newPassword: HTMLInputElement) {
     event.preventDefault()
-    this.http.patch('http://localhost:5500/changePassword', 
-      {oldPassword:oldPassword.value, newPassword:newPassword.value} ,{withCredentials:true})
-      .subscribe(data=>{
-      if('message' in data){
-        this.passwordNotTheSame = true
-      }else{
-        this.showSuccesImageG = true
-        this.messageTextGreen = 'Ваш пароль успішно змінено!✅'
-        setTimeout(()=>location.reload(), 1500)
-      }
-     
+    this.http.patch('http://localhost:5500/changePassword',
+      { oldPassword: oldPassword.value, newPassword: newPassword.value }, { withCredentials: true })
+      .subscribe(data => {
+        if ('message' in data) {
+          this.passwordNotTheSame = true
+        } else {
+          this.showSuccesImageG = true
+          this.messageTextGreen = 'Ваш пароль успішно змінено!✅'
+          setTimeout(() => location.reload(), 1500)
+        }
 
-    })
+
+      })
+  }
+
+  showPasswordMethod() {
+    this.showPassword = !this.showPassword
+  }
+  showPasswordOldMethod() {
+    this.showPasswordOld = !this.showPasswordOld
+
   }
 
 }

@@ -29,12 +29,14 @@
     <div class="form-group">
        <label for="password">Старий пароль</label>
       <div class="input-with-button">
-        <input type="password" id="password-old" placeholder="••••••••" [ngClass]="{'redBord' : passwordNotTheSame}" #oldPassword/>
+        <input [type]="showPasswordOld ? 'text' : 'password'" id="password-old" placeholder="••••••••" [ngClass]="{'redBord' : passwordNotTheSame}" #oldPassword/>
+         <img _ngcontent-ng-c1569988887="" src="./eye-password-.svg" alt="" class="hide-icon-old" (click)="showPasswordOldMethod()">
       </div>
       <label for="password">Новий пароль</label>
       <div class="input-with-button">
-        <input type="password" id="password-new" placeholder="••••••••" #newPassword />
+        <input [type]="showPassword ? 'text' : 'password' " id="password-new" placeholder="••••••••" #newPassword />
         <button class="save-btn" type="submit" (click)="changePassword($event, oldPassword, newPassword)">Змінити пароль</button>
+        <img _ngcontent-ng-c1569988887="" src="./eye-password-.svg" alt="" class="hide-icon" (click)="showPasswordMethod()">
       </div>
     </div>
     <div class="error" *ngIf="passwordNotTheSame">Паролі не збігаються</div>

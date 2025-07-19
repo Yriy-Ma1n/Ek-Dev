@@ -28,7 +28,9 @@ router.post('/dropPassword', async (req, res) => {
     const { name, email } = req.body
 
     const user = await userSave.collection("Users").findOne({ name })
-    if (!user.email === email) {
+   
+
+    if (user.email !== email) {
         res.status(403).json({ error: "Email та user не зівпадають" })
         return
     }
@@ -38,7 +40,9 @@ router.post('/dropPassword', async (req, res) => {
         const hashPassword = passwordHash.generate(randomPassword)
 
         const userCollection = userSave.collection("Users")
-     
+
+        const user = userCollection.findOne({name:name})
+
 
         userCollection.updateOne({ name: name }, { $set: { password: hashPassword } })
         bot.telegram.sendMessage(process.env.ChatId, `Ваш тимчасовий пароль для входу в аккаунт: "${randomPassword}". Обовязково змініть його!`)
