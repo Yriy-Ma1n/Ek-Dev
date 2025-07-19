@@ -361,7 +361,7 @@
     color: var(--text-color);
 }
 
-/* === 📱 Адаптація для мобільних === */
+
 @media (max-width: 768px) {
     .container-card,
     .comment-block {
