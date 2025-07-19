@@ -111,16 +111,19 @@
         right: 0;
     }
 }
+
 @media (max-width:1125px) {
     .additional-info-account {
         right: 10px;
     }
 }
+
 @media (max-width:1100px) {
     .additional-info-account {
         right: 0px;
     }
 }
+
 @media (max-width: 1030px) {
     .container-sing {
         border: 2px solid var(--opacity-color-gray);
@@ -138,7 +141,7 @@
     }
 
     .container-loged {
-        width: 120px;
+        width: 150px;
         height: 50px;
         flex-direction: row-reverse;
     }

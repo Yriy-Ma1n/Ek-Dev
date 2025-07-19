@@ -80,6 +80,7 @@
   cursor: pointer;
 }
 .ForgotPassword{
+  width: fit-content;
   margin-top: 10px;
 
 }
